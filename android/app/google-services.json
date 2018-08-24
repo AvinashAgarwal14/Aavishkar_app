@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "25234716640",
+    "firebase_url": "https://aavishkar-f9bad.firebaseio.com",
+    "project_id": "aavishkar-f9bad",
+    "storage_bucket": "aavishkar-f9bad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25234716640:android:f964a412fbabcb20",
+        "android_client_info": {
+          "package_name": "com.app.aavishkar.aavishkarapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25234716640-febist0ki3mo43bv94an772h6uf5nm0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiDPJxczpwA4CNwv_E7LnR9xCA8lsSHKc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
