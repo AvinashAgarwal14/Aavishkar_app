@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import './ui/events/onsite_events.dart';
-import './ui/dashboard.dart';
+import './ui/activities/main.dart';
+import './ui/search_by_tags/tags.dart';
+import 'package:aavishkarapp/ui/dashboard/dashboard.dart';
 
 void main()
 {
@@ -12,7 +13,8 @@ void main()
         initialRoute: "/",
         routes: <String, WidgetBuilder>{
           "/ui/dashboard": (BuildContext context) => Dashboard(),
-          "/ui/events/onsite": (BuildContext context) => OnSiteEvents(),
+          "/ui/tags": (BuildContext context) => SearchByTags(),
+          "/ui/activity": (BuildContext context) => AnimationDemoHome(),
           },
       )
   );
