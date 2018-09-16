@@ -7,7 +7,8 @@ class EventItem {
       this.body,
       this.imageUrl,this.date,
       this.category,
-      this.tag
+      this.tag,
+      this.link
       );
 
   String key;
@@ -17,6 +18,7 @@ class EventItem {
   String date;
   String category;
   String tag;
+  String link;
 
   EventItem.fromSnapshot(DataSnapshot snapshot) :
         key = snapshot.key,
@@ -25,5 +27,6 @@ class EventItem {
         imageUrl = snapshot.value['imageUrl'],
         date = snapshot.value['date'],
         tag = snapshot.value['tag'],
-        category = snapshot.value['category'];
+        category = snapshot.value['category'],
+        link = snapshot.value['link'];
 }
