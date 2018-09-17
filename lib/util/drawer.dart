@@ -22,7 +22,21 @@ class NavigationDrawer extends StatelessWidget {
               title: Text("Activities"),
             onTap: () {
               Navigator.of(context).pushNamed("/ui/activity");
-            },
+            }
+          ),
+          ListTile(
+            title: Text("Maps"),
+            onTap: ((){
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/ui/maps/map");
+            }),
+          ),
+          ListTile(
+            title: Text("Account"),
+            onTap:((){
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/ui/account/login");
+            }),
           )
         ],
       ),
