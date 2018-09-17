@@ -15,7 +15,10 @@ dependencies:
   firebase_storage: ^1.0.2
   url_launcher: ^3.0.3
   flutter_webview_plugin: ^0.2.1+2
-
+  flutter_facebook_login:
+  map_view:
+  google_sign_in:
+  intl: ^0.15.2
 
 dev_dependencies:
   flutter_test:
@@ -40,7 +43,9 @@ flutter:
 
   assets:
     - images/events.png
-
+    - assets/login.jpg
+    - assets/home.jpeg
+    - assets/tick.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 
