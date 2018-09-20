@@ -28,8 +28,8 @@ class _MapPageState extends State<MapPage> {
       setState(() {
         myUserLocation = location;
       });
-      print("--> gangnum --->$myUserLocation");
     });
+    return null;
   }
 
   showMap() {

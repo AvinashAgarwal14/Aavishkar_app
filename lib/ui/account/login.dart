@@ -12,15 +12,7 @@ import './loginAnimation.dart';
 import 'package:flutter/animation.dart';
 import './styles.dart';
 import './Components/WhiteTick.dart';
-
-final FirebaseDatabase database = FirebaseDatabase.instance;
-DatabaseReference databaseReference;
-
-final FirebaseAuth _auth = FirebaseAuth.instance;
-final GoogleSignIn _googleSignIn = new GoogleSignIn();
-final _facebookLogin = new FacebookLogin();
-bool _loggedIn = false;
-int click = 0, gclick = 0;
+import '../activities/events/event_details.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -28,6 +20,19 @@ class LogInPage extends StatefulWidget {
 }
 
 class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference databaseReference;
+  static final GlobalKey<ScaffoldState> _scaffoldKey =
+      new GlobalKey<ScaffoldState>();
+  final double _appBarHeight = 256.0;
+  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  GoogleSignIn _googleSignIn;
+  var _facebookLogin;
+  bool _loggedIn = false;
+  int click, gclick;
+
   AnimationController _glogInButtonController;
   AnimationController _flogInButtonController;
   var animationStatus = 0;
@@ -43,6 +48,11 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         duration: new Duration(milliseconds: 3000),
         vsync: this,
         debugLabel: "facebook");
+
+    _googleSignIn = new GoogleSignIn();
+    _facebookLogin = new FacebookLogin();
+    click = 0;
+    gclick = 0;
   }
 
   @override
@@ -114,7 +124,9 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                       child: Container(
                                           child: new Column(
                                         children: <Widget>[
-                                          new SizedBox(height: 400.0,),
+                                          new SizedBox(
+                                            height: 400.0,
+                                          ),
                                           new Padding(
                                             padding: const EdgeInsets.only(
                                                 bottom: 50.0),
@@ -140,7 +152,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                                     "Sign in with Facebook")),
                                           )
                                         ],
-                                       crossAxisAlignment:
+                                        crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                       )),
                                     ))
@@ -176,25 +188,105 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                             ])
                       ]))));
     } else {
-      return new Scaffold(
-          backgroundColor: Colors.red,
-          body: new Column(children: [
-            new Center(
-                child: FlatButton(
-              child: Text("Google Sign out"),
-              onPressed: () => _gSignOut(),
-            )),
-            FlatButton(
-              child: Text("Facebook Sign out"),
-              onPressed: () => _fSignOut(),
-            ),
-          ]));
+      return new Theme(
+          data: new ThemeData(
+            brightness: Brightness.light,
+            primarySwatch: Colors.indigo,
+            platform: Theme.of(context).platform,
+          ),
+          child: new Scaffold(
+              key: _scaffoldKey,
+              body: new CustomScrollView(slivers: <Widget>[
+                new SliverAppBar(
+                  expandedHeight: _appBarHeight,
+                  pinned: _appBarBehavior == AppBarBehavior.pinned,
+                  floating: _appBarBehavior == AppBarBehavior.floating ||
+                      _appBarBehavior == AppBarBehavior.snapping,
+                  snap: _appBarBehavior == AppBarBehavior.snapping,
+                  flexibleSpace: new FlexibleSpaceBar(
+                    title: Text('Profile'),
+                    background: new Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        new Image.asset(
+                          "images/events.png",
+                          fit: BoxFit.cover,
+                          height: _appBarHeight,
+                        ),
+                        // This gradient ensures that the toolbar icons are distinct
+                        // against the background image.
+                        const DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment(0.0, -1.0),
+                              end: Alignment(0.0, -0.4),
+                              colors: <Color>[
+                                Color(0x60000000),
+                                Color(0x00000000)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                new SliverList(
+                    delegate: new SliverChildListDelegate(<Widget>[
+                  DetailCategory(
+                    icon: Icons.person,
+                    children: <Widget>[
+                      DetailItem(
+                        lines: <String>["Name :", "Avinash Agarwal"],
+                      )
+                    ],
+                  ),
+                  DetailCategory(
+                    icon: Icons.email,
+                    children: <Widget>[
+                      DetailItem(
+                        lines: <String>["Email :", "agarwalavinash@gamil.com"],
+                      )
+                    ],
+                  ),
+                  DetailCategory(
+                    icon: Icons.videogame_asset,
+                    children: <Widget>[
+                      DetailItem(
+                        icon: Icons.videogame_asset ,
+                        onPressed: (){
+                          print("Eurocoin!");
+                        },
+                        lines: <String>["Eurocin :", "0"],
+                      )
+                    ],
+                  ),
+                  DetailCategory(
+                    icon: Icons.remove_circle,
+                    children: <Widget>[
+                      DetailItem(
+                        icon: Icons.remove_circle,
+                        onPressed: (){
+                          if(animationStatus==1)
+                            _gSignOut();
+                          else  if (animationStatus==2)
+                            _fSignOut();
+                          print("Logout!");
+                        },
+                        lines: <String>['Logout',''],
+                      )
+                    ],
+                  )
+                ]))
+              ])));
     }
   }
 
   _gSignOut() {
     _googleSignIn.signOut();
-    _loggedIn = false;
+    setState(() {
+      _loggedIn = false;
+    });
     animationStatus = 0;
     _reverseAnimation(1);
 //     _playAnimation();
@@ -210,7 +302,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
     _reverseAnimation(2);
   }
 
-  Future<FirebaseUser> _gSignIn() async {
+  Future _gSignIn() async {
     GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
@@ -219,7 +311,11 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken,
     );
-    _loggedIn = true;
+    if (user != null) {
+      setState(() {
+        _loggedIn = true;
+      });
+    }
     database
         .reference()
         .child("Profiles")
@@ -227,14 +323,18 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
     print("User: $user");
   }
 
-  Future<FirebaseUser> _fSignIn() async {
+  Future _fSignIn() async {
     final result = await _facebookLogin.logInWithReadPermissions(['email']);
     switch (result.status) {
       case FacebookLoginStatus.loggedIn:
         print(result.accessToken.token);
         FirebaseUser user = await _auth.signInWithFacebook(
             accessToken: result.accessToken.token);
-        _loggedIn = true;
+        if (user != null) {
+          setState(() {
+            _loggedIn = true;
+          });
+        }
         database
             .reference()
             .child("Profiles")

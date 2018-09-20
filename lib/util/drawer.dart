@@ -13,9 +13,27 @@ class NavigationDrawer extends StatelessWidget {
             }
           ),
           ListTile(
+              title: Text("Eurocoin"),
+              onTap: () {
+                Navigator.of(context).pushNamed("/ui/eurocoin");
+              }
+          ),
+          ListTile(
+              title: Text("Scoreboard"),
+              onTap: () {
+                Navigator.of(context).pushNamed("/ui/scoreboard");
+              }
+          ),
+          ListTile(
             title: Text("Tags"),
             onTap: () {
               Navigator.of(context).pushNamed("/ui/tags");
+            },
+          ),
+          ListTile(
+            title: Text("Schedule"),
+            onTap: () {
+              Navigator.of(context).pushNamed("/ui/schedule");
             },
           ),
           ListTile(

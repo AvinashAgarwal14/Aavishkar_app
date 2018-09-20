@@ -5,8 +5,8 @@ import '../../../model/event.dart';
 import '../../../util/web_render.dart';
 
 
-class _DetailCategory extends StatelessWidget {
-  const _DetailCategory({ Key key, this.icon, this.children }) : super(key: key);
+class DetailCategory extends StatelessWidget {
+  const DetailCategory({ Key key, this.icon, this.children }) : super(key: key);
 
   final IconData icon;
   final List<Widget> children;
@@ -41,8 +41,8 @@ class _DetailCategory extends StatelessWidget {
   }
 }
 
-class _DetailItem extends StatelessWidget {
-  _DetailItem({ Key key, this.icon, this.lines, this.tooltip, this.onPressed })
+class DetailItem extends StatelessWidget {
+  DetailItem({ Key key, this.icon, this.lines, this.tooltip, this.onPressed })
       : assert(lines.length > 1),
         super(key: key);
 
@@ -156,10 +156,10 @@ class EventDetailsState extends State<EventDetails> {
             ),
             new SliverList(
               delegate: new SliverChildListDelegate(<Widget>[
-                new _DetailCategory(
+                new DetailCategory(
                   icon: Icons.description ,
                   children: <Widget>[
-                    new _DetailItem(
+                    new DetailItem(
                       icon: null,
                       tooltip: 'Details',
                       onPressed: null,
@@ -171,10 +171,10 @@ class EventDetailsState extends State<EventDetails> {
                   ],
                 ),
                 (widget.item.link !=null)?
-                new _DetailCategory(
+                new DetailCategory(
                   icon: Icons.link,
                   children: <Widget>[
-                    new _DetailItem(
+                    new DetailItem(
                       icon: Icons.open_in_new,
                       tooltip: 'Open Link',
                       onPressed: () {
@@ -191,10 +191,10 @@ class EventDetailsState extends State<EventDetails> {
                   ],
                 )
                     :
-                new _DetailCategory(
+                new DetailCategory(
                   icon: Icons.location_on,
                   children: <Widget>[
-                    new _DetailItem(
+                    new DetailItem(
                       icon: Icons.map,
                       tooltip: 'Open map',
                       onPressed: () {
@@ -207,10 +207,10 @@ class EventDetailsState extends State<EventDetails> {
                     ),
                   ],
                 ),
-                new _DetailCategory(
+                new DetailCategory(
                     icon: Icons.call,
                     children: <Widget>[
-                      new _DetailItem(
+                      new DetailItem(
                         icon: Icons.message,
                         tooltip: 'Send message',
                         onPressed: () {
@@ -223,10 +223,10 @@ class EventDetailsState extends State<EventDetails> {
                       )
                     ],
                   ),
-                new _DetailCategory(
+                new DetailCategory(
                   icon: Icons.contact_mail,
                   children: <Widget>[
-                    new _DetailItem(
+                    new DetailItem(
                       icon: Icons.email,
                       tooltip: 'Send personal e-mail',
                       onPressed: () {
