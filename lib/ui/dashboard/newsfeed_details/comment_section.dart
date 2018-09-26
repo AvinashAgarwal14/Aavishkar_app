@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../model/posts_comment.dart';
 import './feed_details.dart';
 
@@ -90,12 +92,14 @@ class _CommentCategoryState extends State<CommentCategory> {
       comments.add(
           new CommentItem(
             lines: <String>[
-              '${comment.authorId}',
+              '${comment.authorName}',
               '${comment.text}',
               '${comment.createdDate}',
             ],
             commentId: comment.id,
             postKey: widget.postKey,
+            authorId: comment.authorId,
+            authorImage: comment.authorImage,
           )
       );
     }
@@ -131,13 +135,15 @@ class _CommentCategoryState extends State<CommentCategory> {
 
 class CommentItem extends StatefulWidget{
 
-  CommentItem({ Key key, this.lines, this.commentId, this.postKey})
+  CommentItem({ Key key, this.lines, this.commentId, this.postKey, this.authorId, this.authorImage})
       : assert(lines.length > 1),
         super(key: key);
 
   final List<String> lines;
   final String commentId;
   final String postKey;
+  final String authorId;
+  final String authorImage;
 
   @override
   _CommentItemState createState() => _CommentItemState();
@@ -146,6 +152,7 @@ class CommentItem extends StatefulWidget{
 class _CommentItemState extends State<CommentItem> {
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
+  FirebaseUser currentUser;
   DatabaseReference _databaseReferenceForComments;
   TextEditingController editComment = new TextEditingController();
 
@@ -153,6 +160,7 @@ class _CommentItemState extends State<CommentItem> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getUser();
     _databaseReferenceForComments = _database.reference().child("Posts-Comments").child(widget.postKey);
     editComment.text = widget.lines[1];
   }
@@ -175,7 +183,7 @@ class _CommentItemState extends State<CommentItem> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               CircleAvatar(
-                  backgroundImage: NetworkImage("https://wallpaperbrowse.com/media/images/3848765-wallpaper-images-download.jpg")
+                  backgroundImage: NetworkImage("${widget.authorImage}")
               ),
               Padding(padding: EdgeInsets.only(right: 7.0)),
               new Expanded(
@@ -184,16 +192,18 @@ class _CommentItemState extends State<CommentItem> {
                       children: columnChildren
                   )
               ),
+              (currentUser!=null && currentUser.uid == widget.authorId)?
               IconButton(
                   icon: Icon(Icons.edit,
                       color: Colors.indigo),
                   onPressed: _editOption
-              ),
+              ):Container(),
+              (currentUser!=null && currentUser.uid == widget.authorId)?
               IconButton(
                   icon: Icon(Icons.delete,
                       color: Colors.indigo),
                   onPressed: _deleteOption
-              )
+              ):Container()
             ],
           ),
         )
@@ -273,13 +283,22 @@ class _CommentItemState extends State<CommentItem> {
   void _onDelete() {
 
   }
+
+  Future getUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    print(user);
+    setState(() {
+      currentUser = user;
+    });
+  }
 }
 
 class AddNewComment extends StatefulWidget {
 
-  const AddNewComment({ Key key, this.postKey, this.authorId}) : super(key: key);
+  const AddNewComment({ Key key, this.postKey, this.user, this.commentCount}) : super(key: key);
   final String postKey;
-  final String authorId;
+  final FirebaseUser user;
+  final commentCount;
 
   @override
   _AddNewCommentState createState() => _AddNewCommentState();
@@ -289,6 +308,7 @@ class _AddNewCommentState extends State<AddNewComment> {
 
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   DatabaseReference _databaseReferenceForNewComment;
+  DatabaseReference _databaseReferenceForPost;
   TextEditingController commentController = new TextEditingController();
 
   @override
@@ -296,6 +316,7 @@ class _AddNewCommentState extends State<AddNewComment> {
     // TODO: implement initState
     super.initState();
     _databaseReferenceForNewComment = _database.reference().child("Posts-Comments").child(widget.postKey);
+    _databaseReferenceForPost = _database.reference().child("Posts").child(widget.postKey);
   }
 
   @override
@@ -305,7 +326,7 @@ class _AddNewCommentState extends State<AddNewComment> {
           child: Column(
             children: <Widget>[
               Divider(
-                color: Colors.indigo,
+                color: Colors.grey,
                 height: 2.0,
               ),
               Row(
@@ -327,14 +348,23 @@ class _AddNewCommentState extends State<AddNewComment> {
                         icon: Icon(Icons.play_arrow, color: Colors.indigo),
                         onPressed: ()
                         {
-                          PostsCommentItem comment = new PostsCommentItem('', 0, '',  '');
-                          comment.authorId = widget.authorId;
-                          comment.createdDate = 4645454;
-                          comment.text = commentController.text;
-                          setState(() {
-                            commentController.clear();
-                          });
-                          addComment(comment);
+                          if(widget.user == null)
+                            {
+                              Navigator.of(context).pushNamed('/ui/account/login');
+                            }
+                            else
+                              {
+                                PostsCommentItem comment = new PostsCommentItem('','', '', 0, '','');
+                                comment.authorId = widget.user.uid;
+                                comment.authorImage = widget.user.photoUrl;
+                                comment.authorName = widget.user.displayName;
+                                comment.createdDate = 4645454;
+                                comment.text = commentController.text;
+                                setState(() {
+                                  commentController.clear();
+                                });
+                                addComment(comment);
+                              }
                         }
                         ),
                   )
@@ -349,6 +379,10 @@ class _AddNewCommentState extends State<AddNewComment> {
     var newRef = _databaseReferenceForNewComment.push();
     comment.id = newRef.key;
     newRef.set(comment.toJson());
+
+    _databaseReferenceForPost.update({
+      'commentsCount':widget.commentCount+1
+    });
   }
 
 }

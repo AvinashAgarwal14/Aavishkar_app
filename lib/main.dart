@@ -7,7 +7,7 @@ import './ui/account/login.dart';
 import './ui/scoreboard/scoreboard.dart';
 import './ui/schedule/schedule.dart';
 import './ui/eurocoin/eurocoin.dart';
-
+import './ui/about_us/about_us.dart';
 
 void main()
 {
@@ -25,7 +25,8 @@ void main()
           "/ui/maps/map":(BuildContext context)=>MapPage(),
           "/ui/account/login":(BuildContext context)=>LogInPage(),
           "/ui/scoreboard":(BuildContext context)=> ScoreBoard(),
-          "/ui/eurocoin":(BuildContext context)=> EurocoinHomePage()
+          "/ui/eurocoin":(BuildContext context)=> EurocoinHomePage(),
+          "/ui/aboutus":(BuildContext context)=> AboutUsPage()
           },
       )
   );

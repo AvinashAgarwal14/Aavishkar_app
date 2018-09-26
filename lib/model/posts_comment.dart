@@ -4,6 +4,8 @@ class PostsCommentItem {
 
   PostsCommentItem(
       this.authorId,
+      this.authorName,
+      this.authorImage,
       this.createdDate,
       this.id,
       this.text
@@ -11,6 +13,8 @@ class PostsCommentItem {
 
   String key;
   String authorId;
+  String authorName;
+  String authorImage;
   int createdDate;
   String id;
   String text;
@@ -18,6 +22,8 @@ class PostsCommentItem {
   PostsCommentItem.fromSnapshot(DataSnapshot snapshot) :
         key = snapshot.key,
         authorId = snapshot.value['authorId'],
+        authorName = snapshot.value['authorName'],
+        authorImage = snapshot.value['authorImage'],
         createdDate = snapshot.value['createdDate'],
         id = snapshot.value['id'],
         text = snapshot.value['text'];
@@ -25,6 +31,8 @@ class PostsCommentItem {
   toJson() {
     return {
       'authorId': authorId,
+      'authorName': authorName,
+      'authorImage': authorImage,
       'createdDate' : createdDate,
       'id':id,
       'text': text

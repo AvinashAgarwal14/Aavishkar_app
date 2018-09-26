@@ -1,4 +1,6 @@
-import 'package:aavishkarapp/model/posts_comment.dart';
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:aavishkarapp/model/posts_comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -99,7 +101,8 @@ class DetailItem extends StatelessWidget {
 class FeedDetails extends StatefulWidget {
 
   final postKey;
-  FeedDetails({Key key, this.postKey}) : super(key: key);
+  final commentCount;
+  FeedDetails({Key key, this.postKey, this.commentCount}) : super(key: key);
 
   @override
   FeedDetailsState createState() => new FeedDetailsState();
@@ -115,11 +118,13 @@ class FeedDetailsState extends State<FeedDetails> {
   FirebaseDatabase _database = FirebaseDatabase.instance;
   DatabaseReference _databaseReferenceForPosts;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
+  FirebaseUser currentUser;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getUser();
     _databaseReferenceForPosts = _database.reference().child("Posts");
     _databaseReferenceForPosts.onChildAdded.listen(_onPostEntryAddedOrUpdated);
     _databaseReferenceForPosts.onChildChanged.listen(_onPostEntryAddedOrUpdated);
@@ -211,9 +216,13 @@ class FeedDetailsState extends State<FeedDetails> {
             ),
           ],
         ):CircularProgressIndicator(),
-        bottomNavigationBar: new AddNewComment(
-          postKey: widget.postKey,
-          authorId: 'abdbasbsd'
+        bottomNavigationBar: new Padding(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: new AddNewComment(
+                postKey: widget.postKey,
+                user: currentUser,
+                commentCount:widget.commentCount
+            ),
         )
       ),
     );
@@ -225,4 +234,14 @@ class FeedDetailsState extends State<FeedDetails> {
         post = NewsfeedItem.fromSnapshot(event.snapshot);
     });
   }
+
+  Future getUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    print(user);
+    setState(() {
+      currentUser = user;
+    });
+    print(currentUser);
+  }
+
 }

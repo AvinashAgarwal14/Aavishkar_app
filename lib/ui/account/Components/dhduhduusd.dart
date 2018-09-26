@@ -1,18 +1,18 @@
+// Copyright 2017 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import './loginAnimation.dart';
+import '../loginAnimation.dart';
 import 'package:flutter/animation.dart';
-import './styles.dart';
-import './Components/WhiteTick.dart';
-import '../activities/events/event_details.dart';
-
-final FirebaseDatabase database = FirebaseDatabase.instance;
-DatabaseReference databaseReference;
-int click = 0, gclick = 0;
+import '../styles.dart';
+import '../Components/WhiteTick.dart';
+import '../../activities/events/event_details.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -20,25 +20,26 @@ class LogInPage extends StatefulWidget {
 }
 
 class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = new GoogleSignIn();
-  final _facebookLogin = new FacebookLogin();
-  FirebaseUser currentUser;
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference databaseReference;
+  static final GlobalKey<ScaffoldState> _scaffoldKey =
+  new GlobalKey<ScaffoldState>();
+  final double _appBarHeight = 256.0;
+  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  GoogleSignIn _googleSignIn;
+  var _facebookLogin;
+  bool _loggedIn = false;
+  int click, gclick;
 
   AnimationController _glogInButtonController;
   AnimationController _flogInButtonController;
   var animationStatus = 0;
-
-  static final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final double _appBarHeight = 256.0;
-
-  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUser();
     _glogInButtonController = new AnimationController(
         duration: new Duration(milliseconds: 3000),
         vsync: this,
@@ -47,6 +48,11 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         duration: new Duration(milliseconds: 3000),
         vsync: this,
         debugLabel: "facebook");
+
+    _googleSignIn = new GoogleSignIn();
+    _facebookLogin = new FacebookLogin();
+    click = 0;
+    gclick = 0;
   }
 
   @override
@@ -74,12 +80,13 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
       else
         await _flogInButtonController.reverse();
     } on TickerCanceled {}
+    setState(() {});
     //await _glogInButtonController.reverse();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (currentUser == null) {
+    if (!_loggedIn) {
       return new Scaffold(
           body: new Container(
               decoration: new BoxDecoration(
@@ -157,7 +164,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                       : _fSignIn(),
                                   builder: (BuildContext context,
                                       AsyncSnapshot snapshot) {
-                                    if (currentUser == null) {
+                                    if (_loggedIn == false) {
                                       return Center(
                                           child: CircularProgressIndicator(
                                             value: null,
@@ -201,8 +208,8 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                     background: new Stack(
                       fit: StackFit.expand,
                       children: <Widget>[
-                        new Image.network(
-                          "${currentUser.photoUrl}",
+                        new Image.asset(
+                          "images/events.png",
                           fit: BoxFit.cover,
                           height: _appBarHeight,
                         ),
@@ -230,7 +237,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         icon: Icons.person,
                         children: <Widget>[
                           DetailItem(
-                            lines: <String>["Name :", "${currentUser.displayName}"],
+                            lines: <String>["Name :", "Avinash Agarwal"],
                           )
                         ],
                       ),
@@ -238,7 +245,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         icon: Icons.email,
                         children: <Widget>[
                           DetailItem(
-                            lines: <String>["Email :", "${currentUser.email}"],
+                            lines: <String>["Email :", "agarwalavinash@gamil.com"],
                           )
                         ],
                       ),
@@ -248,9 +255,9 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                           DetailItem(
                             icon: Icons.videogame_asset ,
                             onPressed: (){
-                              Navigator.of(context).pushNamed("/ui/eurocoin");
+                              print("Eurocoin!");
                             },
-                            lines: <String>["Eurocin Wallet", ""],
+                            lines: <String>["Eurocin :", "0"],
                           )
                         ],
                       ),
@@ -260,9 +267,9 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                           DetailItem(
                             icon: Icons.remove_circle,
                             onPressed: (){
-                              if(currentUser.photoUrl.contains("googleusercontent"))
+                              if(animationStatus==1)
                                 _gSignOut();
-                              else
+                              else  if (animationStatus==2)
                                 _fSignOut();
                               print("Logout!");
                             },
@@ -275,19 +282,10 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
     }
   }
 
-  Future getUser() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    print(user);
-    setState(() {
-      currentUser = user;
-    });
-  }
-
   _gSignOut() {
     _googleSignIn.signOut();
-    _auth.signOut();
     setState(() {
-      currentUser = null;
+      _loggedIn = false;
     });
     animationStatus = 0;
     _reverseAnimation(1);
@@ -299,16 +297,12 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
 
   _fSignOut() {
     _facebookLogin.logOut();
-    _auth.signOut();
-    setState(() {
-      currentUser = null;
-    });
-
+    _loggedIn = false;
     animationStatus = 0;
-//    _reverseAnimation(2);
+    _reverseAnimation(2);
   }
 
-  Future<FirebaseUser> _gSignIn() async {
+  Future _gSignIn() async {
     GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleSignInAuthentication =
     await googleSignInAccount.authentication;
@@ -317,28 +311,30 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken,
     );
-    setState(() {
-      currentUser = user;
-    });
+    if (user != null) {
+      setState(() {
+        _loggedIn = true;
+      });
+    }
     database
         .reference()
         .child("Profiles")
         .update({"${user.uid}": "${user.email}"});
     print("User: $user");
-    return user;
   }
 
-  Future<FirebaseUser> _fSignIn() async {
+  Future _fSignIn() async {
     final result = await _facebookLogin.logInWithReadPermissions(['email']);
-    FirebaseUser user;
     switch (result.status) {
       case FacebookLoginStatus.loggedIn:
         print(result.accessToken.token);
-        user = await _auth.signInWithFacebook(
+        FirebaseUser user = await _auth.signInWithFacebook(
             accessToken: result.accessToken.token);
-        setState(() {
-          currentUser = user;
-        });
+        if (user != null) {
+          setState(() {
+            _loggedIn = true;
+          });
+        }
         database
             .reference()
             .child("Profiles")
@@ -351,7 +347,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         print(result.errorMessage);
         break;
     }
-    return user;
   }
 
   SignIn(String str) {

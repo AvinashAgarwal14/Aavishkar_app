@@ -39,7 +39,7 @@ class _NewsfeedState extends State<Newsfeed> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) =>
-                        FeedDetails(postKey: feed[position].key)),
+                        FeedDetails(postKey: feed[position].key, commentCount: feed[position].commentsCount)),
                   );
                 },
                 child: new Card(
