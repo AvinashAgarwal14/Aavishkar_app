@@ -4,27 +4,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43e8edc6-38fd-4ff7-a1e8-dcf217825f9e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/model/sponsor.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/sponsors/sponsors.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/notes" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" afterPath="$PROJECT_DIR$/lib/main.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/account/login.dart" afterPath="$PROJECT_DIR$/lib/ui/account/login.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/account/loginAnimation.dart" afterPath="$PROJECT_DIR$/lib/ui/account/loginAnimation.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/activities/events/event_details.dart" afterPath="$PROJECT_DIR$/lib/ui/activities/events/event_details.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/activities/main.dart" afterPath="$PROJECT_DIR$/lib/ui/activities/main.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/dashboard_content.dart" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/scoreboard/scoreboard.dart" afterPath="$PROJECT_DIR$/lib/ui/scoreboard/scoreboard.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/util/drawer.dart" afterPath="$PROJECT_DIR$/lib/util/drawer.dart" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" afterPath="$PROJECT_DIR$/pubspec.lock" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
-    </list>
+    <list default="true" id="43e8edc6-38fd-4ff7-a1e8-dcf217825f9e" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -48,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.dart" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/ui/account/login.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5126">
-              <caret line="233" column="52" lean-forward="false" selection-start-line="233" selection-start-column="52" selection-end-line="233" selection-end-column="52" />
+            <state relative-caret-position="88">
+              <caret line="236" column="17" lean-forward="true" selection-start-line="236" selection-start-column="17" selection-end-line="236" selection-end-column="17" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -84,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scoreboard.dart" pinned="false" current-in-tab="true">
+      <file leaf-file-name="scoreboard.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/ui/scoreboard/scoreboard.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -185,6 +165,24 @@
             <path>
               <item name="Aavishkar_app" type="b2602c69:ProjectViewProjectNode" />
               <item name="Aavishkar_app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Aavishkar_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Aavishkar_app" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Aavishkar_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Aavishkar_app" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Aavishkar_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Aavishkar_app" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -490,16 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/account/login.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5126">
-          <caret line="233" column="52" lean-forward="false" selection-start-line="233" selection-start-column="52" selection-end-line="233" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/ui/eurocoin/eurocoin.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -565,6 +553,16 @@
           <folding>
             <element signature="e#0#637#0" expanded="true" />
             <element signature="e#66#105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/account/login.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="236" column="17" lean-forward="true" selection-start-line="236" selection-start-column="17" selection-end-line="236" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
