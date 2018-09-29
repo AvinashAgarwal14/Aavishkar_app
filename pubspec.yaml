@@ -20,6 +20,8 @@ dependencies:
   google_sign_in:
   intl: ^0.15.2
   crypto: ^2.0.3
+  carousel_slider:
+  flutter_swiper:
 
 dev_dependencies:
   flutter_test:

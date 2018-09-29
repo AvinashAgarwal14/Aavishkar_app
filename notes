@@ -1,3 +1,11 @@
+git add .
+git commit -m "message"
+git push origin developing2
+
+
+
+
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 String buttonName="";
@@ -55,7 +63,7 @@ class StaggerAnimation extends StatelessWidget {
   Future<Null> _playAnimation() async {
     try {
       await buttonController.forward();
-      await buttonController.reverse();
+     // await buttonController.reverse();
     } on TickerCanceled {}
   }
 
@@ -86,7 +94,7 @@ class StaggerAnimation extends StatelessWidget {
                     ),
                     child: buttonSqueezeanimation.value > 75.0
                         ? new Text(
-                           buttonController.debugLabel=="google"?"Sign in With Google": "Sign in With Facebook",
+                           buttonController.debugLabel=="google"?"Sign in Woth Google": "Sign in With Facebook",
                             maxLines: 1,
                             style: new TextStyle(
                               color: Colors.white,
@@ -121,7 +129,7 @@ class StaggerAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     buttonController.addListener(() {
       if (buttonController.isCompleted) {
-       // Navigator.pushNamed(context, "/home");
+        Navigator.pushNamed(context, "/home");
       }
     });
     return new AnimatedBuilder(
@@ -130,3 +138,4 @@ class StaggerAnimation extends StatelessWidget {
     );
   }
 }
+

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../util/drawer.dart';
-import './dashboard_content.dart';
+import './dashboard_layout.dart';
 import './newsfeed.dart';
 import '../../model/event.dart';
 
@@ -8,13 +8,12 @@ class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => _DashboardState();
 }
-
 class _DashboardState extends State<Dashboard> {
 
   var _currentState = 0;
 
   List Views = [
-    DashBoardContent(),
+    DashBoardLayout(),
     Newsfeed()
   ];
 

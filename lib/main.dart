@@ -9,6 +9,9 @@ import './ui/schedule/schedule.dart';
 import './ui/eurocoin/eurocoin.dart';
 import './ui/about_us/about_us.dart';
 
+//import './ui/account/account.dart';
+import './ui/sponsors/sponsors.dart';
+
 void main()
 {
   runApp(
@@ -38,9 +41,13 @@ void main()
           "/ui/activity": (BuildContext context) => ActivitiesHomePage(),
           "/ui/maps/map":(BuildContext context)=>MapPage(),
           "/ui/account/login":(BuildContext context)=>LogInPage(),
+
           "/ui/scoreboard":(BuildContext context)=> ScoreBoard(),
           "/ui/eurocoin":(BuildContext context)=> EurocoinHomePage(),
-          "/ui/aboutus":(BuildContext context)=> AboutUsPage()
+          "/ui/aboutus":(BuildContext context)=> AboutUsPage(),
+//          "/ui/account/account":(BuildContext context)=> Account(),
+          "/ui/sponsors/sponsors":(BuildContext context)=>Sponsors(),
+
           },
       )
   );
