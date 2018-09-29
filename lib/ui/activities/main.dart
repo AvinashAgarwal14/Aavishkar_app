@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'sections.dart';
 import 'widgets.dart';
+import '../../util/drawer.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 const Color _kAppBackgroundColor = Color(0xFF353662);
@@ -21,7 +22,7 @@ Map<String, List<EventItem>> eventsByCategories;
 // heading. The appbar's height can be reduced to no more than _kAppBarMinHeight.
 const double _kAppBarMinHeight = 90.0;
 const double _kAppBarMidHeight = 256.0;
-// The AppBar's max height depends on the screen, see _AnimationDemoHomeState._buildBody()
+// The AppBar's max height depends on the screen, see _ActivitiesHomePageState._buildBody()
 
 // Initially occupies the same space as the status bar and gets smaller as
 // the primary scrollable scrolls upwards.
@@ -415,16 +416,16 @@ class _SnappingScrollPhysics extends ClampingScrollPhysics {
   }
 }
 
-class AnimationDemoHome extends StatefulWidget {
-  const AnimationDemoHome({ Key key }) : super(key: key);
+class ActivitiesHomePage extends StatefulWidget {
+  const ActivitiesHomePage({ Key key }) : super(key: key);
 
   static const String routeName = '/animation';
 
   @override
-  _AnimationDemoHomeState createState() => new _AnimationDemoHomeState();
+  _ActivitiesHomePageState createState() => new _ActivitiesHomePageState();
 }
 
-class _AnimationDemoHomeState extends State<AnimationDemoHome> {
+class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
   final ScrollController _scrollController = new ScrollController();
   final PageController _headingPageController = new PageController();
   final PageController _detailsPageController = new PageController();
@@ -455,6 +456,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      drawer: NavigationDrawer(),
       backgroundColor: _kAppBackgroundColor,
       body: new Builder(
         // Insert an element so that _buildBody can find the PrimaryScrollController.
@@ -509,18 +511,25 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
     return false;
   }
 
-  _detailItemsFor(Section section) {
-    List<SectionDetailView> detailItems = new List();
-    section.details.forEach((EventItem detail) {
-      detailItems.add(SectionDetailView(detail: detail));
+//  _detailItemsFor(Section section) {
+//    List<SectionDetailView> detailItems = new List();
+//    section.details.forEach((EventItem detail) {
+//      detailItems.add(SectionDetailView(detail: detail));
+//    });
+//    print(detailItems);
+//    return ListView.builder(
+//      itemCount: detailItems.length,
+//      itemBuilder: (context, index) {
+//        return detailItems[index];
+//      },
+//    );
+//  }
+
+  Iterable<Widget> _detailItemsFor(Section section) {
+    final Iterable<Widget> detailItems = section.details.map((EventItem detail) {
+      return SectionDetailView(detail: detail);
     });
-    print(detailItems);
-    return ListView.builder(
-      itemCount: detailItems.length,
-      itemBuilder: (context, index) {
-        return detailItems[index];
-      },
-    );
+    return ListTile.divideTiles(context: context, tiles: detailItems);
   }
 
   Iterable<Widget> _allHeadingItems(double maxHeight, double midScrollOffset) {
@@ -616,15 +625,9 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
                       child: new PageView(
                         controller: _detailsPageController,
                         children: allSections.map((Section section) {
-                          return new Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children:<Widget>[
-                              Container(
-                                child: Expanded(
-                                    child: _detailItemsFor(section)
-                                ),
-                              )
-                            ]
+                          return new ListView(
+//                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: _detailItemsFor(section).toList()
                           );
                         }).toList(),
                       ),

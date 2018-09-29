@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "2.0.2"
   crypto:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: crypto
       url: "https://pub.dartlang.org"
@@ -441,12 +441,10 @@ packages:
   uri:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: a31e0ce43294780088a4ec5bb964db5501350375
-      url: "https://github.com/diegoveloper/uri.dart.git"
-    source: git
-    version: "0.11.3"
+      name: uri
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.3+1"
   url_launcher:
     dependency: "direct main"
     description:
@@ -504,5 +502,5 @@ packages:
     source: hosted
     version: "2.1.15"
 sdks:
-  dart: ">=2.0.0 <=2.1.0-dev.1.0.flutter-ccb16f7282"
+  dart: ">=2.0.0 <=2.1.0-dev.3.1.flutter-760a9690c2"
   flutter: ">=0.1.4 <2.0.0"

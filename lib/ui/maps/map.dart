@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:map_view/map_view.dart';
+import '../../util/drawer.dart';
 
 var api_key = "AIzaSyCP6FN-suegsEoCh1MiONTl-yokBLR266I";
 int shown=0;
@@ -28,8 +29,8 @@ class _MapPageState extends State<MapPage> {
       setState(() {
         myUserLocation = location;
       });
-      print("--> gangnum --->$myUserLocation");
     });
+    return null;
   }
 
   showMap() {
@@ -71,7 +72,10 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     if(shown==0){
-      return Scaffold(body:showMap());
+      return Scaffold(
+          drawer: NavigationDrawer(),
+          body:showMap()
+      );
       }
     else
       {

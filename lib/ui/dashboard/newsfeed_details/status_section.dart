@@ -1,12 +1,14 @@
+import 'dart:async';
 import 'package:aavishkarapp/model/newsfeed.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../model/post_likes.dart';
 
 class StatusCategory extends StatefulWidget {
-  StatusCategory({ Key key, this.postKey, this.commentsCount, this.views }) : super(key: key);
+  StatusCategory({ Key key, this.postKey, this.commentsCount, this.date }) : super(key: key);
   final postKey;
-  final int views;
+  final String date;
   final int commentsCount;
 
   @override
@@ -22,7 +24,10 @@ class _StatusCategoryState extends State<StatusCategory> {
   Icon likeButton;
   FirebaseDatabase _database = FirebaseDatabase.instance;
   DatabaseReference _databaseReferenceForPostsLikes;
-  PostsLikeItem likeItem;
+  int numberOfLikes;
+  FirebaseUser currentUser;
+  String likeId;
+  bool currentLike;
 
   DatabaseReference _databaseReferenceForPosts;
   NewsfeedItem postItem;
@@ -31,20 +36,21 @@ class _StatusCategoryState extends State<StatusCategory> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getUser();
+    numberOfLikes = 0;
+    currentLike = false;
+    _databaseReferenceForPostsLikes = _database.reference().child("Posts-Likes").child("${widget.postKey}");
+    _databaseReferenceForPostsLikes.onChildAdded.listen(_onLikesEntryAdded);
 
-    likeButton = likeOptions[0];
-    _databaseReferenceForPostsLikes = _database.reference().child("Posts-Likes");
-    _databaseReferenceForPostsLikes.onChildAdded.listen(_onLikesEntryAddedOrUpdated);
-    _databaseReferenceForPostsLikes.onChildChanged.listen(_onLikesEntryAddedOrUpdated);
-
-
-    _databaseReferenceForPosts = _database.reference().child("Posts");
-    _databaseReferenceForPosts.onChildAdded.listen(_onPostsEntryAddedOrUpdated);
-    _databaseReferenceForPosts.onChildChanged.listen(_onPostsEntryAddedOrUpdated);
+    _databaseReferenceForPosts = _database.reference().child("Posts").child("${widget.postKey}");
   }
 
   @override
   Widget build(BuildContext context) {
+    if(currentUser!=null && currentLike==true)
+      likeButton = likeOptions[1];
+    else
+      likeButton = likeOptions[0];
     final ThemeData themeData = Theme.of(context);
     return new Container(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -64,41 +70,37 @@ class _StatusCategoryState extends State<StatusCategory> {
                       children: <Widget>
                       [
                         Container(
-                            padding: EdgeInsets.only(top: 15.0),
-                            width: 72.0,
+                            width: 60.0,
                             child: Column(
                               children: <Widget>[
-                                Icon(Icons.remove_red_eye, color: Colors.indigo),
-                                Padding(padding: EdgeInsets.only(top: 10.0)),
-                                Text("${widget.views}")
+                                IconButton(icon: likeButton, onPressed: () {
+                                  if(currentUser==null)
+                                    {
+                                      Navigator.of(context).pushNamed("/ui/account/login");
+                                    } else
+                                      {
+                                          if(likeButton == likeOptions[0])
+                                          {
+                                            setState(() {
+                                              currentLike = true;
+                                            });
+                                            _addUserToPostLikes();
+                                            _updatePost(numberOfLikes+1);
+                                          }
+                                          else
+                                          {
+                                            setState(() {
+                                              currentLike =  false;
+                                              numberOfLikes--;
+                                            });
+                                            _deleteUserFromPostLikes();
+                                            _updatePost(numberOfLikes);
+                                          }
+                                      }
+                                }),
+                                  Text("$numberOfLikes")
                               ],
                             )
-                        ),
-                        Container(
-                            width: 60.0,
-                            child: (likeItem!=null)?Column(
-                              children: <Widget>[
-                                IconButton(icon: likeButton, onPressed: () {
-                                  setState(() {
-                                    if(likeButton == likeOptions[0])
-                                    {
-                                      likeButton = likeOptions[1];
-                                      likeItem.likes++;
-                                      _updateLikes(likeItem.likes);
-                                      _updatePostLikes(likeItem.likes);
-                                    }
-                                    else
-                                    {
-                                      likeButton = likeOptions[0];
-                                      likeItem.likes--;
-                                      _updateLikes(likeItem.likes);
-                                      _updatePostLikes(likeItem.likes);
-                                    }
-                                  });
-                                }),
-                                  Text("${likeItem.likes}")
-                              ],
-                            ):CircularProgressIndicator()
                         ),
                         Container(
                             padding: EdgeInsets.only(top: 15.0),
@@ -108,6 +110,17 @@ class _StatusCategoryState extends State<StatusCategory> {
                                 Icon(Icons.mode_comment, color: Colors.indigo),
                                 Padding(padding: EdgeInsets.only(top: 10.0)),
                                 Text("${widget.commentsCount}")
+                              ],
+                            )
+                        ),
+                        Container(
+                            padding: EdgeInsets.only(top: 10.0),
+                            width: 72.0,
+                            child: Column(
+                              children: <Widget>[
+                                Icon(Icons.date_range, color: Colors.indigo),
+                                Padding(padding: EdgeInsets.only(top: 10.0)),
+                                Text("${widget.date}", style: TextStyle(fontSize: 13.0),)
                               ],
                             )
                         ),
@@ -121,30 +134,43 @@ class _StatusCategoryState extends State<StatusCategory> {
     );
   }
 
-  void _onLikesEntryAddedOrUpdated(Event event) {
+  Future getUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
     setState(() {
-      if(event.snapshot.value['postId'] == widget.postKey)
-        likeItem =(PostsLikeItem.fromSnapshot(event.snapshot));
+      currentUser = user;
     });
   }
 
-  void _onPostsEntryAddedOrUpdated(Event event) {
+  void _onLikesEntryAdded(Event event) {
     setState(() {
-      if(event.snapshot.key == widget.postKey)
-        postItem = (NewsfeedItem.fromSnapshot(event.snapshot));
+      numberOfLikes++;
+      print(numberOfLikes);
+      if(currentUser!=null && event.snapshot.value['authorId'] == currentUser.uid)
+        {
+          currentLike = true;
+          likeId = event.snapshot.key;
+        }
     });
   }
 
-  void _updateLikes(int value)
+  void _addUserToPostLikes()
   {
-    _databaseReferenceForPostsLikes.child("${widget.postKey}").update({
-      "likes":value
-    });
+
+        PostsLikeItem user = new PostsLikeItem('', '');
+        user.authorId = currentUser.uid;
+        user.date = '62616110';
+        _databaseReferenceForPostsLikes.push().set(user.toJson());
+
   }
 
-  void _updatePostLikes(int value)
+  void _deleteUserFromPostLikes()
   {
-    _databaseReferenceForPosts.child("${widget.postKey}").update({
+    _databaseReferenceForPostsLikes.child(likeId).remove();
+  }
+
+  void _updatePost(int value)
+  {
+    _databaseReferenceForPosts.update({
       "likesCount":value
     });
   }

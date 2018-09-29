@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "25234716640-n3r8k1blkl99mf8s5149dd2uer6r6050.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aavishkar.aavishkarapp",
+            "certificate_hash": "3242e959f4de710c9170c7b8be6f755c0089fad4"
+          }
+        },
+        {
+          "client_id": "25234716640-conh9hjn1nbph5d816lfca8bok4g86ns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aavishkar.aavishkarapp",
+            "certificate_hash": "810723de1f396b824b39674a8f7330357fbc842d"
+          }
+        },
+        {
           "client_id": "25234716640-febist0ki3mo43bv94an772h6uf5nm0u.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25234716640-febist0ki3mo43bv94an772h6uf5nm0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
