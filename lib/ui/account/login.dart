@@ -9,6 +9,8 @@ import 'package:flutter/animation.dart';
 import './styles.dart';
 import './Components/WhiteTick.dart';
 import '../activities/events/event_details.dart';
+import '../../util/detailSection.dart';
+import '../../util/drawer.dart';
 
 final FirebaseDatabase database = FirebaseDatabase.instance;
 DatabaseReference databaseReference;
@@ -29,7 +31,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   AnimationController _flogInButtonController;
   var animationStatus = 0;
 
-  static final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final double _appBarHeight = 256.0;
 
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
@@ -81,6 +83,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     if (currentUser == null) {
       return new Scaffold(
+          drawer: NavigationDrawer(),
           body: new Container(
               decoration: new BoxDecoration(
                 image: backgroundImage,
@@ -189,6 +192,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
           ),
           child: new Scaffold(
               key: _scaffoldKey,
+              drawer: NavigationDrawer(),
               body: new CustomScrollView(slivers: <Widget>[
                 new SliverAppBar(
                   expandedHeight: _appBarHeight,

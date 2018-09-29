@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../util/drawer.dart';
 
 class AboutUsPage extends StatefulWidget {
   @override
@@ -108,25 +109,26 @@ class _AboutUsPageState extends State<AboutUsPage>
 
   @override
   Widget build(BuildContext context) {
-    final boxOpacityOne = CurveTween(curve: Curves.easeOut)
+    final boxOpacityOne = CurveTween(curve: Curves.easeIn)
         .animate(animatedBoxOneEnterAnimationController);
-    final boxPositionOne = Tween(begin: Offset(-1.0, 0.0), end: Offset.zero)
-        .chain(CurveTween(curve: Curves.elasticOut))
+    final boxPositionOne = Tween(begin: Offset(0.0, 0.01), end: Offset.zero)
+        .chain(CurveTween(curve: Curves.easeIn))
         .animate(animatedBoxOneEnterAnimationController);
 
-    final boxOpacityTwo = CurveTween(curve: Curves.easeOut)
+    final boxOpacityTwo = CurveTween(curve: Curves.easeIn)
         .animate(animatedBoxTwoEnterAnimationController);
-    final boxPositionTwo = Tween(begin: Offset(-1.0, 0.0), end: Offset.zero)
-        .chain(CurveTween(curve: Curves.elasticOut))
+    final boxPositionTwo = Tween(begin: Offset(0.0, 0.01), end: Offset.zero)
+        .chain(CurveTween(curve: Curves.easeIn))
         .animate(animatedBoxTwoEnterAnimationController);
 
-    final boxOpacityThree = CurveTween(curve: Curves.easeOut)
+    final boxOpacityThree = CurveTween(curve: Curves.easeIn)
         .animate(animatedBoxThreeEnterAnimationController);
-    final boxPositionThree = Tween(begin: Offset(-1.0, 0.0), end: Offset.zero)
-        .chain(CurveTween(curve: Curves.elasticOut))
+    final boxPositionThree = Tween(begin: Offset(0.0, 0.01), end: Offset.zero)
+        .chain(CurveTween(curve: Curves.easeIn))
         .animate(animatedBoxThreeEnterAnimationController);
 
     return new Scaffold(
+      drawer: NavigationDrawer(),
       appBar: AppBar(
         title: Text("About Us"),
       ),

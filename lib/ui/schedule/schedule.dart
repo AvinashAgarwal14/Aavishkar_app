@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../util/drawer.dart';
 import './day1.dart';
 import './day2.dart';
 import './day3.dart';
@@ -23,7 +24,7 @@ class _ScheduleState extends State<Schedule> {
     DayFourSchedule()
   ];
 
-  static final GlobalKey<ScaffoldState> _scaffoldKey =
+  GlobalKey<ScaffoldState> _scaffoldKeyForSchedule =
       new GlobalKey<ScaffoldState>();
   final double _appBarHeight = 256.0;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
@@ -49,7 +50,8 @@ class _ScheduleState extends State<Schedule> {
           platform: Theme.of(context).platform,
         ),
         child: new Scaffold(
-            key: _scaffoldKey,
+            key: _scaffoldKeyForSchedule,
+            drawer: NavigationDrawer(),
             body: new CustomScrollView(slivers: <Widget>[
               new SliverAppBar(
                 expandedHeight: _appBarHeight,

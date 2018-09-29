@@ -6,7 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import './eurocoin.dart';
 
-typedef TransferEurocoinItemBodyBuilder<T> = Widget Function(TransferEurocoinItem<T> item);
+typedef TransferEurocoinItemBodyBuilder<T> = Widget Function(
+    TransferEurocoinItem<T> item);
 typedef ValueToString<T> = String Function(T value);
 
 class DualHeaderWithHint extends StatelessWidget {
@@ -23,7 +24,8 @@ class DualHeaderWithHint extends StatelessWidget {
       firstCurve: const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),
       secondCurve: const Interval(0.4, 1.0, curve: Curves.fastOutSlowIn),
       sizeCurve: Curves.fastOutSlowIn,
-      crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      crossFadeState:
+          isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
       duration: const Duration(milliseconds: 200),
     );
   }
@@ -38,9 +40,7 @@ class DualHeaderWithHint extends StatelessWidget {
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
             child: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead,
-                child: Text(name)
-            ),
+                style: Theme.of(context).textTheme.subhead, child: Text(name)),
           ),
         ),
       ),
@@ -49,18 +49,13 @@ class DualHeaderWithHint extends StatelessWidget {
           child: Container(
               margin: const EdgeInsets.only(left: 24.0),
               child: _crossFade(
-                DefaultTextStyle(
-                  style: Theme.of(context).textTheme.subhead,
-                  child: Text(error, style: TextStyle(color: Colors.red))
-                ),
-                DefaultTextStyle(
-                    style: Theme.of(context).textTheme.subhead,
-                    child: Text("")
-                ),
-                showHint
-              )
-          )
-      )
+                  DefaultTextStyle(
+                      style: Theme.of(context).textTheme.subhead,
+                      child: Text(error, style: TextStyle(color: Colors.red))),
+                  DefaultTextStyle(
+                      style: Theme.of(context).textTheme.subhead,
+                      child: Text("")),
+                  showHint)))
     ]);
   }
 }
@@ -112,34 +107,30 @@ class CollapsibleBody extends StatelessWidget {
 }
 
 class TransferEurocoinItem<T> {
-  TransferEurocoinItem({this.name,this.builder, this.error, this.valueToString});
+  TransferEurocoinItem(
+      {this.name, this.builder, this.error, this.valueToString});
 
   final String name;
   String error;
   final TransferEurocoinItemBodyBuilder<T> builder;
   final ValueToString<T> valueToString;
-  TextEditingController amountController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
   bool isExpanded = false;
   bool isError = false;
 
   ExpansionPanelHeaderBuilder get headerBuilder {
     return (BuildContext context, bool isExpanded) {
-      return DualHeaderWithHint(
-          name: name,
-          error: error,
-          showHint: isExpanded);
+      return DualHeaderWithHint(name: name, error: error, showHint: isExpanded);
     };
   }
 
   Widget build() => builder(this);
 }
 
-final formKey = GlobalKey<FormState>();
+GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 class EurocoinTransfer extends StatefulWidget {
-
-  EurocoinTransfer({Key key, this.name, this.email, this.parent}):super (key: key);
+  EurocoinTransfer({Key key, this.name, this.email, this.parent})
+      : super(key: key);
   final String name;
   final String email;
   final EurocoinHomePageState parent;
@@ -148,9 +139,13 @@ class EurocoinTransfer extends StatefulWidget {
 }
 
 class _EurocoinTransferState extends State<EurocoinTransfer> {
-
   List<TransferEurocoinItem<dynamic>> _transferEurocoinItem;
   FirebaseUser currentUser;
+
+  TextEditingController amountController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  StreamSubscription<List> processingSuggestionList;
+  List suggestionList = new List();
 
   @override
   void initState() {
@@ -162,11 +157,14 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
         error: '',
         valueToString: (String value) => value,
         builder: (TransferEurocoinItem<String> item) {
+          emailController.addListener(processingSuggestionListBuilder);
+//          emailController.addListener(suggestionListBuilder);
           void close() {
             setState(() {
               item.isExpanded = false;
             });
           }
+
           return Form(
             key: formKey,
             child: Builder(
@@ -175,21 +173,17 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
                   margin: const EdgeInsets.symmetric(horizontal: 16.0),
                   onSave: () {
                     if (formKey.currentState.validate()) {
-                      String debit = item.amountController.text;
-                      String transfer = item.emailController.text;
+                      String debit = amountController.text;
+                      String transfer = emailController.text;
                       Future<int> result = transferEurocoin(debit, transfer);
                       result.then((value) {
                         print(value);
-                        if (value == 0)
-                          {
-                            setState(() {
-                              item.error = "Successful!";
-                              item.amountController.text = '';
-                              item.emailController.text = '';
-                            });
-                            widget.parent.getUserEurocoin();
-                          }
-                        else if (value == 2 || value == 5 )
+                        if (value == 0) {
+                          setState(() {
+                            item.error = "Successful!";
+                          });
+                          widget.parent.getUserEurocoin();
+                        } else if (value == 2 || value == 5)
                           setState(() {
                             item.error = "Incorrect User!";
                           });
@@ -201,12 +195,21 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
                           setState(() {
                             item.error = "Invalid Amount!";
                           });
+                        setState(() {
+                          amountController.text = '';
+                          emailController.text = '';
+                        });
                         Form.of(context).reset();
                         close();
                       });
                     }
                   },
                   onCancel: () {
+                    setState(() {
+                      item.error = '';
+                      amountController.text = '';
+                      emailController.text = '';
+                    });
                     Form.of(context).reset();
                     close();
                   },
@@ -215,21 +218,41 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
                       child: Column(
                         children: <Widget>[
                           TextFormField(
-                            keyboardType: TextInputType.number,
-                            controller: item.amountController,
-                            decoration: InputDecoration(
-                              labelText: "Amount",
-                            ),
-                              validator: (val)=> val == ""? val : null
-                          ),
+                              keyboardType: TextInputType.number,
+                              controller: amountController,
+                              decoration: InputDecoration(
+                                labelText: "Amount",
+                              ),
+                              validator: (val) => val == "" ? val : null),
                           TextFormField(
-                            controller: item.emailController,
-                            decoration: InputDecoration(
-                              hintText: "example@xyz.com",
-                              labelText: "Transfer To",
-                            ),
-                              validator: (val)=> val == ""? val : null
-                          ),
+                              controller: emailController,
+                              decoration: InputDecoration(
+                                hintText: "Name",
+                                labelText: "Transfer To",
+                              ),
+                              validator: (val) => val == "" ? val : null),
+                          (suggestionList.length != 0)
+                              ? Container(
+                                  height: (suggestionList.length > 6)? 300.0: 150.0,
+                                  child: ListView.builder(
+                                      itemCount: suggestionList.length,
+                                      itemBuilder: (context, index) {
+                                        return  ListTile(
+                                                  onTap: (){
+                                                    setState(() {
+                                                      emailController.text =
+                                                      suggestionList[index][1];
+                                                      suggestionList = new List();
+                                                    });
+                                                  },
+                                                  title: Text(suggestionList[index][0]),
+                                                  subtitle: Text(suggestionList[index][1]),
+                                                  leading: CircleAvatar(
+                                                    child: Image.network(suggestionList[index][2]),
+                                                  ),
+                                                );
+                                      }))
+                              : Container()
                         ],
                       )),
                 );
@@ -247,31 +270,32 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
         data: new ThemeData(
             brightness: Brightness.light,
             primarySwatch: Colors.indigo,
-            platform: Theme.of(context).platform
-        ),
+            platform: Theme.of(context).platform),
         child: SingleChildScrollView(
-          child: new DefaultTextStyle(
+            child: new DefaultTextStyle(
           style: Theme.of(context).textTheme.subhead,
-            child: SafeArea(
-              top: false,
-              bottom: false,
-              child: Container(
-                child: Theme(
-                  data: Theme.of(context).copyWith(cardColor: Colors.grey.shade50),
+          child: SafeArea(
+            top: false,
+            bottom: false,
+            child: Container(
+              child: Theme(
+                  data: Theme.of(context)
+                      .copyWith(cardColor: Colors.grey.shade50),
                   child: ExpansionPanelList(
-                    expansionCallback: (int index, bool isExpanded) {
-                      setState(() {
-                        _transferEurocoinItem[index].isExpanded = !isExpanded;
-                      });
-                    },
-                    children: _transferEurocoinItem.map((TransferEurocoinItem<dynamic> item) {
-                      return ExpansionPanel(
+                      expansionCallback: (int index, bool isExpanded) {
+                        setState(() {
+                          _transferEurocoinItem[index].isExpanded = !isExpanded;
+                        });
+                      },
+                      children: _transferEurocoinItem
+                          .map((TransferEurocoinItem<dynamic> item) {
+                        return ExpansionPanel(
                           isExpanded: item.isExpanded,
                           headerBuilder: item.headerBuilder,
                           body: item.build(),
-                          );
-                    }).toList())),
-              ),
+                        );
+                      }).toList())),
+            ),
           ),
         )));
   }
@@ -279,9 +303,10 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
   Future<int> transferEurocoin(String amount, String transerTo) async {
     var email = widget.email;
     var name = widget.name;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email" + "$name");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://eurekoin.avskr.in/api/transfer/$encoded?amount=$amount&email=$transerTo";
+    String apiUrl =
+        "https://eurekoin.avskr.in/api/transfer/$encoded?amount=$amount&email=$transerTo";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);
@@ -289,4 +314,27 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
     return int.parse(status);
   }
 
+  void processingSuggestionListBuilder() {
+    processingSuggestionList?.cancel();
+    processingSuggestionList =
+        suggestionListBuilder().asStream().listen((onData) {
+      setState(() {
+        suggestionList = onData;
+      });
+    });
+  }
+
+  Future<List> suggestionListBuilder() async {
+    if (emailController.text == '') {
+      setState(() {
+        suggestionList = new List();
+      });
+      return suggestionList;
+    } else {
+      String apiUrl =
+          "https://eurekoin.avskr.in/api/users/${emailController.text}";
+      http.Response response = await http.get(apiUrl);
+      return json.decode(response.body)['users'];
+    }
+  }
 }

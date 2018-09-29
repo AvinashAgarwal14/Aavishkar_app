@@ -144,7 +144,10 @@ class SectionDetailView extends StatelessWidget {
         child: new Card(
             child: new Column(
               children: <Widget>[
-                Image.network(detail.imageUrl, fit: BoxFit.fill),
+                Hero(
+                  tag: detail.imageUrl,
+                  child: Image.network(detail.imageUrl, fit: BoxFit.fill, height: 256.0)
+                ),
                 ListTile(
                   title: new Text(detail.title),
                   subtitle: new Text(detail.date),

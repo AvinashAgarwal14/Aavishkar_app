@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:aavishkarapp/model/newsfeed.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -7,9 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../model/post_likes.dart';
 
 class StatusCategory extends StatefulWidget {
-  StatusCategory({ Key key, this.postKey, this.commentsCount, this.views }) : super(key: key);
+  StatusCategory({ Key key, this.postKey, this.commentsCount, this.date }) : super(key: key);
   final postKey;
-  final int views;
+  final String date;
   final int commentsCount;
 
   @override
@@ -71,17 +70,6 @@ class _StatusCategoryState extends State<StatusCategory> {
                       children: <Widget>
                       [
                         Container(
-                            padding: EdgeInsets.only(top: 15.0),
-                            width: 72.0,
-                            child: Column(
-                              children: <Widget>[
-                                Icon(Icons.remove_red_eye, color: Colors.indigo),
-                                Padding(padding: EdgeInsets.only(top: 10.0)),
-                                Text("${widget.views}")
-                              ],
-                            )
-                        ),
-                        Container(
                             width: 60.0,
                             child: Column(
                               children: <Widget>[
@@ -122,6 +110,17 @@ class _StatusCategoryState extends State<StatusCategory> {
                                 Icon(Icons.mode_comment, color: Colors.indigo),
                                 Padding(padding: EdgeInsets.only(top: 10.0)),
                                 Text("${widget.commentsCount}")
+                              ],
+                            )
+                        ),
+                        Container(
+                            padding: EdgeInsets.only(top: 10.0),
+                            width: 72.0,
+                            child: Column(
+                              children: <Widget>[
+                                Icon(Icons.date_range, color: Colors.indigo),
+                                Padding(padding: EdgeInsets.only(top: 10.0)),
+                                Text("${widget.date}", style: TextStyle(fontSize: 13.0),)
                               ],
                             )
                         ),

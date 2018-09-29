@@ -57,7 +57,7 @@ class NavigationDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
 //              Navigator.popUntil(context, ModalRoute.withName('/'));
-              Navigator.of(context).push(SlideLeftRoute(widget: AnimationDemoHome()));
+              Navigator.of(context).push(SlideLeftRoute(widget: ActivitiesHomePage()));
             }
           ),
           ListTile(

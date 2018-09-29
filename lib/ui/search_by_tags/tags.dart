@@ -56,8 +56,7 @@ class _SearchByTagsState extends State<SearchByTags> {
                 selected: _selectedTag == name,
                 onSelected: (bool value) {
                   setState(() {
-                    _selectedTag = value ? name : '';
-                    print(_selectedTag);
+                    _selectedTag = value ? name : _selectedTag;
                   });
                 },
         );
@@ -80,7 +79,7 @@ class _SearchByTagsState extends State<SearchByTags> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Aavishkar"),
+        title: Text("Tags"),
       ),
       drawer: NavigationDrawer(),
       body: Column(
@@ -97,29 +96,38 @@ class _SearchByTagsState extends State<SearchByTags> {
             Container(
               child: Text("Results"),
             ),
+            Divider(
+              color: Colors.grey,
+            ),
             Container(
               child: Expanded(
                 child: ListView.builder(
                     itemCount: eventsByTags[_selectedTag].length    ,
                     itemBuilder: (context, position)
                     {
-                      return GestureDetector(
-                        onTap:() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => new EventDetails(item: eventsByTags[_selectedTag][position])),
-                          );
-                        },
-                        child: new Card(
-                            child: new Column(
-                              children: <Widget>[
-                                Image.network(eventsByTags[_selectedTag][position].imageUrl,fit: BoxFit.cover)  ,
-                                ListTile(
-                                  title: new Text(eventsByTags[_selectedTag][position].title),
-                                  subtitle: new Text(eventsByTags[_selectedTag][position].date),
-                                )
-                              ],
-                            )),
+                      return Container(
+//                        height: 350.0,
+                        child: GestureDetector(
+                          onTap:() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => new EventDetails(item: eventsByTags[_selectedTag][position])),
+                            );
+                          },
+                          child: new Card(
+                              child: new Column(
+                                children: <Widget>[
+                                  Hero(
+                                    tag: eventsByTags[_selectedTag][position].imageUrl,
+                                    child: Image.network(eventsByTags[_selectedTag][position].imageUrl,fit: BoxFit.cover),
+                                  ),
+                                  ListTile(
+                                    title: new Text(eventsByTags[_selectedTag][position].title),
+                                    subtitle: new Text(eventsByTags[_selectedTag][position].date),
+                                  )
+                                ],
+                              )),
+                        )
                       );
                     }
                 ),

@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './eurocoin_transfer.dart';
+import './eurocoin_coupon.dart';
 import 'package:crypto/crypto.dart';
+import '../../util/drawer.dart';
 import 'dart:convert';
 
 class DetailCategory extends StatelessWidget {
@@ -62,11 +64,11 @@ class DetailItem extends StatelessWidget {
 
     final List<Widget> rowChildren = <Widget>[
       new Expanded(
-              child: new Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: columnChildren
-                    )
-                )
+          child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: columnChildren
+          )
+      )
     ];
     if (icon != null) {
       rowChildren.add(new SizedBox(
@@ -108,174 +110,245 @@ class EurocoinHomePage extends StatefulWidget {
 enum AppBarBehavior { normal, pinned, floating, snapping }
 
 class EurocoinHomePageState extends State<EurocoinHomePage> {
-  static final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   TextEditingController referalCode = new TextEditingController();
   final double _appBarHeight = 256.0;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
-  bool isEurocoinAlreadyRegistered;
+  int isEurocoinAlreadyRegistered;
   FirebaseUser currentUser;
   String userReferralCode;
   int userEurocoin;
-  bool registerWithEurocoin = false;
+  bool registerWithReferralCode = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _getUser();
-    isEurocoinAlreadyRegistered = false;
-    userEurocoin = 0;
   }
 
   @override
   Widget build(BuildContext context) {
-    return
-      (currentUser!=null)?
-      (isEurocoinAlreadyRegistered!=true)?
-      new Container(
-        alignment: Alignment.center,
-        child: Column(
-          children: <Widget>[
-            Image.asset("images/events.png", fit: BoxFit.fill),
-            Container(
-              child: RaisedButton(
-                onPressed: (){
-                  registerEuroCoinUser('');
-                },
-                  color: Colors.white,
-                  child: Text("Register without Eurocoin")
+    return (currentUser!=null)?
+      (isEurocoinAlreadyRegistered==null)?
+          new Scaffold(
+            drawer: NavigationDrawer(),
+            body: new Container(
+          padding: EdgeInsets.only(bottom: 50.0),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("images/events.png"),
+                  fit: BoxFit.cover
+              )
+          ),
+          alignment: Alignment.center,
+          child: CircularProgressIndicator()
+      )
+    )
+          :
+      (isEurocoinAlreadyRegistered==0)?
+      new Scaffold(
+        drawer: NavigationDrawer(),
+        body:
+        new Stack(
+        children: <Widget>[
+          new Container(
+              padding: EdgeInsets.only(bottom: 50.0),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("images/events.png"),
+                      fit: BoxFit.cover
+                  )
               ),
-            ),
-            Container(
-              child: RaisedButton(
-                  onPressed: (){
-                    setState(() {
-                      registerWithEurocoin = true;
-                    });
-                  },
-                  color: Colors.white,
-                  child: Text("Register with Referal Code!")
-              ),
-            ),
-            (registerWithEurocoin == true)?
+              alignment: Alignment.bottomCenter,
+              child: (registerWithReferralCode == true)?
               Column(
-                  children: <Widget>[
-                    Material(
-                      child: TextField(
-                          controller: referalCode,
-                          decoration: InputDecoration(
-                            labelText: "Referal Code",
-                          )
-                      ),
-                    ),
-                    RaisedButton(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Material(
+                      child: Container(
+                        width: 200.0 ,
+                        child: TextField(
+                            controller: referalCode,
+                            decoration: InputDecoration(
+                              labelText: "Referal Code",
+                            )
+                        ),
+                      )
+                  ),
+                  Container(
+                    child: RaisedButton(
                       onPressed: (){
                         registerEuroCoinUser(referalCode.text);
                       },
-                      child: Text("Register!"),
-                    )
-                  ],
-                )
-                :Container()
-          ],
-        )
-      )
-    :
-      new Theme(
-      data: new ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
-        platform: Theme.of(context).platform,
-      ),
-      child: new Scaffold(
-        key: _scaffoldKey,
-        body: new CustomScrollView(
-          slivers: <Widget>[
-            new SliverAppBar(
-              expandedHeight: _appBarHeight,
-              pinned: _appBarBehavior == AppBarBehavior.pinned,
-              floating: _appBarBehavior == AppBarBehavior.floating || _appBarBehavior == AppBarBehavior.snapping,
-              snap: _appBarBehavior == AppBarBehavior.snapping,
-              flexibleSpace: new FlexibleSpaceBar(
-                title: Text('Eurocoin Wallet'),
-                background: new Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    new Image.asset(
-                      "images/events.png",
-                      fit: BoxFit.cover,
-                      height: _appBarHeight,
+                      color: Colors.white,
+                      child: Text("Register"),
                     ),
-                    // This gradient ensures that the toolbar icons are distinct
-                    // against the background image.
-                    const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, -1.0),
-                          end: Alignment(0.0, -0.4),
-                          colors: <Color>[Color(0x60000000), Color(0x00000000)],
+                  )
+                ],
+              )
+                  :
+              Container(
+                child: RaisedButton(
+                    onPressed: (){
+                      registerEuroCoinUser('');
+                    },
+                    color: Colors.white,
+                    child: Text("Register")
+                ),
+              )
+          ),
+          (registerWithReferralCode==false)?
+          Container(
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 5.0),
+            alignment: Alignment.bottomRight,
+            child: GestureDetector(
+                onTap: (){
+                  setState(() {
+                    registerWithReferralCode = true;
+                  });
+                },
+                child: Text("Have a Referral Code?")
+            ),
+          ):
+          Container(
+            padding: EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 5.0),
+            alignment: Alignment.bottomRight,
+            child: GestureDetector(
+                onTap: (){
+                  setState(() {
+                    registerWithReferralCode = false;
+                  });
+                },
+                child: Text("No Referral Code?")
+            ),
+          )
+        ],
+      )
+      )
+          :
+      new Theme(
+        data: new ThemeData(
+          brightness: Brightness.light,
+          primarySwatch: Colors.indigo,
+          platform: Theme.of(context).platform,
+        ),
+        child: new Scaffold(
+          drawer: NavigationDrawer(),
+          key: _scaffoldKey,
+          body: new CustomScrollView(
+            slivers: <Widget>[
+              new SliverAppBar(
+                expandedHeight: _appBarHeight,
+                pinned: _appBarBehavior == AppBarBehavior.pinned,
+                floating: _appBarBehavior == AppBarBehavior.floating || _appBarBehavior == AppBarBehavior.snapping,
+                snap: _appBarBehavior == AppBarBehavior.snapping,
+                flexibleSpace: new FlexibleSpaceBar(
+                  title: Text('Eurocoin Wallet'),
+                  background: new Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      new Image.asset(
+                        "images/events.png",
+                        fit: BoxFit.cover,
+                        height: _appBarHeight,
+                      ),
+                      // This gradient ensures that the toolbar icons are distinct
+                      // against the background image.
+                      const DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(0.0, -1.0),
+                            end: Alignment(0.0, -0.4),
+                            colors: <Color>[Color(0x60000000), Color(0x00000000)],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            new SliverList(
-              delegate: new SliverChildListDelegate(<Widget>[
-                DetailCategory(
-                  icon: Icons.swap_horiz,
-                  children: <Widget>[
-                    DetailItem(
-                      lines: <String>[
-                        "You havee: ", "$userEurocoin"
-                      ],
-                    )
-                  ],
-                ),
-                DetailCategory(
-                  icon: Icons.exit_to_app,
-                  children: <Widget>[
-                    DetailItem(
-                      lines: <String>[
-                        "Refer and Earn" ,"50 Eurocoins"
-                      ],
-                    ),
-                    DetailItem(
-                      icon: Icons.share,
-                      onPressed: ()
-                      {
-                        print("Hey");
-                        launch("sms:?body=Use my referal code $userReferralCode to get 50 Eurocoins when you register. \nDownload Link: dsd5");
-                      },
-                      lines: <String>[
-                        "Your Refer Code is: ", "$userReferralCode"
-                      ],
-                    )
-                  ],
-                ),
-                DetailCategory(
-                  icon: Icons.transfer_within_a_station,
-                  children: <Widget>[
-                    new MergeSemantics(
-                    child: new Padding(
-                    padding: EdgeInsets.only(left:0.0, top: 10.0,right: 10.0),
-                      child: EurocoinTransfer(name: currentUser.displayName, email: currentUser.email, parent: this)
+              (userReferralCode!=null && userEurocoin!=null)?
+              new SliverList(
+                delegate: new SliverChildListDelegate(<Widget>[
+                  DetailCategory(
+                    icon: Icons.swap_horiz,
+                    children: <Widget>[
+                      DetailItem(
+                        lines: <String>[
+                          "You havee: ", "$userEurocoin"
+                        ],
+                      )
+                    ],
+                  ),
+                  DetailCategory(
+                    icon: Icons.exit_to_app,
+                    children: <Widget>[
+                      DetailItem(
+                        lines: <String>[
+                          "Refer and Earn" ,"50 Eurocoins"
+                        ],
                       ),
-                    )
-                  ],
-                )
-              ]),
-            ),
-          ],
+                      DetailItem(
+                        icon: Icons.share,
+                        onPressed: ()
+                        {
+                          print("Hey");
+                          launch("sms:?body=Use my referal code $userReferralCode to get 50 Eurocoins when you register. \nDownload Link: dsd5");
+                        },
+                        lines: <String>[
+                          "Your Refer Code is: ", "$userReferralCode"
+                        ],
+                      )
+                    ],
+                  ),
+                  DetailCategory(
+                    icon: Icons.transfer_within_a_station,
+                    children: <Widget>[
+                      new MergeSemantics(
+                        child: new Padding(
+                            padding: EdgeInsets.only(left:0.0, top: 10.0,right: 10.0),
+                            child: EurocoinTransfer(name: currentUser.displayName, email: currentUser.email, parent: this)
+                        ),
+                      )
+                    ],
+                  ),
+                  DetailCategory(
+                    icon: Icons.monetization_on,
+                    children: <Widget>[
+                      new MergeSemantics(
+                        child: new Padding(
+                            padding: EdgeInsets.only(left:0.0, top: 10.0,right: 10.0),
+                            child: EurocoinCoupon(name: currentUser.displayName, email: currentUser.email, parent: this)
+                        ),
+                      )
+                    ],
+                  )
+                ]),
+              ):
+              new SliverList(
+                delegate: SliverChildListDelegate(<Widget>[
+                  Container(
+                    height: 2.0,
+                    child: LinearProgressIndicator(
+                      valueColor:
+                      new AlwaysStoppedAnimation<Color>(Colors.blueAccent))),
+                ]))
+            ],
+          ),
         ),
-      ),
-    ):
+      ):
       new Container(
-          alignment: Alignment.center,
+          padding: EdgeInsets.only(bottom: 40.0),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("images/events.png"),
+                  fit: BoxFit.cover
+              )
+          ),
+          alignment: Alignment.bottomCenter,
           child: Stack(
             children: <Widget>[
-              Image.asset("images/events.png", fit: BoxFit.fill),
               Container(
                 child: RaisedButton(
                     onPressed: (){
@@ -310,17 +383,17 @@ class EurocoinHomePageState extends State<EurocoinHomePage> {
     String apiUrl = "https://eurekoin.avskr.in/api/exists/$encoded";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
-      if(status == '1')
-        {
-          setState(() {
-            isEurocoinAlreadyRegistered = true;
-          });
-          getUserEurocoin();
-        }
-      else
-        setState(() {
-          isEurocoinAlreadyRegistered = false;
-        });
+    if(status == '1')
+    {
+      setState(() {
+        isEurocoinAlreadyRegistered = 1;
+      });
+      getUserEurocoin();
+    }
+    else
+      setState(() {
+        isEurocoinAlreadyRegistered = 0;
+      });
   }
 
   Future registerEuroCoinUser(var referalCode) async {
@@ -333,15 +406,15 @@ class EurocoinHomePageState extends State<EurocoinHomePage> {
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
     if(status == '0')
-      {
-        setState(() {
-          isEurocoinAlreadyRegistered = true;
-        });
-        getUserEurocoin();
-      }
+    {
+      setState(() {
+        isEurocoinAlreadyRegistered = 1;
+      });
+      getUserEurocoin();
+    }
     else
       setState(() {
-        isEurocoinAlreadyRegistered = false;
+        isEurocoinAlreadyRegistered = 0;
       });
   }
 

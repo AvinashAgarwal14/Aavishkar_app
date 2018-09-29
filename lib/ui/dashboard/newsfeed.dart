@@ -45,18 +45,67 @@ class _NewsfeedState extends State<Newsfeed> {
                 child: new Card(
                     child: new Column(
                       children: <Widget>[
-                        Image.network(
-                            feed[position].imageUrl, fit: BoxFit.cover),
+                        Hero(
+                            tag: feed[position].key,
+                            child: Image.network(
+                                feed[position].imageUrl, fit: BoxFit.cover,
+                                height: 256.0,
+                            )),
                         ListTile(
-                            title: new Text(feed[position].title),
-                            subtitle: new Text(feed[position].date),
-                            trailing: new Column(
-                             children: <Widget>[
-                               Icon(Icons.thumb_up),
-                               Text("${feed[position].likesCount}")
-                             ],
-                            )
-                            )
+                                title: new Padding(
+                                    padding: EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 5.0),
+                                    child: new Text(feed[position].title),
+                                ),
+                                subtitle: new Column(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 5.0),
+                                      alignment: Alignment.topLeft,
+                                      child: new Text("${feed[position].body.substring(0,45)}..."),
+                                    ),
+                                    new Row(
+                                        children: <Widget>[
+                                          new Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: new Row(
+                                              children: <Widget>[
+                                                Icon(Icons.thumb_up, size: 20.0),
+                                                Padding(
+                                                    padding: EdgeInsets.only(left: 3.0)
+                                                ),
+                                                Text("${feed[position].likesCount}")
+                                              ],
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: new Row(
+                                              children: <Widget>[
+                                                Icon(Icons.comment, size: 20.0,),
+                                                Padding(
+                                                    padding: EdgeInsets.only(left: 3.0)
+                                                ),
+                                                Text("${feed[position].commentsCount}")
+                                              ],
+                                            ),
+                                          ),
+                                          new Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: new Row(
+                                              children: <Widget>[
+                                                Icon(Icons.date_range, size: 20.0),
+                                                Padding(
+                                                    padding: EdgeInsets.only(left: 3.0)
+                                                ),
+                                                Text(feed[position].date)
+                                              ],
+                                            ),
+                                          ),
+                                        ]
+                                    )
+                                  ],
+                                )
+                                )
                       ],
                     )
                 )),

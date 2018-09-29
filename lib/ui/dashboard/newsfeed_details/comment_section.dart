@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../model/posts_comment.dart';
-import './feed_details.dart';
+import '../../../util/detailSection.dart';
 
 class CommentCategory extends StatefulWidget {
 
-  const CommentCategory({ Key key, this.postKey}) : super(key: key);
+  const CommentCategory({ Key key, this.postKey, this.commentCount}) : super(key: key);
   final postKey;
+  final commentCount;
 
   @override
   _CommentCategoryState createState() => _CommentCategoryState();
@@ -44,38 +45,68 @@ class _CommentCategoryState extends State<CommentCategory> {
         child: new SafeArea(
           top: false,
           bottom: false,
-          child: new Row(
+          child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Container(
-                  padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  width: 72.0,
-                  child: new Icon(Icons.comment, color: themeData.primaryColor)
-              ),
-              new Expanded(
-                  child: new Column(
-                    children: (commentItems.length > 0)? <Widget>[
-                      new DetailItem(
-                          icon: null,
-                          lines: <String>[
-                            'Comments',
-                            '(${commentItems.length})',
-                          ]
-                      ),
+              new Row(
+               children: <Widget>[
+                 new Container(
+                     padding: const EdgeInsets.symmetric(vertical: 24.0),
+                     width: 72.0,
+                     child: new Icon(Icons.comment, color: themeData.primaryColor)
+                 ),
+                 new Expanded(
+                    child: (commentItems.length > 0)?
+                    new DetailItem(
+                        icon: null,
+                        lines: <String>[
+                          'Comments',
+                          '(${commentItems.length})',
+                        ]
+                    ):
+                    new DetailItem(
+                        icon: null,
+                        lines: <String>[
+                          'Comments',
+                          '(0)',
+                        ]
+                    )
+                )
+              ]),
+              (commentItems.length > 0)?
+                  new Stack(
+                    children: <Widget>[
+                      _buildComments(),
                       new Column(
                         children: getComments().toList(),
                       )
-                    ]: <Widget>[
-                        new DetailItem(
-                          icon: null,
-                          lines: <String>[
-                            'Comments',
-                            '(0)',
-                          ]
-                        ),
-                        new Container()
-                ]
-              ))
+                    ],
+                  ):
+              new Container()
+//              new Expanded(
+//                  child: new Column(
+//                    children: (commentItems.length > 0)? <Widget>[
+//                      new DetailItem(
+//                          icon: null,
+//                          lines: <String>[
+//                            'Comments',
+//                            '(${commentItems.length})',
+//                          ]
+//                      ),
+//                      new Column(
+//                        children: getComments().toList(),
+//                      )
+//                    ]: <Widget>[
+//                        new DetailItem(
+//                          icon: null,
+//                          lines: <String>[
+//                            'Comments',
+//                            '(0)',
+//                          ]
+//                        ),
+//                        new Container()
+//                ]
+//              ))
             ],
           ),
         ),
@@ -100,6 +131,7 @@ class _CommentCategoryState extends State<CommentCategory> {
             postKey: widget.postKey,
             authorId: comment.authorId,
             authorImage: comment.authorImage,
+            commentCount: widget.commentCount
           )
       );
     }
@@ -131,11 +163,23 @@ class _CommentCategoryState extends State<CommentCategory> {
     });
   }
 
+  Widget _buildComments() {
+    return new Positioned(
+      top: 0.0,
+      bottom: 0.0,
+      left: 39.0,
+      child: new Container(
+        width: 1.0,
+        color: Colors.grey[300],
+      ),
+    );
+  }
+
 }
 
 class CommentItem extends StatefulWidget{
 
-  CommentItem({ Key key, this.lines, this.commentId, this.postKey, this.authorId, this.authorImage})
+  CommentItem({ Key key, this.lines, this.commentId, this.postKey, this.authorId, this.authorImage, this.commentCount})
       : assert(lines.length > 1),
         super(key: key);
 
@@ -144,6 +188,7 @@ class CommentItem extends StatefulWidget{
   final String postKey;
   final String authorId;
   final String authorImage;
+  final commentCount;
 
   @override
   _CommentItemState createState() => _CommentItemState();
@@ -154,6 +199,7 @@ class _CommentItemState extends State<CommentItem> {
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   FirebaseUser currentUser;
   DatabaseReference _databaseReferenceForComments;
+  DatabaseReference _databaseReferenceForPost;
   TextEditingController editComment = new TextEditingController();
 
   @override
@@ -162,6 +208,7 @@ class _CommentItemState extends State<CommentItem> {
     super.initState();
     getUser();
     _databaseReferenceForComments = _database.reference().child("Posts-Comments").child(widget.postKey);
+    _databaseReferenceForPost = _database.reference().child("Posts").child(widget.postKey);
     editComment.text = widget.lines[1];
   }
 
@@ -178,7 +225,7 @@ class _CommentItemState extends State<CommentItem> {
 
     return new MergeSemantics(
         child: new Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 10.0, 10.0, 10.0),
           child: new Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -230,7 +277,6 @@ class _CommentItemState extends State<CommentItem> {
                 _databaseReferenceForComments.child(widget.commentId).update({
                   'text':editComment.text
                 });
-                _onEdit();
               },
             ),
             new FlatButton(
@@ -261,7 +307,9 @@ class _CommentItemState extends State<CommentItem> {
               onPressed: () {
                 Navigator.of(context).pop();
                 _databaseReferenceForComments.child(widget.commentId).remove();
-                _onDelete();
+                _databaseReferenceForPost.update({
+                  'commentsCount':widget.commentCount-1
+                });
               },
             ),
             new FlatButton(
@@ -274,14 +322,6 @@ class _CommentItemState extends State<CommentItem> {
         );
       },
     );
-  }
-
-  void _onEdit() {
-
-  }
-
-  void _onDelete() {
-
   }
 
   Future getUser() async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../util/drawer.dart';
 
 class ScoreBoard extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class ScoreBoard extends StatefulWidget {
 class _ScoreBoardState extends State<ScoreBoard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      drawer: NavigationDrawer(),
+    );
   }
 }
