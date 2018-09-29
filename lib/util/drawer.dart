@@ -83,6 +83,13 @@ class NavigationDrawer extends StatelessWidget {
 //              Navigator.pop(context);
               Navigator.of(context).push(SlideLeftRoute(widget: LogInPage()));
             }),
+          ),
+          ListTile(
+            title: Text("Sponsors"),
+            onTap:((){
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/ui/sponsors/sponsors");
+            }),
           )
         ],
       ),

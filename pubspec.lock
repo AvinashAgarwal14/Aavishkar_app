@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   charcode:
     dependency: transitive
     description:
@@ -134,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1"
+  flutter_swiper:
+    dependency: "direct main"
+    description:
+      name: flutter_swiper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -441,10 +455,12 @@ packages:
   uri:
     dependency: transitive
     description:
-      name: uri
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.11.3+1"
+      path: "."
+      ref: HEAD
+      resolved-ref: a31e0ce43294780088a4ec5bb964db5501350375
+      url: "https://github.com/diegoveloper/uri.dart.git"
+    source: git
+    version: "0.11.3"
   url_launcher:
     dependency: "direct main"
     description:
