@@ -175,7 +175,7 @@ packages:
       name: flutter_swiper
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.6"
+    version: "1.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -501,6 +501,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
+  transformer_page_view:
+    dependency: transitive
+    description:
+      name: transformer_page_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.9"
   typed_data:
     dependency: transitive
     description:
@@ -570,7 +577,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.1"
+    version: "3.2.3"
   yaml:
     dependency: transitive
     description:
