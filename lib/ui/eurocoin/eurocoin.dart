@@ -7,8 +7,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './eurocoin_transfer.dart';
 import './eurocoin_coupon.dart';
 import 'package:crypto/crypto.dart';
-import '../../util/drawer.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:convert';
+import '../../util/drawer.dart';
 
 class DetailCategory extends StatelessWidget {
   const DetailCategory({ Key key, this.icon, this.children }) : super(key: key);
@@ -119,6 +120,7 @@ class EurocoinHomePageState extends State<EurocoinHomePage> {
   String userReferralCode;
   int userEurocoin;
   bool registerWithReferralCode = false;
+  String barcodeString = "";
 
   @override
   void initState() {
@@ -323,7 +325,22 @@ class EurocoinHomePageState extends State<EurocoinHomePage> {
                         ),
                       )
                     ],
-                  )
+                  ),
+                  DetailCategory(
+                    icon: Icons.scanner,
+                    children: <Widget>[
+                      DetailItem(
+                        icon: Icons.scanner,
+                        onPressed: ()
+                        {
+                          scanQR();
+                        },
+                        lines: <String>[
+                          "Scan QR Code"
+                        ],
+                      )
+                    ],
+                  ),
                 ]),
               ):
               new SliverList(
@@ -444,5 +461,83 @@ class EurocoinHomePageState extends State<EurocoinHomePage> {
     setState(() {
       userReferralCode = referralCode;
     });
+  }
+
+  Future scanQR() async {
+    try {
+      String hiddenString = await BarcodeScanner.scan();
+      setState(() {
+        barcodeString = hiddenString;
+        Future<int> result = couponEurocoin(barcodeString.substring(7));
+        result.then((value) {
+          print(value);
+          if (value == 0)
+          {
+            setState(() {
+              barcodeString = "Successful!";
+            });
+            getUserEurocoin();
+            showDialogBox(barcodeString);
+          }
+          else if (value == 2)
+            setState(() {
+              barcodeString = "Invalid Coupon";
+              showDialogBox(barcodeString);
+            });
+          else if (value == 3)
+            setState(() {
+              barcodeString = "Already Used";
+              showDialogBox(barcodeString);
+            });
+          else if (value == 4)
+            setState(() {
+              barcodeString = "Coupon Expired";
+              showDialogBox(barcodeString);
+            });
+        });
+      });
+    } catch (e) {
+      setState(() {
+        barcodeString = 'Unknown error: $e';
+        showDialogBox(barcodeString);
+      });
+    }
+  }
+
+  void showDialogBox(String message) {
+    // flutter defined function
+    print("$message");
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("QR Code Result"),
+          content: new Text("$message"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<int> couponEurocoin(String coupon) async {
+    var email = currentUser.email;
+    var name = currentUser.displayName;
+    var bytes = utf8.encode("$email"+"$name");
+    var encoded = sha1.convert(bytes);
+    String apiUrl = "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
+    print(apiUrl);
+    http.Response response = await http.get(apiUrl);
+    print(response.body);
+    var status = json.decode(response.body)['status'];
+    return int.parse(status);
   }
 }

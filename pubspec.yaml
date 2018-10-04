@@ -16,12 +16,15 @@ dependencies:
   url_launcher: ^3.0.3
   flutter_webview_plugin: ^0.2.1+2
   flutter_facebook_login:
+  cached_network_image: ^0.4.2
+  firebase_messaging: ^2.0.0
   map_view:
   google_sign_in:
   intl: ^0.15.2
   crypto: ^2.0.3
   carousel_slider:
   flutter_swiper:
+  barcode_scan: ^0.0.7
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +49,9 @@ flutter:
 
   assets:
     - images/events.png
+    - images/giphy.gif
+    - images/camera.svg
+    - images/Pacman.gif
     - assets/login.jpg
     - assets/home.jpeg
     - assets/tick.png

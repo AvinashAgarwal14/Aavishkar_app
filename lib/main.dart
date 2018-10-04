@@ -32,6 +32,22 @@ void main()
 //            }
 //            return child;
 //          },
+        theme: new ThemeData(
+//          backgroundColor: Colors.black,
+//          canvasColor: Color(0xFF353662),
+          primaryColor: Color(0xFF353662),
+//          backgroundColor:Color(0xFF353662) ,
+//          canvasColor: Color(0xFF353662),
+//          cardColor: Color(0xFF353662),
+//          highlightColor: Color(0xFF353662),
+//          brightness: Brightness.values[0],
+//iconTheme: IconThemeData(
+//  color: Colors.grey
+//)
+//          scaffoldBackgroundColor:Color(0xFF353662),
+//          highlightColor: Colors.purple,
+//          scaffoldBackg/roundColor: Colors/.purple
+        ),
         home: Dashboard(),
         initialRoute: "/",
         routes: <String, WidgetBuilder>{
@@ -41,13 +57,11 @@ void main()
           "/ui/activity": (BuildContext context) => ActivitiesHomePage(),
           "/ui/maps/map":(BuildContext context)=>MapPage(),
           "/ui/account/login":(BuildContext context)=>LogInPage(),
-
           "/ui/scoreboard":(BuildContext context)=> ScoreBoard(),
           "/ui/eurocoin":(BuildContext context)=> EurocoinHomePage(),
           "/ui/aboutus":(BuildContext context)=> AboutUsPage(),
-//          "/ui/account/account":(BuildContext context)=> Account(),
+//          "/ui/accouont/account":(BuildContext context)=> Account(),
           "/ui/sponsors/sponsors":(BuildContext context)=>Sponsors(),
-
           },
       )
   );

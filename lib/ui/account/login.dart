@@ -41,11 +41,11 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
     super.initState();
     getUser();
     _glogInButtonController = new AnimationController(
-        duration: new Duration(milliseconds: 3000),
+        duration: new Duration(milliseconds: 1700),
         vsync: this,
         debugLabel: "google");
     _flogInButtonController = new AnimationController(
-        duration: new Duration(milliseconds: 3000),
+        duration: new Duration(milliseconds: 1700),
         vsync: this,
         debugLabel: "facebook");
     //_newUser();
@@ -126,13 +126,13 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                             alignment: (animationStatus==0)?AlignmentDirectional.topCenter : AlignmentDirectional.center,
                             children: <Widget>[
 
-                                  //-------TICK IMAGE-------\\
-                                  Container(margin: EdgeInsets.only(left:MediaQuery.of(context).size.width/12,
-                                  top: MediaQuery.of(context).size.height*0.65),
-                                    height:200.0,
-                                    width: MediaQuery.of(context).size.width-100,
-                                      child: Tick(image: tick,),
-                                  ),
+//                                  //-------TICK IMAGE-------\\
+//                                  Container(margin: EdgeInsets.only(left:MediaQuery.of(context).size.width/12,
+//                                  top: MediaQuery.of(context).size.height*0.65),
+//                                    height:200.0,
+//                                    width: MediaQuery.of(context).size.width-100,
+//                                      child: Tick(image: tick,),
+//                                  ),
 
 
                               animationStatus == 0
@@ -275,7 +275,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         icon: Icons.videogame_asset,
                         children: <Widget>[
                           DetailItem(
-                            icon: Icons.videogame_asset ,
                             onPressed: (){
                               Navigator.of(context).pushNamed("/ui/eurocoin");
                             },
@@ -287,7 +286,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         icon: Icons.remove_circle,
                         children: <Widget>[
                           DetailItem(
-                            icon: Icons.remove_circle,
                             onPressed: (){
                               if(currentUser.photoUrl.contains("googleusercontent"))
                                 _gSignOut();

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'events/event_details.dart';
 import '../../model/event.dart';
@@ -146,8 +147,11 @@ class SectionDetailView extends StatelessWidget {
               children: <Widget>[
                 Hero(
                   tag: detail.imageUrl,
-                  child: Image.network(detail.imageUrl, fit: BoxFit.fill, height: 256.0)
-                ),
+                  child: CachedNetworkImage(
+                      imageUrl: detail.imageUrl,
+                      fit: BoxFit.fill,
+                      height: 256.0
+                  )),
                 ListTile(
                   title: new Text(detail.title),
                   subtitle: new Text(detail.date),
@@ -157,6 +161,7 @@ class SectionDetailView extends StatelessWidget {
         )
       );
 
+      return item;
     return new DecoratedBox(
       decoration: new BoxDecoration(color: Colors.grey.shade200),
       child: item,
