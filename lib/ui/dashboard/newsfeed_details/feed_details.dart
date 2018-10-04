@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../../../model/newsfeed.dart';
@@ -22,7 +22,7 @@ class FeedDetails extends StatefulWidget {
 enum AppBarBehavior { normal, pinned, floating, snapping }
 
 class FeedDetailsState extends State<FeedDetails> {
-  static final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final double _appBarHeight = 256.0;
 
   NewsfeedItem post;
@@ -43,13 +43,15 @@ class FeedDetailsState extends State<FeedDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return new Theme(
-      data: new ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
-        platform: Theme.of(context).platform,
-      ),
-      child: new Scaffold(
+    return
+//      new Theme(
+//      data: new ThemeData(
+//        brightness: Brightness.light,
+//        primarySwatch: Colors.indigo,
+//        platform: Theme.of(context).platform,
+//      ),
+//      child:
+      new Scaffold(
         key: _scaffoldKey,
         body: (post!=null)?new CustomScrollView(
           slivers: <Widget>[
@@ -65,10 +67,10 @@ class FeedDetailsState extends State<FeedDetails> {
                   children: <Widget>[
                     new Hero(
                         tag: widget.postKey,
-                        child: new Image.network(
-                          post.imageUrl,
-                          fit: BoxFit.cover,
-                          height: _appBarHeight,
+                        child: CachedNetworkImage(
+                            imageUrl: post.imageUrl,
+                            fit: BoxFit.cover,
+                            height: _appBarHeight
                         )),
                     // This gradient ensures that the toolbar icons are distinct
                     // against the background image.
@@ -96,7 +98,6 @@ class FeedDetailsState extends State<FeedDetails> {
                   icon: Icons.description ,
                   children: <Widget>[
                     new DetailItem(
-                        icon: null,
                         tooltip: 'Details',
                         onPressed: null,
                         lines: <String>[
@@ -110,7 +111,6 @@ class FeedDetailsState extends State<FeedDetails> {
                   icon: Icons.call,
                   children: <Widget>[
                     new DetailItem(
-                      icon: Icons.dialpad,
                       tooltip: 'Send message',
                       onPressed: () {
                         launch("tel:8981866219");
@@ -138,7 +138,7 @@ class FeedDetailsState extends State<FeedDetails> {
                 commentCount:widget.commentCount
             ),
         )
-      ),
+//      ),
     );
   }
 

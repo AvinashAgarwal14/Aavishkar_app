@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../model/event.dart';
 import '../../../util/web_render.dart';
@@ -25,13 +25,14 @@ class EventDetailsState extends State<EventDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return new Theme(
-      data: new ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
-        platform: Theme.of(context).platform,
-      ),
-      child: new Scaffold(
+//    return new Theme(
+//      data: new ThemeData(
+//        brightness: Brightness.dark,
+//        primarySwatch: Colors.indigo,
+//        platform: Theme.of(context).platform,
+//      ),
+//      child:
+      return new Scaffold(
         key: _scaffoldKey,
         body: new CustomScrollView(
           slivers: <Widget>[
@@ -47,10 +48,10 @@ class EventDetailsState extends State<EventDetails> {
                   children: <Widget>[
                     new Hero(
                         tag: widget.item.imageUrl,
-                        child: new Image.network(
-                          widget.item.imageUrl,
-                          fit: BoxFit.cover,
-                          height: _appBarHeight,
+                        child: CachedNetworkImage(
+                            imageUrl: widget.item.imageUrl,
+                            fit: BoxFit.cover,
+                            height: _appBarHeight
                         )),
                     // This gradient ensures that the toolbar icons are distinct
                     // against the background image.
@@ -73,7 +74,6 @@ class EventDetailsState extends State<EventDetails> {
                   icon: Icons.description ,
                   children: <Widget>[
                     new DetailItem(
-                      icon: null,
                       tooltip: 'Details',
                       onPressed: null,
                       lines: <String>[
@@ -88,7 +88,6 @@ class EventDetailsState extends State<EventDetails> {
                   icon: Icons.link,
                   children: <Widget>[
                     new DetailItem(
-                      icon: Icons.open_in_new,
                       tooltip: 'Open Link',
                       onPressed: () {
                         Navigator.push(
@@ -108,7 +107,6 @@ class EventDetailsState extends State<EventDetails> {
                   icon: Icons.location_on,
                   children: <Widget>[
                     new DetailItem(
-                      icon: Icons.map,
                       tooltip: 'Open map',
                       onPressed: () {
                         launch("tel:8981866219");
@@ -124,7 +122,6 @@ class EventDetailsState extends State<EventDetails> {
                     icon: Icons.call,
                     children: <Widget>[
                       new DetailItem(
-                        icon: Icons.message,
                         tooltip: 'Send message',
                         onPressed: () {
                           launch("tel:8981866219");
@@ -140,7 +137,6 @@ class EventDetailsState extends State<EventDetails> {
                   icon: Icons.contact_mail,
                   children: <Widget>[
                     new DetailItem(
-                      icon: Icons.email,
                       tooltip: 'Send personal e-mail',
                       onPressed: () {
                         launch("mailto:agarwalavinash14@gmail.com");
@@ -156,7 +152,7 @@ class EventDetailsState extends State<EventDetails> {
             ),
           ],
         ),
-      ),
+//      ),
     );
   }
 }

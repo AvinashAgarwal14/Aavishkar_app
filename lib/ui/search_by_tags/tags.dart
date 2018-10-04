@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../util/drawer.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../model/event.dart';
 import '../activities/events/event_details.dart';
 
@@ -40,6 +41,8 @@ class _SearchByTagsState extends State<SearchByTags> {
       'Sports': new List()
     };
 
+    database.setPersistenceEnabled(true);
+    database.setPersistenceCacheSizeBytes(10000000);
     databaseReference = database.reference().child("Events");
     databaseReference.onChildAdded.listen(_onEntryAdded);
     databaseReference.onChildChanged.listen(_onEntryChanged);
@@ -119,8 +122,10 @@ class _SearchByTagsState extends State<SearchByTags> {
                                 children: <Widget>[
                                   Hero(
                                     tag: eventsByTags[_selectedTag][position].imageUrl,
-                                    child: Image.network(eventsByTags[_selectedTag][position].imageUrl,fit: BoxFit.cover),
-                                  ),
+                                    child: CachedNetworkImage(
+                                        imageUrl: eventsByTags[_selectedTag][position].imageUrl,
+                                        fit: BoxFit.cover
+                                    )),
                                   ListTile(
                                     title: new Text(eventsByTags[_selectedTag][position].title),
                                     subtitle: new Text(eventsByTags[_selectedTag][position].date),

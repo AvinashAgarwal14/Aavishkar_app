@@ -448,6 +448,8 @@ class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
       'Ignitia': new List()
     };
 
+    database.setPersistenceEnabled(true);
+    database.setPersistenceCacheSizeBytes(10000000);
     databaseReference = database.reference().child("Events");
     databaseReference.onChildAdded.listen(_onEntryAdded);
     databaseReference.onChildChanged.listen(_onEntryChanged);

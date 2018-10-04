@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../activities/events/event_details.dart';
 import '../../model/event.dart';
 import 'package:firebase_database/firebase_database.dart';
-
 
 List<T> map<T>(List list, Function handler) {
 
@@ -22,6 +22,7 @@ class DashBoardLayout extends StatefulWidget {
 }
 
 class _DashBoardLayoutState extends State<DashBoardLayout> {
+
   CarouselSlider instance;
   int j=0;
 
@@ -43,6 +44,8 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
     };
     print("GANGNUM ...$eventsByCategories");
 
+    database.setPersistenceEnabled(true);
+    database.setPersistenceCacheSizeBytes(10000000);
     databaseReference = database.reference().child("Events");
     databaseReference.onChildAdded.listen(_onEntryAdded);
     databaseReference.onChildChanged.listen(_onEntryChanged);
@@ -68,7 +71,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
     ) {
        carouselImageList = List(eventsByCategories["Online"].length);
       return Scaffold(
-          backgroundColor: Color.fromRGBO(255, 248, 220, 1.0),
+          backgroundColor: Colors.white,
           body: ListView(shrinkWrap: true,
             children: <Widget>[
               //TODO Trending
@@ -101,10 +104,15 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
                                     new Radius.circular(20.0)),
                                 child: new Stack(
                                   children: <Widget>[
-                                    new Image.network( eventsByCategories["Online"][index].imageUrl,
-                                      fit: BoxFit.cover,
-                                      width: MediaQuery.of(context).size.width- 10.0,
-                                    ),
+//                                    Hero(
+//                                        tag: eventsByCategories["Online"][index].imageUrl,
+//                                        child:
+                                        CachedNetworkImage(
+                                            imageUrl: eventsByCategories["Online"][index].imageUrl,
+                                            fit: BoxFit.cover,
+                                            width: MediaQuery.of(context).size.width- 10.0
+//                                        )
+                            ),
                                     new Positioned(
                                         bottom: 0.0,
                                         left: 0.0,
@@ -160,7 +168,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
                 ),
               ),
               Container(
-                color: Color.fromRGBO(255, 248, 220, 1.0),
+                color: Colors.white,
                 height: 150.0,
                 // width: MediaQuery.of(context).size.width-10.0,
                 child: ListView.builder(
@@ -252,7 +260,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
                 ),
               ),
               Container(
-                color: Color.fromRGBO(255, 248, 220, 1.0),
+                color: Colors.white,
                 height: 150.0,
                 //width: MediaQuery.of(context).size.width,
                 child: ListView.builder(
@@ -291,7 +299,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
     else
       {
         return Scaffold(
-          backgroundColor: Color.fromRGBO(255, 248, 220, 1.0),
+          backgroundColor: Colors.white,
           body:Center(
             child:Column(
               mainAxisAlignment: MainAxisAlignment.center,

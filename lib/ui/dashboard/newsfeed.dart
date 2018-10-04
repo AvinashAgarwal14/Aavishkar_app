@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../../model/newsfeed.dart';
 import 'package:aavishkarapp/ui/dashboard/newsfeed_details/feed_details.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Newsfeed extends StatefulWidget {
   @override
@@ -22,6 +23,8 @@ class _NewsfeedState extends State<Newsfeed> {
 
     feed = new List();
 
+    database.setPersistenceEnabled(true);
+    database.setPersistenceCacheSizeBytes(10000000);
     databaseReference = database.reference().child("Posts");
     databaseReference.onChildAdded.listen(_onEntryAdded);
     databaseReference.onChildChanged.listen(_onEntryChanged);
@@ -47,9 +50,11 @@ class _NewsfeedState extends State<Newsfeed> {
                       children: <Widget>[
                         Hero(
                             tag: feed[position].key,
-                            child: Image.network(
-                                feed[position].imageUrl, fit: BoxFit.cover,
-                                height: 256.0,
+                            child: CachedNetworkImage(
+                              placeholder: Image.asset("images/Pacman.gif"),
+                                imageUrl: feed[position].imageUrl,
+                                fit: BoxFit.cover,
+                                height: 256.0
                             )),
                         ListTile(
                                 title: new Padding(

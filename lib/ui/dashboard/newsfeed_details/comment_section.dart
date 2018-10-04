@@ -58,14 +58,12 @@ class _CommentCategoryState extends State<CommentCategory> {
                  new Expanded(
                     child: (commentItems.length > 0)?
                     new DetailItem(
-                        icon: null,
                         lines: <String>[
                           'Comments',
                           '(${commentItems.length})',
                         ]
                     ):
                     new DetailItem(
-                        icon: null,
                         lines: <String>[
                           'Comments',
                           '(0)',
