@@ -7,10 +7,19 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import './loginAnimation.dart';
 import 'package:flutter/animation.dart';
 import './styles.dart';
-import './Components/WhiteTick.dart';
 import '../activities/events/event_details.dart';
 import '../../util/detailSection.dart';
 import '../../util/drawer.dart';
+
+
+
+var kFontFam = 'CustomFonts';
+
+IconData github_circled =  IconData(0xe800, fontFamily: kFontFam);
+IconData linkedin =  IconData(0xe801, fontFamily: kFontFam);
+IconData facebook =  IconData(0xf052, fontFamily: kFontFam);
+IconData google = IconData(0xf1a0, fontFamily: kFontFam);
+IconData facebook_1 = IconData(0xf300, fontFamily: kFontFam);
 
 class LogInPage extends StatefulWidget {
   @override
@@ -101,6 +110,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     if (currentUser == null) {
       return new Scaffold(
+
           drawer: NavigationDrawer(),
           body: new Container(
               decoration: new BoxDecoration(
@@ -119,95 +129,99 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         begin: const FractionalOffset(0.0, 0.0),
                         end: const FractionalOffset(0.0, 1.0),
                       )),
-                  child: new ListView(
-                      padding: const EdgeInsets.all(0.0),
-                      children: <Widget>[
-                        new Stack(
-                            alignment: (animationStatus==0)?AlignmentDirectional.topCenter : AlignmentDirectional.center,
-                            children: <Widget>[
 
-//                                  //-------TICK IMAGE-------\\
-//                                  Container(margin: EdgeInsets.only(left:MediaQuery.of(context).size.width/12,
-//                                  top: MediaQuery.of(context).size.height*0.65),
-//                                    height:200.0,
-//                                    width: MediaQuery.of(context).size.width-100,
-//                                      child: Tick(image: tick,),
-//                                  ),
+                  child:  new ListView(
+                        padding: const EdgeInsets.all(0.0),
+                        children: <Widget>[
+                          new Stack(
+                              alignment: (animationStatus==0)?AlignmentDirectional.topCenter : AlignmentDirectional.center,
+                              children: <Widget>[
 
+                                animationStatus==0?
+                                  Padding(
+                                      padding: const EdgeInsets.only(top: 15.0,left:5.0 ),
+                                child: ListTile(leading: BackButton(color: Colors.white,),),
+                              ):
+                                Container(),
+                                animationStatus!=0?
+                                SizedBox(height: MediaQuery.of(context).size.height):
+                                Container(),
+                                animationStatus == 0
+                                ? ( Container(
+                                    child: new Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              SizedBox(height: MediaQuery.of(context).size.height/3),
+                                              new Padding(
+                                                padding: const EdgeInsets.only(
+                                                    ),
+                                                child: new InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        animationStatus = 1;
+                                                      });
+                                                    },
+                                                    child: SignIn(
+                                                        "Sign in with Google")),
+                                              ),
+                                             Padding(
+                                               padding: const EdgeInsets.all(20.0),
+                                               child: Center(child: Text("OR",style: TextStyle(color: Colors.white, fontSize: 20.0),)),
+                                             ),
+                                              new Padding(
+                                                padding: const EdgeInsets.only(
+                                                    ),
+                                                child: new InkWell(
+                                                    onTap: () {
 
-                              animationStatus == 0
-                              ? (Container(margin: EdgeInsets.only(left: MediaQuery.of(context).size.width/40,top: MediaQuery.of(context).size.height*0.25),
-                                child: new Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          new Padding(
-                                            padding: const EdgeInsets.only(
-                                                ),
-                                            child: new InkWell(
-                                                onTap: () {
-                                                  print("BLOCK 1");
-                                                  setState(() {
-                                                    animationStatus = 1;
-                                                  });
-                                                },
-                                                child: SignIn(
-                                                    "Sign in with Google")),
+                                                      setState(() {
+                                                        animationStatus = 2;
+                                                      });
+                                                    },
+                                                    child: SignIn(
+                                                        "Sign in with Facebook")),
+                                              ),
+                                            ],
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                           ),
-                                         Center(child: Text("OR",style: TextStyle(color: Colors.white, fontSize: 20.0),),widthFactor: 12.0,heightFactor: 5.0,),
-                                          new Padding(
-                                            padding: const EdgeInsets.only(
-                                                ),
-                                            child: new InkWell(
-                                                onTap: () {
-                                                  print("BLOCK 1");
-                                                  setState(() {
-                                                    animationStatus = 2;
-                                                  });
-                                                },
-                                                child: SignIn(
-                                                    "Sign in with Facebook")),
-                                          )
-                                        ],
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                      ),
+                                )
                                     )
-                                  )
-                                  :
-                                  FutureBuilder(
-                                      future: animationStatus == 1
-                                          ? _gSignIn()
-                                          : _fSignIn(),
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot snapshot) {
-                                        if (currentUser == null) {
-                                          print("BLOCK 2");
-                                          return
-                                          animationStatus==1 ?  Container(
-                                          child: CircularProgressIndicator(
-                                            value: null,
-                                            strokeWidth: 2.0,
-                                            valueColor:new AlwaysStoppedAnimation<
-                                                    Color>(Colors.white),
-                                          ))
-                                        : Container();
+                                    :
 
-                                        } else {
-                                          print("BLOCK 3");
-                                          _playAnimation(animationStatus);
-                                          print("BLOCK 3");
-                                          return new StaggerAnimation(
-                                              buttonController:
-                                                  animationStatus == 2
-                                                      ? _flogInButtonController
-                                                          .view
-                                                      : _glogInButtonController
-                                                          .view);
-                                        }
-                                      })
-                              //:Container(),
-                            ])
-                      ]))));
+                                    FutureBuilder(
+                                        future: animationStatus == 1
+                                            ? _gSignIn()
+                                            : _fSignIn(),
+                                        builder: (BuildContext context,
+                                            AsyncSnapshot snapshot) {
+                                          if (currentUser == null) {
+
+                                            return
+                                            animationStatus==1 ?  Container(
+                                            child: CircularProgressIndicator(
+                                              value: null,
+                                              strokeWidth: 2.0,
+                                              valueColor:new AlwaysStoppedAnimation<
+                                                      Color>(Colors.white),
+                                            ))
+                                          : Container();
+                                          } else {
+
+                                            _playAnimation(animationStatus);
+
+                                            return new StaggerAnimation(
+                                                buttonController:
+                                                    animationStatus == 2
+                                                        ? _flogInButtonController
+                                                            .view
+                                                        : _glogInButtonController
+                                                            .view);
+                                          }
+                                        })
+                              ])
+                        ],
+                  ))));
     } else {
       return new Theme(
           data: new ThemeData(
@@ -301,7 +315,23 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
               ])):
                Scaffold(
               body: Container(
-                child: ListView(
+    decoration: new BoxDecoration(
+    image: backgroundImage,
+    ),
+    child: new Container(
+    height: MediaQuery.of(context).size.height,
+    width: MediaQuery.of(context).size.width,
+    decoration: new BoxDecoration(
+    gradient: new LinearGradient(
+    colors: <Color>[
+    const Color.fromRGBO(162, 146, 199, 0.8),
+    const Color.fromRGBO(51, 51, 63, 0.9),
+    ],
+    stops: [0.2, 1.0],
+    begin: const FractionalOffset(0.0, 0.0),
+    end: const FractionalOffset(0.0, 1.0),
+    )),
+    child:  ListView(
                   children: <Widget>[
                     Stack(
                       alignment: AlignmentDirectional.bottomCenter,
@@ -323,7 +353,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                     )
                   ],
                 ),
-
+              )
               )
       )
       );
@@ -332,8 +362,8 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
 
   Future getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    print(user);
-    if(user.email==null) {
+    FirebaseUser c;
+    if(user==c) {
       setState(() {
         currentUser = user;
         animationStatus = 0;
@@ -342,7 +372,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
     else{
       setState(() {
         currentUser=user;
-        int n =user.email.length;
         if(user.providerData[1].providerId=="google.com")
         {
           animationStatus=1;
@@ -427,16 +456,28 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         color: const Color.fromRGBO(247, 64, 106, 1.0),
         borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
       ),
-      child: new Text(
-        str,
-        maxLines: 1,
-        style: new TextStyle(
-          color: Colors.white,
-          fontSize: 20.0,
-          fontWeight: FontWeight.w300,
-          letterSpacing: 0.3,
+      child:
+        Row(mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+             // child: Image( image: str.contains("Google")?AssetImage("images/googleicon.jpg"):AssetImage("images/facebookicon.jpg"),),
+             child: str.contains("Google")?Icon(google,):Icon(facebook,),
+            ),
+           Text(
+                  str,
+                  maxLines: 1,
+                  style: new TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+
+          ],
         ),
-      ),
     ));
   }
 }

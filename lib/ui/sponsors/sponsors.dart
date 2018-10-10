@@ -85,10 +85,10 @@ class _SponsorsState extends State<Sponsors> {
       return Column(
         children: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.center ,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
           children: <Widget>[
-          prioritySponsor(indexOfWidget),
-          Expanded(child:SizedBox()),
+          Flexible(child:prioritySponsor(indexOfWidget)),
+         // Expanded(child:SizedBox()),
             prioritySponsor(c),
           ],
         ),

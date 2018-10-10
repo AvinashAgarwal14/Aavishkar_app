@@ -78,7 +78,8 @@ class _DayOneScheduleState extends State<DayOneSchedule> {
                     "${schedule.name}",
                     style: new TextStyle(fontSize: 18.0),
                   ),
-                  new Text(
+                  new
+ Text(
                     "${schedule.category}",
                     style: new TextStyle(fontSize: 12.0, color: Colors.grey),
                   )

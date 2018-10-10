@@ -7,11 +7,10 @@ import './ui/account/login.dart';
 import './ui/scoreboard/scoreboard.dart';
 import './ui/schedule/schedule.dart';
 import './ui/eurocoin/eurocoin.dart';
-import './ui/about_us/about_us.dart';
-
-//import './ui/account/account.dart';
+import './ui/contact_us/contact_us.dart';
 import './ui/sponsors/sponsors.dart';
-
+import './ui/contributors/contributors.dart';
+import './ui/about_us/about_us.dart';
 void main()
 {
   runApp(
@@ -25,7 +24,7 @@ void main()
 //            if (defaultTheme.platform == TargetPlatform.iOS) {
 //              return new Theme(
 //                data: defaultTheme.copyWith(
-//                    primaryColor: Colors.purple
+//                    primaryColor: Color(0xFF8266D4)
 //                ),
 //                child: child,
 //              );
@@ -57,11 +56,12 @@ void main()
           "/ui/activity": (BuildContext context) => ActivitiesHomePage(),
           "/ui/maps/map":(BuildContext context)=>MapPage(),
           "/ui/account/login":(BuildContext context)=>LogInPage(),
-          "/ui/scoreboard":(BuildContext context)=> ScoreBoard(),
+          "/ui/scoreboard":(BuildContext context)=> Scoreboard(),
           "/ui/eurocoin":(BuildContext context)=> EurocoinHomePage(),
-          "/ui/aboutus":(BuildContext context)=> AboutUsPage(),
-//          "/ui/accouont/account":(BuildContext context)=> Account(),
           "/ui/sponsors/sponsors":(BuildContext context)=>Sponsors(),
+          "/ui/contact_us/contact_us":(BuildContext context)=>ContactUs(),
+          "/ui/contributors/contributors":(BuildContext context)=> Contributors(),
+          "/ui/about_us/about_us":(BuildContext context)=> AboutUsPage(),
           },
       )
   );

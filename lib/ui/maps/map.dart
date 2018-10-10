@@ -18,10 +18,10 @@ class _MapPageState extends State<MapPage> {
   Uri staticMapUri;
 
   List<Marker> markers = <Marker>[
-    new Marker("1", "Lorde's", 23.546576, 87.291463, color: Colors.amber),
-    new Marker("2", "Ovals", 23.549968, 87.292022, color: Colors.amber),
-    new Marker("3", "Old Academic Building", 23.547954, 87.291439, color: Colors.amber),
-    new Marker("4", "New Academic Building", 23.548013, 87.293336, color: Colors.amber),
+    new Marker("1", "Lorde's", 23.546576, 87.291463, color: Colors.red),
+    new Marker("2", "Ovals", 23.549968, 87.292022, color: Colors.red),
+    new Marker("3", "Old Academic Building", 23.547954, 87.291439, color: Colors.red),
+    new Marker("4", "New Academic Building", 23.548013, 87.293336, color: Colors.red),
   ];
 
   Future _currentLocation(){
@@ -44,7 +44,8 @@ class _MapPageState extends State<MapPage> {
         showUserLocation: true,
         showMyLocationButton: true,
         hideToolbar: true,showCompassButton: true,
-        title: "Recent Location")
+        title: "Recent Location"),
+      toolbarActions: null,
     );
 
     mapView.setMarkers(markers);
@@ -73,7 +74,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     if(shown==0){
       return Scaffold(
-          drawer: NavigationDrawer(),
+
           body:showMap()
       );
       }
