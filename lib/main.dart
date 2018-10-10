@@ -6,12 +6,14 @@ import './ui/maps/map.dart';
 import './ui/account/login.dart';
 import './ui/scoreboard/scoreboard.dart';
 import './ui/schedule/schedule.dart';
-import './ui/eurocoin/eurocoin.dart';
+import './ui/eurekoin/eurekoin.dart';
 import './ui/contact_us/contact_us.dart';
 import './ui/sponsors/sponsors.dart';
 import './ui/contributors/contributors.dart';
 import './ui/about_us/about_us.dart';
-void main()
+import './ui/game/lib/main.dart';
+
+void main() async
 {
   runApp(
       MaterialApp(
@@ -32,20 +34,9 @@ void main()
 //            return child;
 //          },
         theme: new ThemeData(
-//          backgroundColor: Colors.black,
-//          canvasColor: Color(0xFF353662),
           primaryColor: Color(0xFF353662),
-//          backgroundColor:Color(0xFF353662) ,
-//          canvasColor: Color(0xFF353662),
-//          cardColor: Color(0xFF353662),
-//          highlightColor: Color(0xFF353662),
-//          brightness: Brightness.values[0],
-//iconTheme: IconThemeData(
-//  color: Colors.grey
-//)
-//          scaffoldBackgroundColor:Color(0xFF353662),
-//          highlightColor: Colors.purple,
-//          scaffoldBackg/roundColor: Colors/.purple
+          splashColor: Colors.transparent,
+          accentColor: Color(0xFF353662)
         ),
         home: Dashboard(),
         initialRoute: "/",
@@ -57,11 +48,12 @@ void main()
           "/ui/maps/map":(BuildContext context)=>MapPage(),
           "/ui/account/login":(BuildContext context)=>LogInPage(),
           "/ui/scoreboard":(BuildContext context)=> Scoreboard(),
-          "/ui/eurocoin":(BuildContext context)=> EurocoinHomePage(),
+          "/ui/eurekoin":(BuildContext context)=> EurekoinHomePage(),
           "/ui/sponsors/sponsors":(BuildContext context)=>Sponsors(),
           "/ui/contact_us/contact_us":(BuildContext context)=>ContactUs(),
           "/ui/contributors/contributors":(BuildContext context)=> Contributors(),
           "/ui/about_us/about_us":(BuildContext context)=> AboutUsPage(),
+          "/ui/game":(BuildContext context)=> Game()
           },
       )
   );

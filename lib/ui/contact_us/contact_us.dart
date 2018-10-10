@@ -1,3 +1,4 @@
+import '../../util/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,14 +34,7 @@ Map contactCard={
   "https://flutter.io/cookbook/lists/grid-lists/",
   "https://flutter.io/cookbook/lists/grid-lists/"],
 
-  "ProfilesGithub": ["https://flutter.io/cookbook/lists/grid-lists/",
-  "https://flutter.io/cookbook/lists/grid-lists/",
-  "https://flutter.io/cookbook/lists/grid-lists/",
-  "https://flutter.io/cookbook/lists/grid-lists/",
-  "https://flutter.io/cookbook/lists/grid-lists/"],
-
   "Contact":["+91 8004937056","+91 8004937056","+91 8004937056","+91 8004937056","+91 8004937056"],
-
 
   "Image":["images/events.png","images/events.png","images/events.png","images/events.png","images/events.png",],
 };
@@ -49,6 +43,7 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
 
     return Scaffold (backgroundColor:Colors.white70,
+    drawer: NavigationDrawer(currentDisplayedPage: 10),
     appBar: AppBar(title: Text("Contact Us"),),
     body: OrientationBuilder(
       builder:(context, orientation) {
@@ -102,11 +97,6 @@ class _ContactUsState extends State<ContactUs> {
                                   icon: Icon(linkedin, color: Colors.blue,),
                                   onPressed: () {
                                     _launchURL(contactCard["ProfilesLinkedin"][index]);
-                                  },),
-                                IconButton(icon: Icon(github_circled,
-                                  color: Color.fromRGBO(201, 81, 12, 1.0),),
-                                  onPressed: () {
-                                    _launchURL(contactCard["ProfilesGithub"][index]);
                                   },),
                                 IconButton(icon: Icon(Icons.call),
                                   color: Colors.green,

@@ -1,4 +1,4 @@
-import 'package:aavishkarapp/ui/dashboard/dashboard.dart';
+import '../ui/game/lib/main.dart';
 import 'package:flutter/material.dart';
 import '../ui/activities/main.dart';
 import '../ui/search_by_tags/tags.dart';
@@ -6,7 +6,7 @@ import '../ui/maps/map.dart';
 import '../ui/account/login.dart';
 import '../ui/scoreboard/scoreboard.dart';
 import '../ui/schedule/schedule.dart';
-import '../ui/eurocoin/eurocoin.dart';
+import '../ui/eurekoin/eurekoin.dart';
 import '../ui/about_us/about_us.dart';
 import '../ui/sponsors/sponsors.dart';
 import '../util/navigator_transitions/slide_left_transitions.dart';
@@ -14,48 +14,39 @@ import '../ui/contact_us/contact_us.dart';
 import '../ui/contributors/contributors.dart';
 
 class NavigationDrawer extends StatefulWidget {
+  NavigationDrawer({Key key, this.currentDisplayedPage}): super(key: key);
+  final int currentDisplayedPage;
+
   @override
   _NavigationDrawerState createState() => _NavigationDrawerState();
 }
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
-  static int presestPageNumber = 0;
+  int presestPageNumber;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    presestPageNumber = widget.currentDisplayedPage;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return new Theme(
-        data: new ThemeData(
-          canvasColor: Color.fromRGBO(225, 225, 225, 40.0),
-        ),
-        child: Drawer(
+    return Drawer(
             child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
               padding: EdgeInsets.all(0.0),
               child: Image.asset("images/events.png", fit: BoxFit.fill),
-//              child: Container(
-//            child: Column(
-//              mainAxisAlignment: MainAxisAlignment.center,
-//              children: <Widget>[
-//                CircleAvatar(
-//                  radius: 50.0,
-//                  child: Image.asset("images/events.png"),
-//                ),
-//                Container(
-//                  padding: EdgeInsets.only(top: 15.0),
-//                  child: Text("Aavishkar"),
-//                )
-//              ],
-//            ),
-//          )
             ),
             Container(
               color: (presestPageNumber == 0)
                   ? Color.fromRGBO(225, 225, 225, 40.0)
                   : Color.fromRGBO(54, 59, 94, 40.0),
               child: ListTile(
-                  leading: Icon(Icons.home),
+                  leading: Icon(Icons.home, color:Color(0xFF353662)),
                   title: Text("Home",
                       style: TextStyle(
                           color: (presestPageNumber == 0)
@@ -74,8 +65,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                    leading: Icon(Icons.monetization_on),
-                    title: Text("Eurocoin",
+                    leading: Icon(Icons.monetization_on, color:Color(0xFF353662)),
+                    title: Text("Eurekoin Wallet",
                         style: TextStyle(
                             color: (presestPageNumber == 1)
                                 ? Colors.black
@@ -90,7 +81,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                         });
                         Navigator.popUntil(context, ModalRoute.withName('/'));
                         Navigator.of(context)
-                            .push(SlideLeftRoute(widget: EurocoinHomePage()));
+                            .push(SlideLeftRoute(widget: EurekoinHomePage()));
                       }
                     })),
             Container(
@@ -98,7 +89,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                  leading: Icon(Icons.access_time),
+                  leading: Icon(Icons.access_time, color:Color(0xFF353662)),
                   title: Text("Schedule",
                       style: TextStyle(
                           color: (presestPageNumber == 4)
@@ -123,7 +114,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                    leading: Icon(Icons.local_activity),
+                    leading: Icon(Icons.local_activity, color:Color(0xFF353662)),
                     title: Text("Activities",
                         style: TextStyle(
                             color: (presestPageNumber == 5)
@@ -142,16 +133,37 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                             .push(SlideLeftRoute(widget: ActivitiesHomePage()));
                       }
                     })),
-            Divider(height: 10.0),
-            ListTile(
-              title: Text("Utilities"),
+            Container(
+                color: (presestPageNumber==12)?Color.fromRGBO(225, 225, 225, 40.0):Color.fromRGBO(54, 59, 94, 40.0),
+                child: ListTile(
+                  leading: Icon(Icons.videogame_asset, color:Color(0xFF353662)),
+                  title: Text("Bored?", style: TextStyle(
+                      color: (presestPageNumber==12)?Colors.black:Colors.white)),
+                  selected: (presestPageNumber == 12) ? true : false,
+                  onTap: (() {
+                    if (presestPageNumber == 12)
+                      Navigator.pop(context);
+                    else {
+                      setState(() {
+                        presestPageNumber = 12;
+                      });
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                      Navigator.of(context)
+                          .push(SlideLeftRoute(widget: Game()));
+                    }
+                  }),
+                )),
+            Container(
+              padding: EdgeInsets.fromLTRB(20.0, 5.0, 5.0, 5.0),
+              color: Color.fromRGBO(54, 59, 94, 40.0),
+              child: Text("Utilities", style: TextStyle(color: Colors.white)),
             ),
             Container(
                 color: (presestPageNumber == 2)
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                    leading: Icon(Icons.score),
+                    leading: Icon(Icons.score, color:Color(0xFF353662)),
                     title: Text("Scoreboard",
                         style: TextStyle(
                             color: (presestPageNumber == 2)
@@ -175,7 +187,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                  leading: Icon(Icons.youtube_searched_for),
+                  leading: Icon(Icons.youtube_searched_for, color:Color(0xFF353662)),
                   title: Text("Tags",
                       style: TextStyle(
                           color: (presestPageNumber == 3)
@@ -200,7 +212,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                  leading: Icon(Icons.my_location),
+                  leading: Icon(Icons.my_location, color:Color(0xFF353662)),
                   title: Text("Maps",
                       style: TextStyle(
                           color: (presestPageNumber == 6)
@@ -225,7 +237,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                  leading: Icon(Icons.account_circle),
+                  leading: Icon(Icons.account_circle, color:Color(0xFF353662)),
                   title: Text("Account",
                       style: TextStyle(
                           color: (presestPageNumber == 8)
@@ -245,16 +257,17 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     }
                   }),
                 )),
-            Divider(height: 10.0),
-            ListTile(
-              title: Text("About Us"),
+            Container(
+              padding: EdgeInsets.fromLTRB(20.0, 5.0, 5.0, 5.0),
+              color: Color.fromRGBO(54, 59, 94, 40.0),
+              child: Text("About us", style: TextStyle(color: Colors.white)),
             ),
             Container(
                 color: (presestPageNumber == 7)
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                  leading: Icon(Icons.accessibility),
+                  leading: Icon(Icons.accessibility, color:Color(0xFF353662)),
                   title: Text("About Us",
                       style: TextStyle(
                           color: (presestPageNumber == 7)
@@ -279,7 +292,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ? Color.fromRGBO(225, 225, 225, 40.0)
                     : Color.fromRGBO(54, 59, 94, 40.0),
                 child: ListTile(
-                  leading: Icon(Icons.credit_card),
+                  leading: Icon(Icons.credit_card, color:Color(0xFF353662)),
                   title: Text("Sponsors",
                       style: TextStyle(
                           color: (presestPageNumber == 9)
@@ -304,7 +317,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   ? Color.fromRGBO(225, 225, 225, 40.0)
                   : Color.fromRGBO(54, 59, 94, 40.0),
               child: ListTile(
-                  leading: Icon(Icons.call),
+                  leading: Icon(Icons.call, color:Color(0xFF353662)),
                   title: Text("Contact Us",
                       style: TextStyle(
                           color: (presestPageNumber == 10)
@@ -329,7 +342,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   ? Color.fromRGBO(225, 225, 225, 40.0)
                   : Color.fromRGBO(54, 59, 94, 40.0),
               child: ListTile(
-                  leading: Icon(Icons.accessibility),
+                  leading: Icon(Icons.accessibility, color:Color(0xFF353662)),
                   title: Text("Contributors",
                       style: TextStyle(
                           color: (presestPageNumber == 11)
@@ -348,8 +361,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           .push(SlideLeftRoute(widget: Contributors()));
                     }
                   }),
-            ),
-          ],
-        )));
+            )
+        ]));
   }
 }

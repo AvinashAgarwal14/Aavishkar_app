@@ -4,10 +4,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
-import './eurocoin.dart';
+import './eurekoin.dart';
 
-typedef TransferEurocoinItemBodyBuilder<T> = Widget Function(
-    TransferEurocoinItem<T> item);
+typedef TransferEurekoinItemBodyBuilder<T> = Widget Function(
+    TransferEurekoinItem<T> item);
 typedef ValueToString<T> = String Function(T value);
 
 class DualHeaderWithHint extends StatelessWidget {
@@ -106,13 +106,13 @@ class CollapsibleBody extends StatelessWidget {
   }
 }
 
-class TransferEurocoinItem<T> {
-  TransferEurocoinItem(
+class TransferEurekoinItem<T> {
+  TransferEurekoinItem(
       {this.name, this.builder, this.error, this.valueToString});
 
   final String name;
   String error;
-  final TransferEurocoinItemBodyBuilder<T> builder;
+  final TransferEurekoinItemBodyBuilder<T> builder;
   final ValueToString<T> valueToString;
   bool isExpanded = false;
   bool isError = false;
@@ -128,18 +128,18 @@ class TransferEurocoinItem<T> {
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-class EurocoinTransfer extends StatefulWidget {
-  EurocoinTransfer({Key key, this.name, this.email, this.parent})
+class EurekoinTransfer extends StatefulWidget {
+  EurekoinTransfer({Key key, this.name, this.email, this.parent})
       : super(key: key);
   final String name;
   final String email;
-  final EurocoinHomePageState parent;
+  final EurekoinHomePageState parent;
   @override
-  _EurocoinTransferState createState() => _EurocoinTransferState();
+  _EurekoinTransferState createState() => _EurekoinTransferState();
 }
 
-class _EurocoinTransferState extends State<EurocoinTransfer> {
-  List<TransferEurocoinItem<dynamic>> _transferEurocoinItem;
+class _EurekoinTransferState extends State<EurekoinTransfer> {
+  List<TransferEurekoinItem<dynamic>> _transferEurekoinItem;
   FirebaseUser currentUser;
 
   TextEditingController amountController = new TextEditingController();
@@ -151,12 +151,12 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
   void initState() {
     super.initState();
 
-    _transferEurocoinItem = <TransferEurocoinItem<dynamic>>[
-      TransferEurocoinItem<String>(
-        name: 'Transfer Eurocoin',
+    _transferEurekoinItem = <TransferEurekoinItem<dynamic>>[
+      TransferEurekoinItem<String>(
+        name: 'Transfer Eurekoin',
         error: '',
         valueToString: (String value) => value,
-        builder: (TransferEurocoinItem<String> item) {
+        builder: (TransferEurekoinItem<String> item) {
           emailController.addListener(processingSuggestionListBuilder);
 //          emailController.addListener(suggestionListBuilder);
           void close() {
@@ -175,14 +175,14 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
                     if (formKey.currentState.validate()) {
                       String debit = amountController.text;
                       String transfer = emailController.text;
-                      Future<int> result = transferEurocoin(debit, transfer);
+                      Future<int> result = transferEurekoin(debit, transfer);
                       result.then((value) {
                         print(value);
                         if (value == 0) {
                           setState(() {
                             item.error = "Successful!";
                           });
-                          widget.parent.getUserEurocoin();
+                          widget.parent.getUserEurekoin();
                         } else if (value == 2 || value == 5)
                           setState(() {
                             item.error = "Incorrect User!";
@@ -284,11 +284,13 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
                   child: ExpansionPanelList(
                       expansionCallback: (int index, bool isExpanded) {
                         setState(() {
-                          _transferEurocoinItem[index].isExpanded = !isExpanded;
+                          _transferEurekoinItem[index].isExpanded = !isExpanded;
                         });
+                        if(_transferEurekoinItem[index].isExpanded==true)
+                          widget.parent.moveDown();
                       },
-                      children: _transferEurocoinItem
-                          .map((TransferEurocoinItem<dynamic> item) {
+                      children: _transferEurekoinItem
+                          .map((TransferEurekoinItem<dynamic> item) {
                         return ExpansionPanel(
                           isExpanded: item.isExpanded,
                           headerBuilder: item.headerBuilder,
@@ -300,7 +302,7 @@ class _EurocoinTransferState extends State<EurocoinTransfer> {
         )));
   }
 
-  Future<int> transferEurocoin(String amount, String transerTo) async {
+  Future<int> transferEurekoin(String amount, String transerTo) async {
     var email = widget.email;
     var name = widget.name;
     var bytes = utf8.encode("$email" + "$name");

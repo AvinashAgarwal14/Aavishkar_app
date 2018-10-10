@@ -36,7 +36,7 @@ class _DayFourScheduleState extends State<DayFourSchedule> {
           height: 2.0,
           child: LinearProgressIndicator(
               valueColor:
-              new AlwaysStoppedAnimation<Color>(Colors.blueAccent)))
+              new AlwaysStoppedAnimation<Color>(Color(0xFF353662))))
     ]);
   }
 

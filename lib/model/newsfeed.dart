@@ -5,6 +5,7 @@ class NewsfeedItem {
   NewsfeedItem(
       this.title,
       this.body,
+      this.color,
       this.imageUrl,
       this.date,
       this.likesCount,
@@ -14,6 +15,7 @@ class NewsfeedItem {
   String key;
   String title;
   String body;
+  String color;
   String imageUrl;
   String date;
   int likesCount;
@@ -24,6 +26,7 @@ class NewsfeedItem {
     key = snapshot.key;
     title = snapshot.value['title'];
     body = snapshot.value['body'];
+    color = snapshot.value['color'];
     imageUrl = snapshot.value['imageUrl'];
     date = snapshot.value['date'];
     commentsCount = snapshot.value['commentsCount'];

@@ -1,5 +1,8 @@
-
+import 'dart:async';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:palette_generator/palette_generator.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'events/event_details.dart';
 import '../../model/event.dart';
@@ -114,7 +117,9 @@ class SectionIndicator extends StatelessWidget {
 }
 
 // Display a single SectionDetail.
-class SectionDetailView extends StatelessWidget {
+
+class SectionDetailView extends StatefulWidget {
+
   SectionDetailView({ Key key, @required this.detail })
       : assert(detail != null && detail.imageUrl != null),
         assert((detail.imageUrl ?? detail.title) != null),
@@ -123,49 +128,87 @@ class SectionDetailView extends StatelessWidget {
   final EventItem detail;
 
   @override
+  _SectionDetailViewState createState() => _SectionDetailViewState();
+}
+
+class _SectionDetailViewState extends State<SectionDetailView> {
+
+  PaletteGenerator paletteGenerator;
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference databaseReferenceForUpdate;
+  Color cardColor;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(widget.detail.color!='invalid')
+    {
+      if(widget.detail.color=='null')
+        cardColor = new Color(0xffffff);
+      else
+      {
+        String valueString = widget.detail.color.split('(0x')[1].split(')')[0]; // kind of hacky..
+        int value = int.parse(valueString, radix: 16);
+        cardColor = new Color(value);
+      }
+    }
+    else
+    {
+      databaseReferenceForUpdate = database.reference().child("Events");
+      updatePaletteGenerator();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Widget image = new DecoratedBox(
-      decoration: new BoxDecoration(
-        borderRadius: new BorderRadius.circular(6.0),
-        image: new DecorationImage(
-          image: NetworkImage(detail.imageUrl),
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
-        ),
-      ),
-    );
 
     Widget item;
-      item = new GestureDetector(
+    item = new GestureDetector(
         onTap:() {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => new EventDetails(item: detail)),
+            MaterialPageRoute(builder: (context) => new EventDetails(item: widget.detail)),
           );
         },
         child: new Card(
+            color: (paletteGenerator!=null)?paletteGenerator.lightVibrantColor?.color:cardColor,
             child: new Column(
               children: <Widget>[
                 Hero(
-                  tag: detail.imageUrl,
-                  child: CachedNetworkImage(
-                      imageUrl: detail.imageUrl,
-                      fit: BoxFit.fill,
-                      height: 256.0
-                  )),
+                    tag: widget.detail.imageUrl,
+                    child: CachedNetworkImage(
+                        placeholder: Image.asset("images/imageplaceholder.png"),
+                        imageUrl: widget.detail.imageUrl,
+                        fit: BoxFit.fill,
+                        height: 256.0
+                    )),
                 ListTile(
-                  title: new Text(detail.title),
-                  subtitle: new Text(detail.date),
+                  title: new Text(widget.detail.title),
+                  subtitle: new Text(widget.detail.date),
                 )
               ],
             )
         )
-      );
-
-      return item;
-    return new DecoratedBox(
-      decoration: new BoxDecoration(color: Colors.grey.shade200),
-      child: item,
     );
+
+    return item;
+  }
+
+  Future<void> updatePaletteGenerator() async {
+    paletteGenerator = await PaletteGenerator.fromImageProvider(
+      NetworkImage(widget.detail.imageUrl),
+      maximumColorCount: 5,
+    );
+    setState(() {
+    });
+    updateNewsFeedPostColor(paletteGenerator.lightVibrantColor?.color);
+  }
+
+  void updateNewsFeedPostColor(Color color)
+  {
+    databaseReferenceForUpdate.child(widget.detail.key).update({
+      'color': color.toString()
+    }) ;
   }
 }

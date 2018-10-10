@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-//import '../../util/drawer.dart';
+import '../../util/drawer.dart';
 import 'package:flutter/rendering.dart';
 
 
@@ -131,6 +131,7 @@ class _ScoreboardState extends State<Scoreboard> {
     if(dataRecieved){
       return Scaffold(
           key: _scaffoldKey,
+          drawer: NavigationDrawer(currentDisplayedPage: 2),
           appBar: AppBar(title:  const Text('Live Scoreboard'),elevation: 10.0,),
           body: RefreshIndicator(
             key: _refreshIndicatorKey,

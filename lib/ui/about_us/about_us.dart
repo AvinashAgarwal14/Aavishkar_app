@@ -10,7 +10,7 @@ class AboutUsPage extends StatefulWidget {
 class _AboutUsPageState extends State<AboutUsPage>
     with TickerProviderStateMixin {
   var listViewKey = new GlobalKey();
-  final scrollController = new ScrollController();
+  var scrollController = new ScrollController();
 
   var animatedBoxOneKey = new GlobalKey();
   AnimationController animatedBoxOneEnterAnimationController;
@@ -129,7 +129,7 @@ class _AboutUsPageState extends State<AboutUsPage>
         .animate(animatedBoxThreeEnterAnimationController);
 
     return new Scaffold(
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer(currentDisplayedPage: 7),
       appBar: AppBar(
         title: Text("About Us"),
       ),
@@ -209,7 +209,13 @@ class _AboutUsPageState extends State<AboutUsPage>
               animatedBoxTwoEnterAnimationController.reset();
               animatedBoxThreeEnterAnimationController.reset();
             },
-            child: new Text('Move up'),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Text("Move Up"),
+                new Icon(Icons.arrow_upward)
+              ],
+            )
           )
         ],
       ),

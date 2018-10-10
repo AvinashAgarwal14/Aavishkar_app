@@ -51,7 +51,7 @@ class _ScheduleState extends State<Schedule> {
         ),
         child: new Scaffold(
             key: _scaffoldKeyForSchedule,
-            drawer: NavigationDrawer(),
+            drawer: NavigationDrawer(currentDisplayedPage: 4),
             body: new CustomScrollView(slivers: <Widget>[
               new SliverAppBar(
                 expandedHeight: _appBarHeight,
@@ -92,8 +92,7 @@ class _ScheduleState extends State<Schedule> {
                   new Container(
                       margin: margin,
                       alignment: Alignment.center,
-                      padding: new EdgeInsets.only(
-                          left: 30.0, top: 20.0),
+                      padding: new EdgeInsets.only(left: 30.0, top: 20.0),
                       height: 90.0,
                       decoration: new BoxDecoration(
                         color: Colors.white,
@@ -107,78 +106,69 @@ class _ScheduleState extends State<Schedule> {
                           itemCount: week.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (BuildContext context, int index) {
-                            return new SizedBox(
-                              width: 80.0,
-                              child:Column(
-                              children: <Widget>[
-                                new Text(
-                                  week[index],
-                                  style: new TextStyle(
-                                      color: const Color.fromRGBO(
-                                          204, 204, 204, 1.0),
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                new Padding(
-                                  padding: new EdgeInsets.only(
-                                      top: 10.0, bottom: 5.0),
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          print(presentKey);
-                                          presentKey = index;
-                                        });
-                                      },
-                                      child: new Container(
-                                          width: 35.0,
-                                          height: 35.0,
-                                          alignment: Alignment.center,
-                                          decoration: new BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: (presentKey == index)
-                                                  ? const Color.fromRGBO(
-                                                      204, 204, 204, 0.3)
-                                                  : Colors.transparent),
-                                          child: new Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              new Text(
-                                                arrayDay[index].toString(),
-                                                style: new TextStyle(
-                                                    fontSize: 12.0,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              (presentKey == index)
-                                                  ? new Container(
-                                                      padding:
-                                                          new EdgeInsets.only(
-                                                              top: 3.0),
-                                                      width: 3.0,
-                                                      height: 3.0,
-                                                      decoration:
-                                                          new BoxDecoration(
+                            return new GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    print(presentKey);
+                                    presentKey = index;
+                                  });
+                                },
+                                child: SizedBox(
+                                    width: 80.0,
+                                    child: Column(children: <Widget>[
+                                      new Text(
+                                        week[index],
+                                        style: new TextStyle(
+                                            color: const Color.fromRGBO(
+                                                204, 204, 204, 1.0),
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      new Padding(
+                                        padding: new EdgeInsets.only(
+                                            top: 10.0, bottom: 5.0),
+                                        child: new Container(
+                                              width: 35.0,
+                                              height: 35.0,
+                                              alignment: Alignment.center,
+                                              decoration: new BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: (presentKey == index)
+                                                      ? const Color.fromRGBO(
+                                                          204, 204, 204, 0.3)
+                                                      : Colors.transparent),
+                                              child: new Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  new Text(
+                                                    arrayDay[index].toString(),
+                                                    style: new TextStyle(
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  (presentKey == index)
+                                                      ? new Container(
+                                                          padding:
+                                                              new EdgeInsets
+                                                                      .only(
+                                                                  top: 3.0),
+                                                          width: 3.0,
+                                                          height: 3.0,
+                                                          decoration: new BoxDecoration(
                                                               shape: BoxShape
                                                                   .circle,
-                                                              color: const Color
-                                                                      .fromRGBO(
-                                                                  247,
-                                                                  64,
-                                                                  106,
-                                                                  1.0)),
-                                                    )
-                                                  : new Container()
-                                            ],
-                                          ))),
-                                )
-                              ],
-                            ));
+                                                              color: Color(0xFF353662)),
+                                                        )
+                                                      : new Container()
+                                                ],
+                                              )),
+                                      )
+                                    ])));
                           })),
                   Container(
-                      color: Colors.white,
-                      child: selectDaySchedule[presentKey]
-                  )
+                      color: Colors.white, child: selectDaySchedule[presentKey])
                 ]),
               )
             ])));

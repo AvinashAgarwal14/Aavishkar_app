@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../util/drawer.dart';
+import 'package:palette_generator/palette_generator.dart';
+import 'package:flutter/rendering.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../model/event.dart';
@@ -54,9 +57,10 @@ class _SearchByTagsState extends State<SearchByTags> {
     final List<Widget> choiceChips = _tags.map<Widget>((String name) {
       return ChoiceChip(
                 key: new ValueKey<String>(name),
-                backgroundColor: Colors.blueAccent,
-                label: new Text(name),
+                backgroundColor: Color(0xFF353662),
+                label: new Text(name, style: TextStyle(color: Colors.white)),
                 selected: _selectedTag == name,
+                selectedColor: Color.fromRGBO(54, 59, 94, 0.5),
                 onSelected: (bool value) {
                   setState(() {
                     _selectedTag = value ? name : _selectedTag;
@@ -84,7 +88,7 @@ class _SearchByTagsState extends State<SearchByTags> {
       appBar: AppBar(
         title: Text("Tags"),
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer(currentDisplayedPage: 3),
       body: Column(
         children: <Widget>[
             Container(
@@ -109,7 +113,6 @@ class _SearchByTagsState extends State<SearchByTags> {
                     itemBuilder: (context, position)
                     {
                       return Container(
-//                        height: 350.0,
                         child: GestureDetector(
                           onTap:() {
                             Navigator.push(
@@ -117,21 +120,7 @@ class _SearchByTagsState extends State<SearchByTags> {
                               MaterialPageRoute(builder: (context) => new EventDetails(item: eventsByTags[_selectedTag][position])),
                             );
                           },
-                          child: new Card(
-                              child: new Column(
-                                children: <Widget>[
-                                  Hero(
-                                    tag: eventsByTags[_selectedTag][position].imageUrl,
-                                    child: CachedNetworkImage(
-                                        imageUrl: eventsByTags[_selectedTag][position].imageUrl,
-                                        fit: BoxFit.cover
-                                    )),
-                                  ListTile(
-                                    title: new Text(eventsByTags[_selectedTag][position].title),
-                                    subtitle: new Text(eventsByTags[_selectedTag][position].date),
-                                  )
-                                ],
-                              )),
+                          child: SearchByTagsCards(eventCard:eventsByTags[_selectedTag][position])
                         )
                       );
                     }
@@ -161,7 +150,88 @@ class _SearchByTagsState extends State<SearchByTags> {
     setState(() {
       eventsByTags[event.snapshot.value["tag"]][eventsByTags[event.snapshot.value["tag"]].indexOf(oldEntry)] = EventItem.fromSnapshot(event.snapshot);
     });
-
   }
 
 }
+
+class SearchByTagsCards extends StatefulWidget {
+
+  SearchByTagsCards({ Key key, this.eventCard}) : super(key: key);
+
+  final EventItem eventCard;
+
+  @override
+  _SearchByTagsCardsState createState() => _SearchByTagsCardsState();
+}
+
+class _SearchByTagsCardsState extends State<SearchByTagsCards> {
+
+  PaletteGenerator paletteGenerator;
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference databaseReferenceForUpdate;
+  Color cardColor;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(widget.eventCard.color!='invalid')
+    {
+      if(widget.eventCard.color=='null')
+        cardColor = new Color(0xffffff);
+      else
+      {
+        String valueString = widget.eventCard.color.split('(0x')[1].split(')')[0]; // kind of hacky..
+        int value = int.parse(valueString, radix: 16);
+        cardColor = new Color(value);
+      }
+    }
+    else
+    {
+      databaseReferenceForUpdate = database.reference().child("Events");
+      updatePaletteGenerator();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget cardItem = new Card(
+        color: (paletteGenerator!=null)?paletteGenerator.lightVibrantColor?.color:cardColor,
+        child: new Column(
+          children: <Widget>[
+            Hero(
+                tag: widget.eventCard.imageUrl,
+                child: CachedNetworkImage(
+                    placeholder: Image.asset("images/imageplaceholder.png"),
+                    imageUrl: widget.eventCard.imageUrl,
+                    fit: BoxFit.cover
+                )),
+            ListTile(
+              title: new Text(widget.eventCard.title),
+              subtitle: new Text(widget.eventCard.date),
+            )
+          ],
+        ));
+
+    return cardItem;
+  }
+
+  Future<void> updatePaletteGenerator() async {
+    paletteGenerator = await PaletteGenerator.fromImageProvider(
+      NetworkImage(widget.eventCard.imageUrl),
+      maximumColorCount: 5,
+    );
+    setState(() {
+    });
+    updateNewsFeedPostColor(paletteGenerator.lightVibrantColor?.color);
+  }
+
+  void updateNewsFeedPostColor(Color color)
+  {
+    databaseReferenceForUpdate.child(widget.eventCard.key).update({
+      'color': color.toString()
+    }) ;
+  }
+}
+
+

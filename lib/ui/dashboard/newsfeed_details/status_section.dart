@@ -19,7 +19,7 @@ class _StatusCategoryState extends State<StatusCategory> {
 
   List<Icon> likeOptions = [
     Icon(Icons.thumb_up),
-    Icon(Icons.thumb_up, color: Colors.indigo)
+    Icon(Icons.thumb_up, color: Color(0xFF353662))
   ];
   Icon likeButton;
   FirebaseDatabase _database = FirebaseDatabase.instance;
@@ -76,7 +76,9 @@ class _StatusCategoryState extends State<StatusCategory> {
                                 IconButton(icon: likeButton, onPressed: () {
                                   if(currentUser==null)
                                     {
-                                      Navigator.of(context).pushNamed("/ui/account/login");
+                                      Navigator.of(context).pushNamed("/ui/account/login").then((onReturn){
+                                        getUser();
+                                      });
                                     } else
                                       {
                                           if(likeButton == likeOptions[0])
@@ -107,7 +109,7 @@ class _StatusCategoryState extends State<StatusCategory> {
                             width: 60.0,
                             child: Column(
                               children: <Widget>[
-                                Icon(Icons.mode_comment, color: Colors.indigo),
+                                Icon(Icons.mode_comment, color: Color(0xFF353662)),
                                 Padding(padding: EdgeInsets.only(top: 10.0)),
                                 Text("${widget.commentsCount}")
                               ],
@@ -118,7 +120,7 @@ class _StatusCategoryState extends State<StatusCategory> {
                             width: 72.0,
                             child: Column(
                               children: <Widget>[
-                                Icon(Icons.date_range, color: Colors.indigo),
+                                Icon(Icons.date_range, color: Color(0xFF353662)),
                                 Padding(padding: EdgeInsets.only(top: 10.0)),
                                 Text("${widget.date}", style: TextStyle(fontSize: 13.0),)
                               ],
