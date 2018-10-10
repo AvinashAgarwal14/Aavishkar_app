@@ -1,115 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
-    <list default="true" id="a6526fce-6f87-4d78-addc-28d83a375c3f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/Icon.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/Icon@2x.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/buy_upgrade.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/checker.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/click.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/explosion_0.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/explosion_1.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/explosion_2.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/explosion_boss.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/explosion_player.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/game_ui.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/game_ui.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/hit.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/laser.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/levelup.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/line_effects.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/music_boss.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/music_game.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/music_intro.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/nebula.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/pickup_0.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/pickup_1.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/pickup_2.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/pickup_powerup.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/player_exploding.wav" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/sprites.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/sprites.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/starfield.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/temp_music.aac" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/ui_bg_bottom.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/ui_bg_top.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/ui_bg_top_tabs.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/ui_popup.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/fonts/OFL.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/fonts/Orbitron-Black.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/fonts/Orbitron-Bold.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/fonts/Orbitron-Medium.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/fonts/Orbitron-Regular.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/imageplaceholder.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/imageplaceholder2.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/loader.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/images/logo.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/components.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/coordinate_system.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/custom_actions.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/explosions.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/flash.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/game_demo.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/game_demo_node.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/game_object_factory.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/game_objects.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/main.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/persistant_game_state.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/player_state.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/power_bar.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/render_coordinate_system.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/repeated_image.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/sound_assets.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/ui/game/lib/star_field.dart" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" />
+    <list default="true" id="db1139f2-40ca-4770-84d4-be9ec0d165ce" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
-      <change beforePath="$PROJECT_DIR$/assets/home.jpeg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/assets/login.jpg" afterPath="$PROJECT_DIR$/images/login.jpg" />
-      <change beforePath="$PROJECT_DIR$/assets/tick.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/images/Pacman.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/images/avinash.jpeg" afterPath="$PROJECT_DIR$/images/avinash.jpeg" />
-      <change beforePath="$PROJECT_DIR$/images/camera.svg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/images/giphy.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" afterPath="$PROJECT_DIR$/lib/main.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/model/event.dart" afterPath="$PROJECT_DIR$/lib/model/event.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/model/newsfeed.dart" afterPath="$PROJECT_DIR$/lib/model/newsfeed.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/model/posts_comment.dart" afterPath="$PROJECT_DIR$/lib/model/posts_comment.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/about_us/about_us.dart" afterPath="$PROJECT_DIR$/lib/ui/about_us/about_us.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/account/login.dart" afterPath="$PROJECT_DIR$/lib/ui/account/login.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/activities/main.dart" afterPath="$PROJECT_DIR$/lib/ui/activities/main.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/activities/widgets.dart" afterPath="$PROJECT_DIR$/lib/ui/activities/widgets.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart" afterPath="$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/contributors/contributors.dart" afterPath="$PROJECT_DIR$/lib/ui/contributors/contributors.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/comment_section.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/comment_section.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/feed_details.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/feed_details.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/status_section.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/status_section.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin.dart" afterPath="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin_coupon.dart" afterPath="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin_coupon.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin_transfer.dart" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/maps/map.dart" afterPath="$PROJECT_DIR$/lib/ui/maps/map.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/schedule/day1.dart" afterPath="$PROJECT_DIR$/lib/ui/schedule/day1.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/schedule/day2.dart" afterPath="$PROJECT_DIR$/lib/ui/schedule/day2.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/schedule/day3.dart" afterPath="$PROJECT_DIR$/lib/ui/schedule/day3.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/schedule/day4.dart" afterPath="$PROJECT_DIR$/lib/ui/schedule/day4.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/schedule/schedule.dart" afterPath="$PROJECT_DIR$/lib/ui/schedule/schedule.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/scoreboard/scoreboard.dart" afterPath="$PROJECT_DIR$/lib/ui/scoreboard/scoreboard.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/search_by_tags/tags.dart" afterPath="$PROJECT_DIR$/lib/ui/search_by_tags/tags.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/sponsors/sponsors.dart" afterPath="$PROJECT_DIR$/lib/ui/sponsors/sponsors.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/util/detailSection.dart" afterPath="$PROJECT_DIR$/lib/util/detailSection.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/util/drawer.dart" afterPath="$PROJECT_DIR$/lib/util/drawer.dart" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" afterPath="$PROJECT_DIR$/pubspec.lock" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
     </list>
-=======
-    <list default="true" id="43e8edc6-38fd-4ff7-a1e8-dcf217825f9e" name="Default" comment="" />
->>>>>>> Game added and colorful cards
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -465,12 +359,6 @@
   <component name="FileEditorManager">
     <leaf />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>W</find>
-      <find>Eurocoin</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -479,48 +367,11 @@
       <projects_view />
     </option>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/lib/ui/activities/widgets.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/game/lib/main.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/contributors/contributors.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/sponsors/sponsors.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/about_us/about_us.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/account/login.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/maps/map.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/search_by_tags/tags.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/scoreboard/scoreboard.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/activities/main.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/schedule/schedule.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin_coupon.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin_transfer.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/eurocoin/eurocoin.dart" />
-        <option value="$PROJECT_DIR$/lib/main.dart" />
-        <option value="$PROJECT_DIR$/lib/util/drawer.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/eurekoin/eurekoin_coupon.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/eurekoin/eurekoin_transfer.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/eurekoin/eurekoin.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart" />
-      </list>
-    </option>
-  </component>
-<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="49" />
     <option name="y" value="-4" />
     <option name="width" value="659" />
     <option name="height" value="772" />
-=======
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="330" />
-    <option name="y" value="129" />
-    <option name="width" value="657" />
-    <option name="height" value="672" />
->>>>>>> Game added and colorful cards
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -539,6 +390,8 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -546,23 +399,31 @@
               <item name="aavishkarapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="aavishkarapp" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="aavishkarapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="aavishkarapp" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="aavishkarapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="aavishkarapp" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="aavishkarapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="aavishkarapp" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
-    <property name="io.flutter.reload.alreadyRun" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/images" />
-    </key>
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -672,57 +533,47 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a6526fce-6f87-4d78-addc-28d83a375c3f" name="Default" comment="" />
-      <created>1539190986109</created>
+      <changelist id="db1139f2-40ca-4770-84d4-be9ec0d165ce" name="Default" comment="" />
+      <created>1539196781995</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1539190986109</updated>
+      <updated>1539196781995</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
-    <frame x="49" y="-4" width="1319" height="780" extended-state="6" />
-=======
-    <frame x="330" y="129" width="657" height="672" extended-state="1" />
-    <editor active="true" />
->>>>>>> Game added and colorful cards
+    <frame x="49" y="-4" width="1319" height="780" extended-state="7" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Dart Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14774494" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Flutter Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Dart Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Flutter Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-=======
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3797054" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
->>>>>>> Game added and colorful cards
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Flutter Inspector" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Flutter Inspector" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27527216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -733,174 +584,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/images/events.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/akshat.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/activities/widgets.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="213" column="1" lean-forward="false" selection-start-line="213" selection-start-column="1" selection-end-line="213" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/game/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="209" column="61" lean-forward="false" selection-start-line="209" selection-start-column="61" selection-end-line="209" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/contributors/contributors.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/sponsors/sponsors.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="32" column="54" lean-forward="false" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/about_us/about_us.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="131" column="54" lean-forward="false" selection-start-line="131" selection-start-column="54" selection-end-line="131" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/account/login.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="228" column="62" lean-forward="false" selection-start-line="228" selection-start-column="62" selection-end-line="228" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/maps/map.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="76" column="58" lean-forward="false" selection-start-line="76" selection-start-column="58" selection-end-line="76" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/search_by_tags/tags.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="90" column="54" lean-forward="false" selection-start-line="90" selection-start-column="54" selection-end-line="90" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/activities/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="460" column="54" lean-forward="false" selection-start-line="460" selection-start-column="54" selection-end-line="460" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/scoreboard/scoreboard.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="133" column="58" lean-forward="false" selection-start-line="133" selection-start-column="58" selection-end-line="133" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/schedule/schedule.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="53" column="60" lean-forward="false" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="58" lean-forward="false" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/avinash.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Flutter/flutter/packages/flutter/lib/src/material/icons.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="2979" column="24" lean-forward="false" selection-start-line="2979" selection-start-column="24" selection-end-line="2979" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/eurocoin/eurocoin_transfer.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/ui/eurocoin/eurocoin_coupon.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/ui/eurocoin/eurocoin.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/util/drawer.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-342">
-          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2070">
-          <caret line="115" column="56" lean-forward="false" selection-start-line="115" selection-start-column="56" selection-end-line="115" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/eurekoin/eurekoin.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4230">
-          <caret line="235" column="16" lean-forward="true" selection-start-line="235" selection-start-column="16" selection-end-line="235" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/eurekoin/eurekoin_coupon.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/eurekoin/eurekoin_transfer.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="99" column="38" lean-forward="false" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="38" />
+        <state relative-caret-position="-532">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
