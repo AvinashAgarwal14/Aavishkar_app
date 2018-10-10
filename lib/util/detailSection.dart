@@ -37,8 +37,7 @@ class DetailCategory extends StatelessWidget {
 
 class DetailItem extends StatelessWidget {
   DetailItem({Key key, this.lines, this.tooltip, this.onPressed})
-      : assert(lines.length > 1),
-        super(key: key);
+      : super(key: key);
 
   final List<String> lines;
   final String tooltip;
@@ -47,21 +46,32 @@ class DetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final List<Widget> columnChildren = lines
-        .sublist(0, lines.length - 1)
-        .map((String line) => new Text(line))
-        .toList();
-    columnChildren
-        .add(new Text(lines.last, style: themeData.textTheme.caption));
+    List<Widget> columnChildren = new List();
+    if(lines.length > 1)
+      {
+        columnChildren = lines
+            .sublist(0, lines.length - 1)
+            .map((String line) => new Text(line))
+            .toList();
+        columnChildren
+            .add(new Text(lines.last, style: themeData.textTheme.caption));
+      }
+      else
+        {
+          columnChildren = lines.map((String line) => new Text(line)).toList();
+        }
 
     final List<Widget> rowChildren = <Widget>[
       new Expanded(
           child: new GestureDetector(
         onTap: onPressed,
-        child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: columnChildren),
-      ))
+        child: new Container(
+          padding: (lines.length==1)?EdgeInsets.only(top: 10.0):EdgeInsets.only(top: 0.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: columnChildren),
+        )),
+        )
     ];
     rowChildren.add(new SizedBox(
       width: 60.0,

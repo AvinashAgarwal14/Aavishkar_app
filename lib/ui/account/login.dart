@@ -223,15 +223,10 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         ],
                   ))));
     } else {
-      return new Theme(
-          data: new ThemeData(
-            brightness: Brightness.light,
-            primarySwatch: Colors.indigo,
-            platform: Theme.of(context).platform,
-          ),
-          child: previouslyLoggedIn==false ? new Scaffold(
+      return new Scaffold(
+          body: previouslyLoggedIn==false ? new Scaffold(
               key: _scaffoldKey,
-              drawer: NavigationDrawer(),
+              drawer: NavigationDrawer(currentDisplayedPage: 8),
               body: new CustomScrollView(slivers: <Widget>[
                 new SliverAppBar(
                   expandedHeight: _appBarHeight,
@@ -292,7 +287,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                             onPressed: (){
                               Navigator.of(context).pushNamed("/ui/eurocoin");
                             },
-                            lines: <String>["Eurocoin Wallet", ""],
+                            lines: <String>["Eurocoin Wallet"],
                           )
                         ],
                       ),
@@ -307,7 +302,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                 _fSignOut();
                               print("Logout!");
                             },
-                            lines: <String>['Logout',''],
+                            lines: <String>['Logout'],
                           )
                         ],
                       )
@@ -362,8 +357,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
 
   Future getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    FirebaseUser c;
-    if(user==c) {
+    if(user==null) {
       setState(() {
         currentUser = user;
         animationStatus = 0;

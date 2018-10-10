@@ -15,7 +15,7 @@ class PostsCommentItem {
   String authorId;
   String authorName;
   String authorImage;
-  int createdDate;
+  String createdDate;
   String id;
   String text;
 

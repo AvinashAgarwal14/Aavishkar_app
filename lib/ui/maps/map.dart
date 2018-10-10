@@ -74,7 +74,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     if(shown==0){
       return Scaffold(
-
+          drawer: NavigationDrawer(currentDisplayedPage: 6),
           body:showMap()
       );
       }

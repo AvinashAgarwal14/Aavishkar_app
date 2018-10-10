@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import './feed_details.dart';
 import '../../../model/posts_comment.dart';
 import '../../../util/detailSection.dart';
+import 'package:intl/intl.dart';
 
 class CommentCategory extends StatefulWidget {
 
@@ -273,7 +275,8 @@ class _CommentItemState extends State<CommentItem> {
               onPressed: () {
                 Navigator.of(context).pop();
                 _databaseReferenceForComments.child(widget.commentId).update({
-                  'text':editComment.text
+                  'text':editComment.text,
+                  'createdDate':new DateFormat.yMMMd().add_jm().format(new DateTime.now())
                 });
               },
             ),
@@ -333,10 +336,11 @@ class _CommentItemState extends State<CommentItem> {
 
 class AddNewComment extends StatefulWidget {
 
-  const AddNewComment({ Key key, this.postKey, this.user, this.commentCount}) : super(key: key);
+  const AddNewComment({ Key key, this.postKey, this.user, this.commentCount, this.parent}) : super(key: key);
   final String postKey;
   final FirebaseUser user;
   final commentCount;
+  final FeedDetailsState parent;
 
   @override
   _AddNewCommentState createState() => _AddNewCommentState();
@@ -370,7 +374,7 @@ class _AddNewCommentState extends State<AddNewComment> {
               Row(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(right: 5.0),
+                    padding: EdgeInsets.only(right: 20.0),
                   ),
                   Expanded(
                     flex: 4 ,
@@ -383,20 +387,22 @@ class _AddNewCommentState extends State<AddNewComment> {
                   ),
                   Expanded(
                     child: IconButton(
-                        icon: Icon(Icons.play_arrow, color: Colors.indigo),
+                        icon: Icon(Icons.play_arrow, color: Color(0xFF353662)),
                         onPressed: ()
                         {
                           if(widget.user == null)
                             {
-                              Navigator.of(context).pushNamed('/ui/account/login');
+                              Navigator.of(context).pushNamed('/ui/account/login').then((onReturn){
+                                widget.parent.getUser();
+                              });
                             }
                             else
                               {
-                                PostsCommentItem comment = new PostsCommentItem('','', '', 0, '','');
+                                PostsCommentItem comment = new PostsCommentItem('','', '', '', '','');
                                 comment.authorId = widget.user.uid;
                                 comment.authorImage = widget.user.photoUrl;
                                 comment.authorName = widget.user.displayName;
-                                comment.createdDate = 4645454;
+                                comment.createdDate = new DateFormat.yMMMd().add_jm().format(new DateTime.now());
                                 comment.text = commentController.text;
                                 setState(() {
                                   commentController.clear();

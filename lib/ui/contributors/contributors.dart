@@ -1,3 +1,4 @@
+import '../../util/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -30,6 +31,7 @@ class _ContributorsState extends State<Contributors> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawer(currentDisplayedPage: 11),
       appBar: AppBar(title: Text("Contributors"),),
       backgroundColor: Colors.white ,
         body: ListView.builder(

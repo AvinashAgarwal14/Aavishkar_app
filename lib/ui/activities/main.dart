@@ -458,7 +458,7 @@ class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer(currentDisplayedPage: 5),
       backgroundColor: _kAppBackgroundColor,
       body: new Builder(
         // Insert an element so that _buildBody can find the PrimaryScrollController.
@@ -613,7 +613,12 @@ class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
                       child: new PageView(
                         controller: _detailsPageController,
                         children: allSections.map((Section section) {
-                          return new ListView(
+                          return
+                            (eventsByCategories['On-site'].length==0 || eventsByCategories['Online'].length==0
+                            || eventsByCategories['Workshops'].length==0 ||eventsByCategories['Games'].length==0
+                            || eventsByCategories['Ignitia'].length==0)?
+                                CircularProgressIndicator():
+                            new ListView(
 //                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: _detailItemsFor(section).toList()
                           );

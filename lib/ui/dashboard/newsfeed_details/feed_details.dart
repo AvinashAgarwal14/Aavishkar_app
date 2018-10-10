@@ -43,15 +43,7 @@ class FeedDetailsState extends State<FeedDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return
-//      new Theme(
-//      data: new ThemeData(
-//        brightness: Brightness.light,
-//        primarySwatch: Colors.indigo,
-//        platform: Theme.of(context).platform,
-//      ),
-//      child:
-      new Scaffold(
+    return  new Scaffold(
         key: _scaffoldKey,
         body: (post!=null)?new CustomScrollView(
           slivers: <Widget>[
@@ -135,6 +127,7 @@ class FeedDetailsState extends State<FeedDetails> {
             child: new AddNewComment(
                 postKey: widget.postKey,
                 user: currentUser,
+                parent: this,
                 commentCount:widget.commentCount
             ),
         )

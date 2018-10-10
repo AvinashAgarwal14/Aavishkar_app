@@ -4,10 +4,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
-import './eurocoin.dart';
+import './eurekoin.dart';
 
-typedef CouponEurocoinItemBodyBuilder<T> = Widget Function(
-    CouponEurocoinItem<T> item);
+typedef CouponEurekoinItemBodyBuilder<T> = Widget Function(CouponEurekoinItem<T> item);
 typedef ValueToString<T> = String Function(T value);
 
 class DualHeaderWithHint extends StatelessWidget {
@@ -24,8 +23,7 @@ class DualHeaderWithHint extends StatelessWidget {
       firstCurve: const Interval(0.0, 0.6, curve: Curves.fastOutSlowIn),
       secondCurve: const Interval(0.4, 1.0, curve: Curves.fastOutSlowIn),
       sizeCurve: Curves.fastOutSlowIn,
-      crossFadeState:
-          isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+      crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
       duration: const Duration(milliseconds: 200),
     );
   }
@@ -40,7 +38,9 @@ class DualHeaderWithHint extends StatelessWidget {
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
             child: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead, child: Text(name)),
+                style: Theme.of(context).textTheme.subhead,
+                child: Text(name)
+            ),
           ),
         ),
       ),
@@ -51,11 +51,16 @@ class DualHeaderWithHint extends StatelessWidget {
               child: _crossFade(
                   DefaultTextStyle(
                       style: Theme.of(context).textTheme.subhead,
-                      child: Text(error, style: TextStyle(color: Colors.red))),
+                      child: Text(error, style: TextStyle(color: Colors.red))
+                  ),
                   DefaultTextStyle(
                       style: Theme.of(context).textTheme.subhead,
-                      child: Text("")),
-                  showHint)))
+                      child: Text("")
+                  ),
+                  showHint
+              )
+          )
+      )
     ]);
   }
 }
@@ -85,7 +90,7 @@ class CollapsibleBody extends StatelessWidget {
       Container(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child:
-              Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
             Container(
                 margin: const EdgeInsets.only(right: 8.0),
                 child: FlatButton(
@@ -106,12 +111,12 @@ class CollapsibleBody extends StatelessWidget {
   }
 }
 
-class CouponEurocoinItem<T> {
-  CouponEurocoinItem({this.name, this.builder, this.error, this.valueToString});
+class CouponEurekoinItem<T> {
+  CouponEurekoinItem({this.name,this.builder, this.error, this.valueToString});
 
   final String name;
   String error;
-  final CouponEurocoinItemBodyBuilder<T> builder;
+  final CouponEurekoinItemBodyBuilder<T> builder;
   final ValueToString<T> valueToString;
   TextEditingController couponController = new TextEditingController();
   bool isExpanded = false;
@@ -119,7 +124,10 @@ class CouponEurocoinItem<T> {
 
   ExpansionPanelHeaderBuilder get headerBuilder {
     return (BuildContext context, bool isExpanded) {
-      return DualHeaderWithHint(name: name, error: error, showHint: isExpanded);
+      return DualHeaderWithHint(
+          name: name,
+          error: error,
+          showHint: isExpanded);
     };
   }
 
@@ -128,36 +136,36 @@ class CouponEurocoinItem<T> {
 
 var formKey = GlobalKey<FormState>();
 
-class EurocoinCoupon extends StatefulWidget {
-  EurocoinCoupon({Key key, this.name, this.email, this.parent})
-      : super(key: key);
+class EurekoinCoupon extends StatefulWidget {
+
+  EurekoinCoupon({Key key, this.name, this.email, this.parent}):super (key: key);
   final String name;
   final String email;
-  final EurocoinHomePageState parent;
+  final EurekoinHomePageState parent;
   @override
-  _EurocoinCouponState createState() => _EurocoinCouponState();
+  _EurekoinCouponState createState() => _EurekoinCouponState();
 }
 
-class _EurocoinCouponState extends State<EurocoinCoupon> {
-  List<CouponEurocoinItem<dynamic>> _couponEurocoinItem;
+class _EurekoinCouponState extends State<EurekoinCoupon> {
+
+  List<CouponEurekoinItem<dynamic>> _couponEurekoinItem;
   FirebaseUser currentUser;
 
   @override
   void initState() {
     super.initState();
 
-    _couponEurocoinItem = <CouponEurocoinItem<dynamic>>[
-      CouponEurocoinItem<String>(
+    _couponEurekoinItem = <CouponEurekoinItem<dynamic>>[
+      CouponEurekoinItem<String>(
         name: 'Redeem Coupon',
         error: '',
         valueToString: (String value) => value,
-        builder: (CouponEurocoinItem<String> item) {
+        builder: (CouponEurekoinItem<String> item) {
           void close() {
             setState(() {
               item.isExpanded = false;
             });
           }
-
           return Form(
             key: formKey,
             child: Builder(
@@ -167,15 +175,17 @@ class _EurocoinCouponState extends State<EurocoinCoupon> {
                     onSave: () {
                       if (formKey.currentState.validate()) {
                         String coupon = item.couponController.text;
-                        Future<int> result = couponEurocoin(coupon);
+                        Future<int> result = couponEurekoin(coupon);
                         result.then((value) {
                           print(value);
-                          if (value == 0) {
+                          if (value == 0)
+                          {
                             setState(() {
                               item.error = "Successful!";
                             });
-                            widget.parent.getUserEurocoin();
-                          } else if (value == 2)
+                            widget.parent.getUserEurekoin();
+                          }
+                          else if (value == 2)
                             setState(() {
                               item.error = "Invalid Coupon";
                             });
@@ -197,7 +207,7 @@ class _EurocoinCouponState extends State<EurocoinCoupon> {
                     },
                     onCancel: () {
                       setState(() {
-                        item.error = '';
+                        item.error='';
                         item.couponController.text = '';
                       });
                       Form.of(context).reset();
@@ -210,8 +220,10 @@ class _EurocoinCouponState extends State<EurocoinCoupon> {
                           decoration: InputDecoration(
                             labelText: "Coupon Code",
                           ),
-                          validator: (val) => val == "" ? val : null),
-                    ));
+                          validator: (val)=> val == ""? val : null
+                      ),
+                    )
+                );
               },
             ),
           );
@@ -226,47 +238,48 @@ class _EurocoinCouponState extends State<EurocoinCoupon> {
         data: new ThemeData(
             brightness: Brightness.light,
             primarySwatch: Colors.indigo,
-            platform: Theme.of(context).platform),
+            platform: Theme.of(context).platform
+        ),
         child: SingleChildScrollView(
             child: new DefaultTextStyle(
-          style: Theme.of(context).textTheme.subhead,
-          child: SafeArea(
-            top: false,
-            bottom: false,
-            child: Container(
-              child: Theme(
-                  data: Theme.of(context)
-                      .copyWith(cardColor: Colors.grey.shade50),
-                  child: ExpansionPanelList(
-                      expansionCallback: (int index, bool isExpanded) {
-                        setState(() {
-                          _couponEurocoinItem[index].isExpanded = !isExpanded;
-                        });
-                      },
-                      children: _couponEurocoinItem
-                          .map((CouponEurocoinItem<dynamic> item) {
-                        return ExpansionPanel(
-                          isExpanded: item.isExpanded,
-                          headerBuilder: item.headerBuilder,
-                          body: item.build(),
-                        );
-                      }).toList())),
-            ),
-          ),
-        )));
+              style: Theme.of(context).textTheme.subhead,
+              child: SafeArea(
+                top: false,
+                bottom: false,
+                child: Container(
+                  child: Theme(
+                      data: Theme.of(context).copyWith(cardColor: Colors.grey.shade50),
+                      child: ExpansionPanelList(
+                          expansionCallback: (int index, bool isExpanded) {
+                            setState(() {
+                              _couponEurekoinItem[index].isExpanded = !isExpanded;
+                            });
+                            if(_couponEurekoinItem[index].isExpanded==true)
+                              widget.parent.moveDown();
+                          },
+                          children: _couponEurekoinItem.map((CouponEurekoinItem<dynamic> item) {
+                            return ExpansionPanel(
+                              isExpanded: item.isExpanded,
+                              headerBuilder: item.headerBuilder,
+                              body: item.build(),
+                            );
+                          }).toList())),
+                ),
+              ),
+            )));
   }
 
-  Future<int> couponEurocoin(String coupon) async {
+  Future<int> couponEurekoin(String coupon) async {
     var email = widget.email;
     var name = widget.name;
-    var bytes = utf8.encode("$email" + "$name");
+    var bytes = utf8.encode("$email"+"$name");
     var encoded = sha1.convert(bytes);
-    String apiUrl =
-        "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
+    String apiUrl = "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);
     var status = json.decode(response.body)['status'];
     return int.parse(status);
   }
+
 }
