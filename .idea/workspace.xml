@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
     <list default="true" id="a6526fce-6f87-4d78-addc-28d83a375c3f" name="Default" comment="">
       <change beforePath="" afterPath="$PROJECT_DIR$/assets/Icon.png" />
       <change beforePath="" afterPath="$PROJECT_DIR$/assets/Icon@2x.png" />
@@ -106,6 +107,9 @@
       <change beforePath="$PROJECT_DIR$/pubspec.lock" afterPath="$PROJECT_DIR$/pubspec.lock" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
     </list>
+=======
+    <list default="true" id="43e8edc6-38fd-4ff7-a1e8-dcf217825f9e" name="Default" comment="" />
+>>>>>>> Game added and colorful cards
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
@@ -504,11 +508,19 @@
       </list>
     </option>
   </component>
+<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="49" />
     <option name="y" value="-4" />
     <option name="width" value="659" />
     <option name="height" value="772" />
+=======
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="330" />
+    <option name="y" value="129" />
+    <option name="width" value="657" />
+    <option name="height" value="672" />
+>>>>>>> Game added and colorful cards
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -669,7 +681,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
     <frame x="49" y="-4" width="1319" height="780" extended-state="6" />
+=======
+    <frame x="330" y="129" width="657" height="672" extended-state="1" />
+    <editor active="true" />
+>>>>>>> Game added and colorful cards
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -687,7 +704,11 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< 5e33803502559ae1f67fc739e1540dd7118b7f5f
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3797054" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> Game added and colorful cards
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
