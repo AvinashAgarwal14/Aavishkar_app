@@ -35,18 +35,27 @@ dev_dependencies:
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
+
+# flutter:
+#   fonts:
+#    - family:  MyFlutterApp
+#      fonts:
+#       - asset: fonts/MyFlutterApp.ttf
 flutter:
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: CustomFonts
+      fonts:
+       - asset: lib/util/fonts/fonts/CustomFonts.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
-
   assets:
     - images/events.png
     - images/giphy.gif
@@ -54,7 +63,11 @@ flutter:
     - images/Pacman.gif
     - assets/login.jpg
     - assets/home.jpeg
-    - assets/tick.png
+    - images/facebookicon.jpg
+    - images/googleicon.jpg
+    - images/akshat.jpg
+    - images/avinash.jpeg
+    - images/shreyasheedidi.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

@@ -513,20 +513,6 @@ class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
     return false;
   }
 
-//  _detailItemsFor(Section section) {
-//    List<SectionDetailView> detailItems = new List();
-//    section.details.forEach((EventItem detail) {
-//      detailItems.add(SectionDetailView(detail: detail));
-//    });
-//    print(detailItems);
-//    return ListView.builder(
-//      itemCount: detailItems.length,
-//      itemBuilder: (context, index) {
-//        return detailItems[index];
-//      },
-//    );
-//  }
-
   Iterable<Widget> _detailItemsFor(Section section) {
     final Iterable<Widget> detailItems = section.details.map((EventItem detail) {
       return SectionDetailView(detail: detail);
