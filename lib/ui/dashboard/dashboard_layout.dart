@@ -11,7 +11,6 @@ List<T> map<T>(List list, Function handler) {
   for (var i = 0; i < list.length; i++) {
     result.add(handler(i, list[i]));
   }
-
   return result;
 }
 
@@ -20,7 +19,8 @@ class DashBoardLayout extends StatefulWidget {
   _DashBoardLayoutState createState() => _DashBoardLayoutState();
 }
 
-class _DashBoardLayoutState extends State<DashBoardLayout> {
+class _DashBoardLayoutState extends State<DashBoardLayout>  {
+
   CarouselSlider instance;
   int j = 0;
 
@@ -29,6 +29,8 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
   DatabaseReference databaseReference;
   Map<String, List<EventItem>> eventsByCategories;
 
+
+  @ override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -42,7 +44,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
     };
 
     database.setPersistenceEnabled(true);
-    database.setPersistenceCacheSizeBytes(10000000);
+    database.setPersistenceCacheSizeBytes(100000000);
     databaseReference = database.reference().child("Events");
     databaseReference.onChildAdded.listen(_onEntryAdded);
     databaseReference.onChildChanged.listen(_onEntryChanged);
@@ -67,11 +69,15 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
         eventsByCategories["Ignitia"].length != 0) {
       carouselImageList = List(eventsByCategories["Online"].length);
       return ListView(
+        cacheExtent: MediaQuery.of(context).size.height*2,
 //            shrinkWrap: true,
         children: <Widget>[
           //TODO Trending
           Container(
-            color: Color.fromRGBO(54, 59, 94, 110.0),
+
+            color:Theme.of(context).brightness==Brightness.light ?
+             Color.fromRGBO(54, 59, 94, 110.0):
+            Color.fromRGBO(80,80,80, 1.0),
             padding: new EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 15.0),
             child: Column(
               children: <Widget>[
@@ -99,7 +105,6 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
                                       new Radius.circular(7.0)),
                                   child: new Stack(
                                     children: <Widget>[
-
                                       CachedNetworkImage(
                                           placeholder: Image.asset("images/imageplaceholder2.png"),
                                           imageUrl: eventsByCategories["Online"]
@@ -143,8 +148,8 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
                       autoPlay: true,
                       viewportFraction: 0.9,
                       aspectRatio: 2.0,
-                      interval: Duration(milliseconds: 2000),
-                      autoPlayDuration: Duration(milliseconds: 800),
+                      interval: Duration(milliseconds: 3000),
+                      autoPlayDuration: Duration(milliseconds: 2000),
                     ),
               ],
             ),
@@ -154,14 +159,13 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
               child: Column(
             children: <Widget>[
-              Text("Online Events ",
-                    style: TextStyle(fontSize: 18.0),
-              ),
+              Text("Online Events",style: TextStyle(fontSize:18.0 ,fontWeight: FontWeight.bold)),
               Container(
                 padding: EdgeInsets.only(top: 5.0),
                 height: 150.0,
                 // width: MediaQuery.of(context).size.width-10.0,
                 child: ListView.builder(
+                  cacheExtent: 1350.0,
                     itemCount: eventsByCategories["Online"].length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -193,18 +197,23 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
           )),
           //TODO Workshop And Games
           Container(
-            color: Colors.grey.shade200,
+            color:Theme.of(context).brightness==Brightness.light ?
+          Color.fromRGBO(54, 59, 94, 110.0):
+          Color.fromRGBO(80,80,80, 1.0),
+
+            //color: Colors.grey.shade200,
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 15.0),
             child: Column(
               children: <Widget>[
                 Text("Workshops and Games ",
-                      style: TextStyle(fontSize: 18.0),
+                      style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 5.0),
                   height: 200.0,
                   width: MediaQuery.of(context).size.width,
                   child: Swiper(
+
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
@@ -236,13 +245,14 @@ class _DashBoardLayoutState extends State<DashBoardLayout> {
             child: Column(
               children: <Widget>[
                 Text("On-site Events ",
-                      style: TextStyle(fontSize: 18.0),
+                      style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 5.0),
                   height: 150.0,
                   //width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
+                    cacheExtent: 4000.0,
                       itemCount: eventsByCategories["On-site"].length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {

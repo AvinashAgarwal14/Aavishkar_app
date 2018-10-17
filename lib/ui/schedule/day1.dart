@@ -47,7 +47,7 @@ class _DayOneScheduleState extends State<DayOneSchedule> {
       left: 32.0,
       child: new Container(
         width: 1.0,
-        color: Colors.grey[300],
+       // color: Colors.grey[300],
       ),
     );
   }
@@ -79,9 +79,10 @@ class _DayOneScheduleState extends State<DayOneSchedule> {
                     style: new TextStyle(fontSize: 18.0),
                   ),
                   new
- Text(
+              Text(
                     "${schedule.category}",
-                    style: new TextStyle(fontSize: 12.0, color: Colors.grey),
+                    style: new TextStyle(fontSize: 12.0, //color: Colors.grey
+                    ),
                   )
                 ],
               ),
@@ -90,7 +91,8 @@ class _DayOneScheduleState extends State<DayOneSchedule> {
               padding: const EdgeInsets.only(right: 16.0),
               child: new Text(
                 "${schedule.time}",
-                style: new TextStyle(fontSize: 12.0, color: Colors.grey),
+                style: new TextStyle(fontSize: 12.0, //color: Colors.grey
+                 ),
               ),
             ),
           ],

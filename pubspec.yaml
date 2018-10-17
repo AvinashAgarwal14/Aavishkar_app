@@ -27,6 +27,9 @@ dependencies:
   palette_generator: ^0.1.0
   path_provider:
   spritewidget: ^0.9.17
+  dynamic_theme:
+    git:
+      url: git://github.com/Norbert515/dynamic_theme.git
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +67,9 @@ flutter:
     - family: CustomFonts
       fonts:
        - asset: lib/util/fonts/fonts/CustomFonts.ttf
+    - family: WhatsappIcon
+      fonts:
+       - asset: lib/util/fonts/whatsappicon/whatsappiconfonts/Whatsappicon.ttf
 
     - family: Orbitron
       fonts:
@@ -75,11 +81,8 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - images/events.png
-    - images/facebookicon.jpg
-    - images/googleicon.jpg
-    - images/akshat.jpg
-    - images/avinash.jpeg
-    - images/shreyasheedidi.jpg
+    - images/Contributors/
+    - images/Contact Us/
     - images/loader.svg
     - images/logo.png
     - images/login.jpg

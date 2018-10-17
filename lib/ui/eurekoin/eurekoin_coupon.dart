@@ -95,7 +95,7 @@ class CollapsibleBody extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 8.0),
                 child: FlatButton(
                     onPressed: onSave,
-                    textTheme: ButtonTextTheme.accent,
+                    textTheme: ButtonTextTheme.normal,
                     child: const Text('Send'))),
             Container(
                 margin: const EdgeInsets.only(right: 8.0),
@@ -216,9 +216,11 @@ class _EurekoinCouponState extends State<EurekoinCoupon> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: TextFormField(
+
                           controller: item.couponController,
                           decoration: InputDecoration(
                             labelText: "Coupon Code",
+                             labelStyle: TextStyle(color: Colors.grey),
                           ),
                           validator: (val)=> val == ""? val : null
                       ),
@@ -234,21 +236,19 @@ class _EurekoinCouponState extends State<EurekoinCoupon> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData= Theme.of(context);
     return new Theme(
-        data: new ThemeData(
-            brightness: Brightness.light,
-            primarySwatch: Colors.indigo,
-            platform: Theme.of(context).platform
-        ),
+        data: themeData,
         child: SingleChildScrollView(
             child: new DefaultTextStyle(
-              style: Theme.of(context).textTheme.subhead,
+              style: themeData.textTheme.subhead,
               child: SafeArea(
                 top: false,
                 bottom: false,
                 child: Container(
                   child: Theme(
-                      data: Theme.of(context).copyWith(cardColor: Colors.grey.shade50),
+                      data: themeData,
+                      //.copyWith(cardColor: Colors.grey.shade50),
                       child: ExpansionPanelList(
                           expansionCallback: (int index, bool isExpanded) {
                             setState(() {

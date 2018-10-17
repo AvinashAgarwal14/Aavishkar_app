@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:aavishkarapp/ui/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import './ui/activities/main.dart';
@@ -12,15 +14,31 @@ import './ui/sponsors/sponsors.dart';
 import './ui/contributors/contributors.dart';
 import './ui/about_us/about_us.dart';
 import './ui/game/lib/main.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
+//import 'package:dynamic_theme/theme_switcher_widgets.dart';
 
-void main() async
-{
-  runApp(
-      MaterialApp(
-        title: "Aavishkar App",
-        debugShowMaterialGrid: false,
-        debugShowCheckedModeBanner: false,
-//          theme: new ThemeData(),
+
+void main()=>runApp(new Aavishkar_App());
+
+
+class Aavishkar_App extends StatelessWidget{
+
+@override
+Widget build(BuildContext context) {
+  return DynamicTheme(
+      defaultBrightness: Brightness.light,
+      data: (brightness) =>
+          ThemeData(
+            primaryColor: Color(0xFF353662),
+            brightness: brightness,
+           textTheme: TextTheme(display1: TextStyle(fontWeight: FontWeight.bold )),
+          ),
+      themedWidgetBuilder: (context, theme) {
+        return MaterialApp(
+          title: "Aavishkar App",
+          debugShowMaterialGrid: false,
+          debugShowCheckedModeBanner: false,
+          theme: theme,
 //          builder: (context, child) {
 //            final defaultTheme = Theme.of(context);
 //            if (defaultTheme.platform == TargetPlatform.iOS) {
@@ -33,28 +51,26 @@ void main() async
 //            }
 //            return child;
 //          },
-        theme: new ThemeData(
-          primaryColor: Color(0xFF353662),
-          splashColor: Colors.transparent,
-          accentColor: Color(0xFF353662)
-        ),
-        home: Dashboard(),
-        initialRoute: "/",
-        routes: <String, WidgetBuilder>{
-          "/ui/dashboard": (BuildContext context) => Dashboard(),
-          "/ui/tags": (BuildContext context) => SearchByTags(),
-          "/ui/schedule": (BuildContext context) => Schedule(),
-          "/ui/activity": (BuildContext context) => ActivitiesHomePage(),
-          "/ui/maps/map":(BuildContext context)=>MapPage(),
-          "/ui/account/login":(BuildContext context)=>LogInPage(),
-          "/ui/scoreboard":(BuildContext context)=> Scoreboard(),
-          "/ui/eurekoin":(BuildContext context)=> EurekoinHomePage(),
-          "/ui/sponsors/sponsors":(BuildContext context)=>Sponsors(),
-          "/ui/contact_us/contact_us":(BuildContext context)=>ContactUs(),
-          "/ui/contributors/contributors":(BuildContext context)=> Contributors(),
-          "/ui/about_us/about_us":(BuildContext context)=> AboutUsPage(),
-          "/ui/game":(BuildContext context)=> Game()
+          home: new Dashboard(),
+          initialRoute: "/",
+          routes: <String, WidgetBuilder>{
+            "/ui/dashboard": (BuildContext context) => Dashboard(),
+            "/ui/tags": (BuildContext context) => SearchByTags(),
+            "/ui/schedule": (BuildContext context) => Schedule(),
+            "/ui/activity": (BuildContext context) => ActivitiesHomePage(),
+            "/ui/maps/map": (BuildContext context) => MapPage(),
+            "/ui/account/login": (BuildContext context) => LogInPage(),
+            "/ui/scoreboard": (BuildContext context) => Scoreboard(),
+            "/ui/eurekoin": (BuildContext context) => EurekoinHomePage(),
+            "/ui/sponsors/sponsors": (BuildContext context) => Sponsors(),
+            "/ui/contact_us/contact_us": (BuildContext context) => ContactUs(),
+            "/ui/contributors/contributors": (BuildContext context) =>
+                Contributors(),
+            "/ui/about_us/about_us": (BuildContext context) => AboutUsPage(),
+            "/ui/game": (BuildContext context) => Game()
           },
-      )
+        );
+      }
   );
+}
 }

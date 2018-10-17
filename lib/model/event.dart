@@ -33,6 +33,7 @@ class EventItem {
         body = snapshot.value['body'],
         color = snapshot.value['color'],
         imageUrl = snapshot.value['imageUrl'],
+       //imageUrl="http://cdn.ebaumsworld.com/mediaFiles/picture/1961176/81660963.jpg",
         date = snapshot.value['date'],
         tag = snapshot.value['tag'],
         category = snapshot.value['category'],

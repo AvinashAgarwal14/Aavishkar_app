@@ -57,7 +57,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         duration: new Duration(milliseconds: 1700),
         vsync: this,
         debugLabel: "facebook");
-    //_newUser();
   }
 
   Future<Null> _playAnimation(int n) async {
@@ -67,16 +66,10 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         await _glogInButtonController.forward();
         print("BLOCK 31");
         setState(() {});
-//          initState();
-//          print("BLOCK 31");
-//        });
       }
       else if (n == 2){
         await _flogInButtonController.forward();
             setState(() {});
-//         initState();
-//          //_loggedIn=true;
-//        });
       }
       } on TickerCanceled{}
   }
@@ -196,7 +189,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                         builder: (BuildContext context,
                                             AsyncSnapshot snapshot) {
                                           if (currentUser == null) {
-
                                             return
                                             animationStatus==1 ?  Container(
                                             child: CircularProgressIndicator(
@@ -207,9 +199,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                             ))
                                           : Container();
                                           } else {
-
                                             _playAnimation(animationStatus);
-
                                             return new StaggerAnimation(
                                                 buttonController:
                                                     animationStatus == 2
@@ -280,31 +270,35 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                           )
                         ],
                       ),
-                      DetailCategory(
-                        icon: Icons.videogame_asset,
-                        children: <Widget>[
-                          DetailItem(
-                            onPressed: (){
-                              Navigator.of(context).pushNamed("/ui/eurocoin");
-                            },
-                            lines: <String>["Eurocoin Wallet"],
-                          )
-                        ],
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pushNamed("/ui/eurekoin");
+                        },
+                        child: DetailCategory(
+                          icon: Icons.videogame_asset,
+                          children: <Widget>[
+                            DetailItem(
+                              lines: <String>["Eurekoin Wallet"],
+                            )
+                          ],
+                        ),
                       ),
-                      DetailCategory(
-                        icon: Icons.remove_circle,
-                        children: <Widget>[
-                          DetailItem(
-                            onPressed: (){
-                              if(currentUser.photoUrl.contains("googleusercontent"))
-                                _gSignOut();
-                              else
-                                _fSignOut();
-                              print("Logout!");
-                            },
-                            lines: <String>['Logout'],
-                          )
-                        ],
+                      GestureDetector(
+                        onTap: (){
+                          if(currentUser.providerData[1].providerId=="google.com")
+                            _gSignOut();
+                          else
+                            _fSignOut();
+                          print("Logout!");
+                        },
+                        child: DetailCategory(
+                          icon: Icons.remove_circle,
+                          children: <Widget>[
+                            DetailItem(
+                              lines: <String>['Logout'],
+                            )
+                          ],
+                        ),
                       )
                     ]))
               ])):
