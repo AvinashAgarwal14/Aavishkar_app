@@ -135,9 +135,11 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return (currentUser!=null)?
     (isEurekoinAlreadyRegistered==null)?
     new Scaffold(
+
         drawer: NavigationDrawer(currentDisplayedPage: 1),
         body: new Container(
             padding: EdgeInsets.only(bottom: 50.0),
@@ -187,7 +189,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                         onPressed: (){
                           registerEurekoinUser(referalCode.text);
                         },
-                        color: Colors.white,
+                        //color: Colors.white,
                         child: Text("Register"),
                       ),
                     )
@@ -199,7 +201,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       onPressed: (){
                         registerEurekoinUser('');
                       },
-                      color: Colors.white,
+                      //color: Colors.white,
                       child: Text("Register")
                   ),
                 )
@@ -371,7 +373,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       _getUser();
                     });
                   },
-                  color: Colors.white,
+                  //color: Colors.white,
                   child: Text("Login First")
               ),
             )

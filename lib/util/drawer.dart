@@ -12,9 +12,10 @@ import '../ui/sponsors/sponsors.dart';
 import '../util/navigator_transitions/slide_left_transitions.dart';
 import '../ui/contact_us/contact_us.dart';
 import '../ui/contributors/contributors.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 
 class NavigationDrawer extends StatefulWidget {
-  NavigationDrawer({Key key, this.currentDisplayedPage}): super(key: key);
+  NavigationDrawer({Key key, this.currentDisplayedPage}) : super(key: key);
   final int currentDisplayedPage;
 
   @override
@@ -23,7 +24,7 @@ class NavigationDrawer extends StatefulWidget {
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
   int presestPageNumber;
-
+  bool darkThemeEnabled;
   @override
   void initState() {
     // TODO: implement initState
@@ -33,335 +34,257 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-            child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              padding: EdgeInsets.all(0.0),
-              child: Image.asset("images/events.png", fit: BoxFit.fill),
-            ),
-            Container(
-              color: (presestPageNumber == 0)
-                  ? Color.fromRGBO(225, 225, 225, 40.0)
-                  : Color.fromRGBO(54, 59, 94, 40.0),
-              child: ListTile(
-                  leading: Icon(Icons.home, color:Color(0xFF353662)),
+    Theme.of(context).brightness == Brightness.light
+        ? darkThemeEnabled = false
+        : darkThemeEnabled = true;
+    return Opacity(
+      opacity: 0.75,
+      child: Drawer(
+        child: Container(
+          color: Color.fromRGBO(0, 0, 0, 1.0),
+          child: ListTileTheme(
+
+            iconColor: Color.fromRGBO(255,255,255, 1.0),
+            textColor: Color.fromRGBO(255,255,255, 1.0),
+            selectedColor: Theme.of(context).primaryColor.withOpacity(1.0),
+            child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+              DrawerHeader(
+                padding: EdgeInsets.all(0.0),
+                child: Image.asset("images/events.png", fit: BoxFit.fill),
+              ),
+              ListTile(
+                enabled: true,
+                  trailing: Switch(
+                    activeColor: Colors.deepPurple,
+                      inactiveTrackColor: Colors.grey,
+                      value: darkThemeEnabled,
+                      onChanged: (bool value) {
+                        setState(() {
+                          darkThemeEnabled = value;
+                        });
+                        Theme.of(context).brightness == Brightness.dark
+                            ? DynamicTheme.of(context)
+                                .setThemeData(new ThemeData(
+                                primaryColor: Color(0xFF353662),
+                              ))
+                            : DynamicTheme.of(context)
+                                .setThemeData(new ThemeData(
+//                            accentTextTheme: TextTheme(
+//                                title: TextStyle(color: Colors.white)),
+                          primaryColor: Color(0xFF353662),
+                                splashColor: Colors.transparent,
+                                accentColor: Color(0xFF353662),
+                                brightness: Brightness.dark,
+                              ));
+                        print(Theme.of(context).brightness);
+                      }),
+                  leading: Icon(
+                    Icons.home,
+                  ),
                   title: Text("Home",
-                      style: TextStyle(
-                          color: (presestPageNumber == 0)
-                              ? Colors.black
-                              : Colors.white)),
+                  ),
                   selected: (presestPageNumber == 0) ? true : false,
                   onTap: () {
-                    setState(() {
                       presestPageNumber = 0;
-                    });
+                    Navigator.popUntil(context, (ModalRoute.withName('/')));
+                  }),
+              ListTile(
+                  leading: Icon(Icons.monetization_on, ),
+                  title: Text("Eurekoin Wallet",),
+                  selected: (presestPageNumber == 1) ? true : false,
+                  onTap: () {
+                    if (presestPageNumber == 1)
+                      Navigator.pop(context);
+                    else {
+                        presestPageNumber = 1;
+                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                      Navigator.of(context)
+                          .push(SlideLeftRoute(widget: EurekoinHomePage()));
+                    }
+                  }),
+              ListTile(
+                leading: Icon(
+                  Icons.access_time,
+                ),
+                title: Text(
+                  "Schedule",
+                ),
+                selected: (presestPageNumber == 4) ? true : false,
+                onTap: () {
+                  if (presestPageNumber == 4)
+                    Navigator.pop(context);
+                  else {
+                    presestPageNumber = 4;
                     Navigator.popUntil(context, ModalRoute.withName('/'));
-                  }),
-            ),
-            Container(
-                color: (presestPageNumber == 1)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                    leading: Icon(Icons.monetization_on, color:Color(0xFF353662)),
-                    title: Text("Eurekoin Wallet",
-                        style: TextStyle(
-                            color: (presestPageNumber == 1)
-                                ? Colors.black
-                                : Colors.white)),
-                    selected: (presestPageNumber == 1) ? true : false,
-                    onTap: () {
-                      if (presestPageNumber == 1)
-                        Navigator.pop(context);
-                      else {
-                        setState(() {
-                          presestPageNumber = 1;
-                        });
-                        Navigator.popUntil(context, ModalRoute.withName('/'));
-                        Navigator.of(context)
-                            .push(SlideLeftRoute(widget: EurekoinHomePage()));
-                      }
-                    })),
-            Container(
-                color: (presestPageNumber == 4)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                  leading: Icon(Icons.access_time, color:Color(0xFF353662)),
-                  title: Text("Schedule",
-                      style: TextStyle(
-                          color: (presestPageNumber == 4)
-                              ? Colors.black
-                              : Colors.white)),
-                  selected: (presestPageNumber == 4) ? true : false,
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: Schedule()));
+                  }
+                },
+              ),
+              ListTile(
+                  leading: Icon(Icons.local_activity,),
+                  title: Text("Activities",),
+                  selected: (presestPageNumber == 5) ? true : false,
                   onTap: () {
-                    if (presestPageNumber == 4)
+                    if (presestPageNumber == 5)
                       Navigator.pop(context);
                     else {
-                      setState(() {
-                        presestPageNumber = 4;
-                      });
+                        presestPageNumber = 5;
                       Navigator.popUntil(context, ModalRoute.withName('/'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: Schedule()));
-                    }
-                  },
-                )),
-            Container(
-                color: (presestPageNumber == 5)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                    leading: Icon(Icons.local_activity, color:Color(0xFF353662)),
-                    title: Text("Activities",
-                        style: TextStyle(
-                            color: (presestPageNumber == 5)
-                                ? Colors.black
-                                : Colors.white)),
-                    selected: (presestPageNumber == 5) ? true : false,
-                    onTap: () {
-                      if (presestPageNumber == 5)
-                        Navigator.pop(context);
-                      else {
-                        setState(() {
-                          presestPageNumber = 5;
-                        });
-                        Navigator.popUntil(context, ModalRoute.withName('/'));
-                        Navigator.of(context)
-                            .push(SlideLeftRoute(widget: ActivitiesHomePage()));
-                      }
-                    })),
-            Container(
-                color: (presestPageNumber==12)?Color.fromRGBO(225, 225, 225, 40.0):Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                  leading: Icon(Icons.videogame_asset, color:Color(0xFF353662)),
-                  title: Text("Bored?", style: TextStyle(
-                      color: (presestPageNumber==12)?Colors.black:Colors.white)),
-                  selected: (presestPageNumber == 12) ? true : false,
-                  onTap: (() {
-                    if (presestPageNumber == 12)
-                      Navigator.pop(context);
-                    else {
-                      setState(() {
-                        presestPageNumber = 12;
-                      });
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: Game()));
+                      Navigator.of(context).push(
+                          SlideLeftRoute(widget: ActivitiesHomePage()));
                     }
                   }),
-                )),
-            Container(
-              padding: EdgeInsets.fromLTRB(20.0, 5.0, 5.0, 5.0),
-              color: Color.fromRGBO(54, 59, 94, 40.0),
-              child: Text("Utilities", style: TextStyle(color: Colors.white)),
-            ),
-            Container(
-                color: (presestPageNumber == 2)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                    leading: Icon(Icons.score, color:Color(0xFF353662)),
-                    title: Text("Scoreboard",
-                        style: TextStyle(
-                            color: (presestPageNumber == 2)
-                                ? Colors.black
-                                : Colors.white)),
-                    selected: (presestPageNumber == 2) ? true : false,
-                    onTap: () {
-                      if (presestPageNumber == 2)
-                        Navigator.pop(context);
-                      else {
-                        setState(() {
-                          presestPageNumber = 2;
-                        });
-                        Navigator.popUntil(context, ModalRoute.withName('/'));
-                        Navigator.of(context)
-                            .push(SlideLeftRoute(widget: Scoreboard()));
-                      }
-                    })),
-            Container(
-                color: (presestPageNumber == 3)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                  leading: Icon(Icons.youtube_searched_for, color:Color(0xFF353662)),
-                  title: Text("Tags",
+              ListTile(
+                leading: Icon(Icons.videogame_asset,),
+                title:
+                    Text("Bored ?", ),
+                selected: (presestPageNumber == 12) ? true : false,
+                onTap: (() {
+                  if (presestPageNumber == 12)
+                    Navigator.pop(context);
+                  else {
+                      presestPageNumber = 12;
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: Game()));
+                  }
+                }),
+              ),
+              Divider(),
+              ListTile(
+                  title: Text("Utilities",
                       style: TextStyle(
-                          color: (presestPageNumber == 3)
-                              ? Colors.black
-                              : Colors.white)),
-                  selected: (presestPageNumber == 3) ? true : false,
+                          color: Colors.grey, fontWeight: FontWeight.bold))),
+              Divider(),
+              ListTile(
+                  leading: Icon(Icons.score,),
+                  title: Text("Scoreboard",),
+                  selected: (presestPageNumber == 2) ? true : false,
                   onTap: () {
-                    if (presestPageNumber == 3)
+                    if (presestPageNumber == 2)
                       Navigator.pop(context);
                     else {
-                      setState(() {
-                        presestPageNumber = 3;
-                      });
+                        presestPageNumber = 2;
                       Navigator.popUntil(context, ModalRoute.withName('/'));
                       Navigator.of(context)
-                          .push(SlideLeftRoute(widget: SearchByTags()));
-                    }
-                  },
-                )),
-            Container(
-                color: (presestPageNumber == 6)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                  leading: Icon(Icons.my_location, color:Color(0xFF353662)),
-                  title: Text("Maps",
-                      style: TextStyle(
-                          color: (presestPageNumber == 6)
-                              ? Colors.black
-                              : Colors.white)),
-                  selected: (presestPageNumber == 6) ? true : false,
-                  onTap: (() {
-                    if (presestPageNumber == 6)
-                      Navigator.pop(context);
-                    else {
-                      setState(() {
-                        presestPageNumber = 6;
-                      });
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: MapPage()));
+                          .push(SlideLeftRoute(widget: Scoreboard()));
                     }
                   }),
-                )),
-            Container(
-                color: (presestPageNumber == 8)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                  leading: Icon(Icons.account_circle, color:Color(0xFF353662)),
-                  title: Text("Account",
+              ListTile(
+                leading:
+                    Icon(Icons.youtube_searched_for, ),
+                title: Text("Tags",),
+                selected: (presestPageNumber == 3) ? true : false,
+                onTap: () {
+                  if (presestPageNumber == 3)
+                    Navigator.pop(context);
+                  else {
+                      presestPageNumber = 3;
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: SearchByTags()));
+                  }
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.my_location,),
+                title: Text("Maps",),
+                selected: (presestPageNumber == 6) ? true : false,
+                onTap: (() {
+                  if (presestPageNumber == 6)
+                    Navigator.pop(context);
+                  else {
+                      presestPageNumber = 6;
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: MapPage()));
+                  }
+                }),
+              ),
+              ListTile(
+                leading: Icon(Icons.account_circle, ),
+                title:
+                    Text("Account", ),
+                selected: (presestPageNumber == 8) ? true : false,
+                onTap: (() {
+                  if (presestPageNumber == 8)
+                    Navigator.pop(context);
+                  else {
+                      presestPageNumber = 8;
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: LogInPage()));
+                  }
+                }),
+              ),
+              ListTile(
+                  title: Text("Utilities",
                       style: TextStyle(
-                          color: (presestPageNumber == 8)
-                              ? Colors.black
-                              : Colors.white)),
-                  selected: (presestPageNumber == 8) ? true : false,
-                  onTap: (() {
-                    if (presestPageNumber == 8)
-                      Navigator.pop(context);
-                    else {
-                      setState(() {
-                        presestPageNumber = 8;
-                      });
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: LogInPage()));
-                    }
-                  }),
-                )),
-            Container(
-              padding: EdgeInsets.fromLTRB(20.0, 5.0, 5.0, 5.0),
-              color: Color.fromRGBO(54, 59, 94, 40.0),
-              child: Text("About us", style: TextStyle(color: Colors.white)),
-            ),
-            Container(
-                color: (presestPageNumber == 7)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                  leading: Icon(Icons.accessibility, color:Color(0xFF353662)),
-                  title: Text("About Us",
-                      style: TextStyle(
-                          color: (presestPageNumber == 7)
-                              ? Colors.black
-                              : Colors.white)),
-                  selected: (presestPageNumber == 7) ? true : false,
-                  onTap: (() {
-                    if (presestPageNumber == 7)
-                      Navigator.pop(context);
-                    else {
-                      setState(() {
-                        presestPageNumber = 7;
-                      });
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: AboutUsPage()));
-                    }
-                  }),
-                )),
-            Container(
-                color: (presestPageNumber == 9)
-                    ? Color.fromRGBO(225, 225, 225, 40.0)
-                    : Color.fromRGBO(54, 59, 94, 40.0),
-                child: ListTile(
-                  leading: Icon(Icons.credit_card, color:Color(0xFF353662)),
-                  title: Text("Sponsors",
-                      style: TextStyle(
-                          color: (presestPageNumber == 9)
-                              ? Colors.black
-                              : Colors.white)),
-                  selected: (presestPageNumber == 9) ? true : false,
-                  onTap: (() {
-                    if (presestPageNumber == 9)
-                      Navigator.pop(context);
-                    else {
-                      setState(() {
-                        presestPageNumber = 9;
-                      });
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: Sponsors()));
-                    }
-                  }),
-                )),
-            Container(
-              color: (presestPageNumber == 10)
-                  ? Color.fromRGBO(225, 225, 225, 40.0)
-                  : Color.fromRGBO(54, 59, 94, 40.0),
-              child: ListTile(
-                  leading: Icon(Icons.call, color:Color(0xFF353662)),
-                  title: Text("Contact Us",
-                      style: TextStyle(
-                          color: (presestPageNumber == 10)
-                              ? Colors.black
-                              : Colors.white)),
+                          color: Colors.grey, fontWeight: FontWeight.bold))),
+              ListTile(
+                leading: Icon(Icons.accessibility,),
+                title:
+                    Text("About Us", ),
+                selected: (presestPageNumber == 7) ? true : false,
+                onTap: (() {
+                  if (presestPageNumber == 7)
+                    Navigator.pop(context);
+                  else {
+                      presestPageNumber = 7;
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: AboutUsPage()));
+                  }
+                }),
+              ),
+              ListTile(
+                leading: Icon(Icons.credit_card),
+                title:
+                    Text("Sponsors", ),
+                selected: (presestPageNumber == 9) ? true : false,
+                onTap: (() {
+                  if (presestPageNumber == 9)
+                    Navigator.pop(context);
+                  else {
+                      presestPageNumber = 9;
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: Sponsors()));
+                  }
+                }),
+              ),
+              ListTile(
+                  leading: Icon(Icons.call,),
+                  title: Text("Contact Us",),
                   selected: (presestPageNumber == 10) ? true : false,
                   onTap: () {
                     if (presestPageNumber == 10)
                       Navigator.pop(context);
                     else {
-                      setState(() {
                         presestPageNumber = 10;
-                      });
                       Navigator.popUntil(context, ModalRoute.withName('/'));
                       Navigator.of(context)
                           .push(SlideLeftRoute(widget: ContactUs()));
                     }
                   }),
-            ),
-            Container(
-              color: (presestPageNumber == 11)
-                  ? Color.fromRGBO(225, 225, 225, 40.0)
-                  : Color.fromRGBO(54, 59, 94, 40.0),
-              child: ListTile(
-                  leading: Icon(Icons.accessibility, color:Color(0xFF353662)),
-                  title: Text("Contributors",
-                      style: TextStyle(
-                          color: (presestPageNumber == 11)
-                              ? Colors.black
-                              : Colors.white)),
+              ListTile(
+                  leading: Icon(Icons.accessibility,),
+                  title: Text("Contributors",),
                   selected: (presestPageNumber == 11) ? true : false,
                   onTap: () {
                     if (presestPageNumber == 11)
                       Navigator.pop(context);
                     else {
-                      setState(() {
                         presestPageNumber = 11;
-                      });
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: Contributors()));
-                    }
+                        Navigator.popUntil(context, ModalRoute.withName('/'));
+                        Navigator.of(context).push(SlideLeftRoute(widget: Contributors()));
+                      }
                   }),
-            )
-        ]));
+            ]),
+          ),
+        ),
+      ),
+    );
   }
 }

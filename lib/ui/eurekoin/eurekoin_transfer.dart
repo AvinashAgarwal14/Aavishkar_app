@@ -90,7 +90,7 @@ class CollapsibleBody extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 8.0),
                 child: FlatButton(
                     onPressed: onSave,
-                    textTheme: ButtonTextTheme.accent,
+                    textTheme: ButtonTextTheme.normal,
                     child: const Text('Send'))),
             Container(
                 margin: const EdgeInsets.only(right: 8.0),
@@ -143,7 +143,7 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
   FirebaseUser currentUser;
 
   TextEditingController amountController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController( );
   StreamSubscription<List> processingSuggestionList;
   List suggestionList = new List();
 
@@ -218,10 +218,13 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
                       child: Column(
                         children: <Widget>[
                           TextFormField(
+                            style: Theme.of(context).textTheme.subhead,
                               keyboardType: TextInputType.number,
                               controller: amountController,
                               decoration: InputDecoration(
-                                labelText: "Amount",
+                                //fillColor: Colors.black,
+                                labelText: "Amount",//helperStyle:  TextStyle(color: Colors.blue),
+                                labelStyle: TextStyle(color: Colors.grey),
                               ),
                               validator: (val) => val == "" ? val : null),
                           TextFormField(
@@ -229,6 +232,7 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
                               decoration: InputDecoration(
                                 hintText: "Name",
                                 labelText: "Transfer To",
+                                labelStyle: TextStyle(color: Colors.grey),
                               ),
                               validator: (val) => val == "" ? val : null),
                           (suggestionList.length != 0)
@@ -266,11 +270,9 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData=Theme.of(context);
     return new Theme(
-        data: new ThemeData(
-            brightness: Brightness.light,
-            primarySwatch: Colors.indigo,
-            platform: Theme.of(context).platform),
+        data: themeData,
         child: SingleChildScrollView(
             child: new DefaultTextStyle(
           style: Theme.of(context).textTheme.subhead,
@@ -279,8 +281,8 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
             bottom: false,
             child: Container(
               child: Theme(
-                  data: Theme.of(context)
-                      .copyWith(cardColor: Colors.grey.shade50),
+                  data: themeData,
+                  //.copyWith(cardColor: Colors.grey.shade50),
                   child: ExpansionPanelList(
                       expansionCallback: (int index, bool isExpanded) {
                         setState(() {

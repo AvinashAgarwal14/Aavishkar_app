@@ -15,11 +15,14 @@ import '../eurekoin/eurekoin.dart';
 import '../account/login.dart';
 
 class Dashboard extends StatefulWidget {
+
   @override
   _DashboardState createState() => _DashboardState();
 }
 class _DashboardState extends State<Dashboard> {
 
+
+  bool darkThemeEnabled=false;
   final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
   var _currentState = 0;
   FirebaseUser currentUser;
@@ -34,10 +37,9 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     // TODO: implement initState
-
     getUser();
-
     super.initState();
+
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
@@ -68,50 +70,50 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Aavishkar 2.0"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SearchByTags()),
-              );
-            }
-          ),
-          (currentUser!=null && isEurekoinAlreadyRegistered!=null)?
+          actions: <Widget>[
             IconButton(
-            icon: Icon(Icons.scanner),
-            onPressed: ()
-                {
-                  if(isEurekoinAlreadyRegistered==1)
-                    {
-                      scanQR();
-                    }
-                  else if (isEurekoinAlreadyRegistered==0)
-                    {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EurekoinHomePage()),
-                      ).then((onReturn){
-                        getUser();
-                      });
-                    }
-                }
-            )
-              :
-              Container(),
-          IconButton(
-              icon: Icon(Icons.account_box),
+              icon: Icon(Icons.search),
               onPressed: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LogInPage()),
-                ).then((onReturn){
-                  getUser();
-                });
+                  MaterialPageRoute(builder: (context) => SearchByTags()),
+                );
               }
-          )
-        ],
+            ),
+            (currentUser!=null && isEurekoinAlreadyRegistered!=null)?
+              IconButton(
+              icon: Icon(Icons.scanner),
+              onPressed: ()
+                  {
+                    if(isEurekoinAlreadyRegistered==1)
+                      {
+                        scanQR();
+                      }
+                    else if (isEurekoinAlreadyRegistered==0)
+                      {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => EurekoinHomePage()),
+                        ).then((onReturn){
+                          getUser();
+                        });
+                      }
+                  }
+              )
+                :
+                Container(),
+            IconButton(
+                icon: Icon(Icons.account_box),
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LogInPage()),
+                  ).then((onReturn){
+                    getUser();
+                  });
+                }
+            )
+          ],
         ),
       drawer: NavigationDrawer(currentDisplayedPage: 0),
       body: Views[_currentState],
@@ -124,14 +126,16 @@ class _DashboardState extends State<Dashboard> {
               _currentState = index;
             });
           },
+          fixedColor: Theme.of(context).primaryColor,
           items:[
             BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard),
-                title: Text("Dashboard")
+                icon: Icon(Icons.dashboard,),
+                title: Text("Dashboard",),
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.rss_feed),
-                title: Text("Newsfeed")
+                title: Text("Newsfeed",
+                )
             )
           ],
         ),
@@ -269,3 +273,4 @@ class _DashboardState extends State<Dashboard> {
   }
 
 }
+

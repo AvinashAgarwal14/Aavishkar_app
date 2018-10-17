@@ -38,9 +38,9 @@ class _NewsfeedState extends State<Newsfeed> {
     return ListView.builder(
         itemCount: feed.length,
         itemBuilder: (BuildContext context, position) {
-          return DecoratedBox(
-            decoration: new BoxDecoration(color: Colors.grey.shade200),
-            child: GestureDetector(
+          //decoration: new BoxDecoration(color: Colors.grey.shade200),
+
+          return  GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -49,8 +49,7 @@ class _NewsfeedState extends State<Newsfeed> {
                   );
                 },
                 child: NewsfeedCards(cardItem: feed[position])
-            )
-          );
+            );
         }
     );
   }
@@ -76,9 +75,7 @@ class _NewsfeedState extends State<Newsfeed> {
 class NewsfeedCards extends StatefulWidget {
 
   NewsfeedCards({ Key key, this.cardItem}) : super(key: key);
-
   final NewsfeedItem cardItem;
-
   @override
   _NewsfeedCardsState createState() => _NewsfeedCardsState();
 }

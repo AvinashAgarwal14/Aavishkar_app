@@ -108,6 +108,15 @@ packages:
       url: "https://github.com/MarkOSullivan94/dart_config.git"
     source: git
     version: "0.5.0"
+  dynamic_theme:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "56d562ae6c1bf20726774fffb1917ac6aad57f2c"
+      url: "git://github.com/Norbert515/dynamic_theme.git"
+    source: git
+    version: "0.0.1"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -532,10 +541,12 @@ packages:
   uri:
     dependency: transitive
     description:
-      name: uri
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.11.3+1"
+      path: "."
+      ref: HEAD
+      resolved-ref: a31e0ce43294780088a4ec5bb964db5501350375
+      url: "https://github.com/diegoveloper/uri.dart.git"
+    source: git
+    version: "0.11.3"
   url_launcher:
     dependency: "direct main"
     description:

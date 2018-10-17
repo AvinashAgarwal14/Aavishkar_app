@@ -41,14 +41,13 @@ class _ScheduleState extends State<Schedule> {
     });
   }
 
+
   @override
+
   Widget build(BuildContext context) {
+    ThemeData themeData=Theme.of(context);
     return new Theme(
-        data: new ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.indigo,
-          platform: Theme.of(context).platform,
-        ),
+        data: themeData,
         child: new Scaffold(
             key: _scaffoldKeyForSchedule,
             drawer: NavigationDrawer(currentDisplayedPage: 4),
@@ -95,11 +94,12 @@ class _ScheduleState extends State<Schedule> {
                       padding: new EdgeInsets.only(left: 30.0, top: 20.0),
                       height: 90.0,
                       decoration: new BoxDecoration(
-                        color: Colors.white,
+                        //color: Colors.white,
                         border: new Border(
                           bottom: new BorderSide(
                               width: 0.5,
-                              color: const Color.fromRGBO(204, 204, 204, 1.0)),
+                              color: const Color.fromRGBO(204, 204, 204, 1.0)
+                          ),
                         ),
                       ),
                       child: new ListView.builder(
@@ -168,7 +168,8 @@ class _ScheduleState extends State<Schedule> {
                                     ])));
                           })),
                   Container(
-                      color: Colors.white, child: selectDaySchedule[presentKey])
+                     // color: Colors.white,
+                      child: selectDaySchedule[presentKey])
                 ]),
               )
             ])));

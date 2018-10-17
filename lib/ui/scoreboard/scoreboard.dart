@@ -130,10 +130,13 @@ class _ScoreboardState extends State<Scoreboard> {
 
     if(dataRecieved){
       return Scaffold(
+
           key: _scaffoldKey,
           drawer: NavigationDrawer(currentDisplayedPage: 2),
           appBar: AppBar(title:  const Text('Live Scoreboard'),elevation: 10.0,),
           body: RefreshIndicator(
+           displacement: 100.0,
+            backgroundColor: Colors.white,
             key: _refreshIndicatorKey,
             onRefresh: getDataOnRefresh,
             child: ListView(
@@ -144,7 +147,7 @@ class _ScoreboardState extends State<Scoreboard> {
                     alignment: Alignment.topCenter,
                     child: DropdownButton(value:Selected ,iconSize: 13.0,hint: Text("Select Event"),
                       items:eventList,
-                      elevation: 10,
+                      elevation: 20,
                       onChanged: ((value){
                         setState(() {
                           Selected=value;

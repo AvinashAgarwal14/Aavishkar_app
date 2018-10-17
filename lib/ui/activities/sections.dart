@@ -6,6 +6,7 @@ const Color _mariner = Color(0xFF3B5F8F);
 const Color _mediumPurple = Color(0xFF8266D4);
 const Color _tomato = Color(0xFFF95B57);
 const Color _mySin = Color(0xFFF3A646);
+const Color _inbetween=Color.fromRGBO(149, 102, 166, 1.0);
 
 class Section {
 
@@ -45,15 +46,15 @@ List<Section> allSections = <Section>[
   ),
   Section(
     title: 'Online Events',
-    leftColor: _mediumPurple,
-    rightColor: _mariner,
+    leftColor: _inbetween,
+    rightColor: _mediumPurple,
     backgroundAsset: 'images/events.png',
     details: eventsByCategories['Online']
   ),
   Section(
     title: 'Workshops',
     leftColor: _tomato,
-    rightColor: _mediumPurple,
+    rightColor: _inbetween,
     backgroundAsset: 'images/events.png',
     details: eventsByCategories['Workshops']
   ),

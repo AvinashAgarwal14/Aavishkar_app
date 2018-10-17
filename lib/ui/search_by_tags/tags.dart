@@ -51,16 +51,25 @@ class _SearchByTagsState extends State<SearchByTags> {
     databaseReference.onChildChanged.listen(_onEntryChanged);
   }
 
+  Color _nameToColor(String name) {
+    assert(name.length > 1);
+    final int hash = name.hashCode & 0xffff;
+    final double hue = (360.0 * hash / (1 << 15)) % 360.0;
+    return HSVColor.fromAHSV(1.0, hue, 0.4, 0.90).toColor();
+  }
+
   @override
   Widget build(BuildContext context) {
 
     final List<Widget> choiceChips = _tags.map<Widget>((String name) {
+      Color chipColor;
+      chipColor=_nameToColor(name);
       return ChoiceChip(
                 key: new ValueKey<String>(name),
-                backgroundColor: Color(0xFF353662),
+                backgroundColor: chipColor,
                 label: new Text(name, style: TextStyle(color: Colors.white)),
                 selected: _selectedTag == name,
-                selectedColor: Color.fromRGBO(54, 59, 94, 0.5),
+                selectedColor: chipColor.withOpacity(0.3),
                 onSelected: (bool value) {
                   setState(() {
                     _selectedTag = value ? name : _selectedTag;
