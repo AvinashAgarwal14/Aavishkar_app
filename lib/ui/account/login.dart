@@ -188,14 +188,16 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                         builder: (BuildContext context,
                                             AsyncSnapshot snapshot) {
                                           if (currentUser == null) {
+                                            print("---------Gangnum");
                                             return
                                             animationStatus==1 ?  Container(
-                                            child: CircularProgressIndicator(
+                                                child: CircularProgressIndicator(
                                               value: null,
                                               strokeWidth: 2.0,
                                               valueColor:new AlwaysStoppedAnimation<
                                                       Color>(Colors.white),
-                                            ))
+                                            )
+                                            )
                                           : Container();
                                           } else {
                                             _playAnimation(animationStatus);

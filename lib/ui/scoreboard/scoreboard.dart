@@ -164,7 +164,7 @@ class _ScoreboardState extends State<Scoreboard> {
                       ),
                     ):Padding(
                       padding: const EdgeInsets.all(50.0),
-                      child: Center(child: Text("Coming Soon",style: TextStyle(fontSize: 24.0),)),
+                      child: Center(child: Text("Coming Soon...",style: TextStyle(fontSize: 24.0),)),
                     ),
                     (comingsoon==false)?
                     ( (Selected!=null)?
@@ -214,12 +214,24 @@ class _ScoreboardState extends State<Scoreboard> {
         body : Container(
 //            height: MediaQuery.of(context).size.height,
 //            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("images/gifs/score.gif"), fit: BoxFit.fill)),
-            child: Center(
-                child: CircularProgressIndicator())),
-      );
+//            decoration: BoxDecoration(
+//                image: DecorationImage(
+//                    image: AssetImage("images/gifs/score.gif"), fit: BoxFit.fill)),
+//            child: Center(
+//                child: CircularProgressIndicator())
+
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: Theme.of(context).brightness==Brightness.light?
+                  AssetImage("images/gifs/loaderlight.gif"):
+                  AssetImage("images/gifs/loaderdark.gif"),
+                  fit: BoxFit.fill)
+          ),
+
+      ),
+        );
     }
 
   }
