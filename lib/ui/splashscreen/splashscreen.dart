@@ -95,11 +95,14 @@ class _IntroScreenState extends State<IntroScreen> {
               shape:BeveledRectangleBorder() ,
               child: Text("Next"),
               onPressed: () {
-                imageIndex++;
+                
                 if (imageIndex == 3) {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/ui/dashboard', (Route<dynamic> route) => false);
                 }
+                setState(() {
+                  imageIndex++;
+                });
               },
             ))
       ],
