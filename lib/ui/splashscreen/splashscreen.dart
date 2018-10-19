@@ -60,9 +60,9 @@ class _IntroScreenState extends State<IntroScreen> {
   int imageIndex = 0;
 
   List<AssetImage> images = [
-    AssetImage("images/events.png"),
-    AssetImage("images/events.png"),
-    AssetImage("images/events.png"),
+    AssetImage("images/introscreen/god of war.jpg"),
+    AssetImage("images/introscreen/joker.jpg"),
+    AssetImage("images/introscreen/mario.jpg"),
   ];
 
   @override
@@ -72,7 +72,7 @@ class _IntroScreenState extends State<IntroScreen> {
         Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("images/events.png"), fit: BoxFit.fill)
+                    image: images[imageIndex], fit: BoxFit.fill)
             )
         ),
         Container(
@@ -91,7 +91,8 @@ class _IntroScreenState extends State<IntroScreen> {
         ),
         Container(
             alignment: Alignment.bottomRight,
-            child: FlatButton(
+            child:RaisedButton(
+              shape:BeveledRectangleBorder() ,
               child: Text("Next"),
               onPressed: () {
                 imageIndex++;

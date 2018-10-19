@@ -133,91 +133,112 @@ class _AboutUsPageState extends State<AboutUsPage>
       appBar: AppBar(
         title: Text("About Aavishkar"),
       ),
-      body: new ListView(
-        key: listViewKey,
-        controller: scrollController,
-        children: <Widget>[
-          new Image.asset("images/events.png"),
-          new Container(
-            padding: EdgeInsets.all(16.0),
-            child: new Text(
-              'Aavishkar, as its name suggests a blend of innovation, team work and a geeky love for technology, is a tech fest that is not just an arena to exhibit but also an environment to learn. Our motto is to unveil in this college a fantasy world of bytes. From organising prestigious events like Hackathon, to creating an entire tournament for the cricket and football fans, this fest is known for its diverse nature. Aavishkar is a innovation of the future, learning from the past and progressing with the present.',
-              style: TextStyle(fontSize: 24.0),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/About Us/About Us 0.jpeg"), fit: BoxFit.fill)
+        ),
+        child: new ListView(
+          key: listViewKey,
+          controller: scrollController,
+          children: <Widget>[
+            new Image.asset("images/About Us/About Us 1.jpeg"),
+            new Container(
+              padding: EdgeInsets.all(16.0),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: new Text(
+                  'Aavishkar, as its name suggests a blend of innovation, team work and a geeky love for technology, is a tech fest that is not just an arena to exhibit but also an environment to learn. Our motto is to unveil in this college a fantasy world of bytes. From organising prestigious events like Hackathon, to creating an entire tournament for the cricket and football fans, this fest is known for its diverse nature. Aavishkar is a innovation of the future, learning from the past and progressing with the present.',
+                  style: TextStyle(fontSize: 24.0,color: Colors.white),
+                ),
+              ),
             ),
-          ),
-          new FadeTransition(
-            opacity: boxOpacityOne,
-            child: new SlideTransition(
-              position: boxPositionOne,
-              child: new Container(
-                  key: animatedBoxOneKey,
+            new FadeTransition(
+              opacity: boxOpacityOne,
+              child: new SlideTransition(
+                position: boxPositionOne,
+                child: new Container(
+                    key: animatedBoxOneKey,
 //                  height: 750.0,
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: <Widget>[
-                      new Image.asset("images/events.png"),
-                      new Text(
-                        'This time too, Aavishkar comes with a number of attractions including a crypto currency made by the members of GLUG that creates a hype inculcating in the students the concept of a cash-free nation. Eurocoin also holds a number of goodies when redeemed. Capture the flag,  a cyber security based event is captivates the attention of all the hackers, inviting them to turn on the siren. Another icing on the cake is Hackathon, a marathon for the developers be it software or graphics, on a global level it inspires the students to dedicate two sleepless days to a project that will shape the clay of future generations.',
-                        style: TextStyle(fontSize: 24.0),
-                      )
-                    ],
-                  )),
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      children: <Widget>[
+                        new Image.asset("images/About Us/About Us 2.jpeg",fit: BoxFit.fill,),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: new Text(
+                            'This time too, Aavishkar comes with a number of attractions including a crypto currency made by the members of GLUG that creates a hype inculcating in the students the concept of a cash-free nation. Eurocoin also holds a number of goodies when redeemed. Capture the flag,  a cyber security based event is captivates the attention of all the hackers, inviting them to turn on the siren. Another icing on the cake is Hackathon, a marathon for the developers be it software or graphics, on a global level it inspires the students to dedicate two sleepless days to a project that will shape the clay of future generations.',
+                            style: TextStyle(fontSize: 24.0,color: Colors.white),
+                          ),
+                        )
+                      ],
+                    )),
+              ),
             ),
-          ),
-          new FadeTransition(
-            opacity: boxOpacityTwo,
-            child: new SlideTransition(
-              position: boxPositionTwo,
-              child: new Container(
-                  key: animatedBoxTwoKey,
+            new FadeTransition(
+              opacity: boxOpacityTwo,
+              child: new SlideTransition(
+                position: boxPositionTwo,
+                child: new Container(
+                    key: animatedBoxTwoKey,
 //                  height: 500.0,
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: <Widget>[
-                      new Image.asset("images/events.png"),
-                      new Text(
-                        'Inviting the students to the battleground, this year Aavishkar has a theme that veils a world every engineer can call home. Taking you to the next level, the 4 days will be exhausted by counter strikes at the opponents and backing your teams. In the midst of rifles, crates and Pokemons, Aavishkar brings to you events that will need you all armed.',
-                        style: TextStyle(fontSize: 24.0),
-                      )
-                    ],
-                  )),
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      children: <Widget>[
+                        new Image.asset("images/About Us/About Us 3.jpeg",fit: BoxFit.fill,),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: new Text(
+                            'Inviting the students to the battleground, this year Aavishkar has a theme that veils a world every engineer can call home. Taking you to the next level, the 4 days will be exhausted by counter strikes at the opponents and backing your teams. In the midst of rifles, crates and Pokemons, Aavishkar brings to you events that will need you all armed.',
+                            style: TextStyle(fontSize: 24.0,color: Colors.white),
+                          ),
+                        )
+                      ],
+                    )),
+              ),
             ),
-          ),
-          new FadeTransition(
-            opacity: boxOpacityThree,
-            child: new SlideTransition(
-              position: boxPositionThree,
-              child: new Container(
-                  key: animatedBoxThreeKey,
+            new FadeTransition(
+              opacity: boxOpacityThree,
+              child: new SlideTransition(
+                position: boxPositionThree,
+                child: new Container(
+                    key: animatedBoxThreeKey,
 //                  height: 700.0,
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: <Widget>[
-                      new Image.asset("images/events.png"),
-                      new Text(
-                        "GLUG or GNU/ Linux Users' group is the open source club of NIT Durgapur. A group of people with a flare for technology, GLUG believes in taking the students towards a  development where contributions and distributions are not restricted.\nThe Maths and Tech club of this college, abbreviated as MnTC is a group of logical brains, playing with numbers, a game most students dread.\nSAE, a set of displaced numbers, keys speaking  codes, and engines ready for the green, all put together for the sole purpose, to innovate.",
-                        style: TextStyle(fontSize: 24.0),
-                      )
-                    ],
-                  )),
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      children: <Widget>[
+                        new Image.asset("images/About Us/About Us 4.jpeg",fit: BoxFit.fill,),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: new Text(
+                            "GLUG or GNU/ Linux Users' group is the open source club of NIT Durgapur. A group of people with a flare for technology, GLUG believes in taking the students towards a  development where contributions and distributions are not restricted.\nThe Maths and Tech club of this college, abbreviated as MnTC is a group of logical brains, playing with numbers, a game most students dread.\nSAE, a set of displaced numbers, keys speaking  codes, and engines ready for the green, all put together for the sole purpose, to innovate.",
+                            style: TextStyle(fontSize: 24.0,color: Colors.white),
+                          ),
+                        )
+                      ],
+                    )),
+              ),
             ),
-          ),
-          new FlatButton(
-            onPressed: () {
-              scrollController.jumpTo(0.0);
-              animatedBoxOneEnterAnimationController.reset();
-              animatedBoxTwoEnterAnimationController.reset();
-              animatedBoxThreeEnterAnimationController.reset();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                new Text("Move Up"),
-                new Icon(Icons.arrow_upward)
-              ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: new FlatButton(
+                onPressed: () {
+                  scrollController.jumpTo(0.0);
+                  animatedBoxOneEnterAnimationController.reset();
+                  animatedBoxTwoEnterAnimationController.reset();
+                  animatedBoxThreeEnterAnimationController.reset();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    new Text("Move Up",style: TextStyle(color:Colors.white, ),),
+                    new Icon(Icons.arrow_upward,color: Colors.white,)
+                  ],
+                )
+              ),
             )
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

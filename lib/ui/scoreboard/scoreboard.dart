@@ -79,14 +79,13 @@ class Scoreboard extends StatefulWidget {
 
 class _ScoreboardState extends State<Scoreboard> {
 
-  String Selected=null;
+  String Selected;
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
   int _sortColumnIndex;
-  bool _sortAscending = true, dataRecieved=false;
+  bool _sortAscending = true, dataRecieved=false,comingsoon=true;
   UserDataSource _userDataSource = UserDataSource();
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
 //  Future<Null> _handleRefresh() {
 //    final Completer<Null> completer = Completer<Null>();
 //    Timer(const Duration(seconds: 3), () { completer.complete(null); });
@@ -112,6 +111,7 @@ class _ScoreboardState extends State<Scoreboard> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    Selected=null;
     getData();
     //Selected="None";
     createUserList("none");
@@ -133,69 +133,92 @@ class _ScoreboardState extends State<Scoreboard> {
           key: _scaffoldKey,
           drawer: NavigationDrawer(currentDisplayedPage: 2),
           appBar: AppBar(title:  const Text('Live Scoreboard'),elevation: 10.0,),
-          body: RefreshIndicator(
-           displacement: 100.0,
-            backgroundColor: Colors.white,
-            key: _refreshIndicatorKey,
-            onRefresh: getDataOnRefresh,
-            child: ListView(
-                padding: const EdgeInsets.all(10.0),
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(top: 12.0),
-                    alignment: Alignment.topCenter,
-                    child: DropdownButton(value:Selected ,iconSize: 13.0,hint: Text("Select Event"),
-                      items:eventList,
-                      elevation: 20,
-                      onChanged: ((value){
-                        setState(() {
-                          Selected=value;
-                          dataRecieved=false;
-                        });
-                        createUserList(value);
-                      }),
+          body: Container(
+            //height: MediaQuery.of(context).size.height,
+            //width: MediaQuery.of(context).size.width/2,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/gifs/scorecard.gif"), fit: BoxFit.contain)
+            ),
+            child: RefreshIndicator(
+             displacement: 100.0,
+              backgroundColor: Colors.white,
+              key: _refreshIndicatorKey,
+              onRefresh: getDataOnRefresh,
+              child: ListView(
+                  padding: const EdgeInsets.all(10.0),
+                  children: <Widget>[
+                    comingsoon==false?Container(
+                      padding: EdgeInsets.only(top: 12.0),
+                      alignment: Alignment.topCenter,
+                      child: DropdownButton(value:Selected ,iconSize: 13.0,hint: Text("Select Event"),
+                        items:eventList,
+                        elevation: 20,
+                        onChanged: ((value){
+                          setState(() {
+                            Selected=value;
+                            dataRecieved=false;
+                          });
+                          createUserList(value);
+                        }),
+                      ),
+                    ):Padding(
+                      padding: const EdgeInsets.all(50.0),
+                      child: Center(child: Text("Coming Soon",style: TextStyle(fontSize: 24.0),)),
                     ),
-                  ),
-                  (Selected!=null)?
-                  Stack(alignment: AlignmentDirectional.topCenter,children: <Widget>[
-                    PaginatedDataTable(
-                        header: Center(child: const Text('Score Card')),
-                        rowsPerPage:_rowsPerPage,
-                        onRowsPerPageChanged: (int value) { setState(() { _rowsPerPage = value; }); },
-                        sortColumnIndex: _sortColumnIndex,
-                        sortAscending: _sortAscending,
-                        columns: <DataColumn>[
-                          DataColumn(
-                              label: const Text('Rank'),
-                              numeric: true,
-                              onSort: (int columnIndex, bool ascending) => _sort<num>((User d) => d.rank, columnIndex, ascending)
-                          ),
-                          DataColumn(
-                            label: const Text('User'),
-                           // tooltip: d.email,
-                            numeric: true,
-                          ),
-                          DataColumn(
-                              label: const Text('Score'),
-                              numeric: true,
-                              onSort: (int columnIndex, bool ascending) => _sort<num>((User d) => d.score, columnIndex, ascending)
-                          ),
-                          DataColumn(
-                            label: const Text('Email'),
-                          ),
-                        ],
-                        source: _userDataSource
-                    )
-                  ]):
-                  Center(child: Text("Choose Your Event")),
-                ]
+                    (comingsoon==false)?
+                    ( (Selected!=null)?
+                    Stack(alignment: AlignmentDirectional.topCenter,children: <Widget>[
+                      Opacity(
+                        opacity: 0.8,
+                        child: PaginatedDataTable(
+                            header: Center(child: const Text('Score Card')),
+                            rowsPerPage:_rowsPerPage,
+                            onRowsPerPageChanged: (int value) { setState(() { _rowsPerPage = value; }); },
+                            sortColumnIndex: _sortColumnIndex,
+                            sortAscending: _sortAscending,
+                            columns: <DataColumn>[
+                              DataColumn(
+                                  label: const Text('Rank'),
+                                  numeric: true,
+                                  onSort: (int columnIndex, bool ascending) => _sort<num>((User d) => d.rank, columnIndex, ascending)
+                              ),
+                              DataColumn(
+                                label: const Text('User'),
+                               // tooltip: d.email,
+                                numeric: true,
+                              ),
+                              DataColumn(
+                                  label: const Text('Score'),
+                                  numeric: true,
+                                  onSort: (int columnIndex, bool ascending) => _sort<num>((User d) => d.score, columnIndex, ascending)
+                              ),
+                              DataColumn(
+                                label: const Text('Email'),
+                              ),
+                            ],
+                            source: _userDataSource
+                        ),
+                      )
+                    ]):
+                          Center(child: Text("Choose Your Event")))
+                    :Container(),
+                  ]
+              ),
             ),
           )
       );}
     else
     {
       return Scaffold(
-        body : Center(child: CircularProgressIndicator()),
+        body : Container(
+//            height: MediaQuery.of(context).size.height,
+//            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/gifs/score.gif"), fit: BoxFit.fill)),
+            child: Center(
+                child: CircularProgressIndicator())),
       );
     }
 
@@ -264,3 +287,12 @@ class _ScoreboardState extends State<Scoreboard> {
 
 
 //  Add another Item in DropDownMenu --> Add one more Future Function--> Add another entry in createUserList
+//            gradient: new LinearGradient(
+//              colors: <Color>[
+//                const Color.fromRGBO(255,255,255, 1.0),
+//                const Color.fromRGBO(0,0,0, 0.7),
+//              ],
+//              stops: [0.0, -1.0],
+//              begin: const FractionalOffset(0.0, 0.0),
+//              end: const FractionalOffset(0.0, 1.0),
+//            ),
