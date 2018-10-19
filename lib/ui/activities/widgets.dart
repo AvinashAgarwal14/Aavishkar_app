@@ -12,7 +12,7 @@ const double kSectionIndicatorWidth = 32.0;
 
 // The card for a single section. Displays the section's gradient and background image.
 class SectionCard extends StatelessWidget {
-  const SectionCard({ Key key, @required this.section })
+  const SectionCard({Key key, @required this.section})
       : assert(section != null),
         super(key: key);
 
@@ -66,7 +66,7 @@ class SectionTitle extends StatelessWidget {
     @required this.section,
     @required this.scale,
     @required this.opacity,
-  }) : assert(section != null),
+  })  : assert(section != null),
         assert(scale != null),
         assert(opacity != null && opacity >= 0.0 && opacity <= 1.0),
         super(key: key);
@@ -100,7 +100,7 @@ class SectionTitle extends StatelessWidget {
 
 // Small horizontal bar that indicates the selected section.
 class SectionIndicator extends StatelessWidget {
-  const SectionIndicator({ Key key, this.opacity = 1.0 }) : super(key: key);
+  const SectionIndicator({Key key, this.opacity = 1.0}) : super(key: key);
 
   final double opacity;
 
@@ -119,8 +119,7 @@ class SectionIndicator extends StatelessWidget {
 // Display a single SectionDetail.
 
 class SectionDetailView extends StatefulWidget {
-
-  SectionDetailView({ Key key, @required this.detail })
+  SectionDetailView({Key key, @required this.detail})
       : assert(detail != null && detail.imageUrl != null),
         assert((detail.imageUrl ?? detail.title) != null),
         super(key: key);
@@ -132,7 +131,6 @@ class SectionDetailView extends StatefulWidget {
 }
 
 class _SectionDetailViewState extends State<SectionDetailView> {
-
   PaletteGenerator paletteGenerator;
   final FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference databaseReferenceForUpdate;
@@ -142,19 +140,17 @@ class _SectionDetailViewState extends State<SectionDetailView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(widget.detail.color!='invalid')
-    {
-      if(widget.detail.color=='null')
+    if (widget.detail.color != 'invalid') {
+      if (widget.detail.color == 'null')
         cardColor = new Color(0xffffff);
-      else
-      {
-        String valueString = widget.detail.color.split('(0x')[1].split(')')[0]; // kind of hacky..
+      else {
+        String valueString = widget.detail.color
+            .split('(0x')[1]
+            .split(')')[0]; // kind of hacky..
         int value = int.parse(valueString, radix: 16);
         cardColor = new Color(value);
       }
-    }
-    else
-    {
+    } else {
       databaseReferenceForUpdate = database.reference().child("Events");
       updatePaletteGenerator();
     }
@@ -162,35 +158,42 @@ class _SectionDetailViewState extends State<SectionDetailView> {
 
   @override
   Widget build(BuildContext context) {
-
     Widget item;
     item = new GestureDetector(
-        onTap:() {
+        onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => new EventDetails(item: widget.detail)),
+            MaterialPageRoute(
+                builder: (context) => new EventDetails(item: widget.detail)),
           );
         },
         child: new Card(
-            color: (paletteGenerator!=null)?paletteGenerator.lightVibrantColor?.color:cardColor,
+            color: (paletteGenerator != null)
+                ? paletteGenerator.lightVibrantColor?.color
+                : cardColor,
             child: new Column(
               children: <Widget>[
-                Hero(
-                    tag: widget.detail.imageUrl,
-                    child: CachedNetworkImage(
-                        placeholder: Image.asset("images/imageplaceholder.png"),
-                        imageUrl: widget.detail.imageUrl,
-                        fit: BoxFit.fill,
-                        height: 256.0
-                    )),
+                new ClipRRect(
+                    borderRadius: new BorderRadius.only(
+                        topLeft: new Radius.circular(5.0),
+                        topRight: new Radius.circular(5.0)),
+                    child: Container(
+                        height: 256.0,
+                        child: SizedBox.expand(
+                            child: Hero(
+                                tag: widget.detail.imageUrl,
+                                child: CachedNetworkImage(
+                                    placeholder: Image.asset(
+                                        "images/imageplaceholder.png"),
+                                    imageUrl: widget.detail.imageUrl,
+                                    fit: BoxFit.cover,
+                                    height: 256.0))))),
                 ListTile(
                   title: new Text(widget.detail.title),
                   subtitle: new Text(widget.detail.date),
                 )
               ],
-            )
-        )
-    );
+            )));
 
     return item;
   }
@@ -200,15 +203,13 @@ class _SectionDetailViewState extends State<SectionDetailView> {
       NetworkImage(widget.detail.imageUrl),
       maximumColorCount: 5,
     );
-    setState(() {
-    });
+    setState(() {});
     updateNewsFeedPostColor(paletteGenerator.lightVibrantColor?.color);
   }
 
-  void updateNewsFeedPostColor(Color color)
-  {
-    databaseReferenceForUpdate.child(widget.detail.key).update({
-      'color': color.toString()
-    }) ;
+  void updateNewsFeedPostColor(Color color) {
+    databaseReferenceForUpdate
+        .child(widget.detail.key)
+        .update({'color': color.toString()});
   }
 }

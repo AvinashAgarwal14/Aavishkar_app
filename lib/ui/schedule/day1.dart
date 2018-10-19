@@ -47,7 +47,7 @@ class _DayOneScheduleState extends State<DayOneSchedule> {
       left: 32.0,
       child: new Container(
         width: 1.0,
-       // color: Colors.grey[300],
+        color: Colors.grey[300],
       ),
     );
   }

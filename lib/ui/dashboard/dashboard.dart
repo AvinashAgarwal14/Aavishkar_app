@@ -82,7 +82,7 @@ class _DashboardState extends State<Dashboard> {
             ),
             (currentUser!=null && isEurekoinAlreadyRegistered!=null)?
               IconButton(
-              icon: Icon(Icons.scanner),
+              icon: Image(image: AssetImage("images/QRIcon.png"), color: Colors.white),
               onPressed: ()
                   {
                     if(isEurekoinAlreadyRegistered==1)
@@ -158,12 +158,10 @@ class _DashboardState extends State<Dashboard> {
     var name = currentUser.displayName;
     var bytes = utf8.encode("$email"+"$name");
     var encoded = sha1.convert(bytes);
-    print(encoded);
 
     String apiUrl = "https://eurekoin.avskr.in/api/exists/$encoded";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
-    print(status);
     if(status == '1')
     {
       setState(() {

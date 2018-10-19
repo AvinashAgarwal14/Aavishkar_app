@@ -449,7 +449,7 @@ class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
     };
 
     database.setPersistenceEnabled(true);
-    database.setPersistenceCacheSizeBytes(10000000);
+    database.setPersistenceCacheSizeBytes(15000000);
     databaseReference = database.reference().child("Events");
     databaseReference.onChildAdded.listen(_onEntryAdded);
     databaseReference.onChildChanged.listen(_onEntryChanged);
@@ -619,6 +619,7 @@ class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
                             || eventsByCategories['Ignitia'].length==0)?
                                 CircularProgressIndicator():
                             new ListView(
+                                cacheExtent: MediaQuery.of(context).size.height*3,
 //                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: _detailItemsFor(section).toList()
                           );

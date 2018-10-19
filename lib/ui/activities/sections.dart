@@ -41,14 +41,14 @@ List<Section> allSections = <Section>[
     title: 'On-site Events',
     leftColor: _mediumPurple,
     rightColor: _mariner,
-    backgroundAsset: 'images/events.png',
+    backgroundAsset: 'images/activities/onsite.jpeg',
     details: eventsByCategories['On-site']
   ),
   Section(
     title: 'Online Events',
     leftColor: _inbetween,
     rightColor: _mediumPurple,
-    backgroundAsset: 'images/events.png',
+    backgroundAsset: 'images/activities/online.jpeg',
     details: eventsByCategories['Online']
   ),
   Section(
@@ -59,7 +59,7 @@ List<Section> allSections = <Section>[
     details: eventsByCategories['Workshops']
   ),
   Section(
-    title: 'Games',
+    title: 'Special Attractions',
     leftColor: _mySin,
     rightColor: _tomato,
     backgroundAsset: 'images/events.png',

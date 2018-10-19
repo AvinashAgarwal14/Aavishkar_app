@@ -7,7 +7,7 @@ import '../../model/event.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 List<T> map<T>(List list, Function handler) {
-  List<T> result = [];
+  List<T> result = new List();
   for (var i = 0; i < list.length; i++) {
     result.add(handler(i, list[i]));
   }
@@ -44,7 +44,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
     };
 
     database.setPersistenceEnabled(true);
-    database.setPersistenceCacheSizeBytes(100000000);
+    database.setPersistenceCacheSizeBytes(150000000);
     databaseReference = database.reference().child("Events");
     databaseReference.onChildAdded.listen(_onEntryAdded);
     databaseReference.onChildChanged.listen(_onEntryChanged);
@@ -57,7 +57,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
 
   prevSlider() {
     instance.previousPage(
-        duration: new Duration(milliseconds: 800), curve: Curves.easeIn);
+        duration: new Duration(milliseconds: 300), curve: Curves.easeIn);
   }
 
   @override
@@ -74,9 +74,8 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
         children: <Widget>[
           //TODO Trending
           Container(
-
             color:Theme.of(context).brightness==Brightness.light ?
-             Color.fromRGBO(54, 59, 94, 110.0):
+             Color.fromRGBO(232,232,232, 1.0):
             Color.fromRGBO(80,80,80, 1.0),
             padding: new EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 15.0),
             child: Column(
@@ -102,11 +101,11 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                               margin: new EdgeInsets.all(5.0),
                               child: new ClipRRect(
                                   borderRadius: new BorderRadius.all(
-                                      new Radius.circular(7.0)),
+                                      new Radius.circular(5.0)),
                                   child: new Stack(
                                     children: <Widget>[
                                       CachedNetworkImage(
-                                          placeholder: Image.asset("images/imageplaceholder2.png"),
+                                          placeholder: Image.asset("images/imageplaceholder.png"),
                                           imageUrl: eventsByCategories["Online"]
                                                   [index]
                                               .imageUrl,
@@ -159,7 +158,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
               child: Column(
             children: <Widget>[
-              Text("Online Events",style: TextStyle(fontSize:18.0 ,fontWeight: FontWeight.bold)),
+              Text("Online Events",style: TextStyle(fontSize:18.0)),
               Container(
                 padding: EdgeInsets.only(top: 5.0),
                 height: 150.0,
@@ -181,15 +180,16 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                         child: Container(
                             height: 100.0,
                             width: 150.0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(0.0),
-                              child: Card(
-                                child: CachedNetworkImage(
-                                    placeholder: Image.asset("images/imageplaceholder2.png"),
+                            margin: new EdgeInsets.all(2.0),
+                            child: new ClipRRect(
+                                borderRadius: new BorderRadius.all(
+                                new Radius.circular(5.0)),
+                                child:CachedNetworkImage(
+                                    placeholder: Image.asset("images/imageplaceholder.png"),
                                     imageUrl: eventsByCategories["Online"][index].imageUrl,
-                                    fit: BoxFit.cover),
-                              ),
-                            )),
+                                    fit: BoxFit.cover
+                                ),
+                              )),
                       );
                     }),
               ),
@@ -198,22 +198,21 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
           //TODO Workshop And Games
           Container(
             color:Theme.of(context).brightness==Brightness.light ?
-          Color.fromRGBO(54, 59, 94, 110.0):
+          Color.fromRGBO(232,232,232, 1.0):
           Color.fromRGBO(80,80,80, 1.0),
 
             //color: Colors.grey.shade200,
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 15.0),
             child: Column(
               children: <Widget>[
-                Text("Workshops and Games ",
-                      style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),
+                Text("Special Attractions ",
+                      style: TextStyle(fontSize: 18.0),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 5.0),
                   height: 200.0,
                   width: MediaQuery.of(context).size.width,
                   child: Swiper(
-
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
@@ -225,11 +224,14 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                                         [index])),
                           );
                         },
-                        child: CachedNetworkImage(
-                            placeholder: Image.asset("images/imageplaceholder2.png"),
+                        child: new ClipRRect(
+                        borderRadius: new BorderRadius.all(
+                      new Radius.circular(5.0)),
+                      child: CachedNetworkImage(
+                            placeholder: Image.asset("images/imageplaceholder.png"),
                             imageUrl: eventsByCategories["Workshops"][index].imageUrl,
                             fit: BoxFit.cover)
-                      );
+                      ));
                     },
                     itemCount: eventsByCategories["Workshops"].length,
                     itemWidth: 300.0,
@@ -245,7 +247,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
             child: Column(
               children: <Widget>[
                 Text("On-site Events ",
-                      style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 18.0),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 5.0),
@@ -269,17 +271,16 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                           child: Container(
                               height: 100.0,
                               width: 150.0,
-                              child: Padding(
-                                padding: const EdgeInsets.all(0.0),
-                                child: Card(
-                                  child: CachedNetworkImage(
-                                      placeholder: Image.asset("images/imageplaceholder2.png"),
+                            margin: new EdgeInsets.all(2.0),
+                            child: new ClipRRect(
+                                borderRadius: new BorderRadius.all(
+                                    new Radius.circular(5.0)),
+                                child: CachedNetworkImage(
+                                      placeholder: Image.asset("images/imageplaceholder.png"),
                                       imageUrl: eventsByCategories["On-site"][index]
                                           .imageUrl,
                                       fit: BoxFit.cover)
-                                ),
-                              )),
-                        );
+                        )));
                       }),
                 )
               ],

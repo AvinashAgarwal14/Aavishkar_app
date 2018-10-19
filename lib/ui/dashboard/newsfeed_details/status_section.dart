@@ -17,10 +17,7 @@ class StatusCategory extends StatefulWidget {
 
 class _StatusCategoryState extends State<StatusCategory> {
 
-  List<Icon> likeOptions = [
-    Icon(Icons.thumb_up),
-    Icon(Icons.thumb_up, color: Color(0xFF353662))
-  ];
+  List<Icon> likeOptions;
   Icon likeButton;
   FirebaseDatabase _database = FirebaseDatabase.instance;
   DatabaseReference _databaseReferenceForPostsLikes;
@@ -47,6 +44,10 @@ class _StatusCategoryState extends State<StatusCategory> {
 
   @override
   Widget build(BuildContext context) {
+    likeOptions = [
+      Icon(Icons.thumb_up, color: (Theme.of(context).brightness == Brightness.light)?Colors.black:Colors.white),
+      Icon(Icons.thumb_up, color: Color(0xFF353662))
+    ];
     if(currentUser!=null && currentLike==true)
       likeButton = likeOptions[1];
     else

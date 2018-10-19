@@ -8,6 +8,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  shared_preferences: ^0.4.2
   firebase_auth: ^0.5.19
   firebase_core: ^0.2.5
   firebase_database: ^1.0.4
@@ -38,14 +39,9 @@ dev_dependencies:
 
 
 flutter_icons:
-    android: "Aavishkar 2.0"
-    ios: "Aavishkar 2.0"
+    android: true
+    ios: true
     image_path: "images/logo.png"
-    image_path_android: "images/logo.png"
-    image_path_ios: "images/logo.png"
-    adaptive_icon_background: "#FFFAFAFA"
-    adaptive_icon_foreground: "images/logo.png"
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -80,41 +76,13 @@ flutter:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
   assets:
-    - images/events.png
-    - images/Contributors/
+    - images/
     - images/Contact Us/
-    - images/loader.svg
-    - images/logo.png
-    - images/login.jpg
-    - images/imageplaceholder.png
-    - images/imageplaceholder2.png
-    - assets/nebula.png
-    - assets/sprites.json
-    - assets/sprites.png
-    - assets/starfield.png
-    - assets/game_ui.png
-    - assets/game_ui.json
-    - assets/ui_bg_top.png
-    - assets/ui_bg_top_tabs.png
-    - assets/ui_bg_bottom.png
-    - assets/ui_popup.png
-    - assets/music_game.mp3
-    - assets/music_boss.mp3
-    - assets/music_intro.mp3
-    - assets/explosion_0.wav
-    - assets/explosion_1.wav
-    - assets/explosion_2.wav
-    - assets/explosion_boss.wav
-    - assets/explosion_player.wav
-    - assets/laser.wav
-    - assets/hit.wav
-    - assets/levelup.wav
-    - assets/pickup_0.wav
-    - assets/pickup_1.wav
-    - assets/pickup_2.wav
-    - assets/pickup_powerup.wav
-    - assets/click.wav
-    - assets/buy_upgrade.wav
+    - images/Contributors/
+    - images/activities/
+    - images/gifs/
+    - images/introscreen/
+    - assets/
     - fonts/Orbitron-Medium.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see

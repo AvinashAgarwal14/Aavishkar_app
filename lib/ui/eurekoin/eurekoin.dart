@@ -53,7 +53,7 @@ class DetailItem extends StatelessWidget {
   DetailItem({ Key key, this.icon, this.lines, this.tooltip, this.onPressed })
       : super(key: key);
 
-  final IconData icon;
+  final icon;
   final List<String> lines;
   final String tooltip;
   final VoidCallback onPressed;
@@ -75,7 +75,7 @@ class DetailItem extends StatelessWidget {
       rowChildren.add(new SizedBox(
           width: 72.0,
           child: new IconButton(
-              icon: new Icon(icon),
+              icon: icon,
               color: themeData.primaryColor,
               onPressed: onPressed
           )
@@ -139,18 +139,15 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
     return (currentUser!=null)?
     (isEurekoinAlreadyRegistered==null)?
     new Scaffold(
-
         drawer: NavigationDrawer(currentDisplayedPage: 1),
         body: new Container(
             padding: EdgeInsets.only(bottom: 50.0),
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("images/events.png"),
-                    fit: BoxFit.cover
+                    image: AssetImage("images/eurekoin.png"),
+                    fit: BoxFit.fill
                 )
-            ),
-            alignment: Alignment.center,
-            child: CircularProgressIndicator()
+            )
         )
     )
         :
@@ -164,8 +161,8 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                 padding: EdgeInsets.only(bottom: 50.0),
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("images/events.png"),
-                        fit: BoxFit.cover
+                        image: AssetImage("images/eurekoin.png"),
+                        fit: BoxFit.fill
                     )
                 ),
                 alignment: Alignment.bottomCenter,
@@ -173,16 +170,19 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Material(
-                        child: Container(
-                          width: 200.0 ,
-                          child: TextField(
+                    SizedBox(
+                          width: 150.0 ,
+                          child: TextFormField(
+                            textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white),
                               controller: referalCode,
                               decoration: InputDecoration(
-                                labelText: "Referal Code",
+                                fillColor: Colors.white,
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: InputBorder.none,
+                                hintText: "Referal Code",
                               )
-                          ),
-                        )
+                          )
                     ),
                     Container(
                       child: RaisedButton(
@@ -216,7 +216,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       registerWithReferralCode = true;
                     });
                   },
-                  child: Text("Have a Referral Code?")
+                  child: Text("Have a Referral Code?",style: TextStyle(color: Colors.white))
               ),
             ):
             Container(
@@ -228,7 +228,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       registerWithReferralCode = false;
                     });
                   },
-                  child: Text("No Referral Code?")
+                  child: Text("No Referral Code?", style: TextStyle(color: Colors.white))
               ),
             )
           ],
@@ -252,7 +252,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                   fit: StackFit.expand,
                   children: <Widget>[
                     new Image.asset(
-                      "images/events.png",
+                      "images/gifs/eurekoinSliver.gif",
                       fit: BoxFit.cover,
                       height: _appBarHeight,
                     ),
@@ -261,7 +261,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                     const DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: Alignment(0.0, -1.0),
+                          begin: Alignment(0.0, 0.6),
                           end: Alignment(0.0, -0.4),
                           colors: <Color>[Color(0x60000000), Color(0x00000000)],
                         ),
@@ -293,7 +293,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       ],
                     ),
                     DetailItem(
-                      icon: Icons.share,
+                      icon: Icon(Icons.share),
                       onPressed: ()
                       {
                         print("Hey");
@@ -328,10 +328,10 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                   ],
                 ),
                 DetailCategory(
-                  icon: Icons.scanner,
+                  icon: Icons.location_searching,
                   children: <Widget>[
                     DetailItem(
-                      icon: Icons.scanner,
+                      icon: Image(image: AssetImage("images/QRIcon.png"), color: Color(0xFF353662)),
                       onPressed: ()
                       {
                         scanQR();
@@ -359,8 +359,8 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
         padding: EdgeInsets.only(bottom: 40.0),
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("images/events.png"),
-                fit: BoxFit.cover
+                image: AssetImage("images/eurekoin.png"),
+                fit: BoxFit.fill
             )
         ),
         alignment: Alignment.bottomCenter,
@@ -373,7 +373,6 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       _getUser();
                     });
                   },
-                  //color: Colors.white,
                   child: Text("Login First")
               ),
             )

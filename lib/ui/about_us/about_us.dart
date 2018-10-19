@@ -131,7 +131,7 @@ class _AboutUsPageState extends State<AboutUsPage>
     return new Scaffold(
       drawer: NavigationDrawer(currentDisplayedPage: 7),
       appBar: AppBar(
-        title: Text("About Us"),
+        title: Text("About Aavishkar"),
       ),
       body: new ListView(
         key: listViewKey,
@@ -151,7 +151,7 @@ class _AboutUsPageState extends State<AboutUsPage>
               position: boxPositionOne,
               child: new Container(
                   key: animatedBoxOneKey,
-                  height: 750.0,
+//                  height: 750.0,
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
@@ -170,7 +170,7 @@ class _AboutUsPageState extends State<AboutUsPage>
               position: boxPositionTwo,
               child: new Container(
                   key: animatedBoxTwoKey,
-                  height: 500.0,
+//                  height: 500.0,
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
@@ -189,7 +189,7 @@ class _AboutUsPageState extends State<AboutUsPage>
               position: boxPositionThree,
               child: new Container(
                   key: animatedBoxThreeKey,
-                  height: 700.0,
+//                  height: 700.0,
                   padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
