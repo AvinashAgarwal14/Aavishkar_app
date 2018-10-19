@@ -58,7 +58,7 @@ class EventDetailsState extends State<EventDetails> {
                     const DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          begin: Alignment(0.0, -1.0),
+                          begin: Alignment(0.0, 0.6),
                           end: Alignment(0.0, -0.4),
                           colors: <Color>[Color(0x60000000), Color(0x00000000)],
                         ),
@@ -83,7 +83,19 @@ class EventDetailsState extends State<EventDetails> {
                     )
                   ],
                 ),
-                (widget.item.link !=null)?
+                new DetailCategory(
+                  icon: Icons.calendar_today,
+                  children: <Widget>[
+                    new DetailItem(
+                      tooltip: 'Date',
+                      lines:<String>[
+                        "${widget.item.date}",
+                        "Date"
+                      ],
+                    ),
+                  ],
+                ),
+                (widget.item.link != "nil")?
                 new DetailCategory(
                   icon: Icons.link,
                   children: <Widget>[
@@ -108,12 +120,9 @@ class EventDetailsState extends State<EventDetails> {
                   children: <Widget>[
                     new DetailItem(
                       tooltip: 'Open map',
-                      onPressed: () {
-                        launch("tel:8981866219");
-                      },
                       lines: <String>[
-                        "${widget.item.date}",
-                        "${widget.item.date}"
+                        "${widget.item.location}",
+                        "Venu *subject to change"
                       ],
                     ),
                   ],
@@ -124,30 +133,15 @@ class EventDetailsState extends State<EventDetails> {
                       new DetailItem(
                         tooltip: 'Send message',
                         onPressed: () {
-                          launch("tel:8981866219");
+                          launch("tel:+91${widget.item.contact.substring(0,10)}");
                         },
                         lines: <String>[
-                          '${widget.item.date}',
-                          '${widget.item.date}',
+                          '+91 ${widget.item.contact.substring(0,10)}',
+                          '${widget.item.contact.substring(11)}',
                         ],
                       )
                     ],
-                  ),
-                new DetailCategory(
-                  icon: Icons.contact_mail,
-                  children: <Widget>[
-                    new DetailItem(
-                      tooltip: 'Send personal e-mail',
-                      onPressed: () {
-                        launch("mailto:agarwalavinash14@gmail.com");
-                      },
-                      lines:<String>[
-                        "${widget.item.date}",
-                        "${widget.item.date}"
-                      ],
-                    ),
-                  ],
-                )
+                  )
               ]),
             ),
           ],

@@ -242,13 +242,13 @@ class _CommentItemState extends State<CommentItem> {
               (currentUser!=null && currentUser.uid == widget.authorId)?
               IconButton(
                   icon: Icon(Icons.edit,
-                      color: Colors.indigo),
+                      color: Color(0xFF353662)),
                   onPressed: _editOption
               ):Container(),
               (currentUser!=null && currentUser.uid == widget.authorId)?
               IconButton(
                   icon: Icon(Icons.delete,
-                      color: Colors.indigo),
+                      color: Color(0xFF353662)),
                   onPressed: _deleteOption
               ):Container()
             ],

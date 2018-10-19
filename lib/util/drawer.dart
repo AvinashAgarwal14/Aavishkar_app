@@ -43,19 +43,18 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         child: Container(
           color: Color.fromRGBO(0, 0, 0, 1.0),
           child: ListTileTheme(
-
             iconColor: Color.fromRGBO(255,255,255, 1.0),
             textColor: Color.fromRGBO(255,255,255, 1.0),
             selectedColor: Theme.of(context).primaryColor.withOpacity(1.0),
             child: ListView(padding: EdgeInsets.zero, children: <Widget>[
               DrawerHeader(
                 padding: EdgeInsets.all(0.0),
-                child: Image.asset("images/events.png", fit: BoxFit.fill),
+                child: Image.asset("images/gifs/pacman.gif", fit: BoxFit.cover),
               ),
               ListTile(
                 enabled: true,
                   trailing: Switch(
-                    activeColor: Colors.deepPurple,
+                    activeColor: Color(0xFF353662),
                       inactiveTrackColor: Colors.grey,
                       value: darkThemeEnabled,
                       onChanged: (bool value) {
@@ -86,7 +85,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   selected: (presestPageNumber == 0) ? true : false,
                   onTap: () {
                       presestPageNumber = 0;
-                    Navigator.popUntil(context, (ModalRoute.withName('/')));
+                    Navigator.popUntil(context, (ModalRoute.withName('/ui/dashboard')));
                   }),
               ListTile(
                   leading: Icon(Icons.monetization_on, ),
@@ -97,7 +96,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       Navigator.pop(context);
                     else {
                         presestPageNumber = 1;
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                       Navigator.of(context)
                           .push(SlideLeftRoute(widget: EurekoinHomePage()));
                     }
@@ -115,7 +114,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.pop(context);
                   else {
                     presestPageNumber = 4;
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: Schedule()));
                   }
@@ -130,7 +129,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       Navigator.pop(context);
                     else {
                         presestPageNumber = 5;
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                       Navigator.of(context).push(
                           SlideLeftRoute(widget: ActivitiesHomePage()));
                     }
@@ -145,7 +144,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.pop(context);
                   else {
                       presestPageNumber = 12;
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: Game()));
                   }
@@ -166,7 +165,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       Navigator.pop(context);
                     else {
                         presestPageNumber = 2;
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                       Navigator.of(context)
                           .push(SlideLeftRoute(widget: Scoreboard()));
                     }
@@ -181,7 +180,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.pop(context);
                   else {
                       presestPageNumber = 3;
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: SearchByTags()));
                   }
@@ -196,7 +195,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.pop(context);
                   else {
                       presestPageNumber = 6;
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: MapPage()));
                   }
@@ -212,31 +211,16 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.pop(context);
                   else {
                       presestPageNumber = 8;
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: LogInPage()));
                   }
                 }),
               ),
               ListTile(
-                  title: Text("Utilities",
+                  title: Text("About Us",
                       style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.bold))),
-              ListTile(
-                leading: Icon(Icons.accessibility,),
-                title:
-                    Text("About Us", ),
-                selected: (presestPageNumber == 7) ? true : false,
-                onTap: (() {
-                  if (presestPageNumber == 7)
-                    Navigator.pop(context);
-                  else {
-                      presestPageNumber = 7;
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
-                    Navigator.of(context)
-                        .push(SlideLeftRoute(widget: AboutUsPage()));
-                  }
-                }),
+                          color: Colors.grey, fontWeight: FontWeight.bold))
               ),
               ListTile(
                 leading: Icon(Icons.credit_card),
@@ -248,7 +232,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.pop(context);
                   else {
                       presestPageNumber = 9;
-                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: Sponsors()));
                   }
@@ -263,7 +247,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       Navigator.pop(context);
                     else {
                         presestPageNumber = 10;
-                      Navigator.popUntil(context, ModalRoute.withName('/'));
+                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                       Navigator.of(context)
                           .push(SlideLeftRoute(widget: ContactUs()));
                     }
@@ -277,10 +261,26 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                       Navigator.pop(context);
                     else {
                         presestPageNumber = 11;
-                        Navigator.popUntil(context, ModalRoute.withName('/'));
+                        Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
                         Navigator.of(context).push(SlideLeftRoute(widget: Contributors()));
                       }
                   }),
+              ListTile(
+                leading: Icon(Icons.info),
+                title:
+                Text("About Aavishkar"),
+                selected: (presestPageNumber == 7) ? true : false,
+                onTap: (() {
+                  if (presestPageNumber == 7)
+                    Navigator.pop(context);
+                  else {
+                    presestPageNumber = 7;
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget: AboutUsPage()));
+                  }
+                }),
+              )
             ]),
           ),
         ),

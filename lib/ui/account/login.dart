@@ -103,7 +103,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     if (currentUser == null) {
       return new Scaffold(
-
           drawer: NavigationDrawer(),
           body: new Container(
               decoration: new BoxDecoration(
@@ -239,7 +238,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         const DecoratedBox(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              begin: Alignment(0.0, -1.0),
+                              begin: Alignment(0.0, 0.6),
                               end: Alignment(0.0, -0.4),
                               colors: <Color>[
                                 Color(0x60000000),

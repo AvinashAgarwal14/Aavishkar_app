@@ -47,7 +47,7 @@ class _ContributorsState extends State<Contributors> {
     return Scaffold(
       drawer: NavigationDrawer(currentDisplayedPage: 11),
       appBar: AppBar(title: Text("Contributors"),),
-      backgroundColor: Theme.of(context).brightness==Brightness.light?Colors.white70:Colors.black ,
+//      backgroundColor: Theme.of(context).brightness==Brightness.light?Colors.white70:Colors.black ,
         body: ListView.builder(
 
             itemCount: 5,

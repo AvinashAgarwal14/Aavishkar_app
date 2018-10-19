@@ -64,7 +64,7 @@ class _ScheduleState extends State<Schedule> {
                     fit: StackFit.expand,
                     children: <Widget>[
                       new Image.asset(
-                        "images/events.png",
+                        "images/schedule.jpg",
                         fit: BoxFit.cover,
                         height: _appBarHeight,
                       ),
@@ -73,7 +73,7 @@ class _ScheduleState extends State<Schedule> {
                       const DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            begin: Alignment(0.0, -1.0),
+                            begin: Alignment(0.0, 0.6),
                             end: Alignment(0.0, -0.4),
                             colors: <Color>[
                               Color(0x60000000),
@@ -128,8 +128,8 @@ class _ScheduleState extends State<Schedule> {
                                         padding: new EdgeInsets.only(
                                             top: 10.0, bottom: 5.0),
                                         child: new Container(
-                                              width: 35.0,
-                                              height: 35.0,
+                                              width: 40.0,
+                                              height: 40.0,
                                               alignment: Alignment.center,
                                               decoration: new BoxDecoration(
                                                   shape: BoxShape.circle,
