@@ -23,7 +23,7 @@ class Aavishkar_App extends StatelessWidget {
     return DynamicTheme(
         defaultBrightness: Brightness.light,
         data: (brightness) => ThemeData(
-              primaryColor: Color(0xFF353662),
+              primaryColor: Color(0xFF505194),
               brightness: brightness,
               textTheme:
                   TextTheme(display1: TextStyle(fontWeight: FontWeight.bold)),

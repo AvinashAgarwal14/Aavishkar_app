@@ -205,7 +205,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
             padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 15.0),
             child: Column(
               children: <Widget>[
-                Text("Special Attractions ",
+                Text("Workshops and Special Attractions ",
                       style: TextStyle(fontSize: 18.0),
                 ),
                 Container(

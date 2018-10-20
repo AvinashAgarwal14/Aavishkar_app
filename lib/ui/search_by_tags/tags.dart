@@ -19,15 +19,15 @@ class _SearchByTagsState extends State<SearchByTags> {
   var _selectedTag = 'All';
 
   List<String> _tags = <String>[
-    'All',
     'Logic',
-    'Strategic',
+    'Strategy',
     'Mystery',
     'Innovation',
     'Treasure Hunt',
     'Coding',
     'Sports',
-    'Robotics'
+    'Robotics',
+    'Workshops'
   ];
 
   final FirebaseDatabase database = FirebaseDatabase.instance;
@@ -41,13 +41,14 @@ class _SearchByTagsState extends State<SearchByTags> {
     eventsByTags = {
       'All': new List(),
       'Logic': new List(),
-      'Strategic': new List(),
+      'Strategy': new List(),
       'Mystery': new List(),
       'Innovation': new List(),
       'Treasure Hunt': new List(),
       'Coding': new List(),
       'Sports': new List(),
-      'Robotics': new List()
+      'Robotics': new List(),
+      'Workshops': new List()
     };
 
     database.setPersistenceEnabled(true);
@@ -108,7 +109,7 @@ class _SearchByTagsState extends State<SearchByTags> {
             children: cardChildren,
           )),
           Divider(
-            color: Theme.of(context).brightness==Brightness.light ?Colors.grey:Color(0xFF353662),
+            color: Theme.of(context).brightness==Brightness.light ?Colors.grey:Color(0xFF505194),
           ),
           Container(
               child: Expanded(
@@ -182,7 +183,7 @@ class _SearchByTagsCardsState extends State<SearchByTagsCards> {
     super.initState();
     if (widget.eventCard.color != 'invalid') {
       if (widget.eventCard.color == 'null')
-        cardColor = new Color(0xffffff);
+        cardColor = Theme.of(context).brightness==Brightness.light ?Colors.white:Color(0xFF505194);
       else {
         String valueString = widget.eventCard.color
             .split('(0x')[1]

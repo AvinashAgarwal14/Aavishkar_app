@@ -7,7 +7,7 @@ import 'widgets.dart';
 import '../../util/drawer.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-const Color _kAppBackgroundColor = Color(0xFF353662);
+const Color _kAppBackgroundColor = Color(0xFF505194);
 const Duration _kScrollDuration = Duration(milliseconds: 400);
 const Curve _kScrollCurve = Curves.fastOutSlowIn;
 

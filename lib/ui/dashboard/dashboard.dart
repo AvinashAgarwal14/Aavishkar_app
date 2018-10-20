@@ -8,7 +8,6 @@ import '../../util/drawer.dart';
 import './dashboard_layout.dart';
 import './newsfeed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import '../search_by_tags/tags.dart';
 import '../eurekoin/eurekoin.dart';
@@ -21,9 +20,7 @@ class Dashboard extends StatefulWidget {
 }
 class _DashboardState extends State<Dashboard> {
 
-
   bool darkThemeEnabled=false;
-  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
   var _currentState = 0;
   FirebaseUser currentUser;
   int isEurekoinAlreadyRegistered;
@@ -37,32 +34,8 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     // TODO: implement initState
-    getUser();
     super.initState();
-
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        print("onMessage: $message");
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-        setState(() {
-          _currentState=1;
-        });
-      },
-      onResume: (Map<String, dynamic> message) async {
-        print("onResume: $message");
-        setState(() {
-          _currentState=1;
-        });
-      },
-    );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print("Settings registered: $settings");
-    });
+    getUser();
   }
 
   @override

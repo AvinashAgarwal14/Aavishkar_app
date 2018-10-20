@@ -186,6 +186,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                     ),
                     Container(
                       child: RaisedButton(
+                        color: Color(0xFF00f6ff),
                         onPressed: (){
                           registerEurekoinUser(referalCode.text);
                         },
@@ -198,6 +199,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                     :
                 Container(
                   child: RaisedButton(
+                      color: Color(0xFF00f6ff),
                       onPressed: (){
                         registerEurekoinUser('');
                       },
@@ -297,7 +299,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       onPressed: ()
                       {
                         print("Hey");
-                        launch("sms:?body=Use my referal code $userReferralCode to get 50 Eurekoins when you register. \nDownload Link: dsd5");
+                        launch("sms:?body=Use my referal code $userReferralCode to get 50 Eurekoins when you register. \nDownload Link: Google Play: https://play.google.com/store/apps/details?id=com.app.aavishkar.aavishkarapp");
                       },
                       lines: <String>[
                         "Your Refer Code is: ", "$userReferralCode"
@@ -331,7 +333,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                   icon: Icons.location_searching,
                   children: <Widget>[
                     DetailItem(
-                      icon: Image(image: AssetImage("images/QRIcon.png"), color: Color(0xFF353662)),
+                      icon: Image(image: AssetImage("images/QRIcon.png"), color: Color(0xFF505194)),
                       onPressed: ()
                       {
                         scanQR();
@@ -350,7 +352,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       height: 2.0,
                       child: LinearProgressIndicator(
                           valueColor:
-                          new AlwaysStoppedAnimation<Color>(Color(0xFF353662)))),
+                          new AlwaysStoppedAnimation<Color>(Color(0xFF505194)))),
                 ]))
           ],
         ),
@@ -368,6 +370,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
           children: <Widget>[
             Container(
               child: RaisedButton(
+            color: Color(0xFF00f6ff),
                   onPressed: (){
                     Navigator.of(context).pushNamed("/ui/account/login").then((onReturn){
                       _getUser();

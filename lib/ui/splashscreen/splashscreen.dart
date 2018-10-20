@@ -1,6 +1,8 @@
+import 'package:intro_slider/intro_slider.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,28 +11,46 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   String introScreen;
+  final FirebaseMessaging _firebaseMessaging = new FirebaseMessaging();
 
   @override
   initState() {
     // TODO: implement initState
     super.initState();
     loadSavedData();
+
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
+      print("Settings registered: $settings");
+    });
+
+    Timer(Duration(seconds: 4, milliseconds: 200), () {
+      if (introScreen == null) {
+        saveData();
+        Navigator.of(context).pushNamedAndRemoveUntil(
+              '/ui/intro', (Route<dynamic> route) => false);
+      } else {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/ui/dashboard', (Route<dynamic> route) => false);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (introScreen == null) {
-      saveData();
-      Timer(Duration(seconds: 2), () {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            '/ui/intro', (Route<dynamic> route) => false);
-      });
-    } else {
-      Timer(Duration(seconds: 2), () {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            '/ui/dashboard', (Route<dynamic> route) => false);
-      });
-    }
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -41,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     setState(() {
-      introScreen = preferences.getString('display');
+      introScreen = preferences.getString('display1');
     });
   }
 
@@ -51,61 +71,69 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
+
 class IntroScreen extends StatefulWidget {
   @override
   _IntroScreenState createState() => _IntroScreenState();
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  int imageIndex = 0;
 
-  List<AssetImage> images = [
-    AssetImage("images/introscreen/god of war.jpg"),
-    AssetImage("images/introscreen/joker.jpg"),
-    AssetImage("images/introscreen/mario.jpg"),
-  ];
+  List<Slide> slides = new List();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    slides.add(
+      new Slide(
+        title: "ERASER",
+//        widthImage: 800.0,
+        heightImage: 500.0,
+//        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
+        pathImage: "images/introscreen/mario.jpg",
+        backgroundColor: 0xfff5a623,
+      ),
+    );
+    slides.add(
+      new Slide(
+        title: "PENCIL",
+        description: "Ye indulgence unreserved connection alteration appearance",
+        pathImage: "images/introscreen/god of war.jpg",
+        backgroundColor: 0xff203152,
+      ),
+    );
+    slides.add(
+      new Slide(
+        title: "RULER",
+        description:
+        "Much evil soon high in hope do view. Out may few northward believing attempted. Yet timed being songs marry one defer men our. Although finished blessing do of",
+        pathImage: "images/introscreen/joker.jpg",
+        backgroundColor: 0xff9932CC,
+      ),
+    );
+
+  }
+
+  void onDonePress() {
+    // TODO: go to next screen
+    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/ui/dashboard', (Route<dynamic> route) => false);
+  }
+
+  void onSkipPress() {
+    // TODO: go to next screen
+    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/ui/dashboard', (Route<dynamic> route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: images[imageIndex], fit: BoxFit.fill)
-            )
-        ),
-        Container(
-          padding: EdgeInsets.only(bottom: 40.0),
-          alignment: Alignment.bottomCenter,
-          child: new SizedBox(
-            height: 5.0,
-            child: new Center(
-              child: new Container(
-                margin: new EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
-                height: 1.5,
-                color: Colors.grey,
-              ),
-            ),
-          ),
-        ),
-        Container(
-            alignment: Alignment.bottomRight,
-            child:RaisedButton(
-              shape:BeveledRectangleBorder() ,
-              child: Text("Next"),
-              onPressed: () {
-                
-                if (imageIndex == 3) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/ui/dashboard', (Route<dynamic> route) => false);
-                }
-                setState(() {
-                  imageIndex++;
-                });
-              },
-            ))
-      ],
+    return new IntroSlider(
+      slides: this.slides,
+      onDonePress: this.onDonePress,
+      onSkipPress: this.onSkipPress,
     );
   }
 }

@@ -36,7 +36,7 @@ class _DayOneScheduleState extends State<DayOneSchedule> {
               height: 2.0,
               child: LinearProgressIndicator(
                   valueColor:
-                      new AlwaysStoppedAnimation<Color>(Color(0xFF353662))))
+                      new AlwaysStoppedAnimation<Color>(Color(0xFF505194))))
     ]);
   }
 
