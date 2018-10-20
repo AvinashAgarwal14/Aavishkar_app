@@ -127,6 +127,7 @@ class EventDetailsState extends State<EventDetails> {
                     ),
                   ],
                 ),
+        (widget.item.contact!=null && widget.item.contact.length > 10)?
                 new DetailCategory(
                     icon: Icons.call,
                     children: <Widget>[
@@ -141,7 +142,8 @@ class EventDetailsState extends State<EventDetails> {
                         ],
                       )
                     ],
-                  )
+                  ):
+            new Container()
               ]),
             ),
           ],

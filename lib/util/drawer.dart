@@ -54,7 +54,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               ListTile(
                 enabled: true,
                   trailing: Switch(
-                    activeColor: Color(0xFF353662),
+                    activeColor: Color(0xFF505194),
                       inactiveTrackColor: Colors.grey,
                       value: darkThemeEnabled,
                       onChanged: (bool value) {
@@ -64,15 +64,15 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                         Theme.of(context).brightness == Brightness.dark
                             ? DynamicTheme.of(context)
                                 .setThemeData(new ThemeData(
-                                primaryColor: Color(0xFF353662),
+                                primaryColor: Color(0xFF505194),
                               ))
                             : DynamicTheme.of(context)
                                 .setThemeData(new ThemeData(
 //                            accentTextTheme: TextTheme(
 //                                title: TextStyle(color: Colors.white)),
-                          primaryColor: Color(0xFF353662),
+                          primaryColor: Color(0xFF505194),
                                 splashColor: Colors.transparent,
-                                accentColor: Color(0xFF353662),
+                                accentColor: Color(0xFF505194),
                                 brightness: Brightness.dark,
                               ));
                         print(Theme.of(context).brightness);

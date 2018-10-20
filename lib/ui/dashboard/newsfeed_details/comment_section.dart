@@ -242,13 +242,13 @@ class _CommentItemState extends State<CommentItem> {
               (currentUser!=null && currentUser.uid == widget.authorId)?
               IconButton(
                   icon: Icon(Icons.edit,
-                      color: Color(0xFF353662)),
+                      color: Color(0xFF505194)),
                   onPressed: _editOption
               ):Container(),
               (currentUser!=null && currentUser.uid == widget.authorId)?
               IconButton(
                   icon: Icon(Icons.delete,
-                      color: Color(0xFF353662)),
+                      color: Color(0xFF505194)),
                   onPressed: _deleteOption
               ):Container()
             ],
@@ -387,7 +387,7 @@ class _AddNewCommentState extends State<AddNewComment> {
                   ),
                   Expanded(
                     child: IconButton(
-                        icon: Icon(Icons.play_arrow, color: Color(0xFF353662)),
+                        icon: Icon(Icons.play_arrow, color: Color(0xFF505194)),
                         onPressed: ()
                         {
                           if(widget.user == null)

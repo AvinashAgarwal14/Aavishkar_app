@@ -88,9 +88,23 @@ class _GameState extends State<Game> {
             return new GameDemo();
           }
           else {
-            return new Container(
-              child: Center(
-                  child: CircularProgressIndicator()
+            return Container(
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: Theme
+                          .of(context)
+                          .brightness == Brightness.light ?
+                      AssetImage("images/gifs/loaderlight.gif") :
+                      AssetImage("images/gifs/loaderdark.gif"),
+                      fit: BoxFit.fill)
               ),
             );
           }

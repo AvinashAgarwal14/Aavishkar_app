@@ -159,7 +159,7 @@ class _ScheduleState extends State<Schedule> {
                                                           decoration: new BoxDecoration(
                                                               shape: BoxShape
                                                                   .circle,
-                                                              color: Color(0xFF353662)),
+                                                              color: Color(0xFF505194)),
                                                         )
                                                       : new Container()
                                                 ],

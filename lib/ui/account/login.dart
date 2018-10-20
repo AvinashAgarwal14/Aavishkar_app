@@ -11,13 +11,11 @@ import '../activities/events/event_details.dart';
 import '../../util/detailSection.dart';
 import '../../util/drawer.dart';
 
-
-
 var kFontFam = 'CustomFonts';
 
-IconData github_circled =  IconData(0xe800, fontFamily: kFontFam);
-IconData linkedin =  IconData(0xe801, fontFamily: kFontFam);
-IconData facebook =  IconData(0xf052, fontFamily: kFontFam);
+IconData github_circled = IconData(0xe800, fontFamily: kFontFam);
+IconData linkedin = IconData(0xe801, fontFamily: kFontFam);
+IconData facebook = IconData(0xf052, fontFamily: kFontFam);
 IconData google = IconData(0xf1a0, fontFamily: kFontFam);
 IconData facebook_1 = IconData(0xf300, fontFamily: kFontFam);
 
@@ -35,7 +33,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   final _facebookLogin = new FacebookLogin();
   FirebaseUser currentUser;
 
-  bool previouslyLoggedIn=false;
+  bool previouslyLoggedIn = false;
   AnimationController _glogInButtonController;
   AnimationController _flogInButtonController;
   var animationStatus = 0;
@@ -45,7 +43,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   @override
-  void initState () {
+  void initState() {
     // TODO: implement initState
     super.initState();
     getUser();
@@ -61,17 +59,16 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
 
   Future<Null> _playAnimation(int n) async {
     try {
-      if (n == 1){
+      if (n == 1) {
         print("BLOCK 31");
         await _glogInButtonController.forward();
         print("BLOCK 31");
         setState(() {});
-      }
-      else if (n == 2){
+      } else if (n == 2) {
         await _flogInButtonController.forward();
-            setState(() {});
+        setState(() {});
       }
-      } on TickerCanceled{}
+    } on TickerCanceled {}
   }
 
   Future<Null> _reverseAnimation(int n) async {
@@ -82,22 +79,19 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         print("BLOCK 52");
         setState(() {
           print("BLOCK 52");
-          animationStatus=0;
-          currentUser=null;
+          animationStatus = 0;
+          currentUser = null;
         });
-      }
-      else if(n==2) {
+      } else if (n == 2) {
         await _flogInButtonController.reverse();
         //await _glogInButtonController.reverse();
         setState(() {
-          animationStatus=0;
-          currentUser=null;
+          animationStatus = 0;
+          currentUser = null;
         });
       }
-      } on TickerCanceled {}
+    } on TickerCanceled {}
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,154 +106,170 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   decoration: new BoxDecoration(
-                      gradient: new LinearGradient(
-                        colors: <Color>[
-                          const Color.fromRGBO(162, 146, 199, 0.8),
-                          const Color.fromRGBO(51, 51, 63, 0.9),
-                        ],
-                        stops: [0.2, 1.0],
-                        begin: const FractionalOffset(0.0, 0.0),
-                        end: const FractionalOffset(0.0, 1.0),
-                      )),
-
-                  child:  new ListView(
-                        padding: const EdgeInsets.all(0.0),
-                        children: <Widget>[
-                          new Stack(
-                              alignment: (animationStatus==0)?AlignmentDirectional.topCenter : AlignmentDirectional.center,
-                              children: <Widget>[
-
-                                animationStatus==0?
-                                  Padding(
-                                      padding: const EdgeInsets.only(top: 15.0,left:5.0 ),
-                                child: ListTile(leading: BackButton(color: Colors.white,),),
-                              ):
-                                Container(),
-                                animationStatus!=0?
-                                SizedBox(height: MediaQuery.of(context).size.height):
-                                Container(),
-                                animationStatus == 0
-                                ? ( Container(
+                      gradient:
+                      new LinearGradient(
+                    colors: <Color>[
+                      const Color.fromRGBO(162, 146, 199, 0.4),
+                      const Color.fromRGBO(51, 51, 63, 0.4),
+                    ],
+                    stops: [0.2, 1.0],
+                    begin: const FractionalOffset(0.0, 0.0),
+                    end: const FractionalOffset(0.0, 1.0),
+                  )
+                  ),
+                  child: new ListView(
+                    padding: const EdgeInsets.all(0.0),
+                    children: <Widget>[
+                      new Stack(
+                          alignment: (animationStatus == 0)
+                              ? AlignmentDirectional.topCenter
+                              : AlignmentDirectional.center,
+                          children: <Widget>[
+                            animationStatus == 0
+                                ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 15.0, left: 5.0),
+                                    child: ListTile(
+                                      leading: BackButton(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                : Container(),
+                            animationStatus != 0
+                                ? SizedBox(
+                                    height: MediaQuery.of(context).size.height)
+                                : Container(),
+                            animationStatus == 0
+                                ? (Container(
                                     child: new Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              SizedBox(height: MediaQuery.of(context).size.height/3),
-                                              new Padding(
-                                                padding: const EdgeInsets.only(
-                                                    ),
-                                                child: new InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        animationStatus = 1;
-                                                      });
-                                                    },
-                                                    child: SignIn(
-                                                        "Sign in with Google")),
-                                              ),
-                                             Padding(
-                                               padding: const EdgeInsets.all(20.0),
-                                               child: Center(child: Text("OR",style: TextStyle(color: Colors.white, fontSize: 20.0),)),
-                                             ),
-                                              new Padding(
-                                                padding: const EdgeInsets.only(
-                                                    ),
-                                                child: new InkWell(
-                                                    onTap: () {
-
-                                                      setState(() {
-                                                        animationStatus = 2;
-                                                      });
-                                                    },
-                                                    child: SignIn(
-                                                        "Sign in with Facebook")),
-                                              ),
-                                            ],
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                          ),
-                                )
-                                    )
-                                    :
-
-                                    FutureBuilder(
-                                        future: animationStatus == 1
-                                            ? _gSignIn()
-                                            : _fSignIn(),
-                                        builder: (BuildContext context,
-                                            AsyncSnapshot snapshot) {
-                                          if (currentUser == null) {
-                                            print("---------Gangnum");
-                                            return
-                                            animationStatus==1 ?  Container(
-                                                child: CircularProgressIndicator(
-                                              value: null,
-                                              strokeWidth: 2.0,
-                                              valueColor:new AlwaysStoppedAnimation<
-                                                      Color>(Colors.white),
-                                            )
-                                            )
-                                          : Container();
-                                          } else {
-                                            _playAnimation(animationStatus);
-                                            return new StaggerAnimation(
-                                                buttonController:
-                                                    animationStatus == 2
-                                                        ? _flogInButtonController
-                                                            .view
-                                                        : _glogInButtonController
-                                                            .view);
-                                          }
-                                        })
-                              ])
-                        ],
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                3),
+                                        new Padding(
+                                          padding: const EdgeInsets.only(),
+                                          child: new InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  animationStatus = 1;
+                                                });
+                                              },
+                                              child: SignIn(
+                                                  "Sign in with Google")),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Center(
+                                              child: Text(
+                                            "OR",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20.0),
+                                          )),
+                                        ),
+                                        new Padding(
+                                          padding: const EdgeInsets.only(),
+                                          child: new InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  animationStatus = 2;
+                                                });
+                                              },
+                                              child: SignIn(
+                                                  "Sign in with Facebook")),
+                                        ),
+                                      ],
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                    ),
+                                  ))
+                                : FutureBuilder(
+                                    future: animationStatus == 1
+                                        ? _gSignIn()
+                                        : _fSignIn(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot snapshot) {
+                                      if (currentUser == null) {
+                                        print("---------Gangnum");
+                                        return animationStatus == 1
+                                            ? Container(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                value: null,
+                                                strokeWidth: 2.0,
+                                                valueColor:
+                                                    new AlwaysStoppedAnimation<
+                                                        Color>(Colors.white),
+                                              ))
+                                            : Container();
+                                      } else {
+                                        _playAnimation(animationStatus);
+                                        return new StaggerAnimation(
+                                            buttonController: animationStatus ==
+                                                    2
+                                                ? _flogInButtonController.view
+                                                : _glogInButtonController.view);
+                                      }
+                                    })
+                          ])
+                    ],
                   ))));
     } else {
       return new Scaffold(
-          body: previouslyLoggedIn==false ? new Scaffold(
-              key: _scaffoldKey,
-              drawer: NavigationDrawer(currentDisplayedPage: 8),
-              body: new CustomScrollView(slivers: <Widget>[
-                new SliverAppBar(
-                  expandedHeight: _appBarHeight,
-                  pinned: _appBarBehavior == AppBarBehavior.pinned,
-                  floating: _appBarBehavior == AppBarBehavior.floating ||
-                      _appBarBehavior == AppBarBehavior.snapping,
-                  snap: _appBarBehavior == AppBarBehavior.snapping,
-                  flexibleSpace: new FlexibleSpaceBar(
-                    title: Text('Profile'),
-                    background: new Stack(
-                      fit: StackFit.expand,
-                      children: <Widget>[
-                        new Image.network(
-                          "${currentUser.photoUrl}",
-                          fit: BoxFit.cover,
-                          height: _appBarHeight,
-                        ),
-                        // This gradient ensures that the toolbar icons are distinct
-                        // against the background image.
-                        const DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment(0.0, 0.6),
-                              end: Alignment(0.0, -0.4),
-                              colors: <Color>[
-                                Color(0x60000000),
-                                Color(0x00000000)
-                              ],
+          body: previouslyLoggedIn == false
+              ? new Scaffold(
+                  key: _scaffoldKey,
+                  drawer: NavigationDrawer(currentDisplayedPage: 8),
+                  body: new CustomScrollView(slivers: <Widget>[
+                    new SliverAppBar(
+                      expandedHeight: _appBarHeight,
+                      pinned: _appBarBehavior == AppBarBehavior.pinned,
+                      floating: _appBarBehavior == AppBarBehavior.floating ||
+                          _appBarBehavior == AppBarBehavior.snapping,
+                      snap: _appBarBehavior == AppBarBehavior.snapping,
+                      flexibleSpace: new FlexibleSpaceBar(
+                        title: Text('Profile'),
+                        background: new Stack(
+                          fit: StackFit.expand,
+                          children: <Widget>[
+                            new Image.network(
+                              "${currentUser.photoUrl}",
+                              fit: BoxFit.cover,
+                              height: _appBarHeight,
                             ),
-                          ),
+                            // This gradient ensures that the toolbar icons are distinct
+                            // against the background image.
+                            const DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment(0.0, 0.6),
+                                  end: Alignment(0.0, -0.4),
+                                  colors: <Color>[
+                                    Color(0x60000000),
+                                    Color(0x00000000)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                new SliverList(
-                    delegate: new SliverChildListDelegate(<Widget>[
+                    new SliverList(
+                        delegate: new SliverChildListDelegate(<Widget>[
                       DetailCategory(
                         icon: Icons.person,
                         children: <Widget>[
                           DetailItem(
-                            lines: <String>["Name :", "${currentUser.displayName}"],
+                            lines: <String>[
+                              "Name :",
+                              "${currentUser.displayName}"
+                            ],
                           )
                         ],
                       ),
@@ -272,7 +282,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         ],
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.of(context).pushNamed("/ui/eurekoin");
                         },
                         child: DetailCategory(
@@ -285,8 +295,9 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
-                          if(currentUser.providerData[1].providerId=="google.com")
+                        onTap: () {
+                          if (currentUser.providerData[1].providerId ==
+                              "google.com")
                             _gSignOut();
                           else
                             _fSignOut();
@@ -302,71 +313,73 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                         ),
                       )
                     ]))
-              ])):
-               Scaffold(
-              body: Container(
-    decoration: new BoxDecoration(
-    image: backgroundImage,
-    ),
-    child: new Container(
-    height: MediaQuery.of(context).size.height,
-    width: MediaQuery.of(context).size.width,
-    decoration: new BoxDecoration(
-    gradient: new LinearGradient(
-    colors: <Color>[
-    const Color.fromRGBO(162, 146, 199, 0.8),
-    const Color.fromRGBO(51, 51, 63, 0.9),
-    ],
-    stops: [0.2, 1.0],
-    begin: const FractionalOffset(0.0, 0.0),
-    end: const FractionalOffset(0.0, 1.0),
-    )),
-    child:  ListView(
-                  children: <Widget>[
-                    Stack(
-                      alignment: AlignmentDirectional.bottomCenter,
-                      children: <Widget>[
-                        SizedBox(height: MediaQuery.of(context).size.height/2,),
-                        FutureBuilder(
-                            future: animationStatus==1?_reverseAnimation(1):_reverseAnimation(2),
-                            builder: (BuildContext context,
-                                AsyncSnapshot snapshot) {
-                              previouslyLoggedIn=false;
-                              animationStatus==1?_reverseAnimation(1):_reverseAnimation(2);
-                              return Center(child:StaggerAnimation(
-                                buttonController:animationStatus==1? _glogInButtonController.view:_flogInButtonController.view,
-                              ));
-
-                            })
-                      ],
-
-                    )
-                  ],
-                ),
-              )
-              )
-      )
-      );
+                  ]))
+              : Scaffold(
+                  body: Container(
+                      decoration: new BoxDecoration(
+                        image: backgroundImage,
+                      ),
+                      child: new Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: new BoxDecoration(
+                            gradient: new LinearGradient(
+                          colors: <Color>[
+                            const Color.fromRGBO(162, 146, 199, 0.8),
+                            const Color.fromRGBO(51, 51, 63, 0.9),
+                          ],
+                          stops: [0.2, 1.0],
+                          begin: const FractionalOffset(0.0, 0.0),
+                          end: const FractionalOffset(0.0, 1.0),
+                        )),
+                        child: ListView(
+                          children: <Widget>[
+                            Stack(
+                              alignment: AlignmentDirectional.bottomCenter,
+                              children: <Widget>[
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 2,
+                                ),
+                                FutureBuilder(
+                                    future: animationStatus == 1
+                                        ? _reverseAnimation(1)
+                                        : _reverseAnimation(2),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot snapshot) {
+                                      previouslyLoggedIn = false;
+                                      animationStatus == 1
+                                          ? _reverseAnimation(1)
+                                          : _reverseAnimation(2);
+                                      return Center(
+                                          child: StaggerAnimation(
+                                        buttonController: animationStatus == 1
+                                            ? _glogInButtonController.view
+                                            : _flogInButtonController.view,
+                                      ));
+                                    })
+                              ],
+                            )
+                          ],
+                        ),
+                      ))));
     }
   }
 
   Future getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    if(user==null) {
+    if (user == null) {
       setState(() {
         currentUser = user;
         animationStatus = 0;
       });
-    }
-    else{
+    } else {
       setState(() {
-        currentUser=user;
-        if(user.providerData[1].providerId=="google.com")
-        {
-          animationStatus=1;
+        currentUser = user;
+        if (user.providerData[1].providerId == "google.com") {
+          animationStatus = 1;
           _playAnimation(1);
-        }
-        else {
+        } else {
           animationStatus = 2;
           _playAnimation(2);
         }
@@ -380,29 +393,27 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
     setState(() {
       previouslyLoggedIn = true;
     });
-    }
-
-
+  }
 
   _fSignOut() async {
     _facebookLogin.logOut();
     _auth.signOut();
     setState(() {
-      previouslyLoggedIn=true;
+      previouslyLoggedIn = true;
     });
   }
 
   Future _gSignIn() async {
     GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
     GoogleSignInAuthentication googleSignInAuthentication =
-    await googleSignInAccount.authentication;
+        await googleSignInAccount.authentication;
 
     FirebaseUser user = await _auth.signInWithGoogle(
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken,
     );
-      currentUser = user;
-      database
+    currentUser = user;
+    database
         .reference()
         .child("Profiles")
         .update({"${user.uid}": "${user.email}"});
@@ -418,7 +429,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         print(result.accessToken.token);
         user = await _auth.signInWithFacebook(
             accessToken: result.accessToken.token);
-          currentUser = user;
+        currentUser = user;
         print("Facebook user: ");
         print(user);
         database
@@ -438,35 +449,40 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
 
   SignIn(String str) {
     return (new Container(
-      width: MediaQuery.of(context).size.width-80.0,
+      width: MediaQuery.of(context).size.width - 80.0,
       height: 60.0,
       alignment: FractionalOffset.center,
       decoration: new BoxDecoration(
         color: const Color.fromRGBO(247, 64, 106, 1.0),
         borderRadius: new BorderRadius.all(const Radius.circular(30.0)),
       ),
-      child:
-        Row(mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-             // child: Image( image: str.contains("Google")?AssetImage("images/googleicon.jpg"):AssetImage("images/facebookicon.jpg"),),
-             child: str.contains("Google")?Icon(google,):Icon(facebook,),
-            ),
-           Text(
-                  str,
-                  maxLines: 1,
-                  style: new TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w300,
-                    letterSpacing: 0.3,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            // child: Image( image: str.contains("Google")?AssetImage("images/googleicon.jpg"):AssetImage("images/facebookicon.jpg"),),
+            child: str.contains("Google")
+                ? Icon(
+                    google,
+                  )
+                : Icon(
+                    facebook,
                   ),
-                ),
-
-          ],
-        ),
+          ),
+          Text(
+            str,
+            maxLines: 1,
+            style: new TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w300,
+              letterSpacing: 0.3,
+            ),
+          ),
+        ],
+      ),
     ));
   }
 }

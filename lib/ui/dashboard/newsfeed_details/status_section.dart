@@ -45,8 +45,8 @@ class _StatusCategoryState extends State<StatusCategory> {
   @override
   Widget build(BuildContext context) {
     likeOptions = [
-      Icon(Icons.thumb_up, color: (Theme.of(context).brightness == Brightness.light)?Colors.black:Colors.white),
-      Icon(Icons.thumb_up, color: Color(0xFF353662))
+      Icon(Icons.thumb_up, color: Color(0xFF505194)),
+      Icon(Icons.thumb_up, color: Colors.grey)
     ];
     if(currentUser!=null && currentLike==true)
       likeButton = likeOptions[1];
@@ -110,20 +110,20 @@ class _StatusCategoryState extends State<StatusCategory> {
                             width: 60.0,
                             child: Column(
                               children: <Widget>[
-                                Icon(Icons.mode_comment, color: Color(0xFF353662)),
+                                Icon(Icons.mode_comment, color: Color(0xFF505194)),
                                 Padding(padding: EdgeInsets.only(top: 10.0)),
                                 Text("${widget.commentsCount}")
                               ],
                             )
                         ),
                         Container(
-                            padding: EdgeInsets.only(top: 10.0),
+                            padding: EdgeInsets.only(top: 15.0),
                             width: 72.0,
                             child: Column(
                               children: <Widget>[
-                                Icon(Icons.date_range, color: Color(0xFF353662)),
+                                Icon(Icons.date_range, color: Color(0xFF505194)),
                                 Padding(padding: EdgeInsets.only(top: 10.0)),
-                                Text("${widget.date}", style: TextStyle(fontSize: 13.0),)
+                                Text("${widget.date}")
                               ],
                             )
                         ),

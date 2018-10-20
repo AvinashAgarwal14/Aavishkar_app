@@ -142,7 +142,7 @@ class _SectionDetailViewState extends State<SectionDetailView> {
     super.initState();
     if (widget.detail.color != 'invalid') {
       if (widget.detail.color == 'null')
-        cardColor = new Color(0xffffff);
+        cardColor = Color(0xFF505194);
       else {
         String valueString = widget.detail.color
             .split('(0x')[1]

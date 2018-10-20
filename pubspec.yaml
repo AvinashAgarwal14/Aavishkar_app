@@ -28,6 +28,7 @@ dependencies:
   palette_generator: ^0.1.0
   path_provider:
   spritewidget: ^0.9.17
+  intro_slider: ^1.0.7
   dynamic_theme:
     git:
       url: git://github.com/Norbert515/dynamic_theme.git

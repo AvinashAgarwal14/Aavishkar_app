@@ -260,6 +260,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.7"
+  intro_slider:
+    dependency: "direct main"
+    description:
+      name: intro_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   io:
     dependency: transitive
     description:
@@ -541,12 +548,10 @@ packages:
   uri:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: a31e0ce43294780088a4ec5bb964db5501350375
-      url: "https://github.com/diegoveloper/uri.dart.git"
-    source: git
-    version: "0.11.3"
+      name: uri
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.3+1"
   url_launcher:
     dependency: "direct main"
     description:

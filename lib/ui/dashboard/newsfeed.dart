@@ -32,25 +32,38 @@ class _NewsfeedState extends State<Newsfeed> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        cacheExtent: MediaQuery.of(context).size.height*3,
-        itemCount: feed.length,
-        itemBuilder: (BuildContext context, position) {
-          return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FeedDetails(
-                          postKey: feed[position].key,
-                          commentCount: feed[position].commentsCount)),
-                );
-              },
-              child: NewsfeedCards(cardItem: feed[position]));
-        });
+    return
+      (feed.length != 0)
+        ? ListView.builder(
+            cacheExtent: MediaQuery.of(context).size.height * 3,
+            itemCount: feed.length,
+            itemBuilder: (BuildContext context, position) {
+              return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FeedDetails(
+                              postKey: feed[position].key,
+                              commentCount: feed[position].commentsCount)),
+                    );
+                  },
+                  child: NewsfeedCards(cardItem: feed[position]));
+            })
+        :
+      Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: Theme.of(context).brightness == Brightness.light
+                        ? AssetImage("images/gifs/loaderlight.gif")
+                        : AssetImage("images/gifs/loaderdark.gif"),
+                    fit: BoxFit.cover)));
   }
 
   void _onEntryAdded(Event event) {
+    print(feed.length);
     setState(() {
       feed.add(NewsfeedItem.fromSnapshot(event.snapshot));
     });
