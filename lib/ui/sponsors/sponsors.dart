@@ -52,7 +52,18 @@ class _SponsorsState extends State<Sponsors> {
                     (sponsorList.length % 2 != 0))
                   return majorSponsor(sponsorList[indexOfWidget++], b);
               })
-          : Container(),
+          : Container(
+
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: Theme.of(context).brightness==Brightness.light?
+                AssetImage("images/gifs/loaderlight.gif"):
+                AssetImage("images/gifs/loaderdark.gif"),
+                fit: BoxFit.fill)
+        ),
+      ),
     );
   }
 

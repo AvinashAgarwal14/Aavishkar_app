@@ -55,21 +55,21 @@ List<Section> allSections = <Section>[
     title: 'Workshops',
     leftColor: _tomato,
     rightColor: _inbetween,
-    backgroundAsset: 'images/events.png',
+    backgroundAsset: 'images/activities/workshops.jpeg',
     details: eventsByCategories['Workshops']
   ),
   Section(
     title: 'Special Attractions',
     leftColor: _mySin,
     rightColor: _tomato,
-    backgroundAsset: 'images/events.png',
+    backgroundAsset: 'images/activities/special attraction.jpeg',
     details: eventsByCategories['Games']
   ),
   Section(
     title: 'Ignitia',
     leftColor: Colors.white,
     rightColor: _tomato,
-    backgroundAsset: 'images/events.png',
+    backgroundAsset: 'images/activities/ignitia.jpeg',
       details: eventsByCategories['Ignitia']
   ),
 ];

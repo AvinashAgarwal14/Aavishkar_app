@@ -617,7 +617,16 @@ class _ActivitiesHomePageState extends State<ActivitiesHomePage> {
                             (eventsByCategories['On-site'].length==0 || eventsByCategories['Online'].length==0
                             || eventsByCategories['Workshops'].length==0 ||eventsByCategories['Games'].length==0
                             || eventsByCategories['Ignitia'].length==0)?
-                                CircularProgressIndicator():
+                               Container(
+                                 height: MediaQuery.of(context).size.height,
+                                 width: MediaQuery.of(context).size.width,
+                                 decoration: BoxDecoration(
+                                     image: DecorationImage(
+                                         image: Theme.of(context).brightness==Brightness.light?
+                                         AssetImage("images/gifs/loaderlight.gif"):
+                                         AssetImage("images/gifs/loaderdark.gif"),
+                                         fit: BoxFit.fill)
+                                 ),):
                             new ListView(
                                 cacheExtent: MediaQuery.of(context).size.height*3,
 //                            crossAxisAlignment: CrossAxisAlignment.stretch,
