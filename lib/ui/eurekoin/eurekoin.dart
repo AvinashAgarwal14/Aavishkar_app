@@ -376,7 +376,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       _getUser();
                     });
                   },
-                  child: Text("Login First")
+                  child: Text("Login")
               ),
             )
           ],

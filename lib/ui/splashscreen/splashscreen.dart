@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     setState(() {
-      introScreen = preferences.getString('display1');
+      introScreen = preferences.getString('display');
     });
   }
 
@@ -88,27 +88,18 @@ class _IntroScreenState extends State<IntroScreen> {
 
     slides.add(
       new Slide(
-        title: "ERASER",
-//        widthImage: 800.0,
-        heightImage: 500.0,
-//        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
         pathImage: "images/introscreen/mario.jpg",
         backgroundColor: 0xfff5a623,
       ),
     );
     slides.add(
       new Slide(
-        title: "PENCIL",
-        description: "Ye indulgence unreserved connection alteration appearance",
         pathImage: "images/introscreen/god of war.jpg",
         backgroundColor: 0xff203152,
       ),
     );
     slides.add(
       new Slide(
-        title: "RULER",
-        description:
-        "Much evil soon high in hope do view. Out may few northward believing attempted. Yet timed being songs marry one defer men our. Although finished blessing do of",
         pathImage: "images/introscreen/joker.jpg",
         backgroundColor: 0xff9932CC,
       ),
