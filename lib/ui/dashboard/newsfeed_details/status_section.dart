@@ -1,9 +1,11 @@
+
 import 'dart:async';
 import 'package:aavishkarapp/model/newsfeed.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../model/post_likes.dart';
+import 'package:intl/intl.dart';
 
 class StatusCategory extends StatefulWidget {
   StatusCategory({ Key key, this.postKey, this.commentsCount, this.date }) : super(key: key);
@@ -23,6 +25,7 @@ class _StatusCategoryState extends State<StatusCategory> {
   DatabaseReference _databaseReferenceForPostsLikes;
   int numberOfLikes;
   FirebaseUser currentUser;
+  List<String> likeIds;
   String likeId;
   bool currentLike;
 
@@ -33,9 +36,10 @@ class _StatusCategoryState extends State<StatusCategory> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUser();
+    getUser(0);
     numberOfLikes = 0;
     currentLike = false;
+    likeIds = new List();
     _databaseReferenceForPostsLikes = _database.reference().child("Posts-Likes").child("${widget.postKey}");
     _databaseReferenceForPostsLikes.onChildAdded.listen(_onLikesEntryAdded);
 
@@ -76,32 +80,32 @@ class _StatusCategoryState extends State<StatusCategory> {
                               children: <Widget>[
                                 IconButton(icon: likeButton, onPressed: () {
                                   if(currentUser==null)
+                                  {
+                                    Navigator.of(context).pushNamed("/ui/account/login").then((onReturn){
+                                      getUser(1);
+                                    });
+                                  } else
+                                  {
+                                    if(likeButton == likeOptions[0])
                                     {
-                                      Navigator.of(context).pushNamed("/ui/account/login").then((onReturn){
-                                        getUser();
+                                      setState(() {
+                                        currentLike = true;
                                       });
-                                    } else
-                                      {
-                                          if(likeButton == likeOptions[0])
-                                          {
-                                            setState(() {
-                                              currentLike = true;
-                                            });
-                                            _addUserToPostLikes();
-                                            _updatePost(numberOfLikes+1);
-                                          }
-                                          else
-                                          {
-                                            setState(() {
-                                              currentLike =  false;
-                                              numberOfLikes--;
-                                            });
-                                            _deleteUserFromPostLikes();
-                                            _updatePost(numberOfLikes);
-                                          }
-                                      }
+                                      _addUserToPostLikes();
+                                      _updatePost(numberOfLikes+1);
+                                    }
+                                    else
+                                    {
+                                      setState(() {
+                                        currentLike =  false;
+                                        numberOfLikes--;
+                                      });
+                                      _deleteUserFromPostLikes();
+                                      _updatePost(numberOfLikes);
+                                    }
+                                  }
                                 }),
-                                  Text("$numberOfLikes")
+                                Text("$numberOfLikes")
                               ],
                             )
                         ),
@@ -137,32 +141,45 @@ class _StatusCategoryState extends State<StatusCategory> {
     );
   }
 
-  Future getUser() async {
+  Future getUser(int choice) async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
     setState(() {
       currentUser = user;
+      if(choice==1)
+      {
+        if(currentUser!=null)
+        {
+          for(var id in likeIds)
+            if(id==currentUser.uid)
+            {
+              setState(() {
+                currentLike = true;
+              });
+            }
+        }
+      }
     });
   }
 
   void _onLikesEntryAdded(Event event) {
     setState(() {
       numberOfLikes++;
-      print(numberOfLikes);
+      likeIds.add(event.snapshot.value['authorId']);
       if(currentUser!=null && event.snapshot.value['authorId'] == currentUser.uid)
-        {
-          currentLike = true;
-          likeId = event.snapshot.key;
-        }
+      {
+        currentLike = true;
+        likeId = event.snapshot.key;
+      }
     });
   }
 
   void _addUserToPostLikes()
   {
 
-        PostsLikeItem user = new PostsLikeItem('', '');
-        user.authorId = currentUser.uid;
-        user.date = '62616110';
-        _databaseReferenceForPostsLikes.push().set(user.toJson());
+    PostsLikeItem user = new PostsLikeItem('', '');
+    user.authorId = currentUser.uid;
+    user.date = new DateFormat.yMMMd().add_jm().format(new DateTime.now());
+    _databaseReferenceForPostsLikes.push().set(user.toJson());
 
   }
 
@@ -178,3 +195,7 @@ class _StatusCategoryState extends State<StatusCategory> {
     });
   }
 }
+
+	
+	
+	
