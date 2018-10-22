@@ -171,29 +171,31 @@ class _ContactUsState extends State<ContactUs> {
                         child: Image.asset(contactCard["Image"][index],
                             fit: BoxFit.cover)),
                     Container(
-                      height: 100.0,
-                      margin: EdgeInsets.only(top: 98.0),
+                      height: 80.0,
+                      margin: EdgeInsets.only(top: 114.0),
                       color: Color.fromRGBO(0, 0, 0, 0.65),
                       child:
                           Column(
+                            mainAxisSize: MainAxisSize.min,
+                            //crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
                                   contactCard["User"][index],
                                   style: TextStyle(
-                                      fontSize: 15.0, color: Colors.white),
+                                      fontSize: 13.0, color: Colors.white),
                                 ),
                                 Text(contactCard["Designation"][index],
                                     style: TextStyle(
-                                        fontSize: 12.0, color: Colors.white70)),
+                                        fontSize: 10.0, color: Colors.white70)),
                           Row(
 //                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Flexible(
                                 child: IconButton(
-                                  padding: EdgeInsets.all(0.0),
-                                  iconSize: 17.0,
+                                  //padding: EdgeInsets.all(0.0),
+                                  iconSize: 15.0,
                                   icon: Icon(
                                     facebook,
                                     color: Colors.grey
@@ -207,8 +209,8 @@ class _ContactUsState extends State<ContactUs> {
                                 ),
                               ),
                               IconButton(
-                                padding: EdgeInsets.all(0.0),
-                                iconSize: 17.0,
+                                //padding: EdgeInsets.all(0.0),
+                                iconSize: 15.0,
                                 icon: Icon(
                                   linkedin,
                                   color: Colors.grey
@@ -219,8 +221,8 @@ class _ContactUsState extends State<ContactUs> {
                                 },
                               ),
                               IconButton(
-                                padding: EdgeInsets.all(0.0),
-                                iconSize: 17.0,
+                                //padding: EdgeInsets.all(0.0),
+                                iconSize: 15.0,
                                 icon: Icon(whatsapp, color: Colors.grey),
                                 onPressed: () {
                                   _launchWhatsapp(
@@ -228,8 +230,8 @@ class _ContactUsState extends State<ContactUs> {
                                 },
                               ),
                               IconButton(
-                                padding: EdgeInsets.all(0.0),
-                                iconSize: 17.0,
+                               // padding: EdgeInsets.all(0.0),
+                                iconSize: 15.0,
                                 icon: Icon(Icons.call, color: Colors.grey),
                                 onPressed: () {
                                   launch(

@@ -94,26 +94,26 @@ class FeedDetailsState extends State<FeedDetails> {
                         onPressed: null,
                         lines: <String>[
                           "${post.body}",
-                          "Hello"
+                          "Description"
                         ]
                     )
                   ],
                 ),
-                new DetailCategory(
-                  icon: Icons.call,
-                  children: <Widget>[
-                    new DetailItem(
-                      tooltip: 'Send message',
-                      onPressed: () {
-                        launch("tel:8981866219");
-                      },
-                      lines: <String>[
-                        '${post.date}',
-                        '${post.date}',
-                      ],
-                    )
-                  ],
-                ),
+//                new DetailCategory(
+//                  icon: Icons.call,
+//                  children: <Widget>[
+//                    new DetailItem(
+//                      tooltip: 'Send message',
+//                      onPressed: () {
+//                        launch("tel:8981866219");
+//                      },
+//                      lines: <String>[
+//                        '${post.date}',
+//                        '${post.date}',
+//                      ],
+//                    )
+//                  ],
+//                ),
                 new CommentCategory(
                   postKey: widget.postKey,
                   commentCount: post.commentsCount

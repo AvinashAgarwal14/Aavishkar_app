@@ -5,7 +5,7 @@ class ScheduleItem {
   String name;
   String category;
   String time;
-  String completed;
+  bool completed;
 
   ScheduleItem(this.name, this.category, this.time, this.completed);
 

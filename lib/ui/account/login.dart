@@ -235,27 +235,47 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                       flexibleSpace: new FlexibleSpaceBar(
                         title: Text('Profile'),
                         background: new Stack(
-                          fit: StackFit.expand,
+                          alignment: AlignmentDirectional.center,
+                          fit: StackFit.loose,
                           children: <Widget>[
-                            new Image.network(
-                              "${currentUser.photoUrl}",
-                              fit: BoxFit.cover,
-                              height: _appBarHeight,
+                            CircleAvatar(radius:  animationStatus==1?60.0:42.0,backgroundColor: Theme.of(context).brightness==Brightness.light?Colors.grey:Colors.black12,),
+                            Container(
+                                width: animationStatus==1?120.0:80.0,
+                                height: animationStatus==1?120.0:80.0,
+                                decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: new DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:  NetworkImage(currentUser.photoUrl)
+                                    )
+                                )
                             ),
+
+//                                    CircleAvatar(
+//
+//                                      child: new Image.network(
+//                                        "${currentUser.photoUrl}",
+//                                        fit: BoxFit.scaleDown,
+//                                        //height: _appBarHeight,
+//                                      ),backgroundColor: Colors.white,
+//                                      radius: animationStatus==2?45.0:80.0,
+//                                    ),
+                                   //maxRadius:10
+
                             // This gradient ensures that the toolbar icons are distinct
                             // against the background image.
-                            const DecoratedBox(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment(0.0, 0.6),
-                                  end: Alignment(0.0, -0.4),
-                                  colors: <Color>[
-                                    Color(0x60000000),
-                                    Color(0x00000000)
-                                  ],
-                                ),
-                              ),
-                            ),
+//                            const DecoratedBox(
+//                              decoration: BoxDecoration(
+//                                gradient: LinearGradient(
+//                                  begin: Alignment(0.0, 0.6),
+//                                  end: Alignment(0.0, -0.4),
+//                                  colors: <Color>[
+//                                    Color(0x60000000),
+//                                    Color(0x00000000)
+//                                  ],
+//                                ),
+//                              ),
+//                            ),
                           ],
                         ),
                       ),

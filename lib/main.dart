@@ -21,13 +21,19 @@ class Aavishkar_App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DynamicTheme(
-        defaultBrightness: Brightness.light,
+       // defaultBrightness: Brightness.dark,
         data: (brightness) => ThemeData(
-              primaryColor: Color(0xFF505194),
-              brightness: brightness,
-              textTheme:
-                  TextTheme(display1: TextStyle(fontWeight: FontWeight.bold)),
-            ),
+//              primaryColor: Color(0xFF505194),
+//              brightness: brightness,
+//              textTheme:
+//                  TextTheme(display1: TextStyle(fontWeight: FontWeight.bold)),
+
+          primaryColor: Color(0xFF505194),
+          splashColor: Colors.transparent,
+          accentColor: Color(0xFF505194),
+          brightness: Brightness.dark,
+
+        ),
         themedWidgetBuilder: (context, theme) {
           return MaterialApp(
             title: "Aavishkar App",

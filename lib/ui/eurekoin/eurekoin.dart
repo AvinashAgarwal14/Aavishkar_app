@@ -61,7 +61,10 @@ class DetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final List<Widget> columnChildren = lines.map((String line) => new Text(line)).toList();
+    final List<Widget> columnChildren = lines.map((String line) {
+        return new Text(line,style: TextStyle(fontSize: 15.0),);
+    }
+    ).toList();
 
     final List<Widget> rowChildren = <Widget>[
       new Expanded(
@@ -235,8 +238,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
             )
           ],
         )
-    )
-        :
+    ):
     new Scaffold(
         drawer: NavigationDrawer(currentDisplayedPage: 1),
         key: _scaffoldKey,
@@ -281,7 +283,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                   children: <Widget>[
                     DetailItem(
                       lines: <String>[
-                        "You havee: ", "$userEurekoin"
+                        "You have: ", "$userEurekoin"
                       ],
                     )
                   ],
@@ -291,7 +293,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                   children: <Widget>[
                     DetailItem(
                       lines: <String>[
-                        "Refer and Earn" ,"50 Eurekoins"
+                        "Refer and Earn" ,"25 Eurekoins"
                       ],
                     ),
                     DetailItem(
@@ -299,10 +301,10 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       onPressed: ()
                       {
                         print("Hey");
-                        launch("sms:?body=Use my referal code $userReferralCode to get 50 Eurekoins when you register. \nDownload Link: Google Play: https://play.google.com/store/apps/details?id=com.app.aavishkar.aavishkarapp");
+                        launch("sms:?body=Use my referal code $userReferralCode to get 25 Eurekoins when you register. \nDownload Link: Google Play: https://play.google.com/store/apps/details?id=com.app.aavishkar.aavishkarapp");
                       },
                       lines: <String>[
-                        "Your Refer Code is: ", "$userReferralCode"
+                        "Your Referal Code is: ", "$userReferralCode"
                       ],
                     )
                   ],
@@ -376,7 +378,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                       _getUser();
                     });
                   },
-                  child: Text("Login")
+                  child: Text("Login",style:TextStyle(color: Colors.black))
               ),
             )
           ],

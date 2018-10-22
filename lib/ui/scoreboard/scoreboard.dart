@@ -138,7 +138,7 @@ class _ScoreboardState extends State<Scoreboard> {
             //width: MediaQuery.of(context).size.width/2,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("images/gifs/scorecard.gif"), fit: BoxFit.cover)
+                    image: Theme.of(context).brightness==Brightness.light?AssetImage("images/gifs/scorecard.gif"):AssetImage("images/gifs/scorecarddark.gif"), fit: BoxFit.cover)
             ),
             child: RefreshIndicator(
              displacement: 100.0,
@@ -163,7 +163,7 @@ class _ScoreboardState extends State<Scoreboard> {
                         }),
                       ),
                     ):Container(
-                      child: Center(child: Text("Coming Soon!",style: TextStyle(fontSize: 24.0, color: Colors.white))),
+                      child: Center(child: Text("Coming Soon!",style: TextStyle(fontSize: 24.0,))),
                     ),
                     (comingsoon==false)?
                     ( (Selected!=null)?

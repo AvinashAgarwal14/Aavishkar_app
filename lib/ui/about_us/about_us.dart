@@ -142,18 +142,18 @@ class _AboutUsPageState extends State<AboutUsPage>
           controller: scrollController,
           children: <Widget>[
             new Container(
-              padding: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0.0),
+              padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0.0),
               child: new ClipRRect(
                   borderRadius: new BorderRadius.circular(10.0),
-                  child: new Image.asset("images/About Us/About Us 1.jpeg")),
+                  child: new Image.asset("images/About Us/About Us 1.png")),
             ),
             new Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.fromLTRB(23.0, 5.0, 23.0, 23.0),
+              padding: EdgeInsets.fromLTRB(23.0, 0.0, 23.0, 23.0),
               child: Padding(
-                padding: const EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(0.0),
                 child: new Text(
-                  'Aavishkar, as its name suggests a blend of innovation, team work and a geeky love for technology, is a tech fest that is not just an arena to exhibit but also an environment to learn. Our motto is to unveil in this college a fantasy world of bytes. From organising prestigious events like Hackathon, to creating an entire tournament for the cricket and football fans, this fest is known for its diverse nature. Aavishkar is a innovation of the future, learning from the past and progressing with the present.',
+                  'Aavishkar, as its name suggests a blend of innovation, team work and a geeky love for technology, is a tech fest that is not just an arena to exhibit but also an environment to learn. Our motto is to unveil in this college a fantasy world of bytes. From organising prestigious events like Hackathon, to creating an entire tournament for the cricket and football fans, this fest is known for its diverse nature. Aavishkar is  a innovation of the future, learning from the past and progressing with the present',
                   style: TextStyle(fontSize: 20.0, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
@@ -172,13 +172,13 @@ class _AboutUsPageState extends State<AboutUsPage>
                         new ClipRRect(
                             borderRadius: new BorderRadius.circular(10.0),
                             child: new Image.asset(
-                              "images/About Us/About Us 2.jpeg",
+                              "images/About Us/About Us 2.png",
                               fit: BoxFit.fill,
                             )),
                         Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: new Text(
-                            'This time too, Aavishkar comes with a number of attractions including a crypto currency made by the members of GLUG that creates a hype inculcating in the students the concept of a cash-free nation. Eurocoin also holds a number of goodies when redeemed. Capture the flag,  a cyber security based event is captivates the attention of all the hackers, inviting them to turn on the siren. Another icing on the cake is Hackathon, a marathon for the developers be it software or graphics, on a global level it inspires the students to dedicate two sleepless days to a project that will shape the clay of future generations.',
+                            'This time around, Aavishkar has a lot more in store than just technology. With a number of attractions like one of the first digital currency mediums, Eurekoins, which can be used to redeem goodies and privileges, a lot of fun and technology awaits. For all the innovative techies out there, brain wracking events like the Hackathon, ScienceX, Capture the Flag, Transmission and Codecracker with exciting cash prizes await. With special attractions like the Army Vehicle Display and the Robotics arena for the automobile and robotics enthusiasts, Cycle stunts for adrenaline junkies and exciting treasure hunts like Terrorist Takedown, we have something for everyone!',
                             style:
                                 TextStyle(fontSize: 20.0, color: Colors.white),
                             textAlign: TextAlign.center,
@@ -195,19 +195,19 @@ class _AboutUsPageState extends State<AboutUsPage>
                 child: new Container(
                     key: animatedBoxTwoKey,
 //                  height: 500.0,
-                    padding: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                     child: Column(
                       children: <Widget>[
                         new ClipRRect(
                             borderRadius: new BorderRadius.circular(10.0),
                             child: new Image.asset(
-                              "images/About Us/About Us 3.jpeg",
+                              "images/About Us/About Us 3.png",
                               fit: BoxFit.fill,
                             )),
                         Padding(
-                          padding: const EdgeInsets.all(5.0),
+                          padding: const EdgeInsets.all(0.0),
                           child: new Text(
-                            'Inviting the students to the battleground, this year Aavishkar has a theme that veils a world every engineer can call home. Taking you to the next level, the 4 days will be exhausted by counter strikes at the opponents and backing your teams. In the midst of rifles, crates and Pokemons, Aavishkar brings to you events that will need you all armed.',
+                            ' Inviting students to the battle ground to prove their mettle, Aavishkar has a theme that veils a world that an engineer can call home. The four days will be exhausted by counter strikes at the opponents and backing your teams. In the midst of rifles, crates and Pokemons, Aavishkar brings to you overnight gaming events and many more that will need you all armed. Through the theme of gaming, this Aavishkar, we welcome you to the next level.',
                             style:
                                 TextStyle(fontSize: 20.0, color: Colors.white),
                             textAlign: TextAlign.center,
@@ -224,18 +224,18 @@ class _AboutUsPageState extends State<AboutUsPage>
                 child: new Container(
                     key: animatedBoxThreeKey,
 //                  height: 700.0,
-                    padding: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
                     child: Column(
                       children: <Widget>[
                         new ClipRRect(
                             borderRadius: new BorderRadius.circular(10.0),
                             child: new Image.asset(
-                                "images/About Us/About Us 4.jpeg",
+                                "images/About Us/About Us 4.png",
                                 fit: BoxFit.fill)),
                         Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: new Text(
-                            "GLUG or GNU/ Linux Users' group is the open source club of NIT Durgapur. A group of people with a flare for technology, GLUG believes in taking the students towards a  development where contributions and distributions are not restricted.\nThe Maths and Tech club of this college, abbreviated as MnTC is a group of logical brains, playing with numbers, a game most students dread.\nSAE, a set of displaced numbers, keys speaking  codes, and engines ready for the green, all put together for the sole purpose, to innovate.",
+                            " With technology taking centre stage and striking the perfect balance between innovation and fun, Aavishkar is here to give you an enthralling experience and break the confines of a technical fest. From workshops on trending technologies to fun events like Human Foosball and Laser Tag, there's something to cater to all your whimsies. So don’t miss out and come on down this Aavishkar and prepare to be enchanted by the myriad brain wracking events, exciting performances, inspiring speeches and enlightening workshops. Get ready to transcend to the next level.",
                             style:
                                 TextStyle(fontSize: 20.0, color: Colors.white),
                             textAlign: TextAlign.center,
@@ -252,7 +252,7 @@ class _AboutUsPageState extends State<AboutUsPage>
                     scrollController.jumpTo(0.0);
                     animatedBoxOneEnterAnimationController.reset();
                     animatedBoxTwoEnterAnimationController.reset();
-                    animatedBoxThreeEnterAnimationController.reset();
+                   animatedBoxThreeEnterAnimationController.reset();
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

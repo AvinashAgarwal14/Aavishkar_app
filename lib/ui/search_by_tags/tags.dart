@@ -177,10 +177,11 @@ class _SearchByTagsCardsState extends State<SearchByTagsCards> {
   DatabaseReference databaseReferenceForUpdate;
   Color cardColor;
 
+
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
     if (widget.eventCard.color != 'invalid') {
       if (widget.eventCard.color == 'null')
         cardColor = Theme.of(context).brightness==Brightness.light ?Colors.white:Color(0xFF505194);
@@ -196,6 +197,7 @@ class _SearchByTagsCardsState extends State<SearchByTagsCards> {
       updatePaletteGenerator();
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
