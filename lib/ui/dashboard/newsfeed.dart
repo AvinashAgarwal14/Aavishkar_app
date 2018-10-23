@@ -32,11 +32,14 @@ class _NewsfeedState extends State<Newsfeed> {
 
   @override
   Widget build(BuildContext context) {
+    List reverseFeed=feed.reversed.toList();
     return
       (feed.length != 0)
         ? ListView.builder(
+        //reverse: true,
+
             cacheExtent: MediaQuery.of(context).size.height * 3,
-            itemCount: feed.length,
+            itemCount: reverseFeed.length,
             itemBuilder: (BuildContext context, position) {
               return GestureDetector(
                   onTap: () {
@@ -44,11 +47,11 @@ class _NewsfeedState extends State<Newsfeed> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => FeedDetails(
-                              postKey: feed[position].key,
-                              commentCount: feed[position].commentsCount)),
+                              postKey: reverseFeed[position].key,
+                              commentCount: reverseFeed[position].commentsCount)),
                     );
                   },
-                  child: NewsfeedCards(cardItem: feed[position]));
+                  child: NewsfeedCards(cardItem: reverseFeed[position]));
             })
         :
       Container(
@@ -126,7 +129,7 @@ class _NewsfeedCardsState extends State<NewsfeedCards> {
                     padding: EdgeInsets.all(5.0),
                     child: new Row(
                       children: <Widget>[
-                        Icon(Icons.thumb_up, size: 20.0),
+                        Icon(Icons.thumb_up, size: 20.0,color: Color(0xFF505194),),
                         Padding(padding: EdgeInsets.only(left: 3.0)),
                         Text("${widget.cardItem.likesCount}")
                       ],
@@ -139,6 +142,7 @@ class _NewsfeedCardsState extends State<NewsfeedCards> {
                         Icon(
                           Icons.comment,
                           size: 20.0,
+                            color: Color(0xFF505194),
                         ),
                         Padding(padding: EdgeInsets.only(left: 3.0)),
                         Text("${widget.cardItem.commentsCount}")
@@ -149,7 +153,7 @@ class _NewsfeedCardsState extends State<NewsfeedCards> {
                     padding: EdgeInsets.all(5.0),
                     child: new Row(
                       children: <Widget>[
-                        Icon(Icons.date_range, size: 20.0),
+                        Icon(Icons.date_range, size: 20.0,color: Color(0xFF505194),),
                         Padding(padding: EdgeInsets.only(left: 3.0)),
                         Text(widget.cardItem.date)
                       ],

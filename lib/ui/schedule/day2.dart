@@ -65,7 +65,7 @@ class _DayTwoScheduleState extends State<DayTwoSchedule> {
                 height: dotSize,
                 width: dotSize,
                 decoration: new BoxDecoration(
-                    shape: BoxShape.circle, color: (schedule.completed == "true") ? Colors.red: Colors.blueAccent),
+                    shape: BoxShape.circle, color: (schedule.completed == true) ? Colors.red: Colors.blueAccent),
               ),
             ),
             new Expanded(

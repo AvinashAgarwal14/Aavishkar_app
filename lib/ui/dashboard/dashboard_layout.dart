@@ -36,10 +36,12 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
     super.initState();
 
     eventsByCategories = {
+      'All' : new List(),
       'On-site': new List(),
       'Online': new List(),
       'Workshops': new List(),
       'Games': new List(),
+      'Workshops and Special Attractions': new List(),
       'Ignitia': new List()
     };
 
@@ -66,8 +68,10 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
         eventsByCategories["On-site"].length != 0 &&
         eventsByCategories["Workshops"].length != 0 &&
         eventsByCategories["Games"].length != 0 &&
-        eventsByCategories["Ignitia"].length != 0) {
-      carouselImageList = List(eventsByCategories["Online"].length);
+        eventsByCategories["Workshops and Special Attractions"].length != 0 &&
+        eventsByCategories["Ignitia"].length != 0&&
+        eventsByCategories["All"].length>=35) {
+      carouselImageList = List(eventsByCategories["All"].length);
       return ListView(
         cacheExtent: MediaQuery.of(context).size.height*2,
 //            shrinkWrap: true,
@@ -93,7 +97,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => EventDetails(
-                                      item: eventsByCategories["Online"]
+                                      item: eventsByCategories["All"]
                                           [index])),
                             );
                           },
@@ -106,7 +110,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                                     children: <Widget>[
                                       CachedNetworkImage(
                                           placeholder: Image.asset("images/imageplaceholder.png"),
-                                          imageUrl: eventsByCategories["Online"]
+                                          imageUrl: eventsByCategories["All"]
                                                   [index]
                                               .imageUrl,
                                           fit: BoxFit.cover,
@@ -132,7 +136,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                                                   vertical: 10.0,
                                                   horizontal: 20.0),
                                               child: new Text(
-                                                "${eventsByCategories["Online"]
+                                                "${eventsByCategories["All"]
                                                 [index].title}",
                                                 style: new TextStyle(
                                                   color: Colors.white,
@@ -220,7 +224,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => EventDetails(
-                                    item: eventsByCategories["Workshops"]
+                                    item: eventsByCategories["Workshops and Special Attractions"]
                                         [index])),
                           );
                         },
@@ -229,11 +233,11 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                       new Radius.circular(5.0)),
                       child: CachedNetworkImage(
                             placeholder: Image.asset("images/imageplaceholder.png"),
-                            imageUrl: eventsByCategories["Workshops"][index].imageUrl,
+                            imageUrl: eventsByCategories["Workshops and Special Attractions"][index].imageUrl,
                             fit: BoxFit.cover)
                       ));
                     },
-                    itemCount: eventsByCategories["Workshops"].length,
+                    itemCount: eventsByCategories["Workshops and Special Attractions"].length,
                     itemWidth: 300.0,
                     layout: SwiperLayout.STACK,
                   ),
@@ -305,12 +309,17 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
 
   void _onEntryAdded(Event event) {
     setState(() {
+      eventsByCategories["All"].add(EventItem.fromSnapshot(event.snapshot));
       eventsByCategories[event.snapshot.value["category"]]
           .add(EventItem.fromSnapshot(event.snapshot));
+      if(event.snapshot.value["category"]=="Workshops"||event.snapshot.value["category"]=="Games"||event.snapshot.value["category"]=="Ignitia"){
+        eventsByCategories["Workshops and Special Attractions"].add(EventItem.fromSnapshot(event.snapshot));
+      }
     });
   }
 
   void _onEntryChanged(Event event) {
+
     var oldEntry = eventsByCategories[event.snapshot.value["category"]]
         .singleWhere((entry) {
       return entry.key == event.snapshot.key;

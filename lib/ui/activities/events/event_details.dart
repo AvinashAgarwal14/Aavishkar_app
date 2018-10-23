@@ -122,7 +122,7 @@ class EventDetailsState extends State<EventDetails> {
                       tooltip: 'Open map',
                       lines: <String>[
                         "${widget.item.location}",
-                        "Venu *subject to change"
+                        "Venue *subject to change"
                       ],
                     ),
                   ],

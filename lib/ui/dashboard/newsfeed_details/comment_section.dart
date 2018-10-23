@@ -51,37 +51,37 @@ class _CommentCategoryState extends State<CommentCategory> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new Row(
-               children: <Widget>[
-                 new Container(
-                     padding: const EdgeInsets.symmetric(vertical: 24.0),
-                     width: 72.0,
-                     child: new Icon(Icons.comment, color: themeData.primaryColor)
-                 ),
-                 new Expanded(
-                    child: (commentItems.length > 0)?
-                    new DetailItem(
-                        lines: <String>[
-                          'Comments',
-                          '(${commentItems.length})',
-                        ]
-                    ):
-                    new DetailItem(
-                        lines: <String>[
-                          'Comments',
-                          '(0)',
-                        ]
+                  children: <Widget>[
+                    new Container(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        width: 72.0,
+                        child: new Icon(Icons.comment, color: themeData.primaryColor)
+                    ),
+                    new Expanded(
+                        child: (commentItems.length > 0)?
+                        new DetailItem(
+                            lines: <String>[
+                              'Comments',
+                              '(${commentItems.length})',
+                            ]
+                        ):
+                        new DetailItem(
+                            lines: <String>[
+                              'Comments',
+                              '(0)',
+                            ]
+                        )
                     )
-                )
-              ]),
+                  ]),
               (commentItems.length > 0)?
-                  new Stack(
-                    children: <Widget>[
-                      _buildComments(),
-                      new Column(
-                        children: getComments().toList(),
-                      )
-                    ],
-                  ):
+              new Stack(
+                children: <Widget>[
+                  _buildComments(),
+                  new Column(
+                    children: getComments().toList(),
+                  )
+                ],
+              ):
               new Container()
 //              new Expanded(
 //                  child: new Column(
@@ -122,16 +122,16 @@ class _CommentCategoryState extends State<CommentCategory> {
     {
       comments.add(
           new CommentItem(
-            lines: <String>[
-              '${comment.authorName}',
-              '${comment.text}',
-              '${comment.createdDate}',
-            ],
-            commentId: comment.id,
-            postKey: widget.postKey,
-            authorId: comment.authorId,
-            authorImage: comment.authorImage,
-            commentCount: widget.commentCount
+              lines: <String>[
+                '${comment.authorName}',
+                '${comment.text}',
+                '${comment.createdDate}',
+              ],
+              commentId: comment.id,
+              postKey: widget.postKey,
+              authorId: comment.authorId,
+              authorImage: comment.authorImage,
+              commentCount: widget.commentCount
           )
       );
     }
@@ -364,70 +364,74 @@ class _AddNewCommentState extends State<AddNewComment> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-          height: 60.0,
-          child: Column(
-            children: <Widget>[
-              Divider(
-                color: Colors.grey,
-                height: 2.0,
-              ),
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(right: 20.0),
-                  ),
-                  Expanded(
-                    flex: 4 ,
-                    child: TextField(
-                      controller: commentController,
-                      decoration: InputDecoration(
+        height: 60.0,
+        child: Column(
+          children: <Widget>[
+            Divider(
+              color: Colors.grey,
+              height: 2.0,
+            ),
+            Row(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                ),
+                Expanded(
+                  flex: 4 ,
+                  child: TextField(
+                    controller: commentController,
+                    decoration: InputDecoration(
                         hintText: "Enter your comment"
-                      ),
                     ),
                   ),
-                  Expanded(
-                    child: IconButton(
-                        icon: Icon(Icons.play_arrow, color: Color(0xFF505194)),
-                        onPressed: ()
+                ),
+                Expanded(
+                  child: IconButton(
+                      icon: Icon(Icons.play_arrow, color: Color(0xFF505194)),
+                      onPressed: ()
+                      {
+                        if(widget.user == null)
                         {
-                          if(widget.user == null)
-                            {
-                              Navigator.of(context).pushNamed('/ui/account/login').then((onReturn){
-                                widget.parent.getUser();
-                              });
-                            }
-                            else
-                              {
-                                PostsCommentItem comment = new PostsCommentItem('','', '', '', '','');
-                                comment.authorId = widget.user.uid;
-                                comment.authorImage = widget.user.photoUrl;
-                                comment.authorName = widget.user.displayName;
-                                comment.createdDate = new DateFormat.yMMMd().add_jm().format(new DateTime.now());
-                                comment.text = commentController.text;
-                                setState(() {
-                                  commentController.clear();
-                                });
-                                addComment(comment);
-                              }
+                          Navigator.of(context).pushNamed('/ui/account/login').then((onReturn){
+                            widget.parent.getUser();
+                          });
                         }
-                        ),
-                  )
-                ],
-              )
-            ],
-          )
-        );
+                        else
+                        {
+                          PostsCommentItem comment = new PostsCommentItem('','', '', '', '','');
+                          comment.authorId = widget.user.uid;
+                          comment.authorImage = widget.user.photoUrl;
+                          comment.authorName = widget.user.displayName;
+                          comment.createdDate = new DateFormat.yMMMd().add_jm().format(new DateTime.now());
+                          comment.text = commentController.text;
+                          setState(() {
+                            commentController.clear();
+                          });
+                          addComment(comment);
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                        }
+                      }
+                  ),
+                )
+              ],
+            )
+          ],
+        )
+    );
   }
 
-  void addComment(comment) {
+  Future addComment(comment) async {
+    await _databaseReferenceForPost.update({
+      'commentsCount':widget.commentCount+1
+    });
+
     var newRef = _databaseReferenceForNewComment.push();
     comment.id = newRef.key;
     newRef.set(comment.toJson());
-
-    _databaseReferenceForPost.update({
-      'commentsCount':widget.commentCount+1
-    });
   }
 
 }
+
+
+
 

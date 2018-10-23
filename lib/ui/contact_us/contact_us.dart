@@ -58,38 +58,38 @@ Map contactCard = {
   "ProfilesFacebook": [
     "https://www.facebook.com/devansh97",
     "https://www.facebook.com/saurabhadroit",
-    "",
+    "https://www.facebook.com/punit.drolia",
     "https://www.facebook.com/sinha23",
-    "",
-    "",
+    "https://www.facebook.com/gadfreax",
+    "https://www.facebook.com/msudipto9",
     "https://www.facebook.com/anand.jhunjhunwala.315",
-    "",
-    "",
-    "",
-    "",
+    "https://www.facebook.com/sahil.jaiswal.7399",
+    "https://www.facebook.com/nidhi.yadav.18294053",
+    "https://www.facebook.com/divyadutta.behura.9",
+    "https://www.facebook.com/suvitkumar6?ref=bookmarks",
     "https://www.linkedin.com/in/aniq55/",
-    "",
-    "",
+    "https://www.facebook.com/profile.php?id=100010157537791",
+    "https://www.facebook.com/deeksha.chandwani.9",
     "https://www.facebook.com/arnav.grv",
-    ""
+    "https://www.facebook.com/srinjoy.banerjee2"
   ],
   "ProfilesLinkedin": [
     "https://www.linkedin.com/in/devansh-goenka",
     "https://www.linkedin.com/in/saurabh-kumar-gupta-a42a81163",
     "https://www.linkedin.com/in/punit-drolia-7096b2121/",
     "https://www.linkedin.com/in/shreyashee-sinha-37454b139/",
-    "",
-    "",
+    "https://www.linkedin.com/in/wasiqul-haque-03a52a165/",
+    "https://www.linkedin.com/in/sudipto-mukherjee-04076b124/",
     "https://www.linkedin.com/in/anand13696/",
     "https://www.linkedin.com/in/sahil-jaiswal-b3b55413a/",
-    "",
-    "",
-    "",
+    "https://www.linkedin.com/in/nidhi-kumari-yadav-091952140",
+    "https://www.linkedin.com/in/divyadutta-behura-236220173",
+    "https://www.linkedin.com/in/suvit-kumar-a8b194128",
     "https://www.linkedin.com/in/aniq55/",
-    "",
-    "",
+    "https://www.linkedin.com/in/shaista-ambreen-157b48137",
+    "https://www.linkedin.com/in/deeksha-chandwani-296574104/",
     "https://www.linkedin.com/in/arnav-amb",
-    ""
+    "https://www.linkedin.com/in/srinjoy-banerjee-b18a83115/"
   ],
   "ProfilesWhatsapp": [
     "+91 9674825450",
@@ -130,7 +130,7 @@ Map contactCard = {
   "Image": [
     "images/Contact Us/Devansh Goenka.jpg",
     "images/Contact Us/Saurabh Kumar Gupta.jpg",
-    "images/Contact Us/Punit Drolia.jpg",
+    "images/Contact Us/Punit Drolia.jpeg",
     "images/Contributors/shreyasheedidi.jpg",
     "images/Contact Us/Wasiq.jpg",
     "images/Contact Us/Sudipto Mukherjee.JPG",
@@ -176,24 +176,26 @@ class _ContactUsState extends State<ContactUs> {
                       color: Color.fromRGBO(0, 0, 0, 0.65),
                       child:
                           Column(
+                            //mainAxisSize: MainAxisSize.min,
+                           // crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
                                   contactCard["User"][index],
                                   style: TextStyle(
-                                      fontSize: 15.0, color: Colors.white),
+                                      fontSize: 13.0, color: Colors.white),
                                 ),
                                 Text(contactCard["Designation"][index],
                                     style: TextStyle(
-                                        fontSize: 12.0, color: Colors.white70)),
+                                        fontSize: 10.0, color: Colors.white70)),
                           Row(
 //                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Flexible(
                                 child: IconButton(
-                                  padding: EdgeInsets.all(0.0),
-                                  iconSize: 17.0,
+                                  //padding: EdgeInsets.all(0.0),
+                                  iconSize: 15.0,
                                   icon: Icon(
                                     facebook,
                                     color: Colors.grey
@@ -207,8 +209,8 @@ class _ContactUsState extends State<ContactUs> {
                                 ),
                               ),
                               IconButton(
-                                padding: EdgeInsets.all(0.0),
-                                iconSize: 17.0,
+                                //padding: EdgeInsets.all(0.0),
+                                iconSize: 15.0,
                                 icon: Icon(
                                   linkedin,
                                   color: Colors.grey
@@ -219,8 +221,8 @@ class _ContactUsState extends State<ContactUs> {
                                 },
                               ),
                               IconButton(
-                                padding: EdgeInsets.all(0.0),
-                                iconSize: 17.0,
+                                //padding: EdgeInsets.all(0.0),
+                                iconSize: 15.0,
                                 icon: Icon(whatsapp, color: Colors.grey),
                                 onPressed: () {
                                   _launchWhatsapp(
@@ -228,8 +230,8 @@ class _ContactUsState extends State<ContactUs> {
                                 },
                               ),
                               IconButton(
-                                padding: EdgeInsets.all(0.0),
-                                iconSize: 17.0,
+                               // padding: EdgeInsets.all(0.0),
+                                iconSize: 15.0,
                                 icon: Icon(Icons.call, color: Colors.grey),
                                 onPressed: () {
                                   launch(

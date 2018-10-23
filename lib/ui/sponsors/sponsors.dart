@@ -28,11 +28,13 @@ class _SponsorsState extends State<Sponsors> {
 
   @override
   Widget build(BuildContext context) {
+    indexOfWidget=0;
     return Scaffold(
       appBar: AppBar(title: Text("Sponsors")),
       drawer: NavigationDrawer(currentDisplayedPage: 9),
       body: sponsorList.length > 0
           ? ListView.builder(
+              cacheExtent: MediaQuery.of(context).size.height*5,
               itemCount: sponsorList.length,
               padding: EdgeInsets.all(8.0),
               itemBuilder: (context, index) {
@@ -98,8 +100,8 @@ class _SponsorsState extends State<Sponsors> {
           Flexible(child:prioritySponsor(indexOfWidget)),
          // Expanded(child:SizedBox()),
         Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Divider(height: 5.0),
+          padding: EdgeInsets.all(5.0),
+          child: prioritySponsor(c),
         )
       ])]);
     }
@@ -116,12 +118,12 @@ class _SponsorsState extends State<Sponsors> {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(12.0),
+                  padding: s.description==""?EdgeInsets.all(0.0):EdgeInsets.all(12.0),
                   child: Center(
-                      child: Text(
+                      child:s.description!=""? Text(
                     s.description,
-                    style: TextStyle(fontSize: 18.0),
-                  )),
+                    style: TextStyle(fontSize: 20.0),
+                  ):Container()),
                 ),
                 Expanded(
                   child: ClipRRect(
@@ -144,12 +146,12 @@ class _SponsorsState extends State<Sponsors> {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(12.0),
+                  padding: s.description==""?EdgeInsets.all(0.0):EdgeInsets.all(12.0),
                   child: Center(
-                      child: Text(
+                      child: s.description!=""?Text(
                     s.description,
-                    style: TextStyle(fontSize: 18.0),
-                  )),
+                    style: TextStyle(fontSize: 20.0),
+                  ):Container()),
                 ),
                 Expanded(
                   child: ClipRRect(
