@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "25234716640-3rq4ui1he6gj7te6t5amdnjjg4nq6l4b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aavishkar.aavishkarapp",
+            "certificate_hash": "57418194dc27016c11e1761915a77c1ad47969d0"
+          }
+        },
+        {
           "client_id": "25234716640-febist0ki3mo43bv94an772h6uf5nm0u.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -50,6 +58,13 @@
             {
               "client_id": "25234716640-febist0ki3mo43bv94an772h6uf5nm0u.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "25234716640-8holvusuhdgco651di2ja8qo466a0c68.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.aavishkar.aavishkarapp"
+              }
             }
           ]
         },

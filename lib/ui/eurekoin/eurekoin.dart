@@ -10,9 +10,10 @@ import 'package:crypto/crypto.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:convert';
 import '../../util/drawer.dart';
+import './eurekoin_transactions.dart';
 
 class DetailCategory extends StatelessWidget {
-  const DetailCategory({ Key key, this.icon, this.children }) : super(key: key);
+  const DetailCategory({Key key, this.icon, this.children}) : super(key: key);
 
   final IconData icon;
   final List<Widget> children;
@@ -23,8 +24,8 @@ class DetailCategory extends StatelessWidget {
     return new Container(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       decoration: new BoxDecoration(
-          border: new Border(bottom: new BorderSide(color: themeData.dividerColor))
-      ),
+          border: new Border(
+              bottom: new BorderSide(color: themeData.dividerColor))),
       child: new DefaultTextStyle(
         style: Theme.of(context).textTheme.subhead,
         child: new SafeArea(
@@ -34,12 +35,12 @@ class DetailCategory extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new Container(
-                  padding: (icon!=Icons.transfer_within_a_station)?const EdgeInsets.symmetric(vertical: 24.0)
-                      :
-                  const EdgeInsets.only(top: 24.0,left: 10.0,bottom: 24.0),
+                  padding: (icon != Icons.transfer_within_a_station)
+                      ? const EdgeInsets.symmetric(vertical: 24.0)
+                      : const EdgeInsets.only(
+                          top: 24.0, left: 10.0, bottom: 24.0),
                   width: 72.0,
-                  child: new Icon(icon, color: themeData.primaryColor)
-              ),
+                  child: new Icon(icon, color: themeData.primaryColor)),
               new Expanded(child: new Column(children: children))
             ],
           ),
@@ -50,7 +51,7 @@ class DetailCategory extends StatelessWidget {
 }
 
 class DetailItem extends StatelessWidget {
-  DetailItem({ Key key, this.icon, this.lines, this.tooltip, this.onPressed })
+  DetailItem({Key key, this.icon, this.lines, this.tooltip, this.onPressed})
       : super(key: key);
 
   final icon;
@@ -61,18 +62,14 @@ class DetailItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final List<Widget> columnChildren = lines.map((String line) {
-        return new Text(line,style: TextStyle(fontSize: 15.0),);
-    }
-    ).toList();
+    final List<Widget> columnChildren =
+        lines.map((String line) => new Text(line)).toList();
 
     final List<Widget> rowChildren = <Widget>[
       new Expanded(
           child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: columnChildren
-          )
-      )
+              children: columnChildren))
     ];
     if (icon != null) {
       rowChildren.add(new SizedBox(
@@ -80,12 +77,8 @@ class DetailItem extends StatelessWidget {
           child: new IconButton(
               icon: icon,
               color: themeData.primaryColor,
-              onPressed: onPressed
-          )
-      ));
-    }
-    else
-    {
+              onPressed: onPressed)));
+    } else {
       rowChildren.add(new SizedBox(
         width: 60.0,
         child: Container(),
@@ -96,15 +89,12 @@ class DetailItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: rowChildren
-          )
-      ),
+              children: rowChildren)),
     );
   }
 }
 
 class EurekoinHomePage extends StatefulWidget {
-
   EurekoinHomePage({Key key}) : super(key: key);
 
   @override
@@ -131,261 +121,285 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
     // TODO: implement initState
     super.initState();
     _getUser();
-    scrollController.addListener((){
+    scrollController.addListener(() {
 //      print(scrollController.position);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
-    return (currentUser!=null)?
-    (isEurekoinAlreadyRegistered==null)?
-    new Scaffold(
-        drawer: NavigationDrawer(currentDisplayedPage: 1),
-        body: new Container(
-            padding: EdgeInsets.only(bottom: 50.0),
+    return (currentUser != null)
+        ? (isEurekoinAlreadyRegistered == null)
+            ? new Scaffold(
+                drawer: NavigationDrawer(currentDisplayedPage: 1),
+                body: new Container(
+                    padding: EdgeInsets.only(bottom: 50.0),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("images/eurekoin.png"),
+                            fit: BoxFit.fill))))
+            : (isEurekoinAlreadyRegistered == 0)
+                ? new Scaffold(
+                    drawer: NavigationDrawer(currentDisplayedPage: 1),
+                    body: new Stack(
+                      children: <Widget>[
+                        new Container(
+                            padding: EdgeInsets.only(bottom: 50.0),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("images/eurekoin.png"),
+                                    fit: BoxFit.fill)),
+                            alignment: Alignment.bottomCenter,
+                            child: (registerWithReferralCode == true)
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      SizedBox(
+                                          width: 150.0,
+                                          child: TextFormField(
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                              controller: referalCode,
+                                              decoration: InputDecoration(
+                                                fillColor: Colors.white,
+                                                hintStyle: TextStyle(
+                                                    color: Colors.white),
+                                                border: InputBorder.none,
+                                                hintText: "Referal Code",
+                                              ))),
+                                      Container(
+                                        child: RaisedButton(
+                                          color: Color(0xFF00f6ff),
+                                          onPressed: () {
+                                            registerEurekoinUser(
+                                                referalCode.text);
+                                          },
+                                          //color: Colors.white,
+                                          child: Text("Register"),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Container(
+                                    child: RaisedButton(
+                                        color: Color(0xFF00f6ff),
+                                        onPressed: () {
+                                          registerEurekoinUser('');
+                                        },
+                                        //color: Colors.white,
+                                        child: Text("Register")),
+                                  )),
+                        (registerWithReferralCode == false)
+                            ? Container(
+                                padding:
+                                    EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 5.0),
+                                alignment: Alignment.bottomRight,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        registerWithReferralCode = true;
+                                      });
+                                    },
+                                    child: Text("Have a Referral Code?",
+                                        style: TextStyle(color: Colors.white))),
+                              )
+                            : Container(
+                                padding:
+                                    EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 5.0),
+                                alignment: Alignment.bottomRight,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        registerWithReferralCode = false;
+                                      });
+                                    },
+                                    child: Text("No Referral Code?",
+                                        style: TextStyle(color: Colors.white))),
+                              )
+                      ],
+                    ))
+                : new Scaffold(
+                    drawer: NavigationDrawer(currentDisplayedPage: 1),
+                    key: _scaffoldKey,
+                    body: new CustomScrollView(
+                      controller: scrollController,
+                      slivers: <Widget>[
+                        new SliverAppBar(
+                          expandedHeight: _appBarHeight,
+                          pinned: _appBarBehavior == AppBarBehavior.pinned,
+                          floating:
+                              _appBarBehavior == AppBarBehavior.floating ||
+                                  _appBarBehavior == AppBarBehavior.snapping,
+                          snap: _appBarBehavior == AppBarBehavior.snapping,
+                          flexibleSpace: new FlexibleSpaceBar(
+                            title: Text('Eurekoin Wallet'),
+                            background: new Stack(
+                              fit: StackFit.expand,
+                              children: <Widget>[
+                                new Image.asset(
+                                  "images/gifs/eurekoinSliver.gif",
+                                  fit: BoxFit.cover,
+                                  height: _appBarHeight,
+                                ),
+                                // This gradient ensures that the toolbar icons are distinct
+                                // against the background image.
+                                const DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment(0.0, 0.6),
+                                      end: Alignment(0.0, -0.4),
+                                      colors: <Color>[
+                                        Color(0x60000000),
+                                        Color(0x00000000)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        (userReferralCode != null && userEurekoin != null)
+                            ? new SliverList(
+                                delegate: new SliverChildListDelegate(<Widget>[
+                                  DetailCategory(
+                                    icon: Icons.swap_horiz,
+                                    children: <Widget>[
+                                      DetailItem(
+                                        lines: <String>[
+                                          "You havee: ",
+                                          "$userEurekoin"
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  DetailCategory(
+                                    icon: Icons.exit_to_app,
+                                    children: <Widget>[
+                                      DetailItem(
+                                        lines: <String>[
+                                          "Refer and Earn",
+                                          "25 Eurekoins"
+                                        ],
+                                      ),
+                                      DetailItem(
+                                        icon: Icon(Icons.share),
+                                        onPressed: () {
+                                          print("Hey");
+                                          launch(
+                                              "sms:?body=Use my referal code $userReferralCode to get 25 Eurekoins when you register. \nDownload Link: Google Play: https://play.google.com/store/apps/details?id=com.app.aavishkar.aavishkarapp");
+                                        },
+                                        lines: <String>[
+                                          "Your Refer Code is: ",
+                                          "$userReferralCode"
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  DetailCategory(
+                                    icon: Icons.location_searching,
+                                    children: <Widget>[
+                                      DetailItem(
+                                        icon: Image(
+                                            image:
+                                                AssetImage("images/QRIcon.png"),
+                                            color: Color(0xFF505194)),
+                                        onPressed: () {
+                                          scanQR();
+                                        },
+                                        lines: <String>["Scan QR Code"],
+                                      )
+                                    ],
+                                  ),
+                                  DetailCategory(
+                                    icon: Icons.transfer_within_a_station,
+                                    children: <Widget>[
+                                      new MergeSemantics(
+                                        child: new Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 0.0,
+                                                top: 10.0,
+                                                right: 10.0),
+                                            child: EurekoinTransfer(
+                                                name: currentUser.displayName,
+                                                email: currentUser.email,
+                                                parent: this)),
+                                      )
+                                    ],
+                                  ),
+                                  DetailCategory(
+                                    icon: Icons.monetization_on,
+                                    children: <Widget>[
+                                      new MergeSemantics(
+                                        child: new Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 0.0,
+                                                top: 10.0,
+                                                right: 10.0),
+                                            child: EurekoinCoupon(
+                                                name: currentUser.displayName,
+                                                email: currentUser.email,
+                                                parent: this)),
+                                      )
+                                    ],
+                                  ),
+                                  DetailCategory(
+                                    icon: Icons.format_line_spacing,
+                                    children: <Widget>[
+                                      new MergeSemantics(
+                                        child: new Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 0.0,
+                                                top: 10.0,
+                                                right: 10.0),
+                                            child: Container(
+                                              color: Theme.of(context).brightness==Brightness.light?Colors.white:Color(0xff424242),
+                                             child: EurekoinTransactionsHistory(name: currentUser.displayName,
+                                               email: currentUser.email),
+                                            )
+                                            ),
+                                          )
+                                    ],
+                                  )
+                                ]),
+                              )
+                            : new SliverList(
+                                delegate: SliverChildListDelegate(<Widget>[
+                                Container(
+                                    height: 2.0,
+                                    child: LinearProgressIndicator(
+                                        valueColor:
+                                            new AlwaysStoppedAnimation<Color>(
+                                                Color(0xFF505194)))),
+                              ]))
+                      ],
+                    ),
+                  )
+        : new Container(
+            padding: EdgeInsets.only(bottom: 40.0),
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage("images/eurekoin.png"),
-                    fit: BoxFit.fill
-                )
-            )
-        )
-    )
-        :
-    (isEurekoinAlreadyRegistered==0)?
-    new Scaffold(
-        drawer: NavigationDrawer(currentDisplayedPage: 1),
-        body:
-        new Stack(
-          children: <Widget>[
-            new Container(
-                padding: EdgeInsets.only(bottom: 50.0),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("images/eurekoin.png"),
-                        fit: BoxFit.fill
-                    )
-                ),
-                alignment: Alignment.bottomCenter,
-                child: (registerWithReferralCode == true)?
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    SizedBox(
-                          width: 150.0 ,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
-                              controller: referalCode,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                hintStyle: TextStyle(color: Colors.white),
-                                border: InputBorder.none,
-                                hintText: "Referal Code",
-                              )
-                          )
-                    ),
-                    Container(
-                      child: RaisedButton(
-                        color: Color(0xFF00f6ff),
-                        onPressed: (){
-                          registerEurekoinUser(referalCode.text);
-                        },
-                        //color: Colors.white,
-                        child: Text("Register"),
-                      ),
-                    )
-                  ],
-                )
-                    :
+                    fit: BoxFit.fill)),
+            alignment: Alignment.bottomCenter,
+            child: Stack(
+              children: <Widget>[
                 Container(
                   child: RaisedButton(
                       color: Color(0xFF00f6ff),
-                      onPressed: (){
-                        registerEurekoinUser('');
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed("/ui/account/login")
+                            .then((onReturn) {
+                          _getUser();
+                        });
                       },
-                      //color: Colors.white,
-                      child: Text("Register")
-                  ),
+                      child: Text("Login",style: TextStyle(color: Colors.black) ,)),
                 )
-            ),
-            (registerWithReferralCode==false)?
-            Container(
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 5.0),
-              alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      registerWithReferralCode = true;
-                    });
-                  },
-                  child: Text("Have a Referral Code?",style: TextStyle(color: Colors.white))
-              ),
-            ):
-            Container(
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 5.0),
-              alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      registerWithReferralCode = false;
-                    });
-                  },
-                  child: Text("No Referral Code?", style: TextStyle(color: Colors.white))
-              ),
-            )
-          ],
-        )
-    ):
-    new Scaffold(
-        drawer: NavigationDrawer(currentDisplayedPage: 1),
-        key: _scaffoldKey,
-        body: new CustomScrollView(
-          controller: scrollController,
-          slivers: <Widget>[
-            new SliverAppBar(
-              expandedHeight: _appBarHeight,
-              pinned: _appBarBehavior == AppBarBehavior.pinned,
-              floating: _appBarBehavior == AppBarBehavior.floating || _appBarBehavior == AppBarBehavior.snapping,
-              snap: _appBarBehavior == AppBarBehavior.snapping,
-              flexibleSpace: new FlexibleSpaceBar(
-                title: Text('Eurekoin Wallet'),
-                background: new Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    new Image.asset(
-                      "images/gifs/eurekoinSliver.gif",
-                      fit: BoxFit.cover,
-                      height: _appBarHeight,
-                    ),
-                    // This gradient ensures that the toolbar icons are distinct
-                    // against the background image.
-                    const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, 0.6),
-                          end: Alignment(0.0, -0.4),
-                          colors: <Color>[Color(0x60000000), Color(0x00000000)],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            (userReferralCode!=null && userEurekoin!=null)?
-            new SliverList(
-              delegate: new SliverChildListDelegate(<Widget>[
-                DetailCategory(
-                  icon: Icons.swap_horiz,
-                  children: <Widget>[
-                    DetailItem(
-                      lines: <String>[
-                        "You have: ", "$userEurekoin"
-                      ],
-                    )
-                  ],
-                ),
-                DetailCategory(
-                  icon: Icons.exit_to_app,
-                  children: <Widget>[
-                    DetailItem(
-                      lines: <String>[
-                        "Refer and Earn" ,"25 Eurekoins"
-                      ],
-                    ),
-                    DetailItem(
-                      icon: Icon(Icons.share),
-                      onPressed: ()
-                      {
-                        print("Hey");
-                        launch("sms:?body=Use my referal code $userReferralCode to get 25 Eurekoins when you register. \nDownload Link: Google Play: https://play.google.com/store/apps/details?id=com.app.aavishkar.aavishkarapp");
-                      },
-                      lines: <String>[
-                        "Your Referal Code is: ", "$userReferralCode"
-                      ],
-                    )
-                  ],
-                ),
-                DetailCategory(
-                  icon: Icons.transfer_within_a_station,
-                  children: <Widget>[
-                    new MergeSemantics(
-                      child: new Padding(
-                          padding: EdgeInsets.only(left:0.0, top: 10.0,right: 10.0),
-                          child: EurekoinTransfer(name: currentUser.displayName, email: currentUser.email, parent: this)
-                      ),
-                    )
-                  ],
-                ),
-                DetailCategory(
-                  icon: Icons.monetization_on,
-                  children: <Widget>[
-                    new MergeSemantics(
-                      child: new Padding(
-                          padding: EdgeInsets.only(left:0.0, top: 10.0,right: 10.0),
-                          child: EurekoinCoupon(name: currentUser.displayName, email: currentUser.email, parent: this)
-                      ),
-                    )
-                  ],
-                ),
-                DetailCategory(
-                  icon: Icons.location_searching,
-                  children: <Widget>[
-                    DetailItem(
-                      icon: Image(image: AssetImage("images/QRIcon.png"), color: Color(0xFF505194)),
-                      onPressed: ()
-                      {
-                        scanQR();
-                      },
-                      lines: <String>[
-                        "Scan QR Code"
-                      ],
-                    )
-                  ],
-                ),
-              ]),
-            ):
-            new SliverList(
-                delegate: SliverChildListDelegate(<Widget>[
-                  Container(
-                      height: 2.0,
-                      child: LinearProgressIndicator(
-                          valueColor:
-                          new AlwaysStoppedAnimation<Color>(Color(0xFF505194)))),
-                ]))
-          ],
-        ),
-      ):
-    new Container(
-        padding: EdgeInsets.only(bottom: 40.0),
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("images/eurekoin.png"),
-                fit: BoxFit.fill
-            )
-        ),
-        alignment: Alignment.bottomCenter,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              child: RaisedButton(
-            color: Color(0xFF00f6ff),
-                  onPressed: (){
-                    Navigator.of(context).pushNamed("/ui/account/login").then((onReturn){
-                      _getUser();
-                    });
-                  },
-                  child: Text("Login",style:TextStyle(color: Colors.black))
-              ),
-            )
-          ],
-        )
-    );
+              ],
+            ));
   }
-
 
   Future _getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
@@ -399,21 +413,19 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   Future isEurekoinUserRegistered() async {
     var email = currentUser.email;
     var name = currentUser.displayName;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email" + "$name");
     var encoded = sha1.convert(bytes);
     print(encoded);
 
     String apiUrl = "https://eurekoin.avskr.in/api/exists/$encoded";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
-    if(status == '1')
-    {
+    if (status == '1') {
       setState(() {
         isEurekoinAlreadyRegistered = 1;
       });
       getUserEurekoin();
-    }
-    else
+    } else
       setState(() {
         isEurekoinAlreadyRegistered = 0;
       });
@@ -422,20 +434,19 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   Future registerEurekoinUser(var referalCode) async {
     var email = currentUser.email;
     var name = currentUser.displayName;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email" + "$name");
     var encoded = sha1.convert(bytes);
 
-    String apiUrl = "https://eurekoin.avskr.in/api/register/$encoded?name=$name&email=$email&referred_invite_code=$referalCode&image=${currentUser.photoUrl}";
+    String apiUrl =
+        "https://eurekoin.avskr.in/api/register/$encoded?name=$name&email=$email&referred_invite_code=$referalCode&image=${currentUser.photoUrl}";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
-    if(status == '0')
-    {
+    if (status == '0') {
       setState(() {
         isEurekoinAlreadyRegistered = 1;
       });
       getUserEurekoin();
-    }
-    else
+    } else
       setState(() {
         isEurekoinAlreadyRegistered = 0;
       });
@@ -444,7 +455,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   Future getUserEurekoin() async {
     var email = currentUser.email;
     var name = currentUser.displayName;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email" + "$name");
     var encoded = sha1.convert(bytes);
     String apiUrl = "https://eurekoin.avskr.in/api/coins/$encoded";
     http.Response response = await http.get(apiUrl);
@@ -458,7 +469,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   Future getReferralCode() async {
     var email = currentUser.email;
     var name = currentUser.displayName;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email" + "$name");
     var encoded = sha1.convert(bytes);
     String apiUrl = "https://eurekoin.avskr.in/api/invite_code/$encoded";
     http.Response response = await http.get(apiUrl);
@@ -477,15 +488,13 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
         Future<int> result = couponEurekoin(barcodeString);
         result.then((value) {
           print(value);
-          if (value == 0)
-          {
+          if (value == 0) {
             setState(() {
               barcodeString = "Successful!";
             });
             getUserEurekoin();
             showDialogBox(barcodeString);
-          }
-          else if (value == 2)
+          } else if (value == 2)
             setState(() {
               barcodeString = "Invalid Coupon";
               showDialogBox(barcodeString);
@@ -512,10 +521,9 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
         setState(() {
           barcodeString = 'Unknown error: $e';
           showDialogBox(barcodeString);
-        }
-        );
+        });
       }
-    } on FormatException{
+    } on FormatException {
       setState(() {
 //        barcodeString = 'null (User returned using the "back"-button before scanning anything. Result)';
 //        showDialogBox(barcodeString);
@@ -555,9 +563,10 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   Future<int> couponEurekoin(String coupon) async {
     var email = currentUser.email;
     var name = currentUser.displayName;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email" + "$name");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
+    String apiUrl =
+        "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);
@@ -567,8 +576,6 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
 
   void moveDown() {
     scrollController.position.animateTo(scrollController.offset + 180.0,
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeOut
-    );
+        duration: Duration(milliseconds: 500), curve: Curves.easeOut);
   }
 }
