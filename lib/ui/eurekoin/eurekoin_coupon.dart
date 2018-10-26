@@ -181,6 +181,7 @@ class _EurekoinCouponState extends State<EurekoinCoupon> {
                               item.error = "Successful!";
                             });
                             widget.parent.getUserEurekoin();
+                            widget.parent.transactionsHistory();
                           }
                           else if (value == 2)
                             setState(() {

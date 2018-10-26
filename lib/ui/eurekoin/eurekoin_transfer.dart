@@ -180,6 +180,7 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
                             item.error = "Successful!";
                           });
                           widget.parent.getUserEurekoin();
+                          widget.parent.transactionsHistory();
                         } else if (value == 2 || value == 5)
                           setState(() {
                             item.error = "Incorrect User!";
