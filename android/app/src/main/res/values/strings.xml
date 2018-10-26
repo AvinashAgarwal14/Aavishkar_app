@@ -3,8 +3,8 @@
     <string name="app_name">Aavishkar_app.</string>
 
     <!-- Replace "000000000000" with your Facebook App ID here. -->
-    <string name="facebook_app_id">331944694039778</string>
+    <string name="facebook_app_id">243431462993189</string>
 
     <!-- Replace "000000000000" with your Facebook App ID here. -->
-    <string name="fb_login_protocol_scheme">fb331944694039778</string>
+    <string name="fb_login_protocol_scheme">fb243431462993189</string>
 </resources>

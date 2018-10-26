@@ -2,15 +2,15 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './eurekoin_transfer.dart';
 import './eurekoin_coupon.dart';
 import 'package:crypto/crypto.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:share/share.dart';
 import 'dart:convert';
 import '../../util/drawer.dart';
-import './eurekoin_transactions.dart';
+import 'package:intl/intl.dart';
 
 class DetailCategory extends StatelessWidget {
   const DetailCategory({Key key, this.icon, this.children}) : super(key: key);
@@ -94,6 +94,7 @@ class DetailItem extends StatelessWidget {
   }
 }
 
+
 class EurekoinHomePage extends StatefulWidget {
   EurekoinHomePage({Key key}) : super(key: key);
 
@@ -115,6 +116,8 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   int userEurekoin;
   bool registerWithReferralCode = false;
   String barcodeString = "";
+  var transHistory;
+  List<ListTile> buildItems;
 
   @override
   void initState() {
@@ -124,6 +127,8 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
     scrollController.addListener(() {
 //      print(scrollController.position);
     });
+    transHistory = null;
+    buildItems = new List();
   }
 
   @override
@@ -264,18 +269,18 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                             ? new SliverList(
                                 delegate: new SliverChildListDelegate(<Widget>[
                                   DetailCategory(
-                                    icon: Icons.swap_horiz,
+                                    icon: Icons.monetization_on,
                                     children: <Widget>[
                                       DetailItem(
                                         lines: <String>[
-                                          "You havee: ",
+                                          "You have: ",
                                           "$userEurekoin"
                                         ],
                                       )
                                     ],
                                   ),
                                   DetailCategory(
-                                    icon: Icons.exit_to_app,
+                                    icon: Icons.message,
                                     children: <Widget>[
                                       DetailItem(
                                         lines: <String>[
@@ -285,13 +290,11 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                                       ),
                                       DetailItem(
                                         icon: Icon(Icons.share),
-                                        onPressed: () {
-                                          print("Hey");
-                                          launch(
-                                              "sms:?body=Use my referal code $userReferralCode to get 25 Eurekoins when you register. \nDownload Link: Google Play: https://play.google.com/store/apps/details?id=com.app.aavishkar.aavishkarapp");
+                                        onPressed: (){
+                                          Share.share('Use my referal code $userReferralCode to get 25 Eurekoins when you register. \nLink: https://play.google.com/store/apps/details?id=com.app.aavishkar.aavishkarapp');
                                         },
                                         lines: <String>[
-                                          "Your Refer Code is: ",
+                                          "Your Referral Code is: ",
                                           "$userReferralCode"
                                         ],
                                       )
@@ -355,8 +358,34 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
                                                 right: 10.0),
                                             child: Container(
                                               color: Theme.of(context).brightness==Brightness.light?Colors.white:Color(0xff424242),
-                                             child: EurekoinTransactionsHistory(name: currentUser.displayName,
-                                               email: currentUser.email),
+                                             child: (transHistory == null)
+                                                 ? ExpansionTile(
+                                                 title: Text('Transactions History'),
+                                                 backgroundColor: Theme.of(context).brightness == Brightness.light
+                                                     ? Colors.white
+                                                     : Color(0xff424242),
+                                                 children: <Widget>[
+                                                   LinearProgressIndicator(
+                                                       valueColor:
+                                                       new AlwaysStoppedAnimation<Color>(Color(0xFF505194)))
+                                                 ])
+                                                 : (transHistory.length != 0)
+                                                 ? ExpansionTile(
+                                                 title: Text('Transactions History'),
+                                                 backgroundColor:
+                                                 Theme.of(context).brightness == Brightness.light
+                                                     ? Colors.white
+                                                     : Color(0xff424242),
+                                                 children: buildTransactionsWidget())
+                                                 : ExpansionTile(
+                                                 title: Text('Transactions History'),
+                                                 backgroundColor:
+                                                 Theme.of(context).brightness == Brightness.light
+                                                     ? Colors.white
+                                                     : Color(0xff424242),
+                                                 children: <Widget>[
+                                                   ListTile(title: Text("No Transactions made."))
+                                                 ]),
                                             )
                                             ),
                                           )
@@ -425,6 +454,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
         isEurekoinAlreadyRegistered = 1;
       });
       getUserEurekoin();
+      transactionsHistory();
     } else
       setState(() {
         isEurekoinAlreadyRegistered = 0;
@@ -577,5 +607,58 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   void moveDown() {
     scrollController.position.animateTo(scrollController.offset + 180.0,
         duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+  }
+
+  Future transactionsHistory() async {
+    var email = currentUser.email;
+    var name = currentUser.displayName;
+    var bytes = utf8.encode("$email" + "$name");
+    var encoded = sha1.convert(bytes);
+    print("transHistory");
+
+    String apiUrl = "https://eurekoin.avskr.in/api/history/$encoded";
+    print(apiUrl);
+    http.Response response = await http.get(apiUrl);
+    setState(() {
+      transHistory = json.decode(response.body)['history'];
+    });
+    print(transHistory.length);
+  }
+
+  List buildTransactionsWidget() {
+    buildItems = new List();
+    for (var item in transHistory) {
+      var time = new DateFormat.yMMMd().add_jm().format(DateTime.parse(item['created_at']).toLocal());
+      if (item['receiver'] == currentUser.email) {
+        buildItems.add(ListTile(
+            title: Text("Received from:"),
+            isThreeLine: true,
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("${item['source']}", style: TextStyle(color:Theme.of(context).brightness == Brightness.light
+                    ? Colors.black:Colors.white)),
+                Text("$time")
+              ],
+            ),
+            trailing: Text("+ ${item['amount']}",
+                style: TextStyle(color: Colors.green))));
+      } else {
+        buildItems.add(ListTile(
+            title: Text("Sent to:"),
+            subtitle:Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("${item['receiver']}", style: TextStyle(color:Theme.of(context).brightness == Brightness.light
+                    ? Colors.black:Colors.white)),
+                Text("$time")
+              ],
+            ),
+            isThreeLine: true,
+            trailing: Text("- ${item['amount']}",
+                style: TextStyle(color: Colors.red))));
+      }
+    }
+    return buildItems.toList();
   }
 }

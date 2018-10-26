@@ -29,6 +29,7 @@ dependencies:
   path_provider:
   spritewidget: ^0.9.17
   intro_slider: ^1.0.7
+  share: ^0.5.3
   dynamic_theme:
     git:
       url: git://github.com/Norbert515/dynamic_theme.git

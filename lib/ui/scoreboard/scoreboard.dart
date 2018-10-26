@@ -487,14 +487,14 @@ class _ScoreboardState extends State<Scoreboard> {
       case "Interficio":
         _uSeR=List();
         for(int i=0;i<interficioUsers.length;i++){
-          User temp= new User(i+1, interficioUsers[i]["name"], interficioUsers[i]["email"], interficioUsers[i]["score"]);
+          User temp= new User(interficioUsers[i]["rank"], interficioUsers[i]["name"], interficioUsers[i]["email"], interficioUsers[i]["score"]);
           _uSeR.add(temp);
         }
         break;
       case "OTH":
         _uSeR=List();
         for(int i=0;i<othUsers.length;i++){
-          User temp= new User(i+1, othUsers[i]["name"], "random", othUsers[i]["score"]);
+          User temp= new User(othUsers[i]["rank"], othUsers[i]["name"], othUsers[i]["rank"], othUsers[i]["score"]);
           _uSeR.add(temp);
         }
         break;
