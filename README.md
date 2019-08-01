@@ -1,9 +1,9 @@
 # Aavishkar App
-Officail Andriod and Ios Application of the Technical Fest of National Institute Of Technology, Durgapur - Aavishkhar 2.0  
+Official Andriod and IOS Application for the Technical Fest of National Institute Of Technology, Durgapur - Aavishkhar 2.0  
 
 # Requirements:  
 1. Andriod Studio.
-2. Flutter Plugin.
+2. Flutter Plugin, for help refer [Flutter Docs](https://flutter.dev/docs/get-started/install)
 3. Emulator/ Andriod/ Ios Device.
 
 # Running the Application:  
