@@ -109,7 +109,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                                   child: new Stack(
                                     children: <Widget>[
                                       CachedNetworkImage(
-                                          placeholder: Image.asset("images/imageplaceholder.png"),
+                                          placeholder: (context, url) => Image.asset("images/imageplaceholder.png"),
                                           imageUrl: eventsByCategories["All"]
                                                   [index]
                                               .imageUrl,
@@ -151,8 +151,8 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                       autoPlay: true,
                       viewportFraction: 0.9,
                       aspectRatio: 2.0,
-                      interval: Duration(milliseconds: 3000),
-                      autoPlayDuration: Duration(milliseconds: 2000),
+//                      interval: Duration(milliseconds: 3000),
+//                      autoPlayDuration: Duration(milliseconds: 2000),
                     ),
               ],
             ),
@@ -189,7 +189,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                                 borderRadius: new BorderRadius.all(
                                 new Radius.circular(5.0)),
                                 child:CachedNetworkImage(
-                                    placeholder: Image.asset("images/imageplaceholder.png"),
+                                    placeholder: (context, url) => Image.asset("images/imageplaceholder.png"),
                                     imageUrl: eventsByCategories["Online"][index].imageUrl,
                                     fit: BoxFit.cover
                                 ),
@@ -232,7 +232,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                         borderRadius: new BorderRadius.all(
                       new Radius.circular(5.0)),
                       child: CachedNetworkImage(
-                            placeholder: Image.asset("images/imageplaceholder.png"),
+                            placeholder: (context, url) => Image.asset("images/imageplaceholder.png"),
                             imageUrl: eventsByCategories["Workshops and Special Attractions"][index].imageUrl,
                             fit: BoxFit.cover)
                       ));
@@ -280,7 +280,7 @@ class _DashBoardLayoutState extends State<DashBoardLayout>  {
                                 borderRadius: new BorderRadius.all(
                                     new Radius.circular(5.0)),
                                 child: CachedNetworkImage(
-                                      placeholder: Image.asset("images/imageplaceholder.png"),
+                                      placeholder: (context, url) => Image.asset("images/imageplaceholder.png"),
                                       imageUrl: eventsByCategories["On-site"][index]
                                           .imageUrl,
                                       fit: BoxFit.cover)

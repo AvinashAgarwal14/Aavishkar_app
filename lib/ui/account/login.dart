@@ -416,47 +416,48 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   }
 
   Future _gSignIn() async {
-    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-    GoogleSignInAuthentication googleSignInAuthentication =
-    await googleSignInAccount.authentication;
-
-    FirebaseUser user = await _auth.signInWithGoogle(
-      idToken: googleSignInAuthentication.idToken,
-      accessToken: googleSignInAuthentication.accessToken,
-    );
-    currentUser = user;
-    database
-        .reference()
-        .child("Profiles")
-        .update({"${user.uid}": "${user.email}"});
-    print("User: $user");
-    return user;
+//    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+//    GoogleSignInAuthentication googleSignInAuthentication =
+//    await googleSignInAccount.authentication;
+//
+//    FirebaseUser user = await _auth.signInWithGoogle(
+//      idToken: googleSignInAuthentication.idToken,
+//      accessToken: googleSignInAuthentication.accessToken,
+//    );
+//    currentUser = user;
+//    database
+//        .reference()
+//        .child("Profiles")
+//        .update({"${user.uid}": "${user.email}"});
+//    print("User: $user");
+//    return user;
+  return null;
   }
 
   Future _fSignIn() async {
-    final result = await _facebookLogin.logInWithReadPermissions(['email']);
-    FirebaseUser user;
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        print(result.accessToken.token);
-        user = await _auth.signInWithFacebook(
-            accessToken: result.accessToken.token);
-        currentUser = user;
-        print("Facebook user: ");
-        print(user);
-        database
-            .reference()
-            .child("Profiles")
-            .update({"${user.uid}": "${user.email}"});
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        print('CANCEL _loggedIn=true;ED BY USER');
-        break;
-      case FacebookLoginStatus.error:
-        print(result.errorMessage);
-        break;
-    }
-    return user;
+//    final result = await _facebookLogin.logInWithReadPermissions(['email']);
+//    FirebaseUser user;
+//    switch (result.status) {
+//      case FacebookLoginStatus.loggedIn:
+//        print(result.accessToken.token);
+//        user = await _auth.signInWithFacebook(
+//            accessToken: result.accessToken.token);
+//        currentUser = user;
+//        print("Facebook user: ");
+//        print(user);
+//        database
+//            .reference()
+//            .child("Profiles")
+//            .update({"${user.uid}": "${user.email}"});
+//        break;
+//      case FacebookLoginStatus.cancelledByUser:
+//        print('CANCEL _loggedIn=true;ED BY USER');
+//        break;
+//      case FacebookLoginStatus.error:
+//        print(result.errorMessage);
+//        break;
+//    }
+    return null;
   }
 
   SignIn(String str) {

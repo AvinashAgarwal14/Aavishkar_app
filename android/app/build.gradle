@@ -19,10 +19,14 @@ def keystorePropertiesFile = rootProject.file("key.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     lintOptions {
         disable 'InvalidPackage'
+    }
+
+    dexOptions {
+        preDexLibraries = false
     }
 
     defaultConfig {
@@ -57,7 +61,7 @@ flutter {
 }
 
 dependencies {
-    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:appcompat-v7:28.0.0'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.50'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"

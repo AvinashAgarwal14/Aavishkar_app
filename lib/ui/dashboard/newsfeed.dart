@@ -106,7 +106,7 @@ class _NewsfeedCardsState extends State<NewsfeedCards> {
                     child: Hero(
                         tag: widget.cardItem.key,
                         child: CachedNetworkImage(
-                            placeholder:
+                            placeholder: (context, url) =>
                                 Image.asset("images/imageplaceholder.png"),
                             imageUrl: widget.cardItem.imageUrl,
                             fit: BoxFit.cover,

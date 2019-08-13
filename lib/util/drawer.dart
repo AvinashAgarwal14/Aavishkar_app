@@ -1,8 +1,7 @@
-import '../ui/game/lib/main.dart';
 import 'package:flutter/material.dart';
 import '../ui/activities/main.dart';
 import '../ui/search_by_tags/tags.dart';
-import '../ui/maps/map.dart';
+//import '../ui/maps/map.dart';
 import '../ui/account/login.dart';
 import '../ui/scoreboard/scoreboard.dart';
 import '../ui/schedule/schedule.dart';
@@ -134,22 +133,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           SlideLeftRoute(widget: ActivitiesHomePage()));
                     }
                   }),
-              ListTile(
-                leading: Icon(Icons.videogame_asset,),
-                title:
-                    Text("Bored ?", ),
-                selected: (presestPageNumber == 12) ? true : false,
-                onTap: (() {
-                  if (presestPageNumber == 12)
-                    Navigator.pop(context);
-                  else {
-                      presestPageNumber = 12;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
-                    Navigator.of(context)
-                        .push(SlideLeftRoute(widget: Game()));
-                  }
-                }),
-              ),
               Divider(),
               ListTile(
                   title: Text("Utilities",
@@ -186,21 +169,21 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   }
                 },
               ),
-              ListTile(
-                leading: Icon(Icons.my_location,),
-                title: Text("Maps",),
-                selected: (presestPageNumber == 6) ? true : false,
-                onTap: (() {
-                  if (presestPageNumber == 6)
-                    Navigator.pop(context);
-                  else {
-                      presestPageNumber = 6;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
-                    Navigator.of(context)
-                        .push(SlideLeftRoute(widget: MapPage()));
-                  }
-                }),
-              ),
+//              ListTile(
+//                leading: Icon(Icons.my_location,),
+//                title: Text("Maps",),
+//                selected: (presestPageNumber == 6) ? true : false,
+//                onTap: (() {
+//                  if (presestPageNumber == 6)
+//                    Navigator.pop(context);
+//                  else {
+//                      presestPageNumber = 6;
+//                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+//                    Navigator.of(context)
+//                        .push(SlideLeftRoute(widget: MapPage()));
+//                  }
+//                }),
+//              ),
               ListTile(
                 leading: Icon(Icons.account_circle, ),
                 title:

@@ -129,7 +129,7 @@ class _SponsorsState extends State<Sponsors> {
                   child: ClipRRect(
                       borderRadius: BorderRadius.all(new Radius.circular(15.0)),
                       child: CachedNetworkImage(
-                        placeholder: Image.asset("images/imageplaceholder.png"),
+                        placeholder:  (context, url) => Image.asset("images/imageplaceholder.png"),
                         imageUrl: s.imageUrl,
                         fit: BoxFit.fill,
                       )),
@@ -157,7 +157,7 @@ class _SponsorsState extends State<Sponsors> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(new Radius.circular(15.0)),
                     child: CachedNetworkImage(
-                      placeholder: Image.asset("images/imageplaceholder.png"),
+                      placeholder:  (context, url) => Image.asset("images/imageplaceholder.png"),
                       imageUrl: s.imageUrl,
                       fit: BoxFit.fill,
                     ),
@@ -177,7 +177,7 @@ class _SponsorsState extends State<Sponsors> {
             child: ClipRRect(
                 borderRadius: BorderRadius.all(new Radius.circular(15.0)),
                 child: CachedNetworkImage(
-                  placeholder: Image.asset("images/imageplaceholder.png"),
+                  placeholder: (context, url) =>  Image.asset("images/imageplaceholder.png"),
                   imageUrl: s.imageUrl,
                   fit: BoxFit.fill,
                 )),
@@ -192,7 +192,7 @@ class _SponsorsState extends State<Sponsors> {
             child: ClipRRect(
                 borderRadius: BorderRadius.all(new Radius.circular(15.0)),
                 child: CachedNetworkImage(
-                  placeholder: Image.asset("images/imageplaceholder.png"),
+                  placeholder: (context, url) => Image.asset("images/imageplaceholder.png"),
                   imageUrl: s.imageUrl,
                   fit: BoxFit.fill,
                 )),

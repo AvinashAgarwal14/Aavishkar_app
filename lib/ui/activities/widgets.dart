@@ -183,7 +183,7 @@ class _SectionDetailViewState extends State<SectionDetailView> {
                             child: Hero(
                                 tag: widget.detail.imageUrl,
                                 child: CachedNetworkImage(
-                                    placeholder: Image.asset(
+                                    placeholder: (context, url) => Image.asset(
                                         "images/imageplaceholder.png"),
                                     imageUrl: widget.detail.imageUrl,
                                     fit: BoxFit.cover,

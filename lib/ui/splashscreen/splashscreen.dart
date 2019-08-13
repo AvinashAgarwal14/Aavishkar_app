@@ -89,19 +89,19 @@ class _IntroScreenState extends State<IntroScreen> {
     slides.add(
       new Slide(
         pathImage: "images/introscreen/mario.jpg",
-        backgroundColor: 0xfff5a623,
+        backgroundColor: Color(0xfff5a623),
       ),
     );
     slides.add(
       new Slide(
         pathImage: "images/introscreen/god of war.jpg",
-        backgroundColor: 0xff203152,
+        backgroundColor: Color(0xff203152),
       ),
     );
     slides.add(
       new Slide(
         pathImage: "images/introscreen/joker.jpg",
-        backgroundColor: 0xff9932CC,
+        backgroundColor: Color(0xff9932CC),
       ),
     );
 
