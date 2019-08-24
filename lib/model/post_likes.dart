@@ -1,5 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 
+// A class where each Like on Post is treated like an object
+// For simple usage and retrieval of data from FireBase
+
 class PostsLikeItem {
 
   PostsLikeItem(

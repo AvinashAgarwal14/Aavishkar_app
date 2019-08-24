@@ -46,17 +46,23 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    // Check whether user is currently logged in
     getUser();
+
+    //Button Controller for google login
     _glogInButtonController = new AnimationController(
         duration: new Duration(milliseconds: 1700),
         vsync: this,
         debugLabel: "google");
+    //Button Controller for Facebook login
     _flogInButtonController = new AnimationController(
         duration: new Duration(milliseconds: 1700),
         vsync: this,
         debugLabel: "facebook");
   }
 
+  // Animation that comes when sign in is clicked
   Future<Null> _playAnimation(int n) async {
     try {
       if (n == 1) {
@@ -71,6 +77,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
     } on TickerCanceled {}
   }
 
+  // Reverse the animation when logout button is clicked
   Future<Null> _reverseAnimation(int n) async {
     try {
       if (n == 1) {
@@ -416,23 +423,26 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   }
 
   Future _gSignIn() async {
-//    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-//    GoogleSignInAuthentication googleSignInAuthentication =
-//    await googleSignInAccount.authentication;
-//
-//    FirebaseUser user = await _auth.signInWithGoogle(
-//      idToken: googleSignInAuthentication.idToken,
-//      accessToken: googleSignInAuthentication.accessToken,
-//    );
-//    currentUser = user;
-//    database
-//        .reference()
-//        .child("Profiles")
-//        .update({"${user.uid}": "${user.email}"});
-//    print("User: $user");
-//    return user;
-  return null;
+    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleSignInAuthentication =
+    await googleSignInAccount.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+
+    final FirebaseUser user = (await _auth.signInWithCredential(credential)).user;
+    currentUser = user;
+    database
+        .reference()
+        .child("Profiles")
+        .update({"${user.uid}": "${user.email}"});
+    print("User: $user");
+    return user;
+  //return null;
   }
+
 
   Future _fSignIn() async {
 //    final result = await _facebookLogin.logInWithReadPermissions(['email']);
