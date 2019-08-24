@@ -1,5 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
+// A class where each Event is treated like an object
+// For simple usage and retrieval of data from FireBase
 class EventItem {
 
   EventItem(

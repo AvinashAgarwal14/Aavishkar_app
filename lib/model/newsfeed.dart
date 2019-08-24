@@ -1,5 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 
+// Create each and every news feed as an object for
+// simple usage and retrieval of data from FireBase
 class NewsfeedItem {
 
   NewsfeedItem(

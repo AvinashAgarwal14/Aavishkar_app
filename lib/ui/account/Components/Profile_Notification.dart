@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Profile picture of the user that appears once logged in
+
 class ProfileNotification extends StatelessWidget {
   final Animation<double> containerGrowAnimation;
   final DecorationImage profileImage;

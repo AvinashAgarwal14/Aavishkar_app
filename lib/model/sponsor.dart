@@ -1,5 +1,8 @@
 import 'package:firebase_database/firebase_database.dart';
 
+// A class where each Sponsor is treated like an object
+// For simple usage and retrieval of data from FireBase
+
 class SponsorItem {
 
   SponsorItem(

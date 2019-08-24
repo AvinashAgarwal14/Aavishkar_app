@@ -13,6 +13,8 @@ import '../ui/contact_us/contact_us.dart';
 import '../ui/contributors/contributors.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 
+// The app drawer that appears at every screen
+
 class NavigationDrawer extends StatefulWidget {
   NavigationDrawer({Key key, this.currentDisplayedPage}) : super(key: key);
   final int currentDisplayedPage;
@@ -23,7 +25,7 @@ class NavigationDrawer extends StatefulWidget {
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
   int presestPageNumber;
-  bool darkThemeEnabled;
+  bool darkThemeEnabled;  // For the toggler
   @override
   void initState() {
     // TODO: implement initState

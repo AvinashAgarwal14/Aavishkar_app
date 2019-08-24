@@ -8,7 +8,7 @@ import '../../util/drawer.dart';
 import './dashboard_layout.dart';
 import './newsfeed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import '../search_by_tags/tags.dart';
 import '../eurekoin/eurekoin.dart';
 import '../account/login.dart';
@@ -64,6 +64,7 @@ class _DashboardState extends State<Dashboard> {
                       }
                     else if (isEurekoinAlreadyRegistered==0)
                       {
+                        //scanQR();
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => EurekoinHomePage()),
@@ -148,62 +149,62 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Future scanQR() async {
-//    try {
-//      String hiddenString = await BarcodeScanner.scan();
-//      setState(() {
-//        barcodeString = hiddenString;
-//        print(barcodeString);
-//        Future<int> result = couponEurekoin(barcodeString);
-//        result.then((value) {
-//          print(value);
-//          if (value == 0)
-//          {
-//            setState(() {
-//              barcodeString = "Successful!";
-//            });
-//            showDialogBox(barcodeString);
-//          }
-//          else if (value == 2)
-//            setState(() {
-//              barcodeString = "Invalid Coupon";
-//              showDialogBox(barcodeString);
-//            });
-//          else if (value == 3)
-//            setState(() {
-//              barcodeString = "Already Used";
-//              showDialogBox(barcodeString);
-//            });
-//          else if (value == 4)
-//            setState(() {
-//              barcodeString = "Coupon Expired";
-//              showDialogBox(barcodeString);
-//            });
-//        });
-//      });
-//    } on PlatformException catch (e) {
-//      if (e.code == BarcodeScanner.CameraAccessDenied) {
-//        setState(() {
-//          barcodeString = 'The user did not grant the camera permission!';
-//          showDialogBox(barcodeString);
-//        });
-//      } else {
-//        setState(() {
-//          barcodeString = 'Unknown error: $e';
-//          showDialogBox(barcodeString);
-//        }
-//        );
-//      }
-//    } on FormatException{
-//      setState(() {
-////        barcodeString = 'null (User returned using the "back"-button before scanning anything. Result)';
-////        showDialogBox(barcodeString);
-//      });
-//    } catch (e) {
-//      setState(() {
-//        barcodeString = 'Unknown error: $e';
-//        showDialogBox(barcodeString);
-//      });
-//    }
+    try {
+      String hiddenString = await BarcodeScanner.scan();
+      setState(() {
+        barcodeString = hiddenString;
+        print(barcodeString);
+        Future<int> result = couponEurekoin(barcodeString);
+        result.then((value) {
+          print(value);
+          if (value == 0)
+          {
+            setState(() {
+              barcodeString = "Successful!";
+            });
+            showDialogBox(barcodeString);
+          }
+          else if (value == 2)
+            setState(() {
+              barcodeString = "Invalid Coupon";
+              showDialogBox(barcodeString);
+            });
+          else if (value == 3)
+            setState(() {
+              barcodeString = "Already Used";
+              showDialogBox(barcodeString);
+            });
+          else if (value == 4)
+            setState(() {
+              barcodeString = "Coupon Expired";
+              showDialogBox(barcodeString);
+            });
+        });
+      });
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        setState(() {
+          barcodeString = 'The user did not grant the camera permission!';
+          showDialogBox(barcodeString);
+        });
+      } else {
+        setState(() {
+          barcodeString = 'Unknown error: $e';
+          showDialogBox(barcodeString);
+        }
+        );
+      }
+    } on FormatException{
+      setState(() {
+        barcodeString = 'null (User returned using the "back"-button before scanning anything. Result)';
+        showDialogBox(barcodeString);
+      });
+    } catch (e) {
+      setState(() {
+        barcodeString = 'Unknown error: $e';
+        showDialogBox(barcodeString);
+      });
+    }
   }
 
   void showDialogBox(String message) {

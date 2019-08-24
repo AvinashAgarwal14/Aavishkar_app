@@ -19,6 +19,10 @@ void main() => runApp(new Aavishkar_App());
 class Aavishkar_App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    // Wrapped within Dynamic Theme to change the theme
+    // By toggling the change theme
+
     return DynamicTheme(
        // defaultBrightness: Brightness.dark,
         data: (brightness) => ThemeData(
