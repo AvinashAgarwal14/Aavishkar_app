@@ -1,37 +1,29 @@
 {
   "project_info": {
-    "project_number": "25234716640",
-    "firebase_url": "https://aavishkar-f9bad.firebaseio.com",
-    "project_id": "aavishkar-f9bad",
-    "storage_bucket": "aavishkar-f9bad.appspot.com"
+    "project_number": "6317672023",
+    "firebase_url": "https://aavishkar-app.firebaseio.com",
+    "project_id": "aavishkar-app",
+    "storage_bucket": "aavishkar-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:25234716640:android:f964a412fbabcb20",
+        "mobilesdk_app_id": "1:6317672023:android:f964a412fbabcb20",
         "android_client_info": {
           "package_name": "com.app.aavishkar.aavishkarapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "25234716640-n3r8k1blkl99mf8s5149dd2uer6r6050.apps.googleusercontent.com",
+          "client_id": "6317672023-h8e93p30lpr4c7jmsnfjtfae5oa8j09o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.app.aavishkar.aavishkarapp",
-            "certificate_hash": "3242e959f4de710c9170c7b8be6f755c0089fad4"
+            "certificate_hash": "daef85472508446684a71abdbe89e60f649299fb"
           }
         },
         {
-          "client_id": "25234716640-conh9hjn1nbph5d816lfca8bok4g86ns.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.app.aavishkar.aavishkarapp",
-            "certificate_hash": "810723de1f396b824b39674a8f7330357fbc842d"
-          }
-        },
-        {
-          "client_id": "25234716640-3rq4ui1he6gj7te6t5amdnjjg4nq6l4b.apps.googleusercontent.com",
+          "client_id": "6317672023-j39rncahfn0u8331qo7at4lduagtaad8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.app.aavishkar.aavishkarapp",
@@ -39,37 +31,23 @@
           }
         },
         {
-          "client_id": "25234716640-febist0ki3mo43bv94an772h6uf5nm0u.apps.googleusercontent.com",
+          "client_id": "6317672023-hirt906ngj5rqek090k4pt00id6rc2s3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAiDPJxczpwA4CNwv_E7LnR9xCA8lsSHKc"
+          "current_key": "AIzaSyBDFb5BHsQ_Iy8JN2NEfQY7R53PW-bctPc"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "25234716640-febist0ki3mo43bv94an772h6uf5nm0u.apps.googleusercontent.com",
+              "client_id": "6317672023-hirt906ngj5rqek090k4pt00id6rc2s3.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "25234716640-8holvusuhdgco651di2ja8qo466a0c68.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.app.aavishkar.aavishkarapp"
-              }
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
