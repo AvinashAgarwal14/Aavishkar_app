@@ -12,6 +12,7 @@ import '../../util/detailSection.dart';
 import '../../util/drawer.dart';
 
 var kFontFam = 'CustomFonts';
+var firebaseAuth = FirebaseAuth.instance;
 
 IconData github_circled = IconData(0xe800, fontFamily: kFontFam);
 IconData linkedin = IconData(0xe801, fontFamily: kFontFam);
@@ -147,7 +148,11 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
 
                             animationStatus == 0
                                 ? (Container(
-                              child:
+                                  child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    
+                              children: <Widget>[
 //                                  SizedBox(
 //                                      height: MediaQuery.of(context)
 //                                          .size
@@ -164,29 +169,31 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                         child: SignIn(
                                             "Sign in with Google")),
                                   ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(20.0),
-//                                    child: Center(
-//                                        child: Text(
-//                                          "OR",
-//                                          style: TextStyle(
-//                                              color: Colors.white,
-//                                              fontSize: 20.0),
-//                                        )),
-//                                  ),
-//                                  new Padding(
-//                                    padding: const EdgeInsets.only(),
-//                                    child: new InkWell(
-//                                        onTap: () {
-//                                          setState(() {
-//                                            animationStatus = 2;
-//                                          });
-//                                        },
-//                                        child: SignIn(
-//                                            "Sign in with Facebook")),
-//                                  ),
-
-                            ))
+                                  Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: Center(
+                                        child: Text(
+                                          "OR",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20.0),
+                                        )),
+                                  ),
+                                  new Padding(
+                                    padding: const EdgeInsets.only(),
+                                    child: new InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            animationStatus = 2;
+                                          });
+                                        },
+                                        child: SignIn(
+                                            "Sign in with Facebook")),
+                                  ),
+                              ]
+                                  )
+                            )
+                              )
                                 : FutureBuilder(
                                 future: animationStatus == 1
                                     ? _gSignIn()
@@ -250,31 +257,31 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                             )
                         ),
 
-//                                    CircleAvatar(
-//
-//                                      child: new Image.network(
-//                                        "${currentUser.photoUrl}",
-//                                        fit: BoxFit.scaleDown,
-//                                        //height: _appBarHeight,
-//                                      ),backgroundColor: Colors.white,
-//                                      radius: animationStatus==2?45.0:80.0,
-//                                    ),
+                                    CircleAvatar(
+
+                                      child: new Image.network(
+                                        "${currentUser.photoUrl}",
+                                        fit: BoxFit.scaleDown,
+                                        //height: _appBarHeight,
+                                      ),backgroundColor: Colors.white,
+                                      radius: animationStatus==2?45.0:80.0,
+                                    ),
                         //maxRadius:10
 
                         // This gradient ensures that the toolbar icons are distinct
                         // against the background image.
-//                            const DecoratedBox(
-//                              decoration: BoxDecoration(
-//                                gradient: LinearGradient(
-//                                  begin: Alignment(0.0, 0.6),
-//                                  end: Alignment(0.0, -0.4),
-//                                  colors: <Color>[
-//                                    Color(0x60000000),
-//                                    Color(0x00000000)
-//                                  ],
-//                                ),
-//                              ),
-//                            ),
+                            const DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment(0.0, 0.6),
+                                  end: Alignment(0.0, -0.4),
+                                  colors: <Color>[
+                                    Color(0x60000000),
+                                    Color(0x00000000)
+                                  ],
+                                ),
+                              ),
+                            ),
                       ],
                     ),
                   ),
@@ -443,31 +450,36 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
   //return null;
   }
 
+    Future<int> _fSignIn() async {
+        FacebookLoginResult facebookLoginResult = await _handleFBSignIn();
+        final accessToken = facebookLoginResult.accessToken.token;
+        if (facebookLoginResult.status == FacebookLoginStatus.loggedIn) {
+          final facebookAuthCred =
+              FacebookAuthProvider.getCredential(accessToken: accessToken);
+          final user =
+              await firebaseAuth.signInWithCredential(facebookAuthCred);
+          print("User : ");
+          return 1;
+        } else
+          return 0;
+  }
 
-  Future _fSignIn() async {
-//    final result = await _facebookLogin.logInWithReadPermissions(['email']);
-//    FirebaseUser user;
-//    switch (result.status) {
-//      case FacebookLoginStatus.loggedIn:
-//        print(result.accessToken.token);
-//        user = await _auth.signInWithFacebook(
-//            accessToken: result.accessToken.token);
-//        currentUser = user;
-//        print("Facebook user: ");
-//        print(user);
-//        database
-//            .reference()
-//            .child("Profiles")
-//            .update({"${user.uid}": "${user.email}"});
-//        break;
-//      case FacebookLoginStatus.cancelledByUser:
-//        print('CANCEL _loggedIn=true;ED BY USER');
-//        break;
-//      case FacebookLoginStatus.error:
-//        print(result.errorMessage);
-//        break;
-//    }
-    return null;
+  Future<FacebookLoginResult> _handleFBSignIn() async {
+    FacebookLogin facebookLogin = FacebookLogin();
+    FacebookLoginResult facebookLoginResult =
+        await facebookLogin.logInWithReadPermissions(['email']);
+    switch (facebookLoginResult.status) {
+      case FacebookLoginStatus.cancelledByUser:
+        print("Cancelled");
+        break;
+      case FacebookLoginStatus.error:
+        print("error");
+        break;
+      case FacebookLoginStatus.loggedIn:
+        print("Logged In");
+        break;
+    }
+    return facebookLoginResult;
   }
 
   SignIn(String str) {
