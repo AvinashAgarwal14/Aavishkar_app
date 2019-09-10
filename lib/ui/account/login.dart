@@ -188,7 +188,7 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
                                           });
                                         },
                                         child: SignIn(
-                                            "Sign in with Facebook")),
+                                            "Sign in with Facebook!")),
                                   ),
                               ]
                                   )
