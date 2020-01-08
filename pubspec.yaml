@@ -16,7 +16,7 @@ dependencies:
   url_launcher: ^3.0.3
   flutter_webview_plugin: ^0.3.5
   flutter_facebook_login:
-  cached_network_image:
+  cached_network_image: ^2.0.0
   firebase_messaging: ^5.1.4
   google_sign_in:
   crypto: ^2.0.3
@@ -31,6 +31,10 @@ dependencies:
   dynamic_theme:
     git:
       url: git://github.com/Norbert515/dynamic_theme.git
+  location: ^2.3.5
+  latlong: ^0.6.1
+  google_maps_flutter: ^0.5.21+15
+
 
 dev_dependencies:
   flutter_test:

@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "6317672023-ifc7ejdf67fhmssja6cd36rr5necps2l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aavishkar.aavishkarapp",
+            "certificate_hash": "1f6bbe8d595a2b430a59a442610daf240059d25d"
+          }
+        },
+        {
+          "client_id": "6317672023-ncgf4grs2ikh2scfdf11cqpnjhoajhqt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aavishkar.aavishkarapp",
+            "certificate_hash": "f1a309072a73d189e93afd3c07c263423baf8c68"
+          }
+        },
+        {
           "client_id": "6317672023-h8e93p30lpr4c7jmsnfjtfae5oa8j09o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -37,7 +53,44 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBDFb5BHsQ_Iy8JN2NEfQY7R53PW-bctPc"
+          "current_key": "AIzaSyAvMveBSH3jaSmvmE_VCs41Xox3GHeQqOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6317672023-hirt906ngj5rqek090k4pt00id6rc2s3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6317672023:android:bdeb9fde07e8e9fabac512",
+        "android_client_info": {
+          "package_name": "com.example.loginfb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6317672023-s2jeid5dimj7mlhvucl6al56r8ldeqbf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginfb",
+            "certificate_hash": "f1a309072a73d189e93afd3c07c263423baf8c68"
+          }
+        },
+        {
+          "client_id": "6317672023-hirt906ngj5rqek090k4pt00id6rc2s3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvMveBSH3jaSmvmE_VCs41Xox3GHeQqOA"
         }
       ],
       "services": {
