@@ -268,16 +268,27 @@ class _HomePageState extends State<HomePage> {
                                   ? Container(
                                       padding: EdgeInsets.only(right: 20),
                                       child: CircularProgressIndicator())
-                                  : Text(
-                                      levelData["title"],
-                                      style: TextStyle(
-                                        color: _isOpen
-                                            ? Color(0xFF0059B3)
-                                            : Colors.white,
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
+                                  : levelData["title"] == null
+                                      ? Text(
+                                          levelData["level"],
+                                          style: TextStyle(
+                                            color: _isOpen
+                                                ? Color(0xFF0059B3)
+                                                : Colors.white,
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )
+                                      : Text(
+                                          levelData["title"],
+                                          style: TextStyle(
+                                            color: _isOpen
+                                                ? Color(0xFF0059B3)
+                                                : Colors.white,
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                               SizedBox(
                                 width: 20.0,
                               ),
@@ -302,7 +313,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          _isLoading
+          _isLoading || levelData["title"] == null
               ? Container(
                   padding: EdgeInsets.only(right: 20),
                   child: CircularProgressIndicator())
