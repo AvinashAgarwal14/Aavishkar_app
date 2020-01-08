@@ -11,8 +11,8 @@ import '../ui/sponsors/sponsors.dart';
 import '../util/navigator_transitions/slide_left_transitions.dart';
 import '../ui/contact_us/contact_us.dart';
 import '../ui/contributors/contributors.dart';
+import '../interficio/interficio.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
-import 'package:aavishkarapp/Interficio/homeInter.dart';
 
 // The app drawer that appears at every screen
 
@@ -26,7 +26,7 @@ class NavigationDrawer extends StatefulWidget {
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
   int presestPageNumber;
-  bool darkThemeEnabled;  // For the toggler
+  bool darkThemeEnabled; // For the toggler
   @override
   void initState() {
     // TODO: implement initState
@@ -45,8 +45,8 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
         child: Container(
           color: Color.fromRGBO(0, 0, 0, 1.0),
           child: ListTileTheme(
-            iconColor: Color.fromRGBO(255,255,255, 1.0),
-            textColor: Color.fromRGBO(255,255,255, 1.0),
+            iconColor: Color.fromRGBO(255, 255, 255, 1.0),
+            textColor: Color.fromRGBO(255, 255, 255, 1.0),
             selectedColor: Theme.of(context).primaryColor.withOpacity(1.0),
             child: ListView(padding: EdgeInsets.zero, children: <Widget>[
               DrawerHeader(
@@ -54,9 +54,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 child: Image.asset("images/gifs/pacman.gif", fit: BoxFit.cover),
               ),
               ListTile(
-                enabled: true,
+                  enabled: true,
                   trailing: Switch(
-                    activeColor: Color(0xFF505194),
+                      activeColor: Color(0xFF505194),
                       inactiveTrackColor: Colors.grey,
                       value: darkThemeEnabled,
                       onChanged: (bool value) {
@@ -72,7 +72,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                 .setThemeData(new ThemeData(
 //                            accentTextTheme: TextTheme(
 //                                title: TextStyle(color: Colors.white)),
-                          primaryColor: Color(0xFF505194),
+                                primaryColor: Color(0xFF505194),
                                 splashColor: Colors.transparent,
                                 accentColor: Color(0xFF505194),
                                 brightness: Brightness.dark,
@@ -82,23 +82,30 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   leading: Icon(
                     Icons.home,
                   ),
-                  title: Text("Home",
+                  title: Text(
+                    "Home",
                   ),
                   selected: (presestPageNumber == 0) ? true : false,
                   onTap: () {
-                      presestPageNumber = 0;
-                    Navigator.popUntil(context, (ModalRoute.withName('/ui/dashboard')));
+                    presestPageNumber = 0;
+                    Navigator.popUntil(
+                        context, (ModalRoute.withName('/ui/dashboard')));
                   }),
               ListTile(
-                  leading: Icon(Icons.monetization_on, ),
-                  title: Text("Eurekoin Wallet",),
+                  leading: Icon(
+                    Icons.monetization_on,
+                  ),
+                  title: Text(
+                    "Eurekoin Wallet",
+                  ),
                   selected: (presestPageNumber == 1) ? true : false,
                   onTap: () {
                     if (presestPageNumber == 1)
                       Navigator.pop(context);
                     else {
-                        presestPageNumber = 1;
-                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                      presestPageNumber = 1;
+                      Navigator.popUntil(
+                          context, ModalRoute.withName('/ui/dashboard'));
                       Navigator.of(context)
                           .push(SlideLeftRoute(widget: EurekoinHomePage()));
                     }
@@ -116,24 +123,30 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     Navigator.pop(context);
                   else {
                     presestPageNumber = 4;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                    Navigator.popUntil(
+                        context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: Schedule()));
                   }
                 },
               ),
               ListTile(
-                  leading: Icon(Icons.local_activity,),
-                  title: Text("Activities",),
+                  leading: Icon(
+                    Icons.local_activity,
+                  ),
+                  title: Text(
+                    "Activities",
+                  ),
                   selected: (presestPageNumber == 5) ? true : false,
                   onTap: () {
                     if (presestPageNumber == 5)
                       Navigator.pop(context);
                     else {
-                        presestPageNumber = 5;
-                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
-                      Navigator.of(context).push(
-                          SlideLeftRoute(widget: ActivitiesHomePage()));
+                      presestPageNumber = 5;
+                      Navigator.popUntil(
+                          context, ModalRoute.withName('/ui/dashboard'));
+                      Navigator.of(context)
+                          .push(SlideLeftRoute(widget: ActivitiesHomePage()));
                     }
                   }),
               Divider(),
@@ -143,30 +156,39 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                           color: Colors.grey, fontWeight: FontWeight.bold))),
               Divider(),
               ListTile(
-                  leading: Icon(Icons.score,),
-                  title: Text("Scoreboard",),
+                  leading: Icon(
+                    Icons.score,
+                  ),
+                  title: Text(
+                    "Scoreboard",
+                  ),
                   selected: (presestPageNumber == 2) ? true : false,
                   onTap: () {
                     if (presestPageNumber == 2)
                       Navigator.pop(context);
                     else {
-                        presestPageNumber = 2;
-                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                      presestPageNumber = 2;
+                      Navigator.popUntil(
+                          context, ModalRoute.withName('/ui/dashboard'));
                       Navigator.of(context)
                           .push(SlideLeftRoute(widget: Scoreboard()));
                     }
                   }),
               ListTile(
-                leading:
-                    Icon(Icons.youtube_searched_for, ),
-                title: Text("Tags",),
+                leading: Icon(
+                  Icons.youtube_searched_for,
+                ),
+                title: Text(
+                  "Tags",
+                ),
                 selected: (presestPageNumber == 3) ? true : false,
                 onTap: () {
                   if (presestPageNumber == 3)
                     Navigator.pop(context);
                   else {
-                      presestPageNumber = 3;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                    presestPageNumber = 3;
+                    Navigator.popUntil(
+                        context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: SearchByTags()));
                   }
@@ -188,98 +210,112 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 //                }),
 //              ),
               ListTile(
-                leading: Icon(Icons.account_circle, ),
-                title:
-                    Text("Account", ),
+                leading: Icon(
+                  Icons.account_circle,
+                ),
+                title: Text(
+                  "Account",
+                ),
                 selected: (presestPageNumber == 8) ? true : false,
                 onTap: (() {
                   if (presestPageNumber == 8)
                     Navigator.pop(context);
                   else {
-                      presestPageNumber = 8;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                    presestPageNumber = 8;
+                    Navigator.popUntil(
+                        context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: LogInPage()));
                   }
                 }),
               ),
               ListTile(
-                  title: Text("About Us",
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.bold))
+                leading: Icon(
+                  Icons.map,
+                ),
+                title: Text(
+                  "Interficio",
+                ),
+                // selected: (presestPageNumber == 8) ? true : false,
+                onTap: (() {
+                  Navigator.popUntil(
+                      context, ModalRoute.withName('/ui/dashboard'));
+                  Navigator.of(context).push(SlideLeftRoute(widget: MyApp()));
+                }),
               ),
               ListTile(
+                  title: Text("About Us",
+                      style: TextStyle(
+                          color: Colors.grey, fontWeight: FontWeight.bold))),
+              ListTile(
                 leading: Icon(Icons.credit_card),
-                title:
-                    Text("Sponsors", ),
+                title: Text(
+                  "Sponsors",
+                ),
                 selected: (presestPageNumber == 9) ? true : false,
                 onTap: (() {
                   if (presestPageNumber == 9)
                     Navigator.pop(context);
                   else {
-                      presestPageNumber = 9;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                    presestPageNumber = 9;
+                    Navigator.popUntil(
+                        context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: Sponsors()));
                   }
                 }),
               ),
               ListTile(
-                  leading: Icon(Icons.call,),
-                  title: Text("Contact Us",),
+                  leading: Icon(
+                    Icons.call,
+                  ),
+                  title: Text(
+                    "Contact Us",
+                  ),
                   selected: (presestPageNumber == 10) ? true : false,
                   onTap: () {
                     if (presestPageNumber == 10)
                       Navigator.pop(context);
                     else {
-                        presestPageNumber = 10;
-                      Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                      presestPageNumber = 10;
+                      Navigator.popUntil(
+                          context, ModalRoute.withName('/ui/dashboard'));
                       Navigator.of(context)
                           .push(SlideLeftRoute(widget: ContactUs()));
                     }
                   }),
               ListTile(
-                  leading: Icon(Icons.accessibility,),
-                  title: Text("Contributors",),
+                  leading: Icon(
+                    Icons.accessibility,
+                  ),
+                  title: Text(
+                    "Contributors",
+                  ),
                   selected: (presestPageNumber == 11) ? true : false,
                   onTap: () {
                     if (presestPageNumber == 11)
                       Navigator.pop(context);
                     else {
-                        presestPageNumber = 11;
-                        Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
-                        Navigator.of(context).push(SlideLeftRoute(widget: Contributors()));
-                      }
+                      presestPageNumber = 11;
+                      Navigator.popUntil(
+                          context, ModalRoute.withName('/ui/dashboard'));
+                      Navigator.of(context)
+                          .push(SlideLeftRoute(widget: Contributors()));
+                    }
                   }),
               ListTile(
                 leading: Icon(Icons.info),
-                title:
-                Text("About Aavishkar"),
+                title: Text("About Aavishkar"),
                 selected: (presestPageNumber == 7) ? true : false,
                 onTap: (() {
                   if (presestPageNumber == 7)
                     Navigator.pop(context);
                   else {
                     presestPageNumber = 7;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                    Navigator.popUntil(
+                        context, ModalRoute.withName('/ui/dashboard'));
                     Navigator.of(context)
                         .push(SlideLeftRoute(widget: AboutUsPage()));
-                  }
-                }),
-              ),
-              ListTile(
-                leading: Icon(Icons.gamepad, ),
-                title:
-                    Text("INTERFICIO", ),
-                selected: (presestPageNumber == 8) ? true : false,
-                onTap: (() {
-                  if (presestPageNumber == 8)
-                    Navigator.pop(context);
-                  else {
-                      presestPageNumber = 8;
-                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
-                    Navigator.of(context)
-                        .push(SlideLeftRoute(widget:InterficioPage()));
                   }
                 }),
               ),
