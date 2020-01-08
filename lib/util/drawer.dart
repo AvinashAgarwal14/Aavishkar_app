@@ -12,6 +12,7 @@ import '../util/navigator_transitions/slide_left_transitions.dart';
 import '../ui/contact_us/contact_us.dart';
 import '../ui/contributors/contributors.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:aavishkarapp/Interficio/homeInter.dart';
 
 // The app drawer that appears at every screen
 
@@ -265,7 +266,23 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                         .push(SlideLeftRoute(widget: AboutUsPage()));
                   }
                 }),
-              )
+              ),
+              ListTile(
+                leading: Icon(Icons.gamepad, ),
+                title:
+                    Text("INTERFICIO", ),
+                selected: (presestPageNumber == 8) ? true : false,
+                onTap: (() {
+                  if (presestPageNumber == 8)
+                    Navigator.pop(context);
+                  else {
+                      presestPageNumber = 8;
+                    Navigator.popUntil(context, ModalRoute.withName('/ui/dashboard'));
+                    Navigator.of(context)
+                        .push(SlideLeftRoute(widget:InterficioPage()));
+                  }
+                }),
+              ),
             ]),
           ),
         ),
