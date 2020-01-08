@@ -13,6 +13,7 @@ import './ui/contributors/contributors.dart';
 import './ui/about_us/about_us.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 import './ui/splashscreen/splashscreen.dart';
+import './interficio/interficio.dart';
 
 void main() => runApp(new Aavishkar_App());
 
@@ -61,6 +62,7 @@ class Aavishkar_App extends StatelessWidget {
               "/ui/contributors/contributors": (BuildContext context) =>
                   Contributors(),
               "/ui/about_us/about_us": (BuildContext context) => AboutUsPage(),
+              "/interficio/interficio.dart": (BuildContext context) => MyApp(),
             },
           );
         });
