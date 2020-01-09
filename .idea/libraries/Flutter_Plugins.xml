@@ -14,7 +14,9 @@
       <root url="file://$PROJECT_DIR$/../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.2.0" />
       <root url="file://$PROJECT_DIR$/../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.14.0+2" />
       <root url="file://$PROJECT_DIR$/../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-2.0.1" />
-      <root url="file://$PROJECT_DIR$/../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-5.1.3" />
+      <root url="file://$PROJECT_DIR$/../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-5.1.4" />
+      <root url="file://$PROJECT_DIR$/../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/location-2.3.5" />
+      <root url="file://$PROJECT_DIR$/../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.5.21+15" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
