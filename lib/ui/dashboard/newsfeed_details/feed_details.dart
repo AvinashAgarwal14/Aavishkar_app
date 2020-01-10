@@ -3,18 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:firebase_database/firebase_database.dart';
-import '../../../model/newsfeed.dart';
 import './comment_section.dart';
 import './status_section.dart';
-import '../../../util/detailSection.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class FeedDetails extends StatefulWidget {
-
-  final postKey;
-  final commentCount;
-  FeedDetails({Key key, this.postKey, this.commentCount}) : super(key: key);
-
+  final post;
+  FeedDetails({Key key, this.post}) : super(key: key);
   @override
   FeedDetailsState createState() => new FeedDetailsState();
 }
@@ -22,13 +17,6 @@ class FeedDetails extends StatefulWidget {
 enum AppBarBehavior { normal, pinned, floating, snapping }
 
 class FeedDetailsState extends State<FeedDetails> {
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final double _appBarHeight = 256.0;
-
-  NewsfeedItem post;
-  FirebaseDatabase _database = FirebaseDatabase.instance;
-  DatabaseReference _databaseReferenceForPosts;
-  AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
   FirebaseUser currentUser;
 
   @override
@@ -36,110 +24,127 @@ class FeedDetailsState extends State<FeedDetails> {
     // TODO: implement initState
     super.initState();
     getUser();
-    _databaseReferenceForPosts = _database.reference().child("Posts");
-    _databaseReferenceForPosts.onChildAdded.listen(_onPostEntryAddedOrUpdated);
-    _databaseReferenceForPosts.onChildChanged.listen(_onPostEntryAddedOrUpdated);
   }
 
   @override
   Widget build(BuildContext context) {
-    return  new Scaffold(
-        key: _scaffoldKey,
-        body: (post!=null)?new CustomScrollView(
-          slivers: <Widget>[
-            new SliverAppBar(
-              expandedHeight: _appBarHeight,
-              pinned: _appBarBehavior == AppBarBehavior.pinned,
-              floating: _appBarBehavior == AppBarBehavior.floating || _appBarBehavior == AppBarBehavior.snapping,
-              snap: _appBarBehavior == AppBarBehavior.snapping,
-              flexibleSpace: new FlexibleSpaceBar(
-                title: Text('${post.title}'),
-                background: new Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    new Hero(
-                        tag: widget.postKey,
-                        child: CachedNetworkImage(
-                            imageUrl: post.imageUrl,
-                            fit: BoxFit.cover,
-                            height: _appBarHeight
-                        )),
-                    // This gradient ensures that the toolbar icons are distinct
-                    // against the background image.
-                    const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, -1.0),
-                          end: Alignment(0.0, -0.4),
-                          colors: <Color>[Color(0x60000000), Color(0x00000000)],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+    return Scaffold(
+        body: Stack(
+      children: <Widget>[
+        Container(
+            height: double.infinity,
+            child: Image.network(
+              widget.post.imageUrl,
+              fit: BoxFit.cover,
+            )),
+        SafeArea(
+            child: Column(children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(children: [
+              MaterialButton(
+                padding: const EdgeInsets.all(8.0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Icon(Icons.arrow_back_ios),
+                color: Colors.white,
+                textColor: Colors.black,
+                minWidth: 0,
+                height: 40,
+                onPressed: () => Navigator.pop(context),
               ),
-            ),
-            new SliverList(
-              delegate: new SliverChildListDelegate(<Widget>[
-                new StatusCategory(
-                  commentsCount: post.commentsCount,
-                  postKey: widget.postKey,
-                  date: post.date
-                ),
-                new DetailCategory(
-                  icon: Icons.description ,
-                  children: <Widget>[
-                    new DetailItem(
-                        tooltip: 'Details',
-                        onPressed: null,
-                        lines: <String>[
-                          "${post.body}",
-                          "Description"
-                        ]
-                    )
-                  ],
-                ),
-//                new DetailCategory(
-//                  icon: Icons.call,
-//                  children: <Widget>[
-//                    new DetailItem(
-//                      tooltip: 'Send message',
-//                      onPressed: () {
-//                        launch("tel:8981866219");
-//                      },
-//                      lines: <String>[
-//                        '${post.date}',
-//                        '${post.date}',
-//                      ],
-//                    )
-//                  ],
-//                ),
-                new CommentCategory(
-                  postKey: widget.postKey,
-                  commentCount: post.commentsCount
-                )
-              ]),
-            ),
-          ],
-        ):CircularProgressIndicator(),
-        bottomNavigationBar: new Padding(
-            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: new AddNewComment(
-                postKey: widget.postKey,
-                user: currentUser,
-                parent: this,
-                commentCount:widget.commentCount
-            ),
-        )
-//      ),
-    );
-  }
+            ]),
+          ),
+          Spacer(flex: 1),
+          Expanded(
+              child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0), color: Colors.white),
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 20.0),
+                Expanded(
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(height: 20.0),
+                          new StatusCategory(
+                            commentsCount: widget.post.commentsCount,
+                            postKey: widget.post.key,
+                            date: widget.post.date
+                          ),
 
-  void _onPostEntryAddedOrUpdated (Event event) {
-    setState(() {
-      if(event.snapshot.key == widget.postKey)
-        post = NewsfeedItem.fromSnapshot(event.snapshot);
-    });
+                        SizedBox(height: 20.0),
+                        ListTile(
+                            title: Text(
+                          widget.post.title,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 26.0),
+                        )),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
+                          child: Text(
+                            widget.post.body,
+                            style: TextStyle(
+                                color: Colors.grey.shade600, fontSize: 15.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+          SlidingUpPanel(
+            minHeight: 65.0,
+            maxHeight: (widget.post.commentsCount <= 3)
+                ? MediaQuery.of(context).size.height * 0.45
+                : MediaQuery.of(context).size.height * 0.65,
+            panel: new Scaffold(
+                body: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(height: 5.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            width: 35,
+                            height: 8,
+                            decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12.0))),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 13.0),
+                      Center(child: Text("Comments")),
+                      Container(
+                        height: (widget.post.commentsCount <= 3)
+                            ? MediaQuery.of(context).size.height * 0.32
+                            : MediaQuery.of(context).size.height * 0.52,
+                        child: new CommentCategory(
+                            postKey: widget.post.key,
+                            commentCount: widget.post.commentsCount),
+                      )
+                    ]),
+                bottomNavigationBar: new AddNewComment(
+                      postKey: widget.post.key,
+                      user: currentUser,
+                      parent: this,
+                      commentCount: widget.post.commentsCount),
+                )
+          ),
+        ]))
+      ],
+    ));
   }
 
   Future getUser() async {
@@ -148,7 +153,5 @@ class FeedDetailsState extends State<FeedDetails> {
     setState(() {
       currentUser = user;
     });
-    print(currentUser);
   }
-
 }

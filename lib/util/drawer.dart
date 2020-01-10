@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../ui/activities/main.dart';
 import '../ui/search_by_tags/tags.dart';
 //import '../ui/maps/map.dart';
 import '../ui/account/login.dart';
@@ -130,26 +129,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   }
                 },
               ),
-              ListTile(
-                  leading: Icon(
-                    Icons.local_activity,
-                  ),
-                  title: Text(
-                    "Activities",
-                  ),
-                  selected: (presestPageNumber == 5) ? true : false,
-                  onTap: () {
-                    if (presestPageNumber == 5)
-                      Navigator.pop(context);
-                    else {
-                      presestPageNumber = 5;
-                      Navigator.popUntil(
-                          context, ModalRoute.withName('/ui/dashboard'));
-                      Navigator.of(context)
-                          .push(SlideLeftRoute(widget: ActivitiesHomePage()));
-                    }
-                  }),
-              Divider(),
               ListTile(
                   title: Text("Utilities",
                       style: TextStyle(

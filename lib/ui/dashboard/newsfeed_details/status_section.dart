@@ -49,95 +49,122 @@ class _StatusCategoryState extends State<StatusCategory> {
   @override
   Widget build(BuildContext context) {
     likeOptions = [
-      Icon(Icons.thumb_up, color: Color(0xFF505194)),
-      Icon(Icons.thumb_up, color: Colors.grey)
+      Icon(Icons.thumb_up, color: Colors.grey),
+      Icon(Icons.thumb_up, color: Colors.black)
     ];
     if(currentUser!=null && currentLike==true)
       likeButton = likeOptions[1];
     else
       likeButton = likeOptions[0];
-    final ThemeData themeData = Theme.of(context);
     return new Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      decoration: new BoxDecoration(
-          border: new Border(bottom: new BorderSide(color: themeData.dividerColor))
-      ),
       child: new DefaultTextStyle(
         style: Theme.of(context).textTheme.subhead,
-        child: new SafeArea(
-          top: false,
-          bottom: false,
-          child: new Row(
+        child: new Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new Expanded(
-                  child: new Row(
-                      children: <Widget>
-                      [
-                        Container(
-                            width: 60.0,
-                            child: Column(
-                              children: <Widget>[
-                                IconButton(icon: likeButton, onPressed: () {
-                                  if(currentUser==null)
-                                  {
-                                    Navigator.of(context).pushNamed("/ui/account/login").then((onReturn){
-                                      getUser(1);
-                                    });
-                                  } else
-                                  {
-                                    if(likeButton == likeOptions[0])
-                                    {
-                                      setState(() {
-                                        currentLike = true;
-                                      });
-                                      _addUserToPostLikes();
-                                      _updatePost(numberOfLikes+1);
-                                    }
-                                    else
-                                    {
-                                      setState(() {
-                                        currentLike =  false;
-                                        numberOfLikes--;
-                                      });
-                                      _deleteUserFromPostLikes();
-                                      _updatePost(numberOfLikes);
-                                    }
-                                  }
-                                }),
-                                Text("$numberOfLikes")
-                              ],
-                            )
-                        ),
-                        Container(
-                            padding: EdgeInsets.only(top: 15.0),
-                            width: 60.0,
-                            child: Column(
-                              children: <Widget>[
-                                Icon(Icons.mode_comment, color: Color(0xFF505194)),
-                                Padding(padding: EdgeInsets.only(top: 10.0)),
-                                Text("${widget.commentsCount}")
-                              ],
-                            )
-                        ),
-                        Container(
-                            padding: EdgeInsets.only(top: 15.0),
-                            width: 72.0,
-                            child: Column(
-                              children: <Widget>[
-                                Icon(Icons.date_range, color: Color(0xFF505194)),
-                                Padding(padding: EdgeInsets.only(top: 10.0)),
-                                Text("${widget.date}")
-                              ],
-                            )
-                        ),
-                      ]
-                  )
+                  child:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Icon(Icons.thumb_up, color: Colors.grey),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.0),
+                          ),
+                          Text("1")
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Icon(Icons.comment, color: Colors.grey),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.0),
+                          ),
+                          Text(widget.commentsCount.toString())
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Icon(Icons.date_range, color: Colors.grey),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.0),
+                          ),
+                          Text(widget.date)
+                        ],
+                      )
+                    ],
+                  ),
+
+//
+//                  new Row(
+//                      children: <Widget>
+//                      [
+//                        Container(
+//                            width: 60.0,
+//                            child: Column(
+//                              children: <Widget>[
+//                                IconButton(icon: likeButton, onPressed: () {
+//                                  if(currentUser==null)
+//                                  {
+//                                    Navigator.of(context).pushNamed("/ui/account/login").then((onReturn){
+//                                      getUser(1);
+//                                    });
+//                                  } else
+//                                  {
+//                                    if(likeButton == likeOptions[0])
+//                                    {
+//                                      setState(() {
+//                                        currentLike = true;
+//                                      });
+//                                      _addUserToPostLikes();
+//                                      _updatePost(numberOfLikes+1);
+//                                    }
+//                                    else
+//                                    {
+//                                      setState(() {
+//                                        currentLike =  false;
+//                                        numberOfLikes--;
+//                                      });
+//                                      _deleteUserFromPostLikes();
+//                                      _updatePost(numberOfLikes);
+//                                    }
+//                                  }
+//                                }),
+//                                Text("$numberOfLikes")
+//                              ],
+//                            )
+//                        ),
+//                        Container(
+//                            padding: EdgeInsets.only(top: 15.0),
+//                            width: 60.0,
+//                            child: Column(
+//                              children: <Widget>[
+//                                Icon(Icons.mode_comment, color: Color(0xFF505194)),
+//                                Padding(padding: EdgeInsets.only(top: 10.0)),
+//                                Text("${widget.commentsCount}")
+//                              ],
+//                            )
+//                        ),
+//                        Container(
+//                            padding: EdgeInsets.only(top: 15.0),
+//                            width: 72.0,
+//                            child: Column(
+//                              children: <Widget>[
+//                                Icon(Icons.date_range, color: Color(0xFF505194)),
+//                                Padding(padding: EdgeInsets.only(top: 10.0)),
+//                                Text("${widget.date}")
+//                              ],
+//                            )
+//                        ),
+//                      ]
+//                  )
               )
             ],
           ),
         ),
-      ),
+//      ),
     );
   }
 

@@ -147,6 +147,7 @@ class _EurekoinCouponState extends State<EurekoinCoupon> {
 
   List<CouponEurekoinItem<dynamic>> _couponEurekoinItem;
   FirebaseUser currentUser;
+  final loginKey = 'itsnotvalidanyways';
 
   @override
   void initState() {
@@ -269,10 +270,9 @@ class _EurekoinCouponState extends State<EurekoinCoupon> {
 
   Future<int> couponEurekoin(String coupon) async {
     var email = widget.email;
-    var name = widget.name;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email"+"$loginKey");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/coupon/$encoded/?code=$coupon";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);

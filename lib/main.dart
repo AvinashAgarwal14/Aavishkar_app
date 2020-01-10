@@ -1,6 +1,5 @@
 import 'package:aavishkarapp/ui/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
-import './ui/activities/main.dart';
 import './ui/search_by_tags/tags.dart';
 //import './ui/maps/map.dart';
 import './ui/account/login.dart';
@@ -27,15 +26,11 @@ class Aavishkar_App extends StatelessWidget {
     return DynamicTheme(
        // defaultBrightness: Brightness.dark,
         data: (brightness) => ThemeData(
-//              primaryColor: Color(0xFF505194),
-//              brightness: brightness,
-//              textTheme:
-//                  TextTheme(display1: TextStyle(fontWeight: FontWeight.bold)),
-
-          primaryColor: Color(0xFF505194),
-          splashColor: Colors.transparent,
-          accentColor: Color(0xFF505194),
-          brightness: Brightness.dark,
+            primaryColor: Color(0xFF505194),
+            brightness: brightness,
+//          splashColor: Colors.transparent,
+//          accentColor: Color(0xFF505194),
+//          brightness: Brightness.dark,
 
         ),
         themedWidgetBuilder: (context, theme) {
@@ -51,7 +46,6 @@ class Aavishkar_App extends StatelessWidget {
               "/ui/dashboard": (BuildContext context) => Dashboard(),
               "/ui/tags": (BuildContext context) => SearchByTags(),
               "/ui/schedule": (BuildContext context) => Schedule(),
-              "/ui/activity": (BuildContext context) => ActivitiesHomePage(),
 //              "/ui/maps/map": (BuildContext context) => MapPage(),
               "/ui/account/login": (BuildContext context) => LogInPage(),
               "/ui/scoreboard": (BuildContext context) => Scoreboard(),

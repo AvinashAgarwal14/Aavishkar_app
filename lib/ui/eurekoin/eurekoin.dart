@@ -118,6 +118,7 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   String barcodeString = "";
   var transHistory;
   List<ListTile> buildItems;
+  final loginKey = 'itsnotvalidanyways';
 
   @override
   void initState() {
@@ -441,12 +442,10 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
 
   Future isEurekoinUserRegistered() async {
     var email = currentUser.email;
-    var name = currentUser.displayName;
-    var bytes = utf8.encode("$email" + "$name");
+    var bytes = utf8.encode("$email" + "$loginKey");
     var encoded = sha1.convert(bytes);
-    print(encoded);
 
-    String apiUrl = "https://eurekoin.avskr.in/api/exists/$encoded";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/exists/$encoded";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
     if (status == '1') {
@@ -464,11 +463,9 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   Future registerEurekoinUser(var referalCode) async {
     var email = currentUser.email;
     var name = currentUser.displayName;
-    var bytes = utf8.encode("$email" + "$name");
-    var encoded = sha1.convert(bytes);
 
     String apiUrl =
-        "https://eurekoin.avskr.in/api/register/$encoded?name=$name&email=$email&referred_invite_code=$referalCode&image=${currentUser.photoUrl}";
+        "https://ekoin.nitdgplug.org/api/register?name=$name&email=$email&referred_invite_code=$referalCode&image=${currentUser.photoUrl}";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
     if (status == '0') {
@@ -484,10 +481,9 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
 
   Future getUserEurekoin() async {
     var email = currentUser.email;
-    var name = currentUser.displayName;
-    var bytes = utf8.encode("$email" + "$name");
+    var bytes = utf8.encode("$email" + "$loginKey");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://eurekoin.avskr.in/api/coins/$encoded";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/coins/$encoded";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['coins'];
     setState(() {
@@ -498,10 +494,9 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
 
   Future getReferralCode() async {
     var email = currentUser.email;
-    var name = currentUser.displayName;
-    var bytes = utf8.encode("$email" + "$name");
+    var bytes = utf8.encode("$email" + "$loginKey");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://eurekoin.avskr.in/api/invite_code/$encoded";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/invite_code/$encoded";
     http.Response response = await http.get(apiUrl);
     print(response.body);
     var referralCode = json.decode(response.body)['invite_code'];
@@ -592,11 +587,10 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
 
   Future<int> couponEurekoin(String coupon) async {
     var email = currentUser.email;
-    var name = currentUser.displayName;
-    var bytes = utf8.encode("$email" + "$name");
+    var bytes = utf8.encode("$email" + "$loginKey");
     var encoded = sha1.convert(bytes);
     String apiUrl =
-        "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
+        "https://ekoin.nitdgplug.org/api/coupon/$encoded/?code=$coupon";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);
@@ -611,18 +605,15 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
 
   Future transactionsHistory() async {
     var email = currentUser.email;
-    var name = currentUser.displayName;
-    var bytes = utf8.encode("$email" + "$name");
+    var bytes = utf8.encode("$email" + "$loginKey");
     var encoded = sha1.convert(bytes);
-    print("transHistory");
 
-    String apiUrl = "https://eurekoin.avskr.in/api/history/$encoded";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/history/$encoded";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     setState(() {
       transHistory = json.decode(response.body)['history'];
     });
-    print(transHistory.length);
   }
 
   List buildTransactionsWidget() {

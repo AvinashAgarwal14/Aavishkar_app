@@ -12,24 +12,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../search_by_tags/tags.dart';
 import '../eurekoin/eurekoin.dart';
 import '../account/login.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class Dashboard extends StatefulWidget {
-
   @override
   _DashboardState createState() => _DashboardState();
 }
 class _DashboardState extends State<Dashboard> {
 
   bool darkThemeEnabled=false;
-  var _currentState = 0;
   FirebaseUser currentUser;
   int isEurekoinAlreadyRegistered;
   String barcodeString;
-
-  List Views = [
-    DashBoardLayout(),
-    Newsfeed()
-  ];
 
   @override
   void initState() {
@@ -41,78 +35,103 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Aavishkar 3.0"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SearchByTags()),
-                );
-              }
-            ),
-            (currentUser!=null && isEurekoinAlreadyRegistered!=null)?
-              IconButton(
-              icon: Image(image: AssetImage("images/QRIcon.png"), color: Colors.white),
-              onPressed: ()
-                  {
-                    if(isEurekoinAlreadyRegistered==1)
-                      {
-                        //scanQR();
-                      }
-                    else if (isEurekoinAlreadyRegistered==0)
-                      {
-                        //scanQR();
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.0),
+        child: AppBar(
+                backgroundColor: Colors.white,
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                ),
+                textTheme: TextTheme(
+                    title: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    )
+                ),
+                title: Text("Aarohan"),
+                  actions: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => EurekoinHomePage()),
-                        ).then((onReturn){
-                          getUser();
-                        });
+                          MaterialPageRoute(builder: (context) => SearchByTags()),
+                        );
                       }
-                  }
-              )
-                :
-                Container(),
-            IconButton(
-                icon: Icon(Icons.account_box),
-                onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LogInPage()),
-                  ).then((onReturn){
-                    getUser();
-                  });
-                }
-            )
-          ],
-        ),
-      drawer: NavigationDrawer(currentDisplayedPage: 0),
-      body: Views[_currentState],
-      bottomNavigationBar: Container(
-//        color: Color.fromRGBO(255, 255, 255, 40.0),
-        child: BottomNavigationBar(
-          currentIndex: _currentState,
-          onTap:(int index){
-            setState(() {
-              _currentState = index;
-            });
-          },
-          fixedColor: Theme.of(context).primaryColor,
-          items:[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard,),
-                title: Text("Dashboard",),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.rss_feed),
-                title: Text("Newsfeed",
+                    ),
+                    (currentUser!=null && isEurekoinAlreadyRegistered!=null)?
+                      IconButton(
+                      icon: Image(image: AssetImage("images/QRIcon.png"), color: Colors.white),
+                      onPressed: ()
+                          {
+                            if(isEurekoinAlreadyRegistered==1)
+                              {
+                                //scanQR();
+                              }
+                            else if (isEurekoinAlreadyRegistered==0)
+                              {
+                                //scanQR();
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => EurekoinHomePage()),
+                                ).then((onReturn){
+                                  getUser();
+                                });
+                              }
+                          }
+                      )
+                        :
+                        Container(),
+                    IconButton(
+                        icon: Icon(Icons.account_box),
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LogInPage()),
+                          ).then((onReturn){
+                            getUser();
+                          });
+                        }
+                    )
+                  ],
                 )
+      ),
+      drawer: NavigationDrawer(currentDisplayedPage: 0),
+      body: Stack(
+        children: <Widget> [
+          DashBoardLayout(),
+          SlidingUpPanel(
+            minHeight: 65.0,
+            maxHeight: MediaQuery.of(context).size.height * 0.85,
+            panel: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 35,
+                      height: 8,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.all(Radius.circular(12.0))
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 13.0),
+                Center(child: Text("Newsfeed")),
+                SizedBox(height: 20.0),
+                Container(
+                  padding: const EdgeInsets.only(left: 14.0, right: 14.0),
+                  height: MediaQuery.of(context).size.height * 0.75,
+                  child: Newsfeed()
+                ),
+              ]
             )
-          ],
-        ),
+          )
+        ]
       )
     );
   }
@@ -133,7 +152,7 @@ class _DashboardState extends State<Dashboard> {
     var bytes = utf8.encode("$email"+"$name");
     var encoded = sha1.convert(bytes);
 
-    String apiUrl = "https://eurekoin.avskr.in/api/exists/$encoded";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/exists/$encoded";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
     if(status == '1')
@@ -236,13 +255,12 @@ class _DashboardState extends State<Dashboard> {
     var name = currentUser.displayName;
     var bytes = utf8.encode("$email"+"$name");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://eurekoin.avskr.in/api/coupon/$encoded/?code=$coupon";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/coupon/$encoded/?code=$coupon";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);
     var status = json.decode(response.body)['status'];
     return int.parse(status);
   }
-
 }
 

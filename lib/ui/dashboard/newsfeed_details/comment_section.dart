@@ -50,29 +50,6 @@ class _CommentCategoryState extends State<CommentCategory> {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Row(
-                  children: <Widget>[
-                    new Container(
-                        padding: const EdgeInsets.symmetric(vertical: 24.0),
-                        width: 72.0,
-                        child: new Icon(Icons.comment, color: themeData.primaryColor)
-                    ),
-                    new Expanded(
-                        child: (commentItems.length > 0)?
-                        new DetailItem(
-                            lines: <String>[
-                              'Comments',
-                              '(${commentItems.length})',
-                            ]
-                        ):
-                        new DetailItem(
-                            lines: <String>[
-                              'Comments',
-                              '(0)',
-                            ]
-                        )
-                    )
-                  ]),
               (commentItems.length > 0)?
               new Stack(
                 children: <Widget>[
@@ -83,30 +60,6 @@ class _CommentCategoryState extends State<CommentCategory> {
                 ],
               ):
               new Container()
-//              new Expanded(
-//                  child: new Column(
-//                    children: (commentItems.length > 0)? <Widget>[
-//                      new DetailItem(
-//                          icon: null,
-//                          lines: <String>[
-//                            'Comments',
-//                            '(${commentItems.length})',
-//                          ]
-//                      ),
-//                      new Column(
-//                        children: getComments().toList(),
-//                      )
-//                    ]: <Widget>[
-//                        new DetailItem(
-//                          icon: null,
-//                          lines: <String>[
-//                            'Comments',
-//                            '(0)',
-//                          ]
-//                        ),
-//                        new Container()
-//                ]
-//              ))
             ],
           ),
         ),
@@ -367,10 +320,6 @@ class _AddNewCommentState extends State<AddNewComment> {
         height: 60.0,
         child: Column(
           children: <Widget>[
-            Divider(
-              color: Colors.grey,
-              height: 2.0,
-            ),
             Row(
               children: <Widget>[
                 Padding(
@@ -387,7 +336,7 @@ class _AddNewCommentState extends State<AddNewComment> {
                 ),
                 Expanded(
                   child: IconButton(
-                      icon: Icon(Icons.play_arrow, color: Color(0xFF505194)),
+                      icon: Icon(Icons.play_arrow, color: Colors.black),
                       onPressed: ()
                       {
                         if(widget.user == null)

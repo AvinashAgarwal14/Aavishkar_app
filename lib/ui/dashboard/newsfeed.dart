@@ -47,8 +47,8 @@ class _NewsfeedState extends State<Newsfeed> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => FeedDetails(
-                              postKey: reverseFeed[position].key,
-                              commentCount: reverseFeed[position].commentsCount)),
+                              post: reverseFeed[position])
+                      ),
                     );
                   },
                   child: NewsfeedCards(cardItem: reverseFeed[position]));
@@ -66,7 +66,6 @@ class _NewsfeedState extends State<Newsfeed> {
   }
 
   void _onEntryAdded(Event event) {
-    print(feed.length);
     setState(() {
       feed.add(NewsfeedItem.fromSnapshot(event.snapshot));
     });

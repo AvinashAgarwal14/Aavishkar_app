@@ -7,7 +7,7 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import './loginAnimation.dart';
 import 'package:flutter/animation.dart';
 import './styles.dart';
-import '../activities/events/event_details.dart';
+import '../../util/event_details.dart';
 import '../../util/detailSection.dart';
 import '../../util/drawer.dart';
 
@@ -447,7 +447,6 @@ class LogInPageState extends State<LogInPage> with TickerProviderStateMixin {
         .update({"${user.uid}": "${user.email}"});
     print("User: $user");
     return user;
-  //return null;
   }
 
     Future<int> _fSignIn() async {

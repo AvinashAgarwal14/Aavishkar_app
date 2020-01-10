@@ -22,10 +22,13 @@ class DetailCategory extends StatelessWidget {
           child: new Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 10.0),
+              ),
               new Container(
-                  padding: const EdgeInsets.symmetric(vertical: 24.0),
+                  padding: const EdgeInsets.symmetric(vertical: 18.0),
                   width: 72.0,
-                  child: new Icon(icon, color: themeData.primaryColor)),
+                  child: new Icon(icon, color: Colors.grey)),
               new Expanded(child: new Column(children: children))
             ],
           ),

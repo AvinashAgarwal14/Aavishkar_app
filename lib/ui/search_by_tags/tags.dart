@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../model/event.dart';
-import '../activities/events/event_details.dart';
+import '../../util/event_details.dart';
 
 Map<String, List<EventItem>> eventsByTags;
 
