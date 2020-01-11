@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -15,6 +16,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   initState() {
+    
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarColor: Colors.white,
+            systemNavigationBarIconBrightness: Brightness.dark));
     // TODO: implement initState
     super.initState();
     loadSavedData();
