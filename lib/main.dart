@@ -11,7 +11,6 @@ import './ui/sponsors/sponsors.dart';
 import './ui/contributors/contributors.dart';
 import './ui/about_us/about_us.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
-import './ui/splashscreen/splashscreen.dart';
 import './interficio/interficio.dart';
 
 void main() => runApp(new Aavishkar_App());
@@ -39,10 +38,9 @@ class Aavishkar_App extends StatelessWidget {
             debugShowMaterialGrid: false,
             debugShowCheckedModeBanner: false,
             theme: theme,
-            home: new SplashScreen(),
-            initialRoute: "/",
+            home: new Dashboard(),
+            initialRoute: "/ui/dashboard",
             routes: <String, WidgetBuilder>{
-              "/ui/intro": (BuildContext context) => IntroScreen(),
               "/ui/dashboard": (BuildContext context) => Dashboard(),
               "/ui/tags": (BuildContext context) => SearchByTags(),
               "/ui/schedule": (BuildContext context) => Schedule(),

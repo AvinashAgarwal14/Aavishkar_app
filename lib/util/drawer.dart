@@ -12,6 +12,7 @@ import '../ui/contact_us/contact_us.dart';
 import '../ui/contributors/contributors.dart';
 import '../interficio/interficio.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:aavishkarapp/games/dicegame.dart';
 
 // The app drawer that appears at every screen
 
@@ -223,6 +224,21 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 }),
               ),
               ListTile(
+                leading: Icon(
+                  Icons.gamepad,
+                ),
+                title: Text(
+                  "Games",
+                ),
+                // selected: (presestPageNumber == 8) ? true : false,
+                onTap: (() {
+                  Navigator.popUntil(
+                      context, ModalRoute.withName('/ui/dashboard'));
+                  Navigator.of(context)
+                      .push(SlideLeftRoute(widget: MyDiceApp()));
+                }),
+              ),
+              ListTile(
                   title: Text("About Us",
                       style: TextStyle(
                           color: Colors.grey, fontWeight: FontWeight.bold))),
@@ -284,7 +300,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   }),
               ListTile(
                 leading: Icon(Icons.info),
-                title: Text("About Aavishkar"),
+                title: Text("About Aavishkar 3.0"),
                 selected: (presestPageNumber == 7) ? true : false,
                 onTap: (() {
                   if (presestPageNumber == 7)

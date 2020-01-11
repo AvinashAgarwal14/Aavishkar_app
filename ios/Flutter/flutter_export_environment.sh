@@ -1,5 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
+<<<<<<< HEAD
 export "FLUTTER_ROOT=/home/avinash/Desktop/Flutter/flutter"
 export "FLUTTER_APPLICATION_PATH=/home/avinash/Desktop/aa/Aavishkar_app"
 export "FLUTTER_TARGET=lib/main.dart"

@@ -36,6 +36,7 @@ dependencies:
   location: ^2.3.5
   http: ^0.12.0+3
   sliding_up_panel: ^0.3.6
+  dio: ^3.0.8
 
 
 dev_dependencies:
@@ -83,13 +84,81 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - images/
-    - images/About Us/
-    - images/Contact Us/
-    - images/Contributors/
-    - images/activities/
     - images/gifs/
-    - images/introscreen/
     - fonts/Orbitron-Medium.ttf
+    - assets/dicegame.jpg
+    - assets/cardgame.jpg
+    - assets/cards.jpg
+    - assets/fcards.png
+    - assets/mdice.png
+    - assets/mcards.jpg
+    - assets/gambling.png
+    - assets/dicebg.jpg
+    - assets/cardbg.jpg
+    - assets/1.png
+    - assets/2.png
+    - assets/3.png
+    - assets/4.png
+    - assets/5.png
+    - assets/6.png
+    - assets/D2.png
+    - assets/C2.png
+    - assets/C3.png
+    - assets/C4.png
+    - assets/C5.png
+    - assets/C6.png
+    - assets/C7.png
+    - assets/C8.png
+    - assets/C9.png
+    - assets/C10.png
+    - assets/CA.png
+    - assets/CJ.png
+    - assets/CK.png
+    - assets/CQ.png
+    - assets/D3.png
+    - assets/D4.png
+    - assets/D5.png
+    - assets/D6.png
+    - assets/D7.png
+    - assets/D8.png
+    - assets/D9.png
+    - assets/D10.png
+    - assets/DA.png
+    - assets/DK.png
+    - assets/DQ.png
+    - assets/DJ.png
+    - assets/H2.png
+    - assets/H3.png
+    - assets/H4.png
+    - assets/H5.png
+    - assets/H6.png
+    - assets/H7.png
+    - assets/H8.png
+    - assets/H9.png
+    - assets/H10.png
+    - assets/HA.png
+    - assets/HJ.png
+    - assets/HK.png
+    - assets/HQ.png
+    - assets/S2.png
+    - assets/S3.png
+    - assets/S4.png
+    - assets/S5.png
+    - assets/S6.png
+    - assets/S7.png
+    - assets/S8.png
+    - assets/S9.png
+    - assets/S10.png
+    - assets/SK.png
+    - assets/SJ.png
+    - assets/SA.png
+    - assets/SQ.png
+    - assets/sky.png
+    - assets/blue.png
+    - assets/violet.png
+    - assets/coined.png
+    - assets/7up.png
+    - assets/7down.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

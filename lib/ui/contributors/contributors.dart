@@ -17,29 +17,12 @@ IconData facebook_1 = IconData(0xf300, fontFamily: kFontFam);
 
 //TODO Data Entry
 Map contributors={
-  "Name":["Avinash Agarwal", "Akshat Jain", "Shreyashee Sinha", "Aritra Karmakar","Mayank Tayal","Agnivarna Trivedi", ],
-  "ProfilesFacebook":["https://www.facebook.com/avinash.agarwal.1614",
-  "https://www.facebook.com/akshat.jain.336333",
-  "https://www.facebook.com/sinha23",
-  "https://www.facebook.com/aritra.karmakar.3",
-  "https://www.facebook.com/mayank.tayal.7",
-  "https://www.facebook.com/agnivarna.trivedi.98"
-  ],
-"ProfilesGithub":["https://github.com/AvinashAgarwal14",
-"https://github.com/Akshat7321",
-"https://github.com/ShreyasheeS",
-"https://github.com/gravitydestroyer",
-"https://github.com/MTnes",
-"https://github.com/AgnivarnaTrivedi",
-],
-"ProfilesLinkedin":["https://www.linkedin.com/in/agarwalavinash14/",
-"https://www.linkedin.com/in/akshat-jain-007365a2/",
-"https://www.linkedin.com/in/shreyashee-sinha-37454b139/",
-"https://www.facebook.com/aritra.karmakar.3",
-"https://www.linkedin.com/in/mayank-tayal-9372a216b",
-"https://www.linkedin.com/in/agnivarna-trivedi-6172b2154/"],
-  "Contact":["+91 8981866219","+91 8004937056","+91 7063141513","+91 8759579260","+91 8447395105","+91 9123767237"],
-"Image":["images/Contributors/avinash.jpeg","images/Contributors/akshat.jpg","images/Contributors/shreyasheedidi.jpg","images/Contributors/aritra bhaiya.jpg","images/Contributors/mayank.jpg","images/Contributors/agnivarna.jpg"],
+  "Name":["Aavishkar 3.0"],
+  "ProfilesFacebook":[""],
+"ProfilesGithub":[""],
+"ProfilesLinkedin":[""],
+  "Contact":[""],
+"Image":[""],
 };
 
 
@@ -50,12 +33,9 @@ class _ContributorsState extends State<Contributors> {
     return Scaffold(
       drawer: NavigationDrawer(currentDisplayedPage: 11),
       appBar: AppBar(title: Text("Contributors"),),
-//      backgroundColor: Theme.of(context).brightness==Brightness.light?Colors.white70:Colors.black ,
         body: ListView.builder(
-
-            itemCount: 6,
+            itemCount: 1,
             itemBuilder: (context, index) {
-
               return Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Stack(

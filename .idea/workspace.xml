@@ -10,15 +10,132 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6f71a8d-b7b6-49fe-8487-04c0e52a76f1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/7down.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/7up.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C10.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C7.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C8.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/C9.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/CA.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/CJ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/CK.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/CQ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D10.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D7.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D8.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/D9.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/DA.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/DJ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/DK.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/DQ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H10.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H7.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H8.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/H9.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/HA.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/HJ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/HK.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/HQ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S10.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S5.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S6.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S7.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S8.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/S9.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/SA.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/SJ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/SK.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/SQ.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/blue.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/cardbg.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/cardgame.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/cards.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/coined.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/dicebg.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/dicegame.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/fcards.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/gambling.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/mcards.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/mdice.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/sky.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/assets/violet.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/games/21-card-game/card.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/games/21-card-game/views/21_game.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/games/7-up-7-down/7up7down.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/games/app/views/home_page.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/games/dicegame.dart" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" afterPath="$PROJECT_DIR$/android/app/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" afterPath="$PROJECT_DIR$/android/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" />
+      <change beforePath="$PROJECT_DIR$/images/About Us/About Us 0.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/About Us/About Us 1.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/About Us/About Us 2.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/About Us/About Us 3.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/About Us/About Us 4.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Anand.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Aniq.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Arnav.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Deeksha Chandwani.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Devansh Goenka.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Divyadutta Behura.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Nidhi Yadav.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Punit Drolia.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Sahil Jaiswal.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Saurabh Kumar Gupta.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Shaista.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Srinjoy.JPG" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Sudipto Mukherjee.JPG" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Suvit Kumar.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Utkarsh Jaiswal.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contact Us/Wasiq.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contributors/agnivarna.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contributors/akshat.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contributors/aritra bhaiya.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contributors/avinash.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contributors/mayank.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/Contributors/shreyasheedidi.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/activities/ignitia.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/activities/online.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/activities/onsite.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/activities/special attraction.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/activities/workshops.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/gifs/mario.gif" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/introscreen/god of war.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/introscreen/joker.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/introscreen/mario.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/images/logo.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" afterPath="$PROJECT_DIR$/lib/main.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/about_us/about_us.dart" afterPath="$PROJECT_DIR$/lib/ui/about_us/about_us.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/about_us/alternative_about_us.dart" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/contributors/contributors.dart" afterPath="$PROJECT_DIR$/lib/ui/contributors/contributors.dart" />
       <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/eurekoin/eurekoin.dart" afterPath="$PROJECT_DIR$/lib/ui/eurekoin/eurekoin.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart" afterPath="$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/ui/splashscreen/splashscreen.dart" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/lib/util/drawer.dart" afterPath="$PROJECT_DIR$/lib/util/drawer.dart" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" afterPath="$PROJECT_DIR$/pubspec.lock" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
     </list>
@@ -385,9 +502,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>billtransactions</find>
-      <find>Coming Soo</find>
-      <find>Refer</find>
       <find>Refer and earn</find>
       <find>---</find>
       <find>///     _sendTokenToServer</find>
@@ -415,6 +529,9 @@
       <find>sub</find>
       <find>eurekoin.avskr.in</find>
       <find>4.6</find>
+      <find>IntroScreen</find>
+      <find>SplashScreen</find>
+      <find>Aarohan</find>
     </findStrings>
     <replaceStrings>
       <replace>Color.fromRGBO(0,0,0,0.9)</replace>
@@ -423,7 +540,11 @@
       <replace>getothScoreData</replace>
       <replace>getinterficioScoreData</replace>
       <replace>ekoin.nitdgplug.org</replace>
+      <replace>Aavishkar 3.0</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/lib</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -436,13 +557,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/ui/activities/main.dart" />
         <option value="$PROJECT_DIR$/lib/ui/account/styles.dart" />
         <option value="$PROJECT_DIR$/lib/ui/game/lib/main.dart" />
         <option value="$USER_HOME$/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/intro_slider-1.0.7/lib/intro_slider.dart" />
         <option value="$PROJECT_DIR$/lib/ui/activities/widgets.dart" />
         <option value="$PROJECT_DIR$/lib/ui/splashscreen/splashscreen.dart" />
-        <option value="$PROJECT_DIR$/lib/ui/contributors/contributors.dart" />
         <option value="$PROJECT_DIR$/lib/model/schedule.dart" />
         <option value="$PROJECT_DIR$/lib/ui/schedule/day1.dart" />
         <option value="$PROJECT_DIR$/lib/ui/schedule/day2.dart" />
@@ -452,11 +571,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/lib/ui/sponsors/sponsors.dart" />
         <option value="$PROJECT_DIR$/android/app/proguard-rules.pro" />
-        <option value="$PROJECT_DIR$/lib/ui/about_us/about_us.dart" />
         <option value="$USER_HOME$/flutter/packages/flutter/lib/src/material/expansion_tile.dart" />
         <option value="$PROJECT_DIR$/lib/ui/eurekoin/eurekoin_transactions.dart" />
         <option value="$PROJECT_DIR$/android/key.properties" />
-        <option value="$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart" />
         <option value="$PROJECT_DIR$/android/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/ios/Runner/Info.plist" />
         <option value="$PROJECT_DIR$/lib/ui/account/Components/alternate_login.dart" />
@@ -472,9 +589,7 @@
         <option value="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/comment_section.dart" />
         <option value="$PROJECT_DIR$/lib/ui/activities/events/event_details.dart" />
         <option value="$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/feed_details.dart" />
-        <option value="$PROJECT_DIR$/lib/util/drawer.dart" />
         <option value="$PROJECT_DIR$/lib/ui/search_by_tags/tags.dart" />
-        <option value="$PROJECT_DIR$/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart" />
         <option value="$PROJECT_DIR$/lib/util/event_details.dart" />
         <option value="$PROJECT_DIR$/lib/ui/eurekoin/loginKey.dart" />
@@ -485,8 +600,14 @@
         <option value="$PROJECT_DIR$/android/build.gradle" />
         <option value="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" />
         <option value="$PROJECT_DIR$/lib/ui/eurekoin/eurekoin.dart" />
-        <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart" />
+        <option value="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" />
+        <option value="$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart" />
+        <option value="$PROJECT_DIR$/lib/ui/contributors/contributors.dart" />
+        <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/lib/ui/about_us/about_us.dart" />
+        <option value="$PROJECT_DIR$/lib/main.dart" />
+        <option value="$PROJECT_DIR$/lib/util/drawer.dart" />
       </list>
     </option>
   </component>
@@ -539,11 +660,6 @@
             <path>
               <item name="Aavishkar_app" type="b2602c69:ProjectViewProjectNode" />
               <item name="Aavishkar_app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Aavishkar_app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Aavishkar_app" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -691,15 +807,15 @@
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27256638" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27256638" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32920355" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920355" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24621212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23106061" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -753,39 +869,8 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/android/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="5" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="28" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/intermediates/proguard-files/proguard-android-optimize.txt-3.0.1" />
-    <entry file="file://$PROJECT_DIR$/build/intermediates/proguard-files/proguard-defaults.txt-3.0.1" />
-    <entry file="file://$PROJECT_DIR$/build/intermediates/proguard-files/proguard-android.txt-3.0.1" />
     <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/material/expansion_tile.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/ui/about_us/about_us.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="146" column="59" lean-forward="false" selection-start-line="146" selection-start-column="59" selection-end-line="146" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/android/app/proguard-rules.pro" />
-    <entry file="file://$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="177" column="33" lean-forward="false" selection-start-line="177" selection-start-column="33" selection-end-line="177" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/ui/eurekoin/eurekoin_transactions.dart" />
     <entry file="file://$PROJECT_DIR$/android/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -838,7 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.flutter-plugins" />
     <entry file="file://$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -883,13 +967,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/ui/activities/events/event_details.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/status_section.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="51" column="45" lean-forward="false" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/model/posts_comment.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-108">
@@ -904,20 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/model/newsfeed.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/newsfeed.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/feed_details.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -929,13 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/util/drawer.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="39" lean-forward="false" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -957,20 +1013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2628">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6506">
-          <caret line="164" column="68" lean-forward="false" selection-start-line="164" selection-start-column="59" selection-end-line="164" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1025,25 +1067,147 @@
         <state relative-caret-position="108">
           <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#20#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/games/app/views/home_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.flutter-plugins">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/splashscreen/splashscreen.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/contact_us/contact_us.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/contributors/contributors.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="36" column="24" lean-forward="false" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#32#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/newsfeed_details/status_section.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding>
+            <element signature="e#1#21#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/model/newsfeed.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="34" lean-forward="false" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/about_us/about_us.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/intro_slider-1.2.3/example/lib/intro.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="7" lean-forward="true" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/util/drawer.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="302" column="42" lean-forward="false" selection-start-line="302" selection-start-column="42" selection-end-line="302" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/dashboard_layout.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/dashboard.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4320">
-          <caret line="240" column="0" lean-forward="false" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1780">
+          <caret line="103" column="23" lean-forward="false" selection-start-line="103" selection-start-column="23" selection-end-line="103" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ui/dashboard/newsfeed.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="41" column="40" lean-forward="false" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-72">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="18" lean-forward="false" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
           <folding />
         </state>
       </provider>

@@ -50,7 +50,7 @@ class _DashboardState extends State<Dashboard> {
                       fontSize: 20.0,
                     )
                 ),
-                title: Text("Aarohan"),
+                title: Text("Aavishkar 3.0"),
                   actions: <Widget>[
                     IconButton(
                       icon: Icon(Icons.search),
