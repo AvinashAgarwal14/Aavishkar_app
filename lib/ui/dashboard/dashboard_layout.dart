@@ -20,6 +20,7 @@ class DashBoardLayout extends StatefulWidget {
 }
 
 class _DashBoardLayoutState extends State<DashBoardLayout> {
+  
   CarouselSlider instance;
   int j = 0;
 
