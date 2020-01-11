@@ -272,7 +272,7 @@ class _EurekoinCouponState extends State<EurekoinCoupon> {
     var email = widget.email;
     var bytes = utf8.encode("$email"+"$loginKey");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://ekoin.nitdgplug.org/api/coupon/$encoded/?code=$coupon";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/coupon/?token=$encoded&code=$coupon";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);

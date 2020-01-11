@@ -308,7 +308,7 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
     var bytes = utf8.encode("$email" + "$loginKey");
     var encoded = sha1.convert(bytes);
     String apiUrl =
-        "https://ekoin.nitdgplug.org/api/transfer/$encoded?amount=$amount&email=$transerTo";
+        "https://ekoin.nitdgplug.org/api/transfer/?token=$encoded&amount=$amount&email=$transerTo";
     print(apiUrl);
     http.Response response = await http.get(apiUrl);
     print(response.body);
@@ -334,7 +334,7 @@ class _EurekoinTransferState extends State<EurekoinTransfer> {
       return suggestionList;
     } else {
       String apiUrl =
-          "https://ekoin.nitdgplug.org/api/users/${emailController.text}";
+          "https://ekoin.nitdgplug.org/api/users/?pattern=${emailController.text}";
       http.Response response = await http.get(apiUrl);
       return json.decode(response.body)['users'];
     }

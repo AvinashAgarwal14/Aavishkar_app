@@ -7,6 +7,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+
   cupertino_icons: ^0.1.2
   shared_preferences: ^0.5.3+1
   firebase_auth:
@@ -23,6 +24,7 @@ dependencies:
   carousel_slider:
   flutter_swiper:
 #  barcode_scan: ^0.0.7
+#  qrscan: ^0.2.17
   intl: ^0.15.7
   palette_generator: ^0.2.0
   path_provider:
@@ -88,7 +90,6 @@ flutter:
     - images/activities/
     - images/gifs/
     - images/introscreen/
-    - assets/
     - fonts/Orbitron-Medium.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
