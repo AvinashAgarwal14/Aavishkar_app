@@ -8,7 +8,7 @@ import '../../util/drawer.dart';
 import './dashboard_layout.dart';
 import './newsfeed.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import '../search_by_tags/tags.dart';
 import '../eurekoin/eurekoin.dart';
 import '../account/login.dart';
@@ -24,6 +24,8 @@ class _DashboardState extends State<Dashboard> {
   FirebaseUser currentUser;
   int isEurekoinAlreadyRegistered;
   String barcodeString;
+  final loginKey = 'itsnotvalidanyways';
+
 
   @override
   void initState() {
@@ -61,16 +63,16 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     (currentUser!=null && isEurekoinAlreadyRegistered!=null)?
                       IconButton(
-                      icon: Image(image: AssetImage("images/QRIcon.png"), color: Colors.white),
+                      icon: Image(image: AssetImage("images/QRIcon.png"), color: Colors.black),
                       onPressed: ()
                           {
                             if(isEurekoinAlreadyRegistered==1)
                               {
-                                //scanQR();
+                                scanQR();
                               }
                             else if (isEurekoinAlreadyRegistered==0)
                               {
-                                //scanQR();
+                                scanQR();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => EurekoinHomePage()),
@@ -138,6 +140,7 @@ class _DashboardState extends State<Dashboard> {
 
   Future getUser() async {
     FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    print("Adasd");
     print(user);
     setState(() {
       currentUser = user;
@@ -148,11 +151,10 @@ class _DashboardState extends State<Dashboard> {
 
   Future isEurekoinUserRegistered() async {
     var email = currentUser.email;
-    var name = currentUser.displayName;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email"+"$loginKey");
     var encoded = sha1.convert(bytes);
 
-    String apiUrl = "https://ekoin.nitdgplug.org/api/exists/$encoded";
+    String apiUrl = "https://ekoin.nitdgplug.org/api/exists/?token=$encoded";
     http.Response response = await http.get(apiUrl);
     var status = json.decode(response.body)['status'];
     if(status == '1')
@@ -167,64 +169,45 @@ class _DashboardState extends State<Dashboard> {
       });
   }
 
-  // Future scanQR() async {
-  //   try {
-  //     String hiddenString = await BarcodeScanner.scan();
-  //     setState(() {
-  //       barcodeString = hiddenString;
-  //       print(barcodeString);
-  //       Future<int> result = couponEurekoin(barcodeString);
-  //       result.then((value) {
-  //         print(value);
-  //         if (value == 0)
-  //         {
-  //           setState(() {
-  //             barcodeString = "Successful!";
-  //           });
-  //           showDialogBox(barcodeString);
-  //         }
-  //         else if (value == 2)
-  //           setState(() {
-  //             barcodeString = "Invalid Coupon";
-  //             showDialogBox(barcodeString);
-  //           });
-  //         else if (value == 3)
-  //           setState(() {
-  //             barcodeString = "Already Used";
-  //             showDialogBox(barcodeString);
-  //           });
-  //         else if (value == 4)
-  //           setState(() {
-  //             barcodeString = "Coupon Expired";
-  //             showDialogBox(barcodeString);
-  //           });
-  //       });
-  //     });
-  //   } on PlatformException catch (e) {
-  //     if (e.code == BarcodeScanner.CameraAccessDenied) {
-  //       setState(() {
-  //         barcodeString = 'The user did not grant the camera permission!';
-  //         showDialogBox(barcodeString);
-  //       });
-  //     } else {
-  //       setState(() {
-  //         barcodeString = 'Unknown error: $e';
-  //         showDialogBox(barcodeString);
-  //       }
-  //       );
-  //     }
-  //   } on FormatException{
-  //     setState(() {
-  //       barcodeString = 'null (User returned using the "back"-button before scanning anything. Result)';
-  //       showDialogBox(barcodeString);
-  //     });
-  //   } catch (e) {
-  //     setState(() {
-  //       barcodeString = 'Unknown error: $e';
-  //       showDialogBox(barcodeString);
-  //     });
-  //   }
-  // }
+   Future scanQR() async {
+     try {
+       String hiddenString = await BarcodeScanner.scan();
+       setState(() {
+         barcodeString = hiddenString;
+         print(barcodeString);
+         Future<int> result = couponEurekoin(barcodeString);
+         result.then((value) {
+           print(value);
+           if (value == 0) {
+             setState(() {
+               barcodeString = "Successful!";
+             });
+             showDialogBox(barcodeString);
+           }
+           else if (value == 2)
+             setState(() {
+               barcodeString = "Invalid Coupon";
+               showDialogBox(barcodeString);
+             });
+           else if (value == 3)
+             setState(() {
+               barcodeString = "Already Used";
+               showDialogBox(barcodeString);
+             });
+           else if (value == 4)
+             setState(() {
+               barcodeString = "Coupon Expired";
+               showDialogBox(barcodeString);
+             });
+         });
+       });
+     } on PlatformException catch (e) {
+       setState(() {
+         barcodeString = 'The user did not grant the camera permission!';
+         showDialogBox(barcodeString);
+       });
+     }
+   }
 
   void showDialogBox(String message) {
     // flutter defined function
@@ -252,11 +235,9 @@ class _DashboardState extends State<Dashboard> {
 
   Future<int> couponEurekoin(String coupon) async {
     var email = currentUser.email;
-    var name = currentUser.displayName;
-    var bytes = utf8.encode("$email"+"$name");
+    var bytes = utf8.encode("$email"+"$loginKey");
     var encoded = sha1.convert(bytes);
-    String apiUrl = "https://ekoin.nitdgplug.org/api/coupon/$encoded/?code=$coupon";
-    print(apiUrl);
+    String apiUrl = "https://ekoin.nitdgplug.org/api/coupon/?token=$encoded&code=$coupon";
     http.Response response = await http.get(apiUrl);
     print(response.body);
     var status = json.decode(response.body)['status'];

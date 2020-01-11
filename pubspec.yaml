@@ -23,8 +23,7 @@ dependencies:
   crypto: ^2.0.3
   carousel_slider:
   flutter_swiper:
-#  barcode_scan: ^0.0.7
-#  qrscan: ^0.2.17
+  barcode_scan: any
   intl: ^0.15.7
   palette_generator: ^0.2.0
   path_provider:

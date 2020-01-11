@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './eurekoin_transfer.dart';
 import './eurekoin_coupon.dart';
 import 'package:crypto/crypto.dart';
-//import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:share/share.dart';
 import 'dart:convert';
 import '../../util/drawer.dart';
@@ -511,42 +511,42 @@ class EurekoinHomePageState extends State<EurekoinHomePage> {
   }
 
   Future scanQR() async {
-//    try {
-//      String hiddenString =  await scanner.scan();
-//      setState(() {
-//        barcodeString = hiddenString;
-//        Future<int> result = couponEurekoin(barcodeString);
-//        result.then((value) {
-//          print(value);
-//          if (value == 0) {
-//            setState(() {
-//              barcodeString = "Successful!";
-//            });
-//            getUserEurekoin();
-//            showDialogBox(barcodeString);
-//          } else if (value == 2)
-//            setState(() {
-//              barcodeString = "Invalid Coupon";
-//              showDialogBox(barcodeString);
-//            });
-//          else if (value == 3)
-//            setState(() {
-//              barcodeString = "Already Used";
-//              showDialogBox(barcodeString);
-//            });
-//          else if (value == 4)
-//            setState(() {
-//              barcodeString = "Coupon Expired";
-//              showDialogBox(barcodeString);
-//            });
-//        });
-//      });
-//    } on PlatformException catch (e) {
-//        setState(() {
-//          barcodeString = 'The user did not grant the camera permission!';
-//          showDialogBox(barcodeString);
-//        });
-//      }
+    try {
+      String hiddenString =await BarcodeScanner.scan();
+      setState(() {
+        barcodeString = hiddenString;
+        Future<int> result = couponEurekoin(barcodeString);
+        result.then((value) {
+          print(value);
+          if (value == 0) {
+            setState(() {
+              barcodeString = "Successful!";
+            });
+            getUserEurekoin();
+            showDialogBox(barcodeString);
+          } else if (value == 2)
+            setState(() {
+              barcodeString = "Invalid Coupon";
+              showDialogBox(barcodeString);
+            });
+          else if (value == 3)
+            setState(() {
+              barcodeString = "Already Used";
+              showDialogBox(barcodeString);
+            });
+          else if (value == 4)
+            setState(() {
+              barcodeString = "Coupon Expired";
+              showDialogBox(barcodeString);
+            });
+        });
+      });
+    } on PlatformException catch (e) {
+        setState(() {
+          barcodeString = 'The user did not grant the camera permission!';
+          showDialogBox(barcodeString);
+        });
+      }
   }
 
   void showDialogBox(String message) {
